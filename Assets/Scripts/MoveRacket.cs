@@ -4,6 +4,8 @@ using UnityEngine;
 public class MoveRacket : MonoBehaviour
 {
     public float speed = 30;
+    public string axis = "Vertical";
+
     void FixedUpdate()
     {
         float v = Input.GetAxisRaw("Vertical");
