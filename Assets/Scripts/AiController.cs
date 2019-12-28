@@ -2,7 +2,7 @@
 
 public class AiController : MonoBehaviour
 {
-    public float moveSpeed = 30;
+    public float moveSpeed;
     
     private Rigidbody2D ball;
     private Rigidbody2D paddle;
