@@ -4,23 +4,30 @@ public class BallController : MonoBehaviour
 {
     public readonly float SPEED = 30;
     public readonly Vector2 INITIAL_DIRECTION = Vector2.right;
-    private Rigidbody2D ball;
-    
+
+    private Vector2 directionOfMovement;
+    private Rigidbody2D ballBody;
+
     void Start()
     {
-        ball = GetComponent<Rigidbody2D>();
-        ball.velocity = INITIAL_DIRECTION * SPEED;
+        ballBody = GetComponent<Rigidbody2D>();
+        directionOfMovement = INITIAL_DIRECTION;
+        ballBody.velocity = directionOfMovement * SPEED;
     }
 
-    float hitFactor(Vector2 ballPos, Vector2 racketPos,
-                float racketHeight)
+    // upon hitting a paddle, we invert the direction of the ball
+    // TODO: add checking for walls
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        // ascii art:
-        // ||  1 <- at the top of the racket
-        // ||
-        // ||  0 <- at the middle of the racket
-        // ||
-        // || -1 <- at the bottom of the racket
-        return (ballPos.y - racketPos.y) / racketHeight;
+        Vector2 ballPosition = transform.position;
+        Vector2 otherPosition = collision.transform.position;
+
+        if (collision.gameObject.GetComponent("Paddle") != null)
+        {
+            float invertedXDirection = directionOfMovement.x > 0? -1 : 1;
+            float offsetFromPaddleCenterToBall = (otherPosition.y - ballPosition.y) / collision.collider.bounds.size.y;
+            directionOfMovement = new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
+            ballBody.velocity = directionOfMovement * SPEED;
+        }
     }
 }

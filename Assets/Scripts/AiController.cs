@@ -4,25 +4,19 @@ public class AiController : MonoBehaviour
 {
     public readonly float SPEED = 30;
 
-    private Rigidbody2D racket;
-    private Rigidbody2D ball; // change this later, its disgusting. this class doesn't own that object...
+    private Rigidbody2D ballBody;
+    private Rigidbody2D paddleBody;
 
     void Start()
     {
-        racket = GameObject.FindGameObjectWithTag("Ai").GetComponent<Rigidbody2D>();
-        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<Rigidbody2D>();
-        racket.velocity = new Vector2(0, SPEED);
+        ballBody = GameObject.FindGameObjectWithTag("Ball").GetComponent<Rigidbody2D>();
+        paddleBody = GameObject.FindGameObjectWithTag("Ai").GetComponent<Rigidbody2D>();
     }
     void FixedUpdate()
     {
-        if (racket.position.y == ball.position.y)
-        {
-            racket.velocity = new Vector2(0, 0);
-        }
-        else
-        {
-            Vector2 directionToMove = racket.position.y < ball.position.y ? Vector2.up : Vector2.down;
-            racket.velocity = directionToMove * SPEED;
-        }
+        Vector2 current = paddleBody.transform.position;
+        Vector2 target = new Vector2(current.x, ballBody.transform.position.y);
+
+        transform.position = Vector2.MoveTowards(current, target, SPEED * Time.deltaTime);
     }
 }
