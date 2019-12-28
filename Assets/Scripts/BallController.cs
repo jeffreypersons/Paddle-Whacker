@@ -22,7 +22,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            float invertedXDirection = moveDirection.x > 0? -1 : 1;
+            float invertedXDirection = moveDirection.x > 0 ? -1 : 1;
             float offsetFromPaddleCenterToBall = (ball.position.y - collision.transform.position.y) / collision.collider.bounds.size.y;
             moveDirection = new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
             ball.velocity = moveSpeed * moveDirection;
