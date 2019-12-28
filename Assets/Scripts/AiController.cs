@@ -14,9 +14,8 @@ public class AiController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Vector2 current = paddle.transform.position;
-        Vector2 target = new Vector2(current.x, ball.transform.position.y);
-
-        transform.position = Vector2.MoveTowards(current, target, moveSpeed * Time.deltaTime);
+        Vector2 current = paddle.position;
+        Vector2 target = new Vector2(current.x, ball.position.y);
+        paddle.position = Vector2.MoveTowards(current, target, moveSpeed * Time.deltaTime);
     }
 }
