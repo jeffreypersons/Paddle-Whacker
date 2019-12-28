@@ -2,23 +2,23 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float paddleMoveSpeed = 30;
-
-    private Rigidbody2D paddleBody;
-    private Vector2 directionOfMovement;
+    public float moveSpeed = 30;
+    
+    private Rigidbody2D paddle;
+    private Vector2 moveDirection;
     
     void Start()
     {
-        paddleBody = GameObject.Find("PlayerPaddle").GetComponent<Rigidbody2D>();
+        paddle = GameObject.Find("PlayerPaddle").GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        directionOfMovement = new Vector2(0, paddleMoveSpeed * Mathf.Sign(Input.GetAxisRaw("Vertical")));
+        moveDirection = new Vector2(0, moveSpeed * Mathf.Sign(Input.GetAxisRaw("Vertical")));
     }
 
     void FixedUpdate()
     {
-        paddleBody.velocity = paddleMoveSpeed * directionOfMovement;
+        paddle.velocity = moveSpeed * moveDirection;
     }
 }

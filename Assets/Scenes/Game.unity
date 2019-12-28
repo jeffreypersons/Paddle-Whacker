@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08e6e93e462d54c831f2f23873b9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paddleMoveSpeed: 10
 --- !u!1 &1066596468
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166a20cd2a9d4f840ada04bd0fd97a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddleBody: {fileID: 0}
+  paddleMoveSpeed: 10
 --- !u!1 &1212787005
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +812,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8734476180867663123, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734476180867663123, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_Name
@@ -879,6 +890,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734476180867663123, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734476180867663123, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
