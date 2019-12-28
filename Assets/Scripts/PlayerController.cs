@@ -2,7 +2,7 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 30;
+    public float moveSpeed;
     
     private Rigidbody2D paddle;
     private Vector2 moveDirection;

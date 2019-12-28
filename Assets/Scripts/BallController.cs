@@ -2,8 +2,8 @@
 
 public class BallController : MonoBehaviour
 {
-    public float moveSpeed = 30;
-    public Vector2 initialDirection = Vector2.right;
+    public float moveSpeed;
+    public Vector2 initialDirection;
 
     private Vector2 moveDirection;
     private Rigidbody2D ball;
