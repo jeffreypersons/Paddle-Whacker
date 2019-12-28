@@ -2,32 +2,30 @@
 
 public class BallController : MonoBehaviour
 {
-    public float SPEED = 30;
-    public Vector2 INITIAL_DIRECTION = Vector2.right;
+    public float moveSpeed = 30;
+    public Vector2 initialDirection = Vector2.right;
 
-    private Vector2 directionOfMovement;
-    private Rigidbody2D ballBody;
+    private Vector2 moveDirection;
+    private Rigidbody2D ball;
 
     void Start()
     {
-        ballBody = GetComponent<Rigidbody2D>();
-        directionOfMovement = INITIAL_DIRECTION;
-        ballBody.velocity = directionOfMovement * SPEED;
+        ball = GetComponent<Rigidbody2D>();
+        moveDirection = initialDirection;
+        ball.velocity = moveSpeed * moveDirection;
     }
-
+    
     // upon hitting a paddle, we invert the direction of the ball
     // TODO: add checking for walls
+    // TODO: add handling for hitting top of paddle
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector2 ballPosition = transform.position;
-        Vector2 otherPosition = collision.transform.position;
-
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            float invertedXDirection = directionOfMovement.x > 0? -1 : 1;
-            float offsetFromPaddleCenterToBall = (otherPosition.y - ballPosition.y) / collision.collider.bounds.size.y;
-            directionOfMovement = new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
-            ballBody.velocity = directionOfMovement * SPEED;
+            float invertedXDirection = moveDirection.x > 0? -1 : 1;
+            float offsetFromPaddleCenterToBall = (ball.position.y - collision.transform.position.y) / collision.collider.bounds.size.y;
+            moveDirection = new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
+            ball.velocity = moveSpeed * moveDirection;
         }
     }
 }
