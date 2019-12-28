@@ -2,8 +2,8 @@
 
 public class BallController : MonoBehaviour
 {
-    public readonly float SPEED = 30;
-    public readonly Vector2 INITIAL_DIRECTION = Vector2.right;
+    public float SPEED = 30;
+    public Vector2 INITIAL_DIRECTION = Vector2.right;
 
     private Vector2 directionOfMovement;
     private Rigidbody2D ballBody;
@@ -22,7 +22,7 @@ public class BallController : MonoBehaviour
         Vector2 ballPosition = transform.position;
         Vector2 otherPosition = collision.transform.position;
 
-        if (collision.gameObject.GetComponent("Paddle") != null)
+        if (collision.gameObject.CompareTag("Paddle"))
         {
             float invertedXDirection = directionOfMovement.x > 0? -1 : 1;
             float offsetFromPaddleCenterToBall = (otherPosition.y - ballPosition.y) / collision.collider.bounds.size.y;
