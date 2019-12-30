@@ -16,8 +16,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Input.GetAxisRaw(inputAxisName));
-        moveDirection = new Vector2(0, moveSpeed * Mathf.Sign(Input.GetAxisRaw("Vertical")));
+        moveDirection = new Vector2(0, Input.GetAxisRaw(inputAxisName));
     }
 
     void FixedUpdate()
