@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 5033810390720941941, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941941, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -186,6 +186,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: left_wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: VerticalWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b912f211fa2f84da91ca642de1df7f, type: 3}
@@ -345,6 +350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: mid_line
       objectReference: {fileID: 0}
+    - target: {fileID: 2066982697507942058, guid: 4bbb6c098bbf97543bf387577c75cf1c,
+        type: 3}
+      propertyPath: m_TagString
+      value: GuidingLine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bbb6c098bbf97543bf387577c75cf1c, type: 3}
 --- !u!4 &664054119 stripped
@@ -364,6 +374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bottom_wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591668963266348511, guid: bab790aa261a1694fa25e6e90b36d9a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: HorizontalWall
       objectReference: {fileID: 0}
     - target: {fileID: 6591668963266348513, guid: bab790aa261a1694fa25e6e90b36d9a5,
         type: 3}
@@ -403,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 6591668963266348513, guid: bab790aa261a1694fa25e6e90b36d9a5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6591668963266348513, guid: bab790aa261a1694fa25e6e90b36d9a5,
         type: 3}
@@ -495,6 +510,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: right_wall
       objectReference: {fileID: 0}
+    - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_TagString
+      value: VerticalWall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b912f211fa2f84da91ca642de1df7f, type: 3}
 --- !u!4 &689295912 stripped
@@ -533,6 +553,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: top_wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6591668963266348511, guid: bab790aa261a1694fa25e6e90b36d9a5,
+        type: 3}
+      propertyPath: m_TagString
+      value: HorizontalWall
       objectReference: {fileID: 0}
     - target: {fileID: 6591668963266348513, guid: bab790aa261a1694fa25e6e90b36d9a5,
         type: 3}
@@ -625,10 +650,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 664054119}
-  - {fileID: 682231914}
+  - {fileID: 417016937}
   - {fileID: 689295912}
   - {fileID: 871942652}
-  - {fileID: 417016937}
+  - {fileID: 682231914}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
