@@ -13,7 +13,7 @@ public class BallController : MonoBehaviour
         ball.velocity = moveSpeed * initialDirection;
     }
 
-    // upon hitting a paddle, we invert the direction of the ball
+    // upon hitting a paddle, reflect the ball. everything else is taken care (ie walls) of automatically by colliders
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Paddle"))
