@@ -7,6 +7,9 @@ TagManager:
   - Ai
   - Ball
   - Paddle
+  - HorizontalWall
+  - VerticalWall
+  - GuidingLine
   layers:
   - Default
   - TransparentFX
