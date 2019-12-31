@@ -18,12 +18,13 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            Vector2 paddlePosition = collision.rigidbody.position;
-            Vector2 paddleSize = collision.collider.bounds.size;
-
-            float invertedXDirection = ball.position.x - paddlePosition.x > 0 ? -1 : 1;
-            float offsetFromPaddleCenterToBall = (ball.position.y - paddlePosition.y) / paddleSize.y;
-            ball.velocity = moveSpeed * new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
+            ball.velocity = moveSpeed * ComputeBounceDirection(ball.position, collision.rigidbody.position, collision.collider);
         }
     }
-} 
+    private Vector2 ComputeBounceDirection(Vector2 ballPosition, Vector2 paddlePosition, Collider2D paddleCollider)
+    {
+        float invertedXDirection = ballPosition.x - paddlePosition.x > 0 ? -1 : 1;
+        float offsetFromPaddleCenterToBall = (ball.position.y - paddlePosition.y) / paddleCollider.bounds.size.y;
+        return new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
+    }
+}
