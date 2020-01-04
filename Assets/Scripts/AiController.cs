@@ -3,12 +3,14 @@
 public class AiController : MonoBehaviour
 {
     public float moveSpeed;
-    
+
+    private int score;
     private Rigidbody2D paddle;
     private Rigidbody2D ball;
 
     void Start()
     {
+        score = 0;
         paddle = GameObject.Find("AiPaddle").GetComponent<Rigidbody2D>();
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
     }
