@@ -14,6 +14,7 @@ public class AiController : MonoBehaviour
         paddle = GameObject.Find("AiPaddle").GetComponent<Rigidbody2D>();
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
     }
+
     void FixedUpdate()
     {
         Vector2 current = paddle.position;
