@@ -7,6 +7,7 @@ public class BallController : MonoBehaviour
 
     private Rigidbody2D ball;
 
+
     void Start()
     {
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
@@ -19,6 +20,15 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("Paddle"))
         {
             ball.velocity = ballSpeed * ComputeBounceDirection(ball.position, collision.rigidbody.position, collision.collider);
+        }
+        // really, really bad, but will be replaced by a proper event system for scoring during next refactoring day!
+        else if (collision.gameObject.name == "LeftWall")
+        {
+            GameObject.Find("RightPaddle").GetComponent<AiController>().score += 1;
+        }
+        else if (collision.gameObject.name == "RightWall")
+        {
+            GameObject.Find("LeftPaddle").GetComponent<PlayerController>().score += 1;
         }
     }
     private Vector2 ComputeBounceDirection(Vector2 ballPosition, Vector2 paddlePosition, Collider2D paddleCollider)

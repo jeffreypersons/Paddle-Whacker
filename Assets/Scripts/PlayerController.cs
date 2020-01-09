@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         inputVelocity = Vector2.zero;
         paddle.velocity = inputVelocity;
     }
-    
+
     void Update()
     {
         inputVelocity = new Vector2(0, paddleSpeed * Input.GetAxisRaw(inputAxisName));
