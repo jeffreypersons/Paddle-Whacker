@@ -14,12 +14,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
-        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-
         score = 0;
         inputVelocity = Vector2.zero;
         paddle.velocity = inputVelocity;
+
+        paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
+        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
     }
 
     void Update()
