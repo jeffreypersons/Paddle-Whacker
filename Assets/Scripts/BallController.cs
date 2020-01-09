@@ -25,6 +25,8 @@ public class BallController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("VerticalWall"))
         {
+            // for now scoring logic handled within ball class, but external event system would be preferred
+            // see https://github.com/jeffreypersons/Pong/issues/9
             UpdateScoreOnHittingWall(collision.gameObject.name);
         }
     }
@@ -36,7 +38,6 @@ public class BallController : MonoBehaviour
     }
     private void UpdateScoreOnHittingWall(string wallName)
     {
-        // really, really bad, but will be replaced by a proper event system for scoring during next refactoring day!
         if (wallName == "LeftWall")
         {
             GameObject.Find("RightPaddle").GetComponent<AiController>().score += 1;
