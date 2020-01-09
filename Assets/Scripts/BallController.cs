@@ -7,7 +7,6 @@ public class BallController : MonoBehaviour
 
     private Rigidbody2D ball;
 
-
     void Start()
     {
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
