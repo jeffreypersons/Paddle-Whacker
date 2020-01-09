@@ -5,12 +5,16 @@ public class BallController : MonoBehaviour
     public float ballSpeed;
     public Vector2 initialDirection;
 
+    [HideInInspector] public Vector2 initialPosition;
+
     private Rigidbody2D ball;
 
     void Start()
     {
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         ball.velocity = ballSpeed * initialDirection;
+
+        initialPosition = ball.position;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +32,7 @@ public class BallController : MonoBehaviour
             // for now scoring logic handled within ball class, but external event system would be preferred
             // see https://github.com/jeffreypersons/Pong/issues/9
             UpdateScoreOnHittingWall(collision.gameObject.name);
+            ResetPositions();
         }
     }
     private Vector2 ComputeBounceDirection(Vector2 ballPosition, Vector2 paddlePosition, Collider2D paddleCollider)
@@ -46,5 +51,16 @@ public class BallController : MonoBehaviour
         {
             GameObject.Find("LeftPaddle").GetComponent<PlayerController>().score += 1;
         }
+    }
+    private void ResetPositions()
+    {
+        ball.position = initialPosition;
+        ball.velocity = ballSpeed * initialDirection;
+
+        PlayerController leftController = GameObject.Find("LeftPaddle").GetComponent<PlayerController>();
+        leftController.GetComponent<Rigidbody2D>().position = leftController.initialPosition;
+
+        AiController rightController = GameObject.Find("RightPaddle").GetComponent<AiController>();
+        rightController.GetComponent<Rigidbody2D>().position = rightController.initialPosition;
     }
 }
