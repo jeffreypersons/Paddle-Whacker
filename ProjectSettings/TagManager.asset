@@ -11,6 +11,7 @@ TagManager:
   - VerticalWall
   - GuidingLine
   - UI
+  - TextLabel
   layers:
   - Default
   - TransparentFX
