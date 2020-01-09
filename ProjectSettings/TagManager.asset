@@ -10,8 +10,8 @@ TagManager:
   - HorizontalWall
   - VerticalWall
   - GuidingLine
-  - UI
   - TextLabel
+  - Canvas
   layers:
   - Default
   - TransparentFX
