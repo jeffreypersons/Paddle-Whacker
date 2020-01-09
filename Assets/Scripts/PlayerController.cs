@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public string inputAxisName;
 
     [HideInInspector] public int score;
+    [HideInInspector] public Vector2 initialPosition;
 
     private Vector2 inputVelocity;
     private Rigidbody2D paddle;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         score = 0;
         inputVelocity = Vector2.zero;
         paddle.velocity = inputVelocity;
+        initialPosition = paddle.position;
     }
 
     void Update()

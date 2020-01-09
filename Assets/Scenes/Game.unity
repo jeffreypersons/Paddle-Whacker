@@ -543,6 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paddleName: RightPaddle
   paddleSpeed: 30
+  initialPosition: {x: 0, y: 0}
   score: 0
 --- !u!1001 &871942651
 PrefabInstance:
@@ -680,6 +681,7 @@ MonoBehaviour:
   paddleName: LeftPaddle
   paddleSpeed: 30
   inputAxisName: Vertical
+  initialPosition: {x: 0, y: 0}
   score: 0
 --- !u!1001 &1438342285
 PrefabInstance:
