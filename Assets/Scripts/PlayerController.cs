@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public string paddleName;
     public float paddleSpeed;
     public string inputAxisName;
+    public Vector2 initialPosition;
 
     [HideInInspector] public int score;
 
@@ -14,12 +15,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
+        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
+
         score = 0;
         inputVelocity = Vector2.zero;
         paddle.velocity = inputVelocity;
-
-        paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
-        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
     }
 
     void Update()
