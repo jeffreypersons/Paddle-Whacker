@@ -2,15 +2,15 @@
 
 public class BallController : MonoBehaviour
 {
-    public float moveSpeed;
+    public float ballSpeed;
     public Vector2 initialDirection;
 
     private Rigidbody2D ball;
 
     void Start()
     {
-        ball = GetComponent<Rigidbody2D>();
-        ball.velocity = moveSpeed * initialDirection;
+        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
+        ball.velocity = ballSpeed * initialDirection;
     }
 
     // upon hitting a paddle, reflect the ball. everything else is taken care (ie walls) of automatically by colliders
@@ -18,7 +18,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            ball.velocity = moveSpeed * ComputeBounceDirection(ball.position, collision.rigidbody.position, collision.collider);
+            ball.velocity = ballSpeed * ComputeBounceDirection(ball.position, collision.rigidbody.position, collision.collider);
         }
     }
     private Vector2 ComputeBounceDirection(Vector2 ballPosition, Vector2 paddlePosition, Collider2D paddleCollider)

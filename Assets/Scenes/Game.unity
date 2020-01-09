@@ -185,7 +185,7 @@ PrefabInstance:
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Name
-      value: left_wall
+      value: LeftWall
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -348,7 +348,7 @@ PrefabInstance:
     - target: {fileID: 2066982697507942058, guid: 4bbb6c098bbf97543bf387577c75cf1c,
         type: 3}
       propertyPath: m_Name
-      value: mid_line
+      value: MidLine
       objectReference: {fileID: 0}
     - target: {fileID: 2066982697507942058, guid: 4bbb6c098bbf97543bf387577c75cf1c,
         type: 3}
@@ -373,7 +373,7 @@ PrefabInstance:
     - target: {fileID: 6591668963266348511, guid: bab790aa261a1694fa25e6e90b36d9a5,
         type: 3}
       propertyPath: m_Name
-      value: bottom_wall
+      value: BottomWall
       objectReference: {fileID: 0}
     - target: {fileID: 6591668963266348511, guid: bab790aa261a1694fa25e6e90b36d9a5,
         type: 3}
@@ -508,7 +508,7 @@ PrefabInstance:
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Name
-      value: right_wall
+      value: RightWall
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -541,7 +541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08e6e93e462d54c831f2f23873b9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30
+  paddleName: RightPaddle
+  paddleSpeed: 30
+  score: 0
 --- !u!1001 &871942651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -552,7 +554,7 @@ PrefabInstance:
     - target: {fileID: 6591668963266348511, guid: bab790aa261a1694fa25e6e90b36d9a5,
         type: 3}
       propertyPath: m_Name
-      value: top_wall
+      value: TopWall
       objectReference: {fileID: 0}
     - target: {fileID: 6591668963266348511, guid: bab790aa261a1694fa25e6e90b36d9a5,
         type: 3}
@@ -675,8 +677,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166a20cd2a9d4f840ada04bd0fd97a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 30
+  paddleName: LeftPaddle
+  paddleSpeed: 30
   inputAxisName: Vertical
+  score: 0
 --- !u!1001 &1438342285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -764,6 +768,11 @@ PrefabInstance:
       propertyPath: initialDirection.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7617027791629370975, guid: c8dbfa0f129a8e84e951632cab7d6425,
+        type: 3}
+      propertyPath: ballSpeed
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8dbfa0f129a8e84e951632cab7d6425, type: 3}
 --- !u!1001 &1974708889
@@ -846,7 +855,7 @@ PrefabInstance:
     - target: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_Name
-      value: PlayerPaddle
+      value: LeftPaddle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
@@ -930,7 +939,7 @@ PrefabInstance:
     - target: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_Name
-      value: AiPaddle
+      value: RightPaddle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}

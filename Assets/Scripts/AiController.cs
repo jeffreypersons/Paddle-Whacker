@@ -2,16 +2,18 @@
 
 public class AiController : MonoBehaviour
 {
-    public float moveSpeed;
+    public string paddleName;
+    public float paddleSpeed;
 
-    private int score;
+    [HideInInspector] public int score;
+
     private Rigidbody2D paddle;
     private Rigidbody2D ball;
 
     void Start()
     {
         score = 0;
-        paddle = GameObject.Find("AiPaddle").GetComponent<Rigidbody2D>();
+        paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
     }
 
@@ -19,6 +21,6 @@ public class AiController : MonoBehaviour
     {
         Vector2 current = paddle.position;
         Vector2 target = new Vector2(current.x, ball.position.y);
-        paddle.position = Vector2.MoveTowards(current, target, moveSpeed * Time.deltaTime);
+        paddle.position = Vector2.MoveTowards(current, target, paddleSpeed * Time.deltaTime);
     }
 }
