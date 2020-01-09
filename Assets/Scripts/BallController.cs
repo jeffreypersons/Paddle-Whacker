@@ -13,21 +13,19 @@ public class BallController : MonoBehaviour
         ball.velocity = ballSpeed * initialDirection;
     }
 
-    // upon hitting a paddle, reflect the ball. everything else is taken care (ie walls) of automatically by colliders
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
             ball.velocity = ballSpeed * ComputeBounceDirection(ball.position, collision.rigidbody.position, collision.collider);
         }
-        // really, really bad, but will be replaced by a proper event system for scoring during next refactoring day!
-        else if (collision.gameObject.name == "LeftWall")
+        if (collision.gameObject.CompareTag("HorizontalWall"))
         {
-            GameObject.Find("RightPaddle").GetComponent<AiController>().score += 1;
+            // desired behavior already handled by collider defaults
         }
-        else if (collision.gameObject.name == "RightWall")
+        if (collision.gameObject.CompareTag("VerticalWall"))
         {
-            GameObject.Find("LeftPaddle").GetComponent<PlayerController>().score += 1;
+            UpdateScoreOnHittingWall(collision.gameObject.name);
         }
     }
     private Vector2 ComputeBounceDirection(Vector2 ballPosition, Vector2 paddlePosition, Collider2D paddleCollider)
@@ -35,5 +33,17 @@ public class BallController : MonoBehaviour
         float invertedXDirection = ballPosition.x - paddlePosition.x > 0 ? -1 : 1;
         float offsetFromPaddleCenterToBall = (ball.position.y - paddlePosition.y) / paddleCollider.bounds.size.y;
         return new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
+    }
+    private void UpdateScoreOnHittingWall(string wallName)
+    {
+        // really, really bad, but will be replaced by a proper event system for scoring during next refactoring day!
+        if (wallName == "LeftWall")
+        {
+            GameObject.Find("RightPaddle").GetComponent<AiController>().score += 1;
+        }
+        else if (wallName == "RightWall")
+        {
+            GameObject.Find("LeftPaddle").GetComponent<PlayerController>().score += 1;
+        }
     }
 }
