@@ -31,7 +31,12 @@ public class BallController : MonoBehaviour
         {
             // for now scoring logic handled within ball class, but external event system would be preferred
             // see https://github.com/jeffreypersons/Pong/issues/9
-            UpdateScoreOnHittingWall(collision.gameObject.name);
+            switch (collision.gameObject.name)
+            {
+                case "LeftWall":  IncrementRightPlayerScore(); break;
+                case "RightWall": IncrementLeftPlayerScore();  break;
+            }
+
             ResetPositions();
         }
     }
@@ -41,16 +46,17 @@ public class BallController : MonoBehaviour
         float offsetFromPaddleCenterToBall = (ball.position.y - paddlePosition.y) / paddleCollider.bounds.size.y;
         return new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
     }
-    private void UpdateScoreOnHittingWall(string wallName)
+    private void IncrementLeftPlayerScore()
     {
-        if (wallName == "LeftWall")
-        {
-            GameObject.Find("RightPaddle").GetComponent<AiController>().score += 1;
-        }
-        else if (wallName == "RightWall")
-        {
-            GameObject.Find("LeftPaddle").GetComponent<PlayerController>().score += 1;
-        }
+        PlayerController controller = GameObject.Find("LeftPaddle").GetComponent<PlayerController>();
+        controller.score += 1;
+        GameObject.Find("LeftScoreLabel").GetComponent<TMPro.TextMeshProUGUI>().text = controller.score.ToString();
+    }
+    private void IncrementRightPlayerScore()
+    {
+        AiController controller = GameObject.Find("RightPaddle").GetComponent<AiController>();
+        controller.score += 1;
+        GameObject.Find("RightScoreLabel").GetComponent<TMPro.TextMeshProUGUI>().text = controller.score.ToString();
     }
     private void ResetPositions()
     {

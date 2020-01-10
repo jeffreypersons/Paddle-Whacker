@@ -341,7 +341,7 @@ PrefabInstance:
     - target: {fileID: 6153792028380694710, guid: e9e35d7133f37bb4f80af83088a8d1ca,
         type: 3}
       propertyPath: m_Name
-      value: RightPlayer
+      value: RightPlayerLabel
       objectReference: {fileID: 0}
     - target: {fileID: 6153792028380694711, guid: e9e35d7133f37bb4f80af83088a8d1ca,
         type: 3}
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 1199863214}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: TextLabel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1184,7 +1184,7 @@ PrefabInstance:
     - target: {fileID: 6153792028380694710, guid: e9e35d7133f37bb4f80af83088a8d1ca,
         type: 3}
       propertyPath: m_Name
-      value: LeftPlayer
+      value: LeftPlayerLabel
       objectReference: {fileID: 0}
     - target: {fileID: 6153792028380694711, guid: e9e35d7133f37bb4f80af83088a8d1ca,
         type: 3}
@@ -1448,7 +1448,7 @@ PrefabInstance:
     - target: {fileID: 4729527569271823114, guid: e0aeb828c2054274fbc5c0d0c5210e89,
         type: 3}
       propertyPath: m_Name
-      value: RightScorelabel
+      value: RightScoreLabel
       objectReference: {fileID: 0}
     - target: {fileID: 4729527569271823115, guid: e0aeb828c2054274fbc5c0d0c5210e89,
         type: 3}
