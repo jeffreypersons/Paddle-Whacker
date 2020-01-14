@@ -12,6 +12,7 @@ TagManager:
   - GuidingLine
   - TextLabel
   - Canvas
+  - Arena
   layers:
   - Default
   - TransparentFX
