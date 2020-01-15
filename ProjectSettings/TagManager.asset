@@ -13,6 +13,7 @@ TagManager:
   - TextLabel
   - Canvas
   - Arena
+  - EventSystem
   layers:
   - Default
   - TransparentFX
