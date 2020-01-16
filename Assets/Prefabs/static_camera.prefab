@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 10405006053755504}
   - component: {fileID: 10405006053755506}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: static_camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &10405006053755535
 Transform:
