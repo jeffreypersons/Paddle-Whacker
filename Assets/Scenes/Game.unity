@@ -346,6 +346,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Overlay
       objectReference: {fileID: 0}
+    - target: {fileID: 773325548713854381, guid: 08420b267c794fa4b8330991eb8674e7,
+        type: 3}
+      propertyPath: m_MinHeight
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773325548713854381, guid: 08420b267c794fa4b8330991eb8674e7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773325548713854381, guid: 08420b267c794fa4b8330991eb8674e7,
+        type: 3}
+      propertyPath: m_MinWidth
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 773325548713854382, guid: 08420b267c794fa4b8330991eb8674e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -456,6 +471,21 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 157880718}
+    - target: {fileID: 773325548713854383, guid: 08420b267c794fa4b8330991eb8674e7,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 773325548713854383, guid: 08420b267c794fa4b8330991eb8674e7,
+        type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 773325548713854383, guid: 08420b267c794fa4b8330991eb8674e7,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5411584271573944657, guid: 08420b267c794fa4b8330991eb8674e7,
         type: 3}
       propertyPath: m_textInfo.characterCount
