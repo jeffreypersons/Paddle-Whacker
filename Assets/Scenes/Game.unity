@@ -1310,7 +1310,7 @@ GameObject:
   - component: {fileID: 3449679234697785354}
   - component: {fileID: 3449679234697785358}
   m_Layer: 0
-  m_Name: ScenePauser
+  m_Name: GamePauser
   m_TagString: Scripter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1420,8 +1420,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3449679234697785358}
-        m_MethodName: Pause
-        m_Mode: 5
+        m_MethodName: TogglePause
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
