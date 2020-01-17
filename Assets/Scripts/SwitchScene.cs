@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class SwitchScene : MonoBehaviour
 {
-    public void NextScene(string name)
+    public void SwitchTo(string sceneName)
     {
-        SceneManager.LoadScene(name);
+        SceneManager.LoadScene(sceneName);
     }
 }
