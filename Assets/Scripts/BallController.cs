@@ -50,13 +50,13 @@ public class BallController : MonoBehaviour
     {
         PlayerController controller = GameObject.Find("LeftPaddle").GetComponent<PlayerController>();
         controller.score += 1;
-        GameObject.Find("LeftScoreLabel").GetComponent<TMPro.TextMeshProUGUI>().text = controller.score.ToString();
+        GameObject.Find("LeftPlayerScore").GetComponent<TMPro.TextMeshProUGUI>().text = controller.score.ToString();
     }
     private void IncrementRightPlayerScore()
     {
         AiController controller = GameObject.Find("RightPaddle").GetComponent<AiController>();
         controller.score += 1;
-        GameObject.Find("RightScoreLabel").GetComponent<TMPro.TextMeshProUGUI>().text = controller.score.ToString();
+        GameObject.Find("RightPlayerScore").GetComponent<TMPro.TextMeshProUGUI>().text = controller.score.ToString();
     }
     private void ResetPositions()
     {
