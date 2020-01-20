@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class QuitGame : MonoBehaviour
 {
+    // closes unity game application (or exits session if running in editor)
+    // note: any unsaved game data is lost
     public void Quit()
     {
-        Application.Quit();
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 }
