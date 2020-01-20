@@ -16,6 +16,8 @@ TagManager:
   - EventSystem
   - Button
   - Scripter
+  - LayoutElement
+  - Screen
   layers:
   - Default
   - TransparentFX

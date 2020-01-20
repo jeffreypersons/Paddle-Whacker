@@ -271,6 +271,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1791077448461807418, guid: 2ff4ec89601c4e04eb38936f6ae45937,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -75
+      objectReference: {fileID: 0}
     - target: {fileID: 1791077448461807429, guid: 2ff4ec89601c4e04eb38936f6ae45937,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -280,6 +285,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SwitchTo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964460215006225703, guid: 2ff4ec89601c4e04eb38936f6ae45937,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 87.5
       objectReference: {fileID: 0}
     - target: {fileID: 3964460216184117965, guid: 2ff4ec89601c4e04eb38936f6ae45937,
         type: 3}
@@ -340,6 +350,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TitleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964460216184117966, guid: 2ff4ec89601c4e04eb38936f6ae45937,
+        type: 3}
+      propertyPath: m_TagString
+      value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 4449539881727871956, guid: 2ff4ec89601c4e04eb38936f6ae45937,
         type: 3}
