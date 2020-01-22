@@ -5,7 +5,6 @@ public class AiController : MonoBehaviour
     public string paddleName;
     public float paddleSpeed;
 
-    [HideInInspector] public int score;
     [HideInInspector] public Vector2 initialPosition;
 
     private Rigidbody2D paddle;
@@ -16,7 +15,6 @@ public class AiController : MonoBehaviour
         paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
 
-        score = 0;
         initialPosition = paddle.position;
     }
 
