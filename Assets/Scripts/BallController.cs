@@ -16,6 +16,7 @@ public class BallController : MonoBehaviour
         ball.velocity = ballSpeed * initialDirection;
 
         initialPosition = ball.position;
+        DataManager.instance.ResetAll();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -45,7 +46,6 @@ public class BallController : MonoBehaviour
             {
                 SceneManager.LoadScene("EndMenu");
             }
-            data.ResetAll();
             ResetPositions();
         }
     }
