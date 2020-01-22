@@ -28,12 +28,10 @@ public class BallController : MonoBehaviour
         {
             // desired behavior already handled by collider defaults
         }
-        // REALLY UGLY, I KNOW! this tech debt will be addressed in the next issue through thorough refactoring.
         if (collision.gameObject.CompareTag("VerticalWall"))
         {
-            // for now scoring logic handled within ball class, but an external event system
-            // would be preferred, with less code duplication
-            // see https://github.com/jeffreypersons/Pong/issues/9
+            // for now some scoring logic/position-resetting logic is still handled within ball class,
+            // despite recent decoupling, but an external event system would be better...
             var data = DataManager.instance;
             switch (collision.gameObject.name)
             {
