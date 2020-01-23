@@ -18,6 +18,7 @@ TagManager:
   - Scripter
   - LayoutElement
   - Screen
+  - Detector
   layers:
   - Default
   - TransparentFX
