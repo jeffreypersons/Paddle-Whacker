@@ -32,16 +32,8 @@ public class BallController : MonoBehaviour
         {
             // for now some scoring logic/position-resetting logic is still handled within ball class,
             // despite recent decoupling, but an external event system would be better...
-            var data = DataManager.instance;
-            switch (collision.gameObject.name)
-            {
-                case "LeftWall":  data.player2Score += 1; break;
-                case "RightWall": data.player1Score += 1; break;
-            }
-
-            GameObject.Find("LeftPlayerScore").GetComponent<TMPro.TextMeshProUGUI>().text = DataManager.instance.player1Score.ToString();
-            GameObject.Find("RightPlayerScore").GetComponent<TMPro.TextMeshProUGUI>().text = DataManager.instance.player2Score.ToString();
-            if (data.player1Score == data.WINNING_SCORE || data.player2Score == data.WINNING_SCORE)
+            IncrementScoreBaseOnGoal(collision.gameObject.name);
+            if (HasWinningPlayer())
             {
                 SceneManager.LoadScene("EndMenu");
             }
@@ -54,6 +46,25 @@ public class BallController : MonoBehaviour
         float invertedXDirection = ballPosition.x - paddlePosition.x > 0 ? -1 : 1;
         float offsetFromPaddleCenterToBall = (ball.position.y - paddlePosition.y) / paddleCollider.bounds.size.y;
         return new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
+    }
+    private void IncrementScoreBaseOnGoal(string goalName)
+    {
+        var data = DataManager.instance;
+        if (goalName == "LeftWall")
+        {
+            data.player2Score += 1;
+            GameObject.Find("RightPlayerScore").GetComponent<TMPro.TextMeshProUGUI>().text = data.player2Score.ToString();
+        }
+        else if (goalName == "RightWall")
+        {
+            data.player1Score += 1;
+            GameObject.Find("LeftPlayerScore").GetComponent<TMPro.TextMeshProUGUI>().text = data.player1Score.ToString();
+        }
+    }
+    private bool HasWinningPlayer()
+    {
+        var data = DataManager.instance;
+        return (data.player1Score == data.WINNING_SCORE || data.player2Score == data.WINNING_SCORE);
     }
     private void ResetPositions()
     {
