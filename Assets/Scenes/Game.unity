@@ -757,7 +757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paddleName: RightPaddle
   paddleSpeed: 30
-  responseTime: 0
+  responseTime: 0.02
   initialPosition: {x: 0, y: 0}
 --- !u!1 &1126169004
 GameObject:

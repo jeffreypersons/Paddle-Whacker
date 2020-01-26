@@ -4,6 +4,7 @@ public class AiController : MonoBehaviour
 {
     public string paddleName;
     public float paddleSpeed;
+    public float responseTime;
 
     [HideInInspector] public Vector2 initialPosition;
 
