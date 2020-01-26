@@ -7,4 +7,9 @@ public class SwitchScene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+    public void ReloadGameScene()
+    {
+        DataManager.instance.ResetAll();
+        SceneManager.LoadScene("Game");
+    }
 }

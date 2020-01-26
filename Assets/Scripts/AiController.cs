@@ -4,6 +4,7 @@ public class AiController : MonoBehaviour
 {
     public string paddleName;
     public float paddleSpeed;
+    public float responseTime;
 
     [HideInInspector] public Vector2 initialPosition;
 
@@ -22,6 +23,7 @@ public class AiController : MonoBehaviour
     {
         Vector2 current = paddle.position;
         Vector2 target = new Vector2(current.x, ball.position.y);
-        paddle.position = Vector2.MoveTowards(current, target, paddleSpeed * Time.deltaTime);
+        float currentSpeed = Random.Range(0.10f, 1.0f) * paddleSpeed;
+        paddle.position = Vector2.MoveTowards(current, target, currentSpeed * Time.deltaTime);
     }
 }
