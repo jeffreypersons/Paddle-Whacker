@@ -40,6 +40,13 @@ public class BallController : MonoBehaviour
             ResetPositions();
         }
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+        }
+    }
 
     private Vector2 ComputeBounceDirection(Vector2 ballPosition, Vector2 paddlePosition, Collider2D paddleCollider)
     {
