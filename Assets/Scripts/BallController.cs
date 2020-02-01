@@ -26,7 +26,7 @@ public class BallController : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("HorizontalWall"))
         {
-            // desired behavior already handled by collider defaults
+            // desired bounce behavior already handled by collider defaults
         }
         if (collision.gameObject.CompareTag("VerticalWall"))
         {
@@ -38,13 +38,6 @@ public class BallController : MonoBehaviour
                 SceneManager.LoadScene("EndMenu");
             }
             ResetPositions();
-        }
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-
         }
     }
 
