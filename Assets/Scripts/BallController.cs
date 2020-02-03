@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class BallController : MonoBehaviour
 {
     public float ballSpeed;
     public Vector2 initialDirection;
-    public UnityEvent paddleHitEvent;
 
     [HideInInspector] public Vector2 initialPosition;
 
@@ -25,7 +23,7 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("Paddle"))
         {
             ball.velocity = ballSpeed * ComputeBounceDirection(ball.position, collision.rigidbody.position, collision.collider);
-            paddleHitEvent.Invoke();
+            GameEvents.onPaddleHit.Invoke(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("HorizontalWall"))
         {
