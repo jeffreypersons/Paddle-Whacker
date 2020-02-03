@@ -1264,7 +1264,7 @@ PrefabInstance:
     - target: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Paddle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
@@ -1353,7 +1353,7 @@ PrefabInstance:
     - target: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_TagString
-      value: Ai
+      value: Paddle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
