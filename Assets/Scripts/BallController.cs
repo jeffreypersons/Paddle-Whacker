@@ -35,7 +35,7 @@ public class BallController : MonoBehaviour
         {
             // for now some scoring logic/position-resetting logic is still handled within ball class,
             // despite recent decoupling, but an external event system would be better...
-            IncrementScoreBaseOnGoal(collision.gameObject.name);
+            IncrementScoreBasedOnGoal(collision.gameObject.name);
             if (HasWinningPlayer())
             {
                 SceneManager.LoadScene("EndMenu");
@@ -50,7 +50,7 @@ public class BallController : MonoBehaviour
         float offsetFromPaddleCenterToBall = (ball.position.y - paddlePosition.y) / paddleCollider.bounds.size.y;
         return new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
     }
-    private void IncrementScoreBaseOnGoal(string goalName)
+    private void IncrementScoreBasedOnGoal(string goalName)
     {
         var data = DataManager.instance;
         if (goalName == "LeftWall")
