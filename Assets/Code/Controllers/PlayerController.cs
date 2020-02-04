@@ -6,27 +6,26 @@ public class PlayerController : MonoBehaviour
     public float paddleSpeed;
     public string inputAxisName;
 
-    [HideInInspector] public Vector2 initialPosition;
-
+    private Vector2 initialPosition;
     private Vector2 inputVelocity;
     private Rigidbody2D paddle;
-    private Rigidbody2D ball;
 
+    public void Reset()
+    {
+        inputVelocity = Vector2.zero;
+        paddle.velocity = inputVelocity;
+        paddle.position = initialPosition;
+    }
     void Start()
     {
         paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
-        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-
-        inputVelocity = Vector2.zero;
-        paddle.velocity = inputVelocity;
         initialPosition = paddle.position;
+        Reset();
     }
-
     void Update()
     {
         inputVelocity = new Vector2(0, paddleSpeed * Input.GetAxisRaw(inputAxisName));
     }
-
     void FixedUpdate()
     {
         paddle.velocity = inputVelocity;

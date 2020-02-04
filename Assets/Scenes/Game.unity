@@ -297,6 +297,49 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!1 &117259441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 117259442}
+  - component: {fileID: 117259443}
+  m_Layer: 0
+  m_Name: GameRounds
+  m_TagString: Scripter
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &117259442
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117259441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &117259443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117259441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a28b488f105c94bb50ceb1eae5a5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &157880718 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 10405006053755504, guid: 2d2aa87f09491f04e98c4e1eda24c12d,
@@ -802,7 +845,6 @@ MonoBehaviour:
   paddleName: RightPaddle
   paddleSpeed: 30
   responseTime: 0.02
-  initialPosition: {x: 0, y: 0}
 --- !u!1 &1126169004
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +923,6 @@ MonoBehaviour:
   paddleName: LeftPaddle
   paddleSpeed: 30
   inputAxisName: Vertical
-  initialPosition: {x: 0, y: 0}
 --- !u!1 &1430003660
 GameObject:
   m_ObjectHideFlags: 0
