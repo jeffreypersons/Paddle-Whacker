@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
         Debug.Log("Starting Game");
         GameData.Init();
 
+        // todo: reduce the amount of 'magic' strings...
         // todo: add listeners for player scores instead in a separate script or something,
         // so they simply just change when `data.player1Score` and `data.player2Score` change
         ballController = GameObject.Find("Ball").GetComponent<BallController>();
