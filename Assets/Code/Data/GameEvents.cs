@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class StringEvent : UnityEvent<string> { }
 
 // note events are triggered and handled programmatically (via listeners and invocations)
-public class GameEvents : MonoBehaviour
+public static class GameEvents
 {
     public static StringEvent onPaddleHit = new StringEvent();
     public static StringEvent onVerticalWallHit = new StringEvent();
