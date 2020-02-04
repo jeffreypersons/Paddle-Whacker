@@ -23,16 +23,17 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("Paddle"))
         {
             ball.velocity = ballSpeed * ComputeBounceDirection(ball.position, collision.rigidbody.position, collision.collider);
+            GameEvents.onPaddleHit.Invoke(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("HorizontalWall"))
         {
-            // desired behavior already handled by collider defaults
+            // desired bounce behavior already handled by collider defaults
         }
         if (collision.gameObject.CompareTag("VerticalWall"))
         {
             // for now some scoring logic/position-resetting logic is still handled within ball class,
             // despite recent decoupling, but an external event system would be better...
-            IncrementScoreBaseOnGoal(collision.gameObject.name);
+            IncrementScoreBasedOnGoal(collision.gameObject.name);
             if (HasWinningPlayer())
             {
                 SceneManager.LoadScene("EndMenu");
@@ -47,7 +48,7 @@ public class BallController : MonoBehaviour
         float offsetFromPaddleCenterToBall = (ball.position.y - paddlePosition.y) / paddleCollider.bounds.size.y;
         return new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
     }
-    private void IncrementScoreBaseOnGoal(string goalName)
+    private void IncrementScoreBasedOnGoal(string goalName)
     {
         var data = DataManager.instance;
         if (goalName == "LeftWall")
