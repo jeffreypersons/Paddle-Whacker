@@ -53,6 +53,5 @@ public class AiController : MonoBehaviour
             positionToMoveTowards = Vector2.zero;
         }
         // todo: logic will go here for predicting position see ticket 'Make ai feel less robotic'
-        Debug.Log(paddleName);
     }
 }

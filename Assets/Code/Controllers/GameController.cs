@@ -2,8 +2,14 @@
 
 public class GameController : MonoBehaviour
 {
+    public string player1PaddleName;
+    public string player1OpposingGoalName;
+
+    public string player2PaddleName;
+    public string player2OpposingGoalName;
+
     private BallController ballController;
-    private PlayerController leftPaddleController;
+    private PlayerController player1Controller;
     private AiController rightPaddleController;
 
     private TMPro.TextMeshProUGUI leftScoreLabel;
@@ -11,15 +17,11 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Starting Game");
         GameData.Init();
 
-        // todo: reduce the amount of 'magic' strings...
-        // todo: add listeners for player scores instead in a separate script or something,
-        // so they simply just change when `data.player1Score` and `data.player2Score` change
         ballController = GameObject.Find("Ball").GetComponent<BallController>();
-        leftPaddleController = GameObject.Find("LeftPaddle").GetComponent<PlayerController>();
-        rightPaddleController = GameObject.Find("RightPaddle").GetComponent<AiController>();
+        player1Controller = GameObject.Find(player1PaddleName).GetComponent<PlayerController>();
+        rightPaddleController = GameObject.Find(player2PaddleName).GetComponent<AiController>();
 
         leftScoreLabel = GameObject.Find("LeftPlayerScore").GetComponent<TMPro.TextMeshProUGUI>();
         rightScoreLabel = GameObject.Find("RightPlayerScore").GetComponent<TMPro.TextMeshProUGUI>();
@@ -42,15 +44,15 @@ public class GameController : MonoBehaviour
     }
     private void IncrementScoreBasedOnGoal(string goalName)
     {
-        if (goalName == "LeftWall")
-        {
-            GameData.player2Score += 1;
-            rightScoreLabel.text = GameData.player2Score.ToString();
-        }
-        else if (goalName == "RightWall")
+        if (goalName == player1OpposingGoalName)
         {
             GameData.player1Score += 1;
             leftScoreLabel.text = GameData.player1Score.ToString();
+        }
+        else if (goalName == player2OpposingGoalName)
+        {
+            GameData.player2Score += 1;
+            rightScoreLabel.text = GameData.player2Score.ToString();
         }
     }
     private void EndGameIfWinner()
@@ -64,7 +66,7 @@ public class GameController : MonoBehaviour
     private void ResetRound()
     {
         ballController.Reset();
-        leftPaddleController.Reset();
+        player1Controller.Reset();
         rightPaddleController.Reset();
     }
 }

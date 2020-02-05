@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 
+// todo: look into an alternative that allows setting initial values in the inspector (eg player pref's?)
 public static class GameData
 {
-    public static void Init()
-    {
-        // todo: find a way to have these initial values set in inspector, even though this is a static class...
-        // maybe a file? player prefs...?
-        player1Score = 0;
-        player2Score = 0;
-        winningScore = 5;
-    }
     public static int winningScore { get; set; }
     public static int player1Score { get; set; }
     public static int player2Score { get; set; }
+
+    // note that unlike scores, start positions are set once and never again.
+    public static void Init()
+    {
+        winningScore = 5;
+        player1Score = 0;
+        player2Score = 0;
+    }
 }
