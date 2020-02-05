@@ -48,11 +48,10 @@ public class AiController : MonoBehaviour
     }
     public void UpdateTargetPosition(string paddleName)
     {
-        if (paddleName == "LeftPaddle")
+        if (paddleName == this.paddleName)
         {
             positionToMoveTowards = Vector2.zero;
         }
-        // TODO: logic will go here for predicting position see ticket 'Make ai feel less robotic'
-        Debug.Log(paddleName);
+        // todo: logic will go here for predicting position see ticket 'Make ai feel less robotic'
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3449679234466351525}
   - component: {fileID: 3449679234466351524}
   m_Layer: 5
-  m_Name: StartButton
+  m_Name: switch_scene_button
   m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3449679234866559097}
-        m_MethodName: NextScene
+      - m_Target: {fileID: 11500000, guid: 2b0940a9a68f37b41b058afb0f3d2c10, type: 3}
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0940a9a68f37b41b058afb0f3d2c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: 
 --- !u!1 &3449679235821805687
 GameObject:
   m_ObjectHideFlags: 0
