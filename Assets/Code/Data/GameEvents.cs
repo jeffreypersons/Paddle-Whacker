@@ -9,4 +9,9 @@ public static class GameEvents
 {
     public static StringEvent onPaddleHit = new StringEvent();
     public static StringEvent onVerticalWallHit = new StringEvent();
+
+    public static StringEvent onStartGame  = new StringEvent();
+    public static StringEvent onPauseGame  = new StringEvent();
+    public static StringEvent onFinishGame = new StringEvent();
+    public static StringEvent onQuitGame   = new StringEvent();
 }
