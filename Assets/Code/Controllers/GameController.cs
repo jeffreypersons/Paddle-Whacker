@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     private BallController ballController;
     private PlayerController player1Controller;
-    private AiController rightPaddleController;
+    private AiController player2Controller;
 
     private TMPro.TextMeshProUGUI leftScoreLabel;
     private TMPro.TextMeshProUGUI rightScoreLabel;
@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
 
         ballController = GameObject.Find("Ball").GetComponent<BallController>();
         player1Controller = GameObject.Find(player1PaddleName).GetComponent<PlayerController>();
-        rightPaddleController = GameObject.Find(player2PaddleName).GetComponent<AiController>();
+        player2Controller = GameObject.Find(player2PaddleName).GetComponent<AiController>();
 
         leftScoreLabel = GameObject.Find("LeftPlayerScore").GetComponent<TMPro.TextMeshProUGUI>();
         rightScoreLabel = GameObject.Find("RightPlayerScore").GetComponent<TMPro.TextMeshProUGUI>();
@@ -67,6 +67,6 @@ public class GameController : MonoBehaviour
     {
         ballController.Reset();
         player1Controller.Reset();
-        rightPaddleController.Reset();
+        player2Controller.Reset();
     }
 }
