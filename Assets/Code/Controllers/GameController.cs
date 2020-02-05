@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
     public void MoveToNextRound(string goalName)
     {
         IncrementScoreBasedOnGoal(goalName);
-        EndGameIfWinner();
+        FinishGameIfWinner();
         ResetRound();
     }
     private void IncrementScoreBasedOnGoal(string goalName)
@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour
             rightScoreLabel.text = GameData.player2Score.ToString();
         }
     }
-    private void EndGameIfWinner()
+    private void FinishGameIfWinner()
     {
         if (GameData.player1Score == GameData.winningScore ||
             GameData.player2Score == GameData.winningScore)

@@ -12,6 +12,6 @@ public static class GameEvents
 
     public static StringEvent onStartGame  = new StringEvent();
     public static StringEvent onPauseGame  = new StringEvent();
-    public static StringEvent onFinishGame = new StringEvent();
+    public static UnityEvent  onFinishGame = new UnityEvent();
     public static StringEvent onQuitGame   = new StringEvent();
 }
