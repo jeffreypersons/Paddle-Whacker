@@ -4,6 +4,7 @@ public class UiController : MonoBehaviour
 {
     public string leftScoreLabelName;
     public string rightScoreLabelName;
+
     private TMPro.TextMeshProUGUI leftScoreLabel;
     private TMPro.TextMeshProUGUI rightScoreLabel;
 
@@ -11,10 +12,6 @@ public class UiController : MonoBehaviour
     {
         leftScoreLabel = GameObject.Find(leftScoreLabelName).GetComponent<TMPro.TextMeshProUGUI>();
         rightScoreLabel = GameObject.Find(rightScoreLabelName).GetComponent<TMPro.TextMeshProUGUI>();
-    }
-    void Update()
-    {
-
     }
 
     void OnEnable()
