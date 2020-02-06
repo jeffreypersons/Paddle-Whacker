@@ -11,7 +11,7 @@ public class AiController : MonoBehaviour
     private Rigidbody2D ball;
     private Vector2 positionToMoveTowards;
 
-        private Vector2 initialPosition;
+    private Vector2 initialPosition;
     private Rigidbody2D paddle;
 
     public void Reset()
