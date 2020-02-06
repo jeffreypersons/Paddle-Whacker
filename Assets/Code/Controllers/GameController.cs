@@ -12,9 +12,6 @@ public class GameController : MonoBehaviour
     private PlayerController player1Controller;
     private AiController player2Controller;
 
-    private TMPro.TextMeshProUGUI leftScoreLabel;
-    private TMPro.TextMeshProUGUI rightScoreLabel;
-
     void Start()
     {
         GameData.Init();
@@ -22,9 +19,6 @@ public class GameController : MonoBehaviour
         ballController = GameObject.Find("Ball").GetComponent<BallController>();
         player1Controller = GameObject.Find(player1PaddleName).GetComponent<PlayerController>();
         player2Controller = GameObject.Find(player2PaddleName).GetComponent<AiController>();
-
-        leftScoreLabel = GameObject.Find("LeftPlayerScore").GetComponent<TMPro.TextMeshProUGUI>();
-        rightScoreLabel = GameObject.Find("RightPlayerScore").GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void OnEnable()
@@ -35,38 +29,41 @@ public class GameController : MonoBehaviour
     {
         GameEvents.onVerticalWallHit.RemoveListener(MoveToNextRound);
     }
-
     public void MoveToNextRound(string goalName)
     {
+        ResetMovingObjects();
         IncrementScoreBasedOnGoal(goalName);
-        EndGameIfWinner();
-        ResetRound();
+        LoadSceneIfWinningScore("EndMenu");
+        GameEvents.onScoreChanged.Invoke();
+    }
+
+    private void ResetMovingObjects()
+    {
+        ballController.Reset();
+        player1Controller.Reset();
+        player2Controller.Reset();
     }
     private void IncrementScoreBasedOnGoal(string goalName)
     {
         if (goalName == player1OpposingGoalName)
         {
             GameData.player1Score += 1;
-            leftScoreLabel.text = GameData.player1Score.ToString();
         }
         else if (goalName == player2OpposingGoalName)
         {
             GameData.player2Score += 1;
-            rightScoreLabel.text = GameData.player2Score.ToString();
+        }
+        else
+        {
+            Debug.LogError("Goal name '" + goalName + "' does not match registered goal names");
         }
     }
-    private void EndGameIfWinner()
+    private void LoadSceneIfWinningScore(string sceneName)
     {
         if (GameData.player1Score == GameData.winningScore ||
             GameData.player2Score == GameData.winningScore)
         {
-            GameScenes.Load("EndMenu");
+            GameScenes.Load(sceneName);
         }
-    }
-    private void ResetRound()
-    {
-        ballController.Reset();
-        player1Controller.Reset();
-        player2Controller.Reset();
     }
 }
