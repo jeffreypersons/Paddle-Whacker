@@ -94,6 +94,7 @@ public class AiController : MonoBehaviour
             return ball.position.y;
         }
 
+        /*
         int count = 0;
         Vector2 rayHitPosition = ball.position;
         while (rayHitPosition.x < paddle.position.x)
@@ -102,14 +103,49 @@ public class AiController : MonoBehaviour
             {
                 Debug.Log("HIT!");
             }
-            if (++count == 10) {
+            if (++count == 2) {
                 break;
             }
         }
+        */
+
         float slope = ball.velocity.x / ball.velocity.y;
         float yOffset = ball.position.y - (slope * ball.position.x);
         result = slope * x + yOffset;
         Debug.Log("Predicted result=" + result);
         return result;
+    }
+
+    void Laser()
+    {
+        DrawReflectionPattern(ball.position + Vector2.right * 0.75f, this.transform.forward, maxReflectionCount);
+    }
+    public int maxReflectionCount = 5;
+    public float maxStepDistance = 200f;
+    private void DrawReflectionPattern(Vector3 position, Vector3 direction, int reflectionsRemaining)
+    {
+        if (reflectionsRemaining == 0)
+        {
+            return;
+        }
+
+        Vector3 startingPosition = position;
+
+        Ray ray = new Ray(position, direction);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, maxStepDistance))
+        {
+            direction = Vector3.Reflect(direction, hit.normal);
+            position = hit.point;
+        }
+        else
+        {
+            position += direction * maxStepDistance;
+        }
+
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawLine(startingPosition, position);
+        Debug.DrawLine(startingPosition, position, Color.blue);
+        DrawReflectionPattern(position, direction, reflectionsRemaining - 1);
     }
 }
