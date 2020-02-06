@@ -8,8 +8,10 @@ public class AiController : MonoBehaviour
 
     // needed for ball trajectory predictions
     public float responseTime;
-    private Rigidbody2D ball;
+    private bool isTargetPredicted;
+    private bool isMovementSuspended;
     private Vector2 positionToMoveTowards;
+    private Rigidbody2D ball;
 
     private Vector2 initialPosition;
     private Rigidbody2D paddle;
@@ -19,6 +21,8 @@ public class AiController : MonoBehaviour
         paddle.position = initialPosition;
         positionToMoveTowards = initialPosition;
         paddle.velocity = Vector2.zero;
+        isMovementSuspended = false;
+        isTargetPredicted = false;
     }
     void Start()
     {
@@ -31,17 +35,19 @@ public class AiController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // todo: invoke a predict ball position script here instead
-        float ballPositionY = GameObject.Find("Ball").GetComponent<Rigidbody2D>().position.y;
-
-        Vector2 current = paddle.position;
-        positionToMoveTowards = new Vector2(current.x, ballPositionY);
-        float currentSpeed = Random.Range(0.10f, 1.0f) * paddleSpeed;
-
-        if (positionToMoveTowards != initialPosition)
+        if (isMovementSuspended || positionToMoveTowards == initialPosition)
         {
-            paddle.position = Vector2.MoveTowards(current, positionToMoveTowards, currentSpeed * Time.deltaTime);
+            return;
         }
+
+        if (!isTargetPredicted)
+        {
+            positionToMoveTowards = new Vector2(paddle.position.x, ball.position.y);
+        }
+
+        // float currentSpeed = Random.Range(0.10f, 1.0f) * paddleSpeed;
+        float currentSpeed = paddleSpeed;
+        paddle.position = Vector2.MoveTowards(paddle.position, positionToMoveTowards, currentSpeed * Time.deltaTime);
     }
 
     void OnEnable()
@@ -60,10 +66,20 @@ public class AiController : MonoBehaviour
     // since x is fixed (currently only vertical paddle movement is possible), we only need to predict optimal y
     private IEnumerator UpdateTargetPosition(string paddleName)
     {
-        yield return new WaitForSeconds(responseTime);
-
-        if (paddleName != this.paddleName)
+        if (paddleName == this.paddleName)
         {
+            // we want to track follow the ball position just after our paddle hits it
+            isTargetPredicted = false;
+        }
+        else
+        {
+            // we want to delay our response time and then compute optimal y
+            // and then set this target prediction just once
+            isTargetPredicted = true;
+            isMovementSuspended = true;
+            yield return new WaitForSeconds(responseTime);
+
+            isMovementSuspended = false;
             float predictedYPosition = ComputeYForGivenXAlongTrajectory(paddle.position.x);
             positionToMoveTowards = new Vector2(paddle.position.x, predictedYPosition);
         }
@@ -83,7 +99,7 @@ public class AiController : MonoBehaviour
             float yOffset = ball.position.y - (slope * ball.position.x);
             result = slope * x + yOffset;
         }
-        Debug.Log("CCC");
+        Debug.Log("Predicted result=" + result);
         return result;
     }
 }
