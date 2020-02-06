@@ -12,9 +12,6 @@ public class GameController : MonoBehaviour
     private PlayerController player1Controller;
     private AiController player2Controller;
 
-    private TMPro.TextMeshProUGUI leftScoreLabel;
-    private TMPro.TextMeshProUGUI rightScoreLabel;
-
     void Start()
     {
         GameData.Init();
@@ -34,12 +31,13 @@ public class GameController : MonoBehaviour
     }
     public void MoveToNextRound(string goalName)
     {
-        ResetRound();
+        ResetMovingObjects();
         IncrementScoreBasedOnGoal(goalName);
-        FinishGameIfWinner();
+        LoadSceneIfWinningScore("EndMenu");
+        GameEvents.onScoreChanged.Invoke();
     }
 
-    private void ResetRound()
+    private void ResetMovingObjects()
     {
         ballController.Reset();
         player1Controller.Reset();
@@ -60,12 +58,12 @@ public class GameController : MonoBehaviour
             Debug.LogError("Goal name '" + goalName + "' does not match registered goal names");
         }
     }
-    private void FinishGameIfWinner()
+    private void LoadSceneIfWinningScore(string sceneName)
     {
         if (GameData.player1Score == GameData.winningScore ||
             GameData.player2Score == GameData.winningScore)
         {
-            GameScenes.Load("EndMenu");
+            GameScenes.Load(sceneName);
         }
     }
 }
