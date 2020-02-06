@@ -29,10 +29,10 @@ public class GameController : MonoBehaviour
     {
         GameEvents.onVerticalWallHit.RemoveListener(MoveToNextRound);
     }
-    public void MoveToNextRound(string goalName)
+    public void MoveToNextRound(Collision2D verticalWallCollision)
     {
         ResetMovingObjects();
-        IncrementScoreBasedOnGoal(goalName);
+        IncrementScoreBasedOnGoal(verticalWallCollision.gameObject.name);
         LoadSceneIfWinningScore("EndMenu");
         GameEvents.onScoreChanged.Invoke();
     }
