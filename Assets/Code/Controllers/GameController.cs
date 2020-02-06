@@ -22,9 +22,6 @@ public class GameController : MonoBehaviour
         ballController = GameObject.Find("Ball").GetComponent<BallController>();
         player1Controller = GameObject.Find(player1PaddleName).GetComponent<PlayerController>();
         player2Controller = GameObject.Find(player2PaddleName).GetComponent<AiController>();
-
-        leftScoreLabel = GameObject.Find("LeftPlayerScore").GetComponent<TMPro.TextMeshProUGUI>();
-        rightScoreLabel = GameObject.Find("RightPlayerScore").GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void OnEnable()
@@ -35,24 +32,32 @@ public class GameController : MonoBehaviour
     {
         GameEvents.onVerticalWallHit.RemoveListener(MoveToNextRound);
     }
-
     public void MoveToNextRound(string goalName)
     {
+        ResetRound();
         IncrementScoreBasedOnGoal(goalName);
         FinishGameIfWinner();
-        ResetRound();
+    }
+
+    private void ResetRound()
+    {
+        ballController.Reset();
+        player1Controller.Reset();
+        player2Controller.Reset();
     }
     private void IncrementScoreBasedOnGoal(string goalName)
     {
         if (goalName == player1OpposingGoalName)
         {
             GameData.player1Score += 1;
-            leftScoreLabel.text = GameData.player1Score.ToString();
         }
         else if (goalName == player2OpposingGoalName)
         {
             GameData.player2Score += 1;
-            rightScoreLabel.text = GameData.player2Score.ToString();
+        }
+        else
+        {
+            Debug.LogError("Goal name '" + goalName + "' does not match registered goal names");
         }
     }
     private void FinishGameIfWinner()
@@ -62,11 +67,5 @@ public class GameController : MonoBehaviour
         {
             GameScenes.Load("EndMenu");
         }
-    }
-    private void ResetRound()
-    {
-        ballController.Reset();
-        player1Controller.Reset();
-        player2Controller.Reset();
     }
 }
