@@ -48,7 +48,7 @@ public class AiController : MonoBehaviour
     }
     public void UpdateTargetPosition(string paddleName)
     {
-        if (paddleName == this.paddleName)
+        if (paddleName != this.paddleName)
         {
             positionToMoveTowards = Vector2.zero;
         }
