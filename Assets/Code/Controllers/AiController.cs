@@ -91,14 +91,24 @@ public class AiController : MonoBehaviour
         float result;
         if (ball.velocity.y == 0)
         {
-            result = ball.position.y;
+            return ball.position.y;
         }
-        else
+
+        int count = 0;
+        Vector2 rayHitPosition = ball.position;
+        while (rayHitPosition.x < paddle.position.x)
         {
-            float slope = ball.velocity.x / ball.velocity.y;
-            float yOffset = ball.position.y - (slope * ball.position.x);
-            result = slope * x + yOffset;
+            if (Physics2D.Raycast(rayHitPosition, Vector2.right))
+            {
+                Debug.Log("HIT!");
+            }
+            if (++count == 10) {
+                break;
+            }
         }
+        float slope = ball.velocity.x / ball.velocity.y;
+        float yOffset = ball.position.y - (slope * ball.position.x);
+        result = slope * x + yOffset;
         Debug.Log("Predicted result=" + result);
         return result;
     }
