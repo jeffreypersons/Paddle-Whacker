@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class AiController : MonoBehaviour
 {
     public string paddleName;
     public float paddleSpeed;
-    public float responseTime;
 
-    private Vector2 initialPosition;
+    // needed for ball trajectory predictions
+    public float responseTime;
+    private Rigidbody2D ball;
     private Vector2 positionToMoveTowards;
+
+        private Vector2 initialPosition;
     private Rigidbody2D paddle;
 
     public void Reset()
@@ -21,6 +25,8 @@ public class AiController : MonoBehaviour
         paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
         initialPosition = paddle.position;
         Reset();
+
+        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
@@ -40,18 +46,44 @@ public class AiController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.onPaddleHit.AddListener(UpdateTargetPosition);
+        GameEvents.onPaddleHit.AddListener(PredictBallTrajectory);
     }
     void OnDisable()
     {
-        GameEvents.onPaddleHit.RemoveListener(UpdateTargetPosition);
+        GameEvents.onPaddleHit.RemoveListener(PredictBallTrajectory);
     }
-    public void UpdateTargetPosition(string paddleName)
+    public void PredictBallTrajectory(string paddleName)
     {
+        StartCoroutine(UpdateTargetPosition(paddleName));
+    }
+
+    // since x is fixed (currently only vertical paddle movement is possible), we only need to predict optimal y
+    private IEnumerator UpdateTargetPosition(string paddleName)
+    {
+        yield return new WaitForSeconds(responseTime);
+
         if (paddleName != this.paddleName)
         {
-            positionToMoveTowards = Vector2.zero;
+            float predictedYPosition = ComputeYForGivenXAlongTrajectory(paddle.position.x);
+            positionToMoveTowards = new Vector2(paddle.position.x, predictedYPosition);
         }
-        // todo: logic will go here for predicting position see ticket 'Make ai feel less robotic'
+    }
+    // determines assumes constant speed with no reflections
+    // note: ball hit position not needed since time/reflections/friction is not yet accounted for
+    private float ComputeYForGivenXAlongTrajectory(float x)
+    {
+        float result;
+        if (ball.velocity.y == 0)
+        {
+            result = ball.position.y;
+        }
+        else
+        {
+            float slope = ball.velocity.x / ball.velocity.y;
+            float yOffset = ball.position.y - (slope * ball.position.x);
+            result = slope * x + yOffset;
+        }
+        Debug.Log("CCC");
+        return result;
     }
 }
