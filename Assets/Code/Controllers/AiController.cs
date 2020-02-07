@@ -9,8 +9,6 @@ public class AiController : MonoBehaviour
 
     // needed for ball trajectory predictions
     public float responseTime;
-    public float predictionErrorMargin;
-    private float allowedPredictionXOffset;
     private bool isTargetPredicted;
     private bool isMovementSuspended;
     private int maxReflectionCount = 5;
@@ -20,7 +18,6 @@ public class AiController : MonoBehaviour
 
     private Vector2 initialPosition;
     private Rigidbody2D paddle;
-    private BoxCollider2D paddleBoundingBox;
 
     public AiController()
     {
@@ -39,8 +36,6 @@ public class AiController : MonoBehaviour
     {
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
-        paddleBoundingBox = GameObject.Find(paddleName).GetComponent<BoxCollider2D>();
-        allowedPredictionXOffset = paddleBoundingBox.bounds.extents.x * predictionErrorMargin;
         initialPosition = paddle.position;
         Reset();
     }
@@ -63,19 +58,19 @@ public class AiController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.onPaddleHit.AddListener(UpdateTargetOnPaddleHit);
+        GameEvents.onPaddleHit.AddListener(PredictBallTrajectory);
     }
     void OnDisable()
     {
-        GameEvents.onPaddleHit.RemoveListener(UpdateTargetOnPaddleHit);
+        GameEvents.onPaddleHit.RemoveListener(PredictBallTrajectory);
     }
-    public void UpdateTargetOnPaddleHit(Collision2D paddleCollision)
+    public void PredictBallTrajectory(string paddleName)
     {
-        StartCoroutine(ComputeOptimalTargetPosition(paddleName));
+        StartCoroutine(UpdateTargetPosition(paddleName));
     }
 
     // when opponent's paddle is hit, predict the ball trajectory after some time T
-    private IEnumerator ComputeOptimalTargetPosition(string paddleName)
+    private IEnumerator UpdateTargetPosition(string paddleName)
     {
         if (paddleName == this.paddleName)
         {
@@ -89,10 +84,8 @@ public class AiController : MonoBehaviour
             isMovementSuspended = false;
 
             positionToMoveTowards = PredictOptimalDefensivePosition();
-
-            Debug.Log("ball=" + ball.position + ", paddle" + paddle.position);
-            Debug.Log("trajectory" + string.Join(",", trajectory));
-            Debug.Log("predicted result=" + positionToMoveTowards);
+            Debug.Log(string.Join(",", trajectory));
+            Debug.Log("Predicted result=" + positionToMoveTowards);
         }
     }
     // note: ball hit position not needed since time/reflections/friction is not yet accounted for
@@ -100,9 +93,10 @@ public class AiController : MonoBehaviour
     private Vector2 PredictOptimalDefensivePosition()
     {
         trajectory.Clear();
+        Debug.Log("ball" + ball.position);
+        Debug.Log("paddle" + paddle.position);
         float targetX = paddle.position.x;
         ComputeTrajectory(ball.position, ball.velocity.normalized, targetX, maxReflectionCount);
-        Debug.Log("dir=" + ball.velocity.normalized);
         return new Vector2(targetX, trajectory[trajectory.Count - 1].y);
     }
 
@@ -110,7 +104,7 @@ public class AiController : MonoBehaviour
     // or no recursion depth (maxReflections) is met
     private void ComputeTrajectory(Vector2 position, Vector2 direction, float targetX, int reflectionsRemaining)
     {
-        if (position.x > targetX - allowedPredictionXOffset && position.x < targetX + allowedPredictionXOffset)
+        if (position.x == targetX)
         {
             return;
         }
@@ -118,9 +112,8 @@ public class AiController : MonoBehaviour
         {
             Debug.Log(position.x);
             // couldn't make it all the way to target, so stop halfway off the last bounce
-            float slope = direction.y / direction.x;
             float horizontalStepForPartialBounce = 1.0f * Mathf.Abs(targetX - ball.position.x);
-            Vector2 maximumForecastedPosition = ball.position + (slope * horizontalStepForPartialBounce * direction);
+            Vector2 maximumForecastedPosition = ball.position + (direction * horizontalStepForPartialBounce);
             trajectory.Add(maximumForecastedPosition);
             return;
         }
@@ -137,8 +130,8 @@ public class AiController : MonoBehaviour
         else
         {
             // nothing to bounce off of, so let the trajectory go all the way to the paddle
-            float slope = direction.y / direction.x;
-            hitPosition = position + (slope * distanceToPaddle * direction);
+
+            hitPosition = position + (direction * distanceToPaddle);
             hitBounceDirection = direction;
         }
 
@@ -153,12 +146,11 @@ public class AiController : MonoBehaviour
             return;
         }
 
+        int i = 0;
         Gizmos.color = Color.green;
-        Vector2 position = trajectory[0];
-        for (int i = 0; i + 1 < trajectory.Count; i++)
+        while (i + 1 < trajectory.Count)
         {
-            //Debug.Log("DRAWING" + trajectory[i] + "to" + trajectory[i + 1]);
-            Gizmos.DrawLine(trajectory[i], trajectory[i + 1]);
+            Gizmos.DrawLine(trajectory[i], trajectory[i++]);
         }
     }
 }

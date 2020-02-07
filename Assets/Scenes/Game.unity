@@ -782,7 +782,6 @@ MonoBehaviour:
   paddleName: RightPaddle
   paddleSpeed: 30
   responseTime: 0.02
-  predictionErrorMargin: 2
 --- !u!1 &1126169004
 GameObject:
   m_ObjectHideFlags: 0
