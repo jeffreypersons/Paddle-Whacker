@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class AiController : MonoBehaviour
@@ -11,21 +10,14 @@ public class AiController : MonoBehaviour
     public float responseTime;
     private bool isTargetPredicted;
     private bool isMovementSuspended;
-    private int maxReflectionCount = 5;
     private Vector2 positionToMoveTowards;
     private Rigidbody2D ball;
-    private List<Vector2> trajectory;
 
     private Vector2 initialPosition;
     private Rigidbody2D paddle;
 
-    public AiController()
-    {
-        trajectory = new List<Vector2>();
-    }
     public void Reset()
     {
-        trajectory.Clear();
         paddle.position = initialPosition;
         positionToMoveTowards = initialPosition;
         paddle.velocity = Vector2.zero;
@@ -34,14 +26,13 @@ public class AiController : MonoBehaviour
     }
     void Start()
     {
-        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
         initialPosition = paddle.position;
         Reset();
+
+        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
     }
 
-    // if ball's last paddle hit = AI: keep horizontally aligned with ball
-    // if ball's last paddle hit = Opponent: start moving after time delay towards predicted ball trajectory
     void FixedUpdate()
     {
         if (isMovementSuspended || positionToMoveTowards == initialPosition)
@@ -53,7 +44,10 @@ public class AiController : MonoBehaviour
         {
             positionToMoveTowards = new Vector2(paddle.position.x, ball.position.y);
         }
-        paddle.position = Vector2.MoveTowards(paddle.position, positionToMoveTowards, paddleSpeed * Time.deltaTime);
+
+        // float currentSpeed = Random.Range(0.10f, 1.0f) * paddleSpeed;
+        float currentSpeed = paddleSpeed;
+        paddle.position = Vector2.MoveTowards(paddle.position, positionToMoveTowards, currentSpeed * Time.deltaTime);
     }
 
     void OnEnable()
@@ -69,88 +63,89 @@ public class AiController : MonoBehaviour
         StartCoroutine(UpdateTargetPosition(paddleName));
     }
 
-    // when opponent's paddle is hit, predict the ball trajectory after some time T
+    // since x is fixed (currently only vertical paddle movement is possible), we only need to predict optimal y
     private IEnumerator UpdateTargetPosition(string paddleName)
     {
         if (paddleName == this.paddleName)
         {
+            // we want to track follow the ball position just after our paddle hits it
             isTargetPredicted = false;
         }
         else
         {
+            // we want to delay our response time and then compute optimal y
+            // and then set this target prediction just once
             isTargetPredicted = true;
             isMovementSuspended = true;
             yield return new WaitForSeconds(responseTime);
+
             isMovementSuspended = false;
-
-            positionToMoveTowards = PredictOptimalDefensivePosition();
-            Debug.Log(string.Join(",", trajectory));
-            Debug.Log("Predicted result=" + positionToMoveTowards);
+            float predictedYPosition = ComputeYForGivenXAlongTrajectory(paddle.position.x);
+            positionToMoveTowards = new Vector2(paddle.position.x, predictedYPosition);
         }
     }
+    // determines assumes constant speed with no reflections
     // note: ball hit position not needed since time/reflections/friction is not yet accounted for
-    // note: since x is fixed (currently only vertical paddle movement is possible), we only need to predict optimal y
-    private Vector2 PredictOptimalDefensivePosition()
+    private float ComputeYForGivenXAlongTrajectory(float x)
     {
-        trajectory.Clear();
-        Debug.Log("ball" + ball.position);
-        Debug.Log("paddle" + paddle.position);
-        float targetX = paddle.position.x;
-        ComputeTrajectory(ball.position, ball.velocity.normalized, targetX, maxReflectionCount);
-        return new Vector2(targetX, trajectory[trajectory.Count - 1].y);
+        float result;
+        if (ball.velocity.y == 0)
+        {
+            return ball.position.y;
+        }
+
+        /*
+        int count = 0;
+        Vector2 rayHitPosition = ball.position;
+        while (rayHitPosition.x < paddle.position.x)
+        {
+            if (Physics2D.Raycast(rayHitPosition, Vector2.right))
+            {
+                Debug.Log("HIT!");
+            }
+            if (++count == 2) {
+                break;
+            }
+        }
+        */
+
+        float slope = ball.velocity.x / ball.velocity.y;
+        float yOffset = ball.position.y - (slope * ball.position.x);
+        result = slope * x + yOffset;
+        Debug.Log("Predicted result=" + result);
+        return result;
     }
 
-    // conceptually: draw line from ball position until a reflection occurs, repeating until target is met,
-    // or no recursion depth (maxReflections) is met
-    private void ComputeTrajectory(Vector2 position, Vector2 direction, float targetX, int reflectionsRemaining)
+    void Laser()
     {
-        if (position.x == targetX)
+        DrawReflectionPattern(ball.position + Vector2.right * 0.75f, this.transform.forward, maxReflectionCount);
+    }
+    public int maxReflectionCount = 5;
+    public float maxStepDistance = 200f;
+    private void DrawReflectionPattern(Vector3 position, Vector3 direction, int reflectionsRemaining)
+    {
+        if (reflectionsRemaining == 0)
         {
-            return;
-        }
-        else if (reflectionsRemaining == 0)
-        {
-            Debug.Log(position.x);
-            // couldn't make it all the way to target, so stop halfway off the last bounce
-            float horizontalStepForPartialBounce = 1.0f * Mathf.Abs(targetX - ball.position.x);
-            Vector2 maximumForecastedPosition = ball.position + (direction * horizontalStepForPartialBounce);
-            trajectory.Add(maximumForecastedPosition);
             return;
         }
 
+        Vector3 startingPosition = position;
+
+        Ray ray = new Ray(position, direction);
         RaycastHit hit;
-        Vector2 hitPosition, hitBounceDirection;
-        float distanceToPaddle = Mathf.Abs(targetX - position.x);
-        if (Physics.Raycast(new Ray(position, direction), out hit, distanceToPaddle) &&
-            hit.transform.CompareTag("HorizontalWall"))
+        if (Physics.Raycast(ray, out hit, maxStepDistance))
         {
-            hitPosition = hit.point;
-            hitBounceDirection = Vector2.Reflect(direction, hit.normal);
+            direction = Vector3.Reflect(direction, hit.normal);
+            position = hit.point;
         }
         else
         {
-            // nothing to bounce off of, so let the trajectory go all the way to the paddle
-
-            hitPosition = position + (direction * distanceToPaddle);
-            hitBounceDirection = direction;
+            position += direction * maxStepDistance;
         }
 
-        trajectory.Add(position);
-        ComputeTrajectory(hitPosition, hitBounceDirection, targetX, reflectionsRemaining - 1);
-    }
-
-    void OnDrawGizmos()
-    {
-        if (trajectory.Count == 0)
-        {
-            return;
-        }
-
-        int i = 0;
-        Gizmos.color = Color.green;
-        while (i + 1 < trajectory.Count)
-        {
-            Gizmos.DrawLine(trajectory[i], trajectory[i++]);
-        }
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawLine(startingPosition, position);
+        Debug.DrawLine(startingPosition, position, Color.blue);
+        DrawReflectionPattern(position, direction, reflectionsRemaining - 1);
     }
 }
