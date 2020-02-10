@@ -85,7 +85,10 @@ public class AiController : MonoBehaviour
 
             positionToMoveTowards = PredictOptimalDefensivePosition();
             Debug.Log(string.Join(",", trajectory));
-            Debug.Log("Predicted result=" + positionToMoveTowards);
+            Debug.Log("pos("        + ball.position            + "), " +
+                      "dir( "       + ball.velocity.normalized + "), " +
+                      "bounces("    + trajectory.Count         + "), " +
+                      "prediction(" + positionToMoveTowards    + ")");
         }
     }
     // note: ball hit position not needed since time/reflections/friction is not yet accounted for
@@ -93,8 +96,6 @@ public class AiController : MonoBehaviour
     private Vector2 PredictOptimalDefensivePosition()
     {
         trajectory.Clear();
-        Debug.Log("ball" + ball.position);
-        Debug.Log("paddle" + paddle.position);
         float targetX = paddle.position.x;
         ComputeTrajectory(ball.position, ball.velocity.normalized, targetX, maxReflectionCount);
         return new Vector2(targetX, trajectory[trajectory.Count - 1].y);
@@ -118,14 +119,13 @@ public class AiController : MonoBehaviour
             return;
         }
 
-        RaycastHit hit;
         float distanceToPaddle = Mathf.Abs(targetX - position.x);
-        Ray ray = new Ray(position, direction);
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, float.PositiveInfinity);
 
         Vector2 hitPosition, hitBounceDirection;
-        if (Physics.Raycast(ray, out hit, distanceToPaddle) &&
-            hit.transform.CompareTag("HorizontalWall"))
+        if (hit.transform != null && hit.transform.CompareTag("HorizontalWall"))
         {
+            Debug.Log(hit.transform.name);
             hitPosition = hit.point;
             hitBounceDirection = Vector2.Reflect(direction, hit.normal);
         }
