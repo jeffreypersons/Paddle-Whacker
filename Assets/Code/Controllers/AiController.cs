@@ -111,7 +111,6 @@ public class AiController : MonoBehaviour
         }
         else if (reflectionsRemaining == 0)
         {
-            Debug.Log(position.x);
             // couldn't make it all the way to target, so stop halfway off the last bounce
             float horizontalStepForPartialBounce = 1.0f * Mathf.Abs(targetX - ball.position.x);
             Vector2 maximumForecastedPosition = ball.position + (direction * horizontalStepForPartialBounce);
@@ -120,10 +119,11 @@ public class AiController : MonoBehaviour
         }
 
         RaycastHit hit;
-        Vector2 hitPosition, hitBounceDirection;
         float distanceToPaddle = Mathf.Abs(targetX - position.x);
-        Debug.Log(Physics.Raycast(new Ray(position, direction), out hit, distanceToPaddle));
-        if (Physics.Raycast(new Ray(position, direction), out hit, distanceToPaddle) &&
+        Ray ray = new Ray(position, direction);
+
+        Vector2 hitPosition, hitBounceDirection;
+        if (Physics.Raycast(ray, out hit, distanceToPaddle) &&
             hit.transform.CompareTag("HorizontalWall"))
         {
             hitPosition = hit.point;
