@@ -142,16 +142,10 @@ public class AiController : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (trajectory.Count == 0)
-        {
-            return;
-        }
-
-        int i = 0;
         Gizmos.color = Color.green;
-        while (i + 1 < trajectory.Count)
+        for (int i = 0; i + 1 < trajectory.Count; i++)
         {
-            Gizmos.DrawLine(trajectory[i], trajectory[i++]);
+            Gizmos.DrawLine(trajectory[i], trajectory[i + 1]);
         }
     }
 }
