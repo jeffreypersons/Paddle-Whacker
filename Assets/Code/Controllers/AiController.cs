@@ -106,6 +106,7 @@ public class AiController : MonoBehaviour
     {
         if (position.x == targetX)
         {
+            trajectory.Add(position);
             return;
         }
         else if (reflectionsRemaining == 0)
@@ -121,6 +122,7 @@ public class AiController : MonoBehaviour
         RaycastHit hit;
         Vector2 hitPosition, hitBounceDirection;
         float distanceToPaddle = Mathf.Abs(targetX - position.x);
+        Debug.Log(Physics.Raycast(new Ray(position, direction), out hit, distanceToPaddle));
         if (Physics.Raycast(new Ray(position, direction), out hit, distanceToPaddle) &&
             hit.transform.CompareTag("HorizontalWall"))
         {
@@ -130,7 +132,6 @@ public class AiController : MonoBehaviour
         else
         {
             // nothing to bounce off of, so let the trajectory go all the way to the paddle
-
             hitPosition = position + (direction * distanceToPaddle);
             hitBounceDirection = direction;
         }
