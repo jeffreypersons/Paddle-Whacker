@@ -15,6 +15,7 @@ public class AiController : MonoBehaviour
     private Vector2 positionToMoveTowards;
     private Rigidbody2D ball;
     private List<Vector2> trajectory;
+    private List<string> path;
 
     private Vector2 initialPosition;
     private Rigidbody2D paddle;
@@ -22,6 +23,7 @@ public class AiController : MonoBehaviour
     public AiController()
     {
         trajectory = new List<Vector2>();
+        path = new List<string>();
     }
     public void Reset()
     {
@@ -84,17 +86,21 @@ public class AiController : MonoBehaviour
             isMovementSuspended = false;
 
             positionToMoveTowards = PredictOptimalDefensivePosition();
-            Debug.Log(string.Join(",", trajectory));
-            Debug.Log("pos("        + ball.position            + "), " +
-                      "dir( "       + ball.velocity.normalized + "), " +
-                      "bounces("    + trajectory.Count         + "), " +
-                      "prediction(" + positionToMoveTowards    + ")");
+            Debug.Log("path:[" + string.Join(",", path) + "]");
+            /*
+            Debug.Log("pos"        + ball.position                + ", " +
+                      "dir"        + ball.velocity.normalized     + ", " +
+                      "bounces("   + ((trajectory.Count - 2) / 2) + ")," +
+                      "prediction" + positionToMoveTowards +
+                      " ===> trajectory:[" + string.Join(",", trajectory) + "]");
+            */
         }
     }
     // note: ball hit position not needed since time/reflections/friction is not yet accounted for
     // note: since x is fixed (currently only vertical paddle movement is possible), we only need to predict optimal y
     private Vector2 PredictOptimalDefensivePosition()
     {
+        path.Clear();
         trajectory.Clear();
         float targetX = paddle.position.x;
         ComputeTrajectory(ball.position, ball.velocity.normalized, targetX, maxReflectionCount);
@@ -102,7 +108,8 @@ public class AiController : MonoBehaviour
     }
 
     // conceptually: draw line from ball position until a reflection occurs, repeating until target is met,
-    // or no recursion depth (maxReflections) is met
+    // or no recursion depth (maxReflections) is met (which case it calculates partway off the last bounce)
+    // when nothing to bounce off of is hit, let the trajectory go all the way to the paddle
     private void ComputeTrajectory(Vector2 position, Vector2 direction, float targetX, int reflectionsRemaining)
     {
         if (position.x == targetX)
@@ -112,40 +119,25 @@ public class AiController : MonoBehaviour
         }
         else if (reflectionsRemaining == 0)
         {
-            // couldn't make it all the way to target, so stop halfway off the last bounce
-            float horizontalStepForPartialBounce = 1.0f * Mathf.Abs(targetX - ball.position.x);
-            Vector2 maximumForecastedPosition = ball.position + (direction * horizontalStepForPartialBounce);
-            trajectory.Add(maximumForecastedPosition);
+            path.Add("targetX");
+            float horizontalStepForPartialBounce = 0.5f * Mathf.Abs(targetX - position.x);
+            trajectory.Add(position + (direction * horizontalStepForPartialBounce));
             return;
         }
 
         float distanceToPaddle = Mathf.Abs(targetX - position.x);
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, float.PositiveInfinity);
-
-        Vector2 hitPosition, hitBounceDirection;
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distanceToPaddle);
+        Debug.DrawLine(position, position + (direction * distanceToPaddle), Color.green, 5f);
         if (hit.transform != null && hit.transform.CompareTag("HorizontalWall"))
         {
-            Debug.Log(hit.transform.name);
-            hitPosition = hit.point;
-            hitBounceDirection = Vector2.Reflect(direction, hit.normal);
+            path.Add(hit.transform.name);
+            trajectory.Add(hit.point);
+            ComputeTrajectory(hit.point, Vector2.Reflect(direction, hit.normal), targetX, reflectionsRemaining - 1);
         }
         else
         {
-            // nothing to bounce off of, so let the trajectory go all the way to the paddle
-            hitPosition = position + (direction * distanceToPaddle);
-            hitBounceDirection = direction;
-        }
-
-        trajectory.Add(position);
-        ComputeTrajectory(hitPosition, hitBounceDirection, targetX, reflectionsRemaining - 1);
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        for (int i = 0; i + 1 < trajectory.Count; i++)
-        {
-            Gizmos.DrawLine(trajectory[i], trajectory[i + 1]);
+            path.Add("targetX");
+            trajectory.Add(position + (direction * distanceToPaddle));
         }
     }
 }
