@@ -96,27 +96,12 @@ public class AiController : MonoBehaviour
         {
             float distance = Mathf.Abs(paddle.position.x - ball.position.x);
             StartCoroutine(
-                WaitAtLeast(responseTime, () =>
+                CoroutineUtils.WaitAtLeast(responseTime, () =>
                 {
                     lastHit.RegisterHit(paddleName, ball.position, ball.velocity, distance);
-                    lastHit.predictedTrajectory.DrawInEditor(Color.green, 2.5f);
+                    //lastHit.predictedTrajectory.DrawInEditor(Color.green, 2.5f);
                 })
             );
-            //StartCoroutine(PredictOpponentTrajectory(paddleName));
-        }
-    }
-
-    private IEnumerator WaitAtLeast(double timeDelay, Action action)
-    {
-        Stopwatch stopWatch = new Stopwatch();
-        stopWatch.Start();
-        action();
-        stopWatch.Stop();
-
-        double elapsedTime = stopWatch.Elapsed.TotalSeconds;
-        if (elapsedTime < timeDelay)
-        {
-            yield return new WaitForSeconds((float)(timeDelay - elapsedTime));
         }
     }
 }

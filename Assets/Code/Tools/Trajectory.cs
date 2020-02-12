@@ -37,34 +37,38 @@ public class PredictedTrajectory
         path.Clear();
         path.Add(startPosition);
         ComputeTrajectory(startPosition, startDirection, startPosition.x + maxDistance);
+        Debug.Log("path:[" + string.Join(",", path) + "]");
+
     }
 
     private void ComputeTrajectory(Vector2 position, Vector2 direction, float maxX)
     {
-        if (position.x == maxX)
+        if (position.x >= maxX - 1 && position.x <=  maxX - 1)
         {
-            path.Add(position);
+            //path.Add(position);
             return;
         }
-        else if (path.Count == maxNumPoints - 1)
+        if (path.Count == maxNumPoints - 1)
         {
             path.Add(lineExtentOnMaxBounce * ExtrapolateEndPoint(position, direction, maxX));
+            Debug.DrawLine(position, EndPoint, Color.green, 2.5f);
+            return;
+        }
+        RaycastHit2D hit;
+        if (!Raycast(position, direction, maxX, out hit))
+        {
+            path.Add(ExtrapolateEndPoint(position, direction, maxX));
+            Debug.DrawLine(position, EndPoint, Color.green, 2.5f);
             return;
         }
 
-        RaycastHit2D hit;
-        if (Raycast(position, direction, maxX, out hit))
-        {
-            path.Add(hit.point);
-            ComputeTrajectory(hit.point, Vector2.Reflect(direction, hit.normal), maxX);
-        }
-        else
-        {
-            path.Add(ExtrapolateEndPoint(position, direction, maxX));
-        }
+        path.Add(hit.point);
+        Debug.DrawLine(position, EndPoint, Color.green, 2.5f);
+        ComputeTrajectory(hit.point, Vector2.Reflect(direction, hit.normal), maxX);
     }
     private bool Raycast(Vector2 position, Vector2 direction, float maxX, out RaycastHit2D hit)
     {
+        // todo: figure out how to use layermasks properly here!
         hit = Physics2D.Raycast(position, direction, Mathf.Abs(maxX - position.x));
         return hit.transform != null && hit.transform.CompareTag(bounceableColliderTag);
     }
