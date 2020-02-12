@@ -11,7 +11,6 @@ public class AiController : MonoBehaviour
     public float responseTime;
     private bool isTargetPredicted;
     private bool isMovementSuspended;
-    private int maxReflectionCount = 5;
     private Vector2 positionToMoveTowards;
     private Rigidbody2D ball;
     private List<Vector2> ballTrajectory;
