@@ -1,85 +1,75 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Trajectory
+public class PredictedTrajectory
 {
-    public int maxNumBounces;
+    public int maxNumPoints = 5;
+    public float lineExtentOnMaxBounce = 0.5f;
+    public string bounceableColliderTag = "HorizontalWall";
+    private List<Vector2> path;
 
-    private int numInUse;
+    public bool Empty { get { return path.Count == 0; } }
+    public int Size   { get { return path.Count; } }
+    public Vector2 this[int index] { get { return path[index]; } }
+    public Vector2 StartPoint { get { return path[0]; } }
+    public Vector2 EndPoint   { get { return path[path.Count - 1]; } }
 
-    public struct Node
+    public PredictedTrajectory()
     {
-        public Vector2 position;
-        public Vector2 direction;
-        public string contact;
+        path = new List<Vector2>(maxNumPoints);
     }
-
-    private Node[] path;
-
-    Trajectory()
+    public void Clear()
     {
-        numInUse = 0;
-        path = new Node[maxNumBounces];
-        for (int i = 0; i < maxNumBounces; i++)
+        path.Clear();
+    }
+    public void DrawInEditor(Color lineColor, float lineDuration)
+    {
+        for (int i = 0; i + 1 < path.Count; i++)
         {
-            path[i] = new Node();
+            Debug.DrawLine(path[i], path[i + 1], lineColor, lineDuration);
         }
     }
-    private void AddPoint(Vector2 position, Vector2 direction, string contact)
+    // compute trajectory by recursively extending line from last position, reflecting each bounce until
+    // either the target x value is reached, or the maximum number of points is met
+    // note: overrides all previous internal data
+    public void Compute(Vector2 startPosition, Vector2 startDirection, float maxDistance)
     {
-        if (numInUse + 1 < maxNumBounces)
-        {
-            path[numInUse].position  = position;
-            path[numInUse].direction = direction;
-            path[numInUse].contact   = contact;
-            numInUse++;
-        }
+        path.Clear();
+        path.Add(startPosition);
+        ComputeTrajectory(startPosition, startDirection, startPosition.x + maxDistance);
     }
-    public void ComputeNewTrajectory(Vector2 startPosition, Vector2 startDirection, float targetX)
+
+    private void ComputeTrajectory(Vector2 position, Vector2 direction, float maxX)
     {
-        AddPoint(startPosition, startDirection, "start");
-        while ()
+        if (position.x == maxX)
         {
-            SetPoint()
-        }
-        ComputeTrajectory();
-    }
-    // conceptually: draw line from ball position until a reflection occurs, repeating until target is met,
-    // or no recursion depth (maxReflections) is met (which case it calculates partway off the last bounce)
-    // when nothing to bounce off of is hit, let the trajectory go all the way to the paddle
-    // todo: figure out why it only works for a single bounce!
-    private void ComputeTrajectory(Node node, float targetX, int index)
-    {
-        if (node.position.x == targetX)
-        {
-            AddPoint(node.position, node.direction, "targetX");
+            path.Add(position);
             return;
         }
-        else if (index == maxNumBounces)
+        else if (path.Count == maxNumPoints - 1)
         {
-            AddPoint(node.position, node.direction, "targetX");
-            path.Add("used all reflections");
-            float horizontalStepForPartialBounce = 0.5f * Mathf.Abs(targetX - position.x);
-            trajectory.Add(position + (direction * horizontalStepForPartialBounce));
+            path.Add(lineExtentOnMaxBounce * ExtrapolateEndPoint(position, direction, maxX));
             return;
         }
 
-        float distanceToPaddle = Mathf.Abs(targetX - position.x);
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distanceToPaddle);
-        if (hit.transform != null && hit.transform.CompareTag("HorizontalWall"))
+        RaycastHit2D hit;
+        if (Raycast(position, direction, maxX, out hit))
         {
-            path.Add(hit.transform.name);
-            trajectory.Add(hit.point);
-            Debug.DrawLine(position, hit.point, Color.green, 2.5f);
-            ComputeTrajectory(hit.point, Vector2.Reflect(direction, hit.normal), targetX, reflectionsRemaining - 1);
+            path.Add(hit.point);
+            ComputeTrajectory(hit.point, Vector2.Reflect(direction, hit.normal), maxX);
         }
         else
         {
-            path.Add("targetX");
-            trajectory.Add(position + (direction * distanceToPaddle));
-            Debug.DrawLine(position, trajectory[trajectory.Count - 1], Color.green, 2.5f);
+            path.Add(ExtrapolateEndPoint(position, direction, maxX));
         }
     }
-
+    private bool Raycast(Vector2 position, Vector2 direction, float maxX, out RaycastHit2D hit)
+    {
+        hit = Physics2D.Raycast(position, direction, Mathf.Abs(maxX - position.x));
+        return hit.transform != null && hit.transform.CompareTag(bounceableColliderTag);
+    }
+    private Vector2 ExtrapolateEndPoint(Vector2 position, Vector2 direction, float x)
+    {
+        return position + (direction * (x - position.x));
+    }
 }
