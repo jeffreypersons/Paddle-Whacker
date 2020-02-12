@@ -37,8 +37,6 @@ public class PredictedTrajectory
         path.Clear();
         path.Add(startPosition);
         ComputeTrajectory(startPosition, startDirection, startPosition.x + maxDistance);
-        Debug.Log("path:[" + string.Join(",", path) + "]");
-
     }
 
     private void ComputeTrajectory(Vector2 position, Vector2 direction, float maxX)

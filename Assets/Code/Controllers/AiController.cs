@@ -98,6 +98,7 @@ public class AiController : MonoBehaviour
                 {
                     lastHit.RegisterHit(paddleName, ball.position, ball.velocity, distance);
                     lastHit.predictedTrajectory.DrawInEditor(Color.green, 2.5f);
+                    Debug.Log("path:[" + string.Join(",", path) + "]");
                 })
             );
         }
