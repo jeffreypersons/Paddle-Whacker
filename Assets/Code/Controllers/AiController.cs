@@ -103,6 +103,7 @@ public class AiController : MonoBehaviour
     private void ComputeTrajectory(Vector2 position, Vector2 direction, float targetX, int reflectionsRemaining)
     {
         // todo: figure out why it only works for a single bounce!
+        // todo: figure out why the ray is backwards!
         if (position.x == targetX)
         {
             ballTrajectory.Add(position);
