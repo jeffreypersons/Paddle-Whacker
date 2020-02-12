@@ -11,17 +11,9 @@ public static class CoroutineUtils
     //    StartCoroutine(
     //       WaitAtLeast(myDelay, () => { /* do stuff */ })
     //    );
-    public static IEnumerator WaitAtLeast(double timeDelay, Action action)
+    public static IEnumerator RunAfter(float timeDelay, Action action)
     {
-        Stopwatch stopWatch = new Stopwatch();
-        stopWatch.Start();
+        yield return new WaitForSeconds(timeDelay);
         action();
-        stopWatch.Stop();
-
-        double elapsedTime = stopWatch.Elapsed.TotalSeconds;
-        if (elapsedTime < timeDelay)
-        {
-            yield return new WaitForSeconds((float)(timeDelay - elapsedTime));
-        }
     }
 }
