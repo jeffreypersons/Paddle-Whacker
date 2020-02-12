@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LastHit
 {
@@ -31,7 +28,7 @@ public class AiController : MonoBehaviour
     private Vector2 initialPosition;
     private Rigidbody2D paddle;
 
-    public double responseTime;
+    public float responseTime;
     private Rigidbody2D ball;
     LastHit lastHit;
 
@@ -94,12 +91,13 @@ public class AiController : MonoBehaviour
         }
         else
         {
+
             float distance = Mathf.Abs(paddle.position.x - ball.position.x);
             StartCoroutine(
-                CoroutineUtils.WaitAtLeast(responseTime, () =>
+                CoroutineUtils.RunAfter(responseTime, () =>
                 {
                     lastHit.RegisterHit(paddleName, ball.position, ball.velocity, distance);
-                    //lastHit.predictedTrajectory.DrawInEditor(Color.green, 2.5f);
+                    lastHit.predictedTrajectory.DrawInEditor(Color.green, 2.5f);
                 })
             );
         }
