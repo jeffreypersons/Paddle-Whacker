@@ -91,11 +91,10 @@ public class AiController : MonoBehaviour
         }
         else
         {
-            float distance = Mathf.Abs(paddle.position.x - ball.position.x);
             StartCoroutine(
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
-                    lastHit.RegisterHit(paddleName, ball.position, ball.velocity, distance);
+                    lastHit.RegisterHit(paddleName, ball.position, ball.velocity, Mathf.Abs(paddle.position.x - ball.position.x));
                     lastHit.predictedTrajectory.DrawInEditor(Color.green, 2.5f);
                     Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
                 })

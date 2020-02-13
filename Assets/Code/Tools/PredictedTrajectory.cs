@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PredictedTrajectory
 {
+    public float tolerance = 4;
     public int maxNumPoints = 5;
     public float lineExtentOnMaxBounce = 0.5f;
     public string bounceableColliderTag = "HorizontalWall";
@@ -40,30 +41,33 @@ public class PredictedTrajectory
     {
         path.Clear();
         path.Add(startPosition);
-        ComputeTrajectory(startPosition, startDirection, startPosition.x + maxDistance);
+        Debug.Log("MAXdistance left" + maxDistance);
+        ComputeTrajectory(startPosition, startDirection, maxDistance + 5);
     }
-
-    private void ComputeTrajectory(Vector2 position, Vector2 direction, float maxX)
+    private void ComputeTrajectory(Vector2 position, Vector2 direction, float distanceLeft)
     {
-        if (position.x == maxX)
+        if (distanceLeft < tolerance)
         {
             path.Add(position);
+            return;
         }
-        else if (path.Count == maxNumPoints - 1)
+        if (path.Count == maxNumPoints - 1)
         {
-            path.Add(lineExtentOnMaxBounce * ExtrapolateEndPoint(position, direction, maxX));
+            path.Add(lineExtentOnMaxBounce * ExtrapolateEndPoint(position, direction, distanceLeft));
+            return;
         }
-
         RaycastHit2D hit;
-        if (!Raycast(position, direction, maxX, out hit))
+        if (!Raycast(position, direction, distanceLeft, out hit))
         {
-            path.Add(ExtrapolateEndPoint(position, direction, maxX));
+            path.Add(ExtrapolateEndPoint(position, direction, position.x + distanceLeft));
+            return;
         }
-        else
-        {
-            path.Add(hit.point);
-            ComputeTrajectory(hit.point, Vector2.Reflect(direction, hit.normal), maxX);
-        }
+        Debug.Log("distance left" + (distanceLeft - Mathf.Abs(hit.point.x - position.x)));
+
+        path.Add(hit.point);
+        ComputeTrajectory(hit.point,
+            Vector2.Reflect(direction, hit.normal),
+            distanceLeft - Mathf.Abs(hit.point.x - position.x));
     }
     private bool Raycast(Vector2 position, Vector2 direction, float maxX, out RaycastHit2D hit)
     {
