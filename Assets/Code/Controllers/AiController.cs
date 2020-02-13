@@ -6,12 +6,17 @@ public class LastHit
     public PredictedTrajectory predictedTrajectory { get; private set; }
     public LastHit()
     {
-        predictedTrajectory = new PredictedTrajectory();
         paddleName = "";
+        predictedTrajectory = new PredictedTrajectory();
     }
     public void Reset()
     {
         paddleName = "";
+        predictedTrajectory.Clear();
+    }
+    public void RegisterHit(string paddleName)
+    {
+        this.paddleName = paddleName;
         predictedTrajectory.Clear();
     }
     public void RegisterHit(string paddleName, Vector2 ballPosition, Vector2 ballVelocity, float maxX)
@@ -63,6 +68,10 @@ public class AiController : MonoBehaviour
         }
         else if (!lastHit.predictedTrajectory.Empty)
         {
+            if (paddle.velocity == Vector2.zero)
+            {
+                paddle.velocity += paddle.velocity.normalized * paddleSpeed * 0.10f;
+            }
             paddle.position = MoveVerticallyTowards(lastHit.predictedTrajectory.EndPoint.y);
         }
         else
@@ -72,7 +81,8 @@ public class AiController : MonoBehaviour
     }
     private Vector2 MoveVerticallyTowards(float targetY)
     {
-        return Vector2.MoveTowards(paddle.position, new Vector2(paddle.position.x, targetY), paddleSpeed * Time.deltaTime);
+        float maxDistance = /*Random.Range(0.70f, 1.00f) **/ paddle.velocity.magnitude * Time.deltaTime;
+        return Vector2.MoveTowards(paddle.position, new Vector2(paddle.position.x, targetY), maxDistance);
     }
 
     void OnEnable()
@@ -85,9 +95,10 @@ public class AiController : MonoBehaviour
     }
     public void RegisterPaddleHit(string paddleName)
     {
+        Debug.Log(paddleName);
         if (paddleName == this.paddleName)
         {
-            lastHit.Reset();
+            lastHit.RegisterHit(paddleName);
         }
         else
         {

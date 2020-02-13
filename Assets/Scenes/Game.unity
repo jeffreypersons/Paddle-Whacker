@@ -780,8 +780,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleName: RightPaddle
-  paddleSpeed: 30
-  responseTime: 0.02
+  paddleSpeed: 20
+  responseTime: 0.2
 --- !u!1 &1126169004
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleName: LeftPaddle
-  paddleSpeed: 30
+  paddleSpeed: 40
   inputAxisName: Vertical
 --- !u!1 &1430003660
 GameObject:
@@ -1024,7 +1024,7 @@ PrefabInstance:
     - target: {fileID: 7617027791629370975, guid: c8dbfa0f129a8e84e951632cab7d6425,
         type: 3}
       propertyPath: ballSpeed
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7617027791629370975, guid: c8dbfa0f129a8e84e951632cab7d6425,
         type: 3}

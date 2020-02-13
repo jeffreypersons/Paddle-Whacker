@@ -10,7 +10,7 @@ public static class GameData
     // note that unlike scores, start positions are set once and never again.
     public static void Init()
     {
-        winningScore = 5;
+        winningScore = 10;
         player1Score = 0;
         player2Score = 0;
     }
