@@ -1,2 +1,3 @@
-# Pong
- My first actual game that I will take to completion (_all the way_, not just halfway or leaving unpolished)!
+# Paddle Whacker
+A paddle-whacking game built from ground up in Unity, initially as a pong-like game...
+But ultimately on the path to becoming an air hockey game.
