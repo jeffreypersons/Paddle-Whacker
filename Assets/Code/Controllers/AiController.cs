@@ -30,6 +30,7 @@ public class AiController : MonoBehaviour
 {
     public string paddleName;
     public float paddleSpeed;
+    public float randomSlowDownVariance;
     private Vector2 initialPosition;
     private Rigidbody2D paddle;
 
@@ -68,10 +69,6 @@ public class AiController : MonoBehaviour
         }
         else if (!lastHit.predictedTrajectory.Empty)
         {
-            if (paddle.velocity == Vector2.zero)
-            {
-                paddle.velocity += paddle.velocity.normalized * paddleSpeed * 0.10f;
-            }
             paddle.position = MoveVerticallyTowards(lastHit.predictedTrajectory.EndPoint.y);
         }
         else
@@ -81,7 +78,7 @@ public class AiController : MonoBehaviour
     }
     private Vector2 MoveVerticallyTowards(float targetY)
     {
-        float maxDistance = /*Random.Range(0.70f, 1.00f) **/ paddle.velocity.magnitude * Time.deltaTime;
+        float maxDistance = Random.Range(1.00f - randomSlowDownVariance, 1.00f) * paddleSpeed * Time.deltaTime;
         return Vector2.MoveTowards(paddle.position, new Vector2(paddle.position.x, targetY), maxDistance);
     }
 
@@ -95,7 +92,6 @@ public class AiController : MonoBehaviour
     }
     public void RegisterPaddleHit(string paddleName)
     {
-        Debug.Log(paddleName);
         if (paddleName == this.paddleName)
         {
             lastHit.RegisterHit(paddleName);
@@ -106,7 +102,7 @@ public class AiController : MonoBehaviour
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
                     lastHit.RegisterHit(paddleName, ball.position, ball.velocity, paddle.position.x);
-                    lastHit.predictedTrajectory.DrawInEditor(Color.green, 2.5f);
+                    lastHit.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
                     Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
                 })
             );
