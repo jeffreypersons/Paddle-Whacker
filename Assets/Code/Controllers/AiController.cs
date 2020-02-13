@@ -14,10 +14,10 @@ public class LastHit
         paddleName = "";
         predictedTrajectory.Clear();
     }
-    public void RegisterHit(string paddleName, Vector2 ballPosition, Vector2 ballVelocity, float maxTrajectoryDistanceX)
+    public void RegisterHit(string paddleName, Vector2 ballPosition, Vector2 ballVelocity, float maxX)
     {
         this.paddleName = paddleName;
-        predictedTrajectory.Compute(ballPosition, ballVelocity.normalized, maxTrajectoryDistanceX);
+        predictedTrajectory.Compute(ballPosition, ballVelocity.normalized, maxX);
     }
 }
 
@@ -94,7 +94,7 @@ public class AiController : MonoBehaviour
             StartCoroutine(
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
-                    lastHit.RegisterHit(paddleName, ball.position, ball.velocity, Mathf.Abs(paddle.position.x - ball.position.x));
+                    lastHit.RegisterHit(paddleName, ball.position, ball.velocity, paddle.position.x);
                     lastHit.predictedTrajectory.DrawInEditor(Color.green, 2.5f);
                     Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
                 })
