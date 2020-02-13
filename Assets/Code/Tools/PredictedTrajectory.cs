@@ -18,6 +18,10 @@ public class PredictedTrajectory
     {
         path = new List<Vector2>(maxNumPoints);
     }
+    public override string ToString()
+    {
+        return "[" + string.Join(",", path) + "]";
+    }
     public void Clear()
     {
         path.Clear();
@@ -43,7 +47,7 @@ public class PredictedTrajectory
     {
         if (position.x == maxX)
         {
-            //path.Add(position);
+            path.Add(position);
         }
         else if (path.Count == maxNumPoints - 1)
         {
