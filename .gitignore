@@ -1,6 +1,7 @@
 # project specific
 /Build Versions
 /Build Versions.app
+/Standalone Builds
 
 #
 # This .gitignore file should be placed at the root of your Unity project directory
