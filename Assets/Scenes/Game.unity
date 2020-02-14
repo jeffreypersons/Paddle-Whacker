@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleName: RightPaddle
-  paddleSpeed: 17.5
+  paddleSpeed: 19.5
   randomSlowDownVariance: 0.35
   responseTime: 0.35
 --- !u!1 &1126169004
@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleName: LeftPaddle
-  paddleSpeed: 45
+  paddleSpeed: 42
   inputAxisName: Vertical
 --- !u!1 &1430003660
 GameObject:
