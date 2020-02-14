@@ -4,6 +4,16 @@ But ultimately on the path to becoming an air hockey game.
 
 Can download and play on itch.io!: https://jeffreypersons.itch.io/paddle-whacker
 
+## Sample Screenshots
+### Start menu screen
+![image](https://user-images.githubusercontent.com/8084757/74575511-22e0a080-4f3c-11ea-8ebf-6ec16f993b59.png)
+
+### Game play screen
+![image](https://user-images.githubusercontent.com/8084757/74575534-3855ca80-4f3c-11ea-95ac-511bb1741164.png)
+
+### Game end screen
+![image](https://user-images.githubusercontent.com/8084757/74575541-3e4bab80-4f3c-11ea-856f-14316fa9c670.png)
+
 
 ## How the AI works
 
