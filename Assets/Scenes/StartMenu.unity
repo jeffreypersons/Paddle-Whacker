@@ -327,6 +327,11 @@ PrefabInstance:
       propertyPath: m_margin.z
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 3964460215027976796, guid: 2ff4ec89601c4e04eb38936f6ae45937,
+        type: 3}
+      propertyPath: m_Name
+      value: Title
+      objectReference: {fileID: 0}
     - target: {fileID: 3964460216184117965, guid: 2ff4ec89601c4e04eb38936f6ae45937,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -446,6 +451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_margin.z
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5845204459626446093, guid: 2ff4ec89601c4e04eb38936f6ae45937,
+        type: 3}
+      propertyPath: m_Name
+      value: Subtitle
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1791077447793172120, guid: 2ff4ec89601c4e04eb38936f6ae45937, type: 3}
