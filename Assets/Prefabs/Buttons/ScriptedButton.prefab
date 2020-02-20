@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3449679234466351525}
   - component: {fileID: 3449679234466351524}
   m_Layer: 5
-  m_Name: switch_scene_button
+  m_Name: ScriptedButton
   m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 2b0940a9a68f37b41b058afb0f3d2c10, type: 3}
+      - m_Target: {fileID: 3449679234866559103}
         m_MethodName: 
         m_Mode: 5
         m_Arguments:
@@ -139,9 +139,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3449679234866559096}
-  - component: {fileID: 3449679234866559097}
   m_Layer: 0
-  m_Name: SceneLoader
+  m_Name: OnClickScript
   m_TagString: Scripter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,19 +160,6 @@ Transform:
   m_Father: {fileID: 3449679234466351579}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3449679234866559097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3449679234866559103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b0940a9a68f37b41b058afb0f3d2c10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: 
 --- !u!1 &3449679235821805687
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +172,7 @@ GameObject:
   - component: {fileID: 3449679235821805682}
   - component: {fileID: 3449679235821805681}
   m_Layer: 5
-  m_Name: ButtonText
+  m_Name: Text
   m_TagString: TextLabel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,9 +223,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Start
-
-'
+  m_text: ScriptedButton
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -308,9 +292,9 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3449679235821805681}
-    characterCount: 6
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 1
+    spaceCount: 0
     wordCount: 1
     linkCount: 0
     lineCount: 1
