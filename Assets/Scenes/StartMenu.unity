@@ -300,27 +300,27 @@ PrefabInstance:
     - target: {fileID: 344541146521706450, guid: f16b682e55616c744a8a04bb4534a0df,
         type: 3}
       propertyPath: m_text
-      value: PaddleWhacker
+      value: Paddle Whacker
       objectReference: {fileID: 0}
     - target: {fileID: 344541146521706450, guid: f16b682e55616c744a8a04bb4534a0df,
         type: 3}
       propertyPath: m_fontSize
-      value: 148.6
+      value: 143
       objectReference: {fileID: 0}
     - target: {fileID: 344541146521706450, guid: f16b682e55616c744a8a04bb4534a0df,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 344541146521706450, guid: f16b682e55616c744a8a04bb4534a0df,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 344541146521706450, guid: f16b682e55616c744a8a04bb4534a0df,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 920248580199517296, guid: f16b682e55616c744a8a04bb4534a0df,
         type: 3}
