@@ -32,7 +32,10 @@ public class AiController : MonoBehaviour
     public float paddleSpeed;
     public float randomSlowDownVariance;
     private Vector2 initialPosition;
-    private Rigidbody2D paddle;
+    private Rigidbody2D paddleBody;
+
+    public float maxToleratedDistanceFromBall;
+    private Collider2D paddleCollider;
 
     public float responseTime;
     private Rigidbody2D ball;
@@ -40,8 +43,8 @@ public class AiController : MonoBehaviour
 
     public void Reset()
     {
-        paddle.position = initialPosition;
-        paddle.velocity = Vector2.zero;
+        paddleBody.position = initialPosition;
+        paddleBody.velocity = Vector2.zero;
         lastHit.Reset();
     }
 
@@ -52,8 +55,9 @@ public class AiController : MonoBehaviour
 
     void Start()
     {
-        paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
-        initialPosition = paddle.position;
+        paddleBody = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
+        paddleCollider = GameObject.Find(paddleName).GetComponent<BoxCollider2D>();
+        initialPosition = paddleBody.position;
 
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         lastHit = new LastHit();
@@ -65,21 +69,25 @@ public class AiController : MonoBehaviour
     {
         if (lastHit.paddleName == paddleName)
         {
-            paddle.position = MoveVerticallyTowards(ball.position.y);
+            paddleBody.position = MoveVerticallyTowards(ball.position.y);
         }
         else if (!lastHit.predictedTrajectory.Empty)
         {
-            paddle.position = MoveVerticallyTowards(lastHit.predictedTrajectory.EndPoint.y);
+            paddleBody.position = MoveVerticallyTowards(lastHit.predictedTrajectory.EndPoint.y);
         }
         else
         {
-            paddle.velocity = Vector2.zero;
+            paddleBody.velocity = Vector2.zero;
         }
     }
     private Vector2 MoveVerticallyTowards(float targetY)
     {
-        float maxDistance = Random.Range(1.00f - randomSlowDownVariance, 1.00f) * paddleSpeed * Time.deltaTime;
-        return Vector2.MoveTowards(paddle.position, new Vector2(paddle.position.x, targetY), maxDistance);
+        if (Mathf.Abs(targetY - paddleBody.position.y) < maxToleratedDistanceFromBall) {
+            return paddleBody.position;
+        }
+
+        float maxDistance = Random.Range(1.00f - randomSlowDownVariance, 1.00f) * paddleSpeed * Time.fixedDeltaTime;
+        return Vector2.MoveTowards(paddleBody.position, new Vector2(paddleBody.position.x, targetY), maxDistance);
     }
 
     void OnEnable()
@@ -101,7 +109,7 @@ public class AiController : MonoBehaviour
             StartCoroutine(
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
-                    lastHit.RegisterHit(paddleName, ball.position, ball.velocity, paddle.position.x);
+                    lastHit.RegisterHit(paddleName, ball.position, ball.velocity, paddleBody.position.x);
                     lastHit.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
                     Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
                 })
