@@ -7,7 +7,7 @@ public class BallController : MonoBehaviour
 
     private Vector2 initialPosition;
     private Rigidbody2D ballBody;
-    private BoxCollider2D ballCollider;
+    private Collider2D ballCollider;
 
     public void Reset()
     {
@@ -26,8 +26,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            ballBody.velocity = ballSpeed *
-                ComputeBounceDirection(ballBody.position, ballCollider, collision.rigidbody.position, collision.collider);
+            ballBody.velocity = ballSpeed * ComputeBounceDirection(ballCollider.bounds, collision.collider.bounds);
             GameEvents.onPaddleHit.Invoke(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("HorizontalWall"))
@@ -40,11 +39,10 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private static Vector2 ComputeBounceDirection(Vector2 ballPosition, Collider2D ballCollider,
-        Vector2 paddlePosition, Collider2D paddleCollider)
+    private static Vector2 ComputeBounceDirection(Bounds ballBounds, Bounds paddleBounds)
     {
-        float invertedXDirection = ballPosition.x + paddlePosition.x > 0 ? -1 : 1;
-        float offsetFromPaddleCenterToBall = (ballPosition.y - paddlePosition.y) / paddleCollider.bounds.size.y;
+        float invertedXDirection = ballBounds.center.x + paddleBounds.center.x > 0 ? -1 : 1;
+        float offsetFromPaddleCenterToBall = (ballBounds.center.y - paddleBounds.center.y) / paddleBounds.size.y;
         return new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
     }
 }
