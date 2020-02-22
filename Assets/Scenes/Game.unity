@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afdec29fe794c7846b5b1255117d67ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 50
+  ballSpeed: 60
   initialDirection: {x: 1, y: 0}
 --- !u!1 &674523726
 GameObject:
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleName: LeftPaddle
-  paddleSpeed: 60
+  paddleSpeed: 50
   inputAxisName: Vertical
 --- !u!20 &1013986196 stripped
 Camera:
@@ -773,10 +773,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleName: RightPaddle
-  paddleSpeed: 35
-  randomSlowDownVariance: 0.35
+  paddleSpeed: 37.5
+  randomSlowDownVariance: 0.3
   maxToleratedDistanceFromBall: 0.1
-  responseTime: 0.4
+  responseTime: 0.375
 --- !u!1001 &6782805226661251337
 PrefabInstance:
   m_ObjectHideFlags: 0
