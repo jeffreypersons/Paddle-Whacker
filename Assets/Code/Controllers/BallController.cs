@@ -6,17 +6,19 @@ public class BallController : MonoBehaviour
     public Vector2 initialDirection;
 
     private Vector2 initialPosition;
-    private Rigidbody2D ball;
+    private Rigidbody2D ballBody;
+    private BoxCollider2D ballCollider;
 
     public void Reset()
     {
-        ball.position = initialPosition;
-        ball.velocity = ballSpeed * initialDirection;
+        ballBody.position = initialPosition;
+        ballBody.velocity = ballSpeed * initialDirection;
     }
     void Start()
     {
-        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        initialPosition = ball.position;
+        ballBody = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
+        ballCollider = GameObject.Find("Ball").GetComponent<BoxCollider2D>();
+        initialPosition = ballBody.position;
         Reset();
     }
 
@@ -24,7 +26,8 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            ball.velocity = ballSpeed * ComputeBounceDirection(ball.position, collision.rigidbody.position, collision.collider);
+            ballBody.velocity = ballSpeed *
+                ComputeBounceDirection(ballBody.position, ballCollider, collision.rigidbody.position, collision.collider);
             GameEvents.onPaddleHit.Invoke(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("HorizontalWall"))
@@ -37,10 +40,11 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private Vector2 ComputeBounceDirection(Vector2 ballPosition, Vector2 paddlePosition, Collider2D paddleCollider)
+    private static Vector2 ComputeBounceDirection(Vector2 ballPosition, Collider2D ballCollider,
+        Vector2 paddlePosition, Collider2D paddleCollider)
     {
-        float invertedXDirection = ballPosition.x - paddlePosition.x > 0 ? -1 : 1;
-        float offsetFromPaddleCenterToBall = (ball.position.y - paddlePosition.y) / paddleCollider.bounds.size.y;
+        float invertedXDirection = ballPosition.x + paddlePosition.x > 0 ? -1 : 1;
+        float offsetFromPaddleCenterToBall = (ballPosition.y - paddlePosition.y) / paddleCollider.bounds.size.y;
         return new Vector2(invertedXDirection, offsetFromPaddleCenterToBall).normalized;
     }
 }
