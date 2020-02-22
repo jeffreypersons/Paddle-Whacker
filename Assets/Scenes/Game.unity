@@ -775,6 +775,7 @@ MonoBehaviour:
   paddleName: RightPaddle
   paddleSpeed: 35
   randomSlowDownVariance: 0.35
+  maxToleratedDistanceFromBall: 0.1
   responseTime: 0.4
 --- !u!1001 &6782805226661251337
 PrefabInstance:
