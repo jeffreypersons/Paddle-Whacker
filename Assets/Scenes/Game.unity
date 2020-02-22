@@ -265,6 +265,16 @@ PrefabInstance:
       propertyPath: m_AngularDrag
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 7617027791629370974, guid: c8dbfa0f129a8e84e951632cab7d6425,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617027791629370974, guid: c8dbfa0f129a8e84e951632cab7d6425,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8dbfa0f129a8e84e951632cab7d6425, type: 3}
 --- !u!1 &226754537 stripped
@@ -472,6 +482,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734476180867663123, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
@@ -726,6 +741,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734476180867663123, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
+        type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
