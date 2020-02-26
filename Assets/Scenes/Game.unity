@@ -165,9 +165,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1PaddleName: LeftPaddle
-  player1OpposingGoalName: RightWall
+  player1OpposingGoalName: RightGoal
   player2PaddleName: RightPaddle
-  player2OpposingGoalName: LeftWall
+  player2OpposingGoalName: LeftGoal
 --- !u!1001 &226754536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ PrefabInstance:
     - target: {fileID: 7617027791629370971, guid: c8dbfa0f129a8e84e951632cab7d6425,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7617027791629370971, guid: c8dbfa0f129a8e84e951632cab7d6425,
         type: 3}
@@ -426,7 +426,7 @@ PrefabInstance:
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
@@ -514,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleName: LeftPaddle
-  paddleSpeed: 50
+  paddleSpeed: 60
   inputAxisName: Vertical
 --- !u!20 &1013986196 stripped
 Camera:
@@ -529,6 +529,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 355082435997397456, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_Name
+      value: RightGoal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890294609639177694, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890294609639177694, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5853589860258734046, guid: b5b0c2548e710314e882c4b1428eb985,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -598,6 +613,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arena
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159814546350092377, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_Name
+      value: LeftGoal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159814546350092379, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.31875005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066634080576524468, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079546339641865877, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b0c2548e710314e882c4b1428eb985, type: 3}
@@ -685,7 +720,7 @@ PrefabInstance:
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
@@ -773,10 +808,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paddleName: RightPaddle
-  paddleSpeed: 37.5
+  paddleSpeed: 30
   randomSlowDownVariance: 0.3
   maxToleratedDistanceFromBall: 0.1
-  responseTime: 0.375
+  responseTime: 0.3
 --- !u!1001 &6782805226661251337
 PrefabInstance:
   m_ObjectHideFlags: 0

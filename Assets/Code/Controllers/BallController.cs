@@ -29,13 +29,17 @@ public class BallController : MonoBehaviour
             ballBody.velocity = ballSpeed * ComputeBounceDirection(ballCollider.bounds, collision.collider.bounds);
             GameEvents.onPaddleHit.Invoke(collision.gameObject.name);
         }
+        if (collision.gameObject.CompareTag("Goal"))
+        {
+            GameEvents.onVerticalWallHit.Invoke(collision.gameObject.name);
+        }
         if (collision.gameObject.CompareTag("HorizontalWall"))
         {
             // desired bounce behavior already handled by collider defaults
         }
         if (collision.gameObject.CompareTag("VerticalWall"))
         {
-            GameEvents.onVerticalWallHit.Invoke(collision.gameObject.name);
+            // desired bounce behavior already handled by collider defaults
         }
     }
 
