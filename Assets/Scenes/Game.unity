@@ -1002,7 +1002,7 @@ PrefabInstance:
     - target: {fileID: 6209392992845193036, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
         type: 3}
       propertyPath: m_Name
-      value: CanvasOverlay
+      value: UiOverlay
       objectReference: {fileID: 0}
     - target: {fileID: 6782805226354343960, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
         type: 3}
