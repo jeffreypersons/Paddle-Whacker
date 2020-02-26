@@ -19,6 +19,8 @@ TagManager:
   - LayoutElement
   - Screen
   - Detector
+  - Goal
+  - WallComposite
   layers:
   - Default
   - TransparentFX
