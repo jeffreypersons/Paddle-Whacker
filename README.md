@@ -1,6 +1,8 @@
 # Paddle Whacker
-A paddle-whacking game built from ground up in Unity, initially as a pong-like game...
-But ultimately on the path to becoming an air hockey game.
+A paddle-whacking game built from the ground up in Unity.
+A unique take on old style of game, taking elements from pong and air hockey.
+
+
 
 Can download and play on itch.io!: https://jeffreypersons.itch.io/paddle-whacker
 
