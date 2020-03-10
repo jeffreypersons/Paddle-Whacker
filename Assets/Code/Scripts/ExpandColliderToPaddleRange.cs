@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
 [ExecuteInEditMode]
-public class ExpandColliderToPaddleMovementRange : MonoBehaviour
+public class ExpandColliderToPaddleRange : MonoBehaviour
 {
     public string paddleName;
+
     private BoxCollider2D topWall;
     private BoxCollider2D bottomWall;
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7547607104702774027}
   - component: {fileID: 7547607104702774036}
   m_Layer: 0
-  m_Name: LeftMovementRange
+  m_Name: MovementRange
   m_TagString: PaddleRange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,3 +70,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9080ab40901df074b842b0b1a1e7c48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paddleName: 
