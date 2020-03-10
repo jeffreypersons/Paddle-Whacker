@@ -35,7 +35,7 @@ public class AiController : MonoBehaviour
     private Rigidbody2D paddleBody;
 
     public float maxToleratedDistanceFromBall;
-    private Collider2D paddleCollider;
+    private BoxCollider2D paddleCollider;
 
     public float responseTime;
     private Rigidbody2D ball;
@@ -92,13 +92,13 @@ public class AiController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.onPaddleHit.AddListener(RegisterPaddleHit);
+        GameEvents.onPaddleHit.AddListener(RegisterOpponentPaddlePassed);
     }
     void OnDisable()
     {
-        GameEvents.onPaddleHit.RemoveListener(RegisterPaddleHit);
+        GameEvents.onPaddleHit.RemoveListener(RegisterOpponentPaddlePassed);
     }
-    public void RegisterPaddleHit(string paddleName)
+    public void RegisterOpponentPaddlePassed(string paddleName)
     {
         if (paddleName == this.paddleName)
         {
@@ -111,7 +111,7 @@ public class AiController : MonoBehaviour
                 {
                     lastHit.RegisterHit(paddleName, ball.position, ball.velocity, paddleBody.position.x);
                     lastHit.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
-                    Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
+                    //Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
                 })
             );
         }
