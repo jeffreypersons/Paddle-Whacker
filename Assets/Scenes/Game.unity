@@ -539,6 +539,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightGoal
       objectReference: {fileID: 0}
+    - target: {fileID: 2427967686404798238, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_Name
+      value: UpperRightWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890294609639177692, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_Name
+      value: LowerLeftWall
+      objectReference: {fileID: 0}
     - target: {fileID: 3890294609639177694, guid: b5b0c2548e710314e882c4b1428eb985,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -634,10 +644,20 @@ PrefabInstance:
       propertyPath: m_AutoTiling
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7236323063062150229, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_Name
+      value: LowerRightWall
+      objectReference: {fileID: 0}
     - target: {fileID: 8079546339641865877, guid: b5b0c2548e710314e882c4b1428eb985,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 12.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079546339641865879, guid: b5b0c2548e710314e882c4b1428eb985,
+        type: 3}
+      propertyPath: m_Name
+      value: UpperLeftWall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b0c2548e710314e882c4b1428eb985, type: 3}
