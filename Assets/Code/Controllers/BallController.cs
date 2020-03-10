@@ -26,24 +26,24 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            ballBody.velocity = ballSpeed * ComputeBounceDirection(ballCollider.bounds, collision.collider.bounds);
+            ballBody.velocity = ballSpeed * ComputeBounceDirectionOffPaddle(ballCollider.bounds, collision.collider.bounds);
             GameEvents.onPaddleHit.Invoke(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("Goal"))
         {
-            GameEvents.onVerticalWallHit.Invoke(collision.gameObject.name);
+            GameEvents.onGoalHit.Invoke(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("HorizontalWall"))
         {
-            // desired bounce behavior already handled by collider defaults
+            GameEvents.onVerticalWallHit.Invoke(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("VerticalWall"))
         {
-            // desired bounce behavior already handled by collider defaults
+            GameEvents.onVerticalWallHit.Invoke(collision.gameObject.name);
         }
     }
 
-    private static Vector2 ComputeBounceDirection(Bounds ballBounds, Bounds paddleBounds)
+    private static Vector2 ComputeBounceDirectionOffPaddle(Bounds ballBounds, Bounds paddleBounds)
     {
         float invertedXDirection = ballBounds.center.x + paddleBounds.center.x > 0 ? -1 : 1;
         float offsetFromPaddleCenterToBall = (ballBounds.center.y - paddleBounds.center.y) / paddleBounds.size.y;

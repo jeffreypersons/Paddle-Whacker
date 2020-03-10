@@ -23,11 +23,11 @@ public class GameController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.onVerticalWallHit.AddListener(MoveToNextRound);
+        GameEvents.onGoalHit.AddListener(MoveToNextRound);
     }
     void OnDisable()
     {
-        GameEvents.onVerticalWallHit.RemoveListener(MoveToNextRound);
+        GameEvents.onGoalHit.RemoveListener(MoveToNextRound);
     }
     public void MoveToNextRound(string goalName)
     {

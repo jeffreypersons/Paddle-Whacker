@@ -4,7 +4,8 @@ using UnityEngine;
 public class PredictedTrajectory
 {
     public int maxNumIterations = 10;
-    public string bounceableColliderTag = "HorizontalWall";
+    public HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
+
     private List<Vector2> path;
 
     public bool Empty { get { return path.Count == 0; } }
@@ -31,10 +32,10 @@ public class PredictedTrajectory
             Debug.DrawLine(path[i], path[i + 1], lineColor, lineDuration);
         }
     }
-    // compute trajectory by recursively extending line from last position, reflecting each bounce
+    // compute trajectory by extending line from last position, reflecting each bounce,
     // and extending the line until either the target x value is reached, or the maximum number of points is met
     // note: overrides all previous internal data
-    public void Compute(Vector2 startPosition, Vector2 startDirection, float maxX)
+    public void Compute(Vector2 startPosition, Vector2 startDirection, float targetX)
     {
         path.Clear();
         path.Add(startPosition);
@@ -42,17 +43,17 @@ public class PredictedTrajectory
         RaycastHit2D hit;
         Vector2 position = startPosition;
         Vector2 direction = startDirection;
-        while (position.x < maxX && path.Count < maxNumIterations)
+        while (position.x < targetX && path.Count < maxNumIterations)
         {
-            hit = Physics2D.Raycast(position, direction, Mathf.Abs(maxX - position.x));
-            if (hit.transform != null && hit.transform.CompareTag(bounceableColliderTag))
+            hit = Physics2D.Raycast(position, direction, Mathf.Abs(targetX - position.x));
+            if (hit.transform != null && wallTags.Contains(hit.transform.tag))
             {
                 position = hit.point;
                 direction = Vector2.Reflect(direction, hit.normal);
             }
             else
             {
-                position = ExtrapolatePoint(position, direction, maxX);
+                position = ExtrapolatePoint(position, direction, targetX);
             }
             path.Add(position);
         }
