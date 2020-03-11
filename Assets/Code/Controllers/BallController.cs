@@ -44,7 +44,7 @@ public class BallController : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PaddleRange"))
+        if (collision.gameObject.CompareTag("PaddleZone"))
         {
             GameEvents.onPaddlePassedByBall.Invoke(collision.gameObject.name);
         }
