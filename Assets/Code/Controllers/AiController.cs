@@ -98,18 +98,15 @@ public class AiController : MonoBehaviour
     }
     public void RegisterPaddleLineCrossed(string paddleLineName)
     {
-        bool wasAiPaddleLineCrossed = paddleLineName.StartsWith(paddleName);
-
         if (paddleLineName.StartsWith(paddleName))
         {
             StartCoroutine(
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
-                    lastPaddleLineTriggered.RegisterPaddleLineTriggered(
-                        paddleLineName, ball.position, ball.velocity, paddleBody.position.x
-                    );
+                    lastPaddleLineTriggered.RegisterPaddleLineTriggered(paddleLineName, ball.position, ball.velocity, paddleBody.position.x);
                     lastPaddleLineTriggered.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
                     Debug.Log("drawing trajectory in editor: " + lastPaddleLineTriggered.predictedTrajectory);
+                    lastPaddleLineTriggered.predictedTrajectory.Clear();
                 })
             );
         }
@@ -118,10 +115,11 @@ public class AiController : MonoBehaviour
             StartCoroutine(
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
-                    lastPaddleLineTriggered.RegisterPaddleLineTriggered(paddleLineName, ball.position, ball.velocity, paddleBody.position.x);
+                    lastPaddleLineTriggered.RegisterPaddleLineTriggered(
+                        paddleLineName, ball.position, ball.velocity, -21
+                    );
                     lastPaddleLineTriggered.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
-                    lastPaddleLineTriggered.predictedTrajectory.Clear();
-                    //Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
+                    Debug.Log("drawing trajectory in editor: " + lastPaddleLineTriggered.predictedTrajectory);
                 })
             );
         }
