@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PredictedTrajectory
 {
+    public int minNumIterations = 2;
     public int maxNumIterations = 10;
     public HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
 
@@ -41,9 +43,9 @@ public class PredictedTrajectory
         path.Add(startPosition);
 
         RaycastHit2D hit;
-        Vector2 position = startPosition;
+        Vector2 position  = startPosition;
         Vector2 direction = startDirection;
-        while (position.x < targetX && path.Count < maxNumIterations)
+        while (!HasMetOrSurpassedTarget(position.x, direction.x, targetX))
         {
             hit = Physics2D.Raycast(position, direction, Mathf.Abs(targetX - position.x));
             if (hit.transform != null && wallTags.Contains(hit.transform.tag))
@@ -57,6 +59,18 @@ public class PredictedTrajectory
             }
             path.Add(position);
         }
+    }
+
+    private bool HasMetOrSurpassedTarget(float x, float directionX, float targetX)
+    {
+        if (path.Count == 1)
+        {
+            return false;
+        }
+        return (targetX == x) ||
+               (path.Count == maxNumIterations) ||
+               (directionX > 0 && x > targetX)  ||
+               (directionX < 0 && x < targetX);
     }
     private Vector2 ExtrapolatePoint(Vector2 position, Vector2 direction, float x)
     {
