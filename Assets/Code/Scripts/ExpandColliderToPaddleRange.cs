@@ -9,7 +9,7 @@ public class ExpandColliderToPaddleRange : MonoBehaviour
     public GameObject paddle;
     public float extraWidth;
     private BoxCollider2D paddleCollider;
-    private BoxCollider2D movementRegion;
+    private BoxCollider2D paddleZone;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class ExpandColliderToPaddleRange : MonoBehaviour
         bottomWall = GameObject.Find("BottomWall").GetComponent<BoxCollider2D>();
 
         paddleCollider = paddle.GetComponent<BoxCollider2D>();
-        movementRegion = GetComponent<BoxCollider2D>();
+        paddleZone = GetComponent<BoxCollider2D>();
     }
     void Update()
     {
@@ -28,7 +28,7 @@ public class ExpandColliderToPaddleRange : MonoBehaviour
     }
     private void ComputeMovementRange(Vector3 min, Vector3 max)
     {
-        movementRegion.size = max - min;
-        movementRegion.transform.position = min + movementRegion.bounds.extents;
+        paddleZone.size = max - min;
+        paddleZone.transform.position = min + paddleZone.bounds.extents;
     }
 }
