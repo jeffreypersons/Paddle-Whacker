@@ -10,6 +10,18 @@ public static class CoroutineUtils
     //    StartCoroutine(
     //       RunAfter(myDelay, () => { /* do stuff */ })
     //    );
+    public static IEnumerator RunNow(Action action)
+    {
+        yield return null;
+        action();
+    }
+
+    // Wait at least the time delay (in seconds), where the delay takes effect AFTER executing the task
+    //
+    // example usage:
+    //    StartCoroutine(
+    //       RunAfter(myDelay, () => { /* do stuff */ })
+    //    );
     public static IEnumerator RunAfter(float timeDelay, Action action)
     {
         yield return new WaitForSeconds(timeDelay);
