@@ -3,12 +3,12 @@
 [ExecuteInEditMode]
 public class ExpandColliderToPaddleRange : MonoBehaviour
 {
-    public string paddleName;
-
     private BoxCollider2D topWall;
     private BoxCollider2D bottomWall;
 
-    private BoxCollider2D paddle;
+    public GameObject paddle;
+    public float extraWidth;
+    private BoxCollider2D paddleCollider;
     private BoxCollider2D movementRegion;
 
     void Start()
@@ -16,21 +16,19 @@ public class ExpandColliderToPaddleRange : MonoBehaviour
         topWall = GameObject.Find("TopWall").GetComponent<BoxCollider2D>();
         bottomWall = GameObject.Find("BottomWall").GetComponent<BoxCollider2D>();
 
-        paddle = GetComponentInParent<BoxCollider2D>();
+        paddleCollider = paddle.GetComponent<BoxCollider2D>();
         movementRegion = GetComponent<BoxCollider2D>();
     }
     void Update()
     {
         ComputeMovementRange(
-            new Vector2(paddle.bounds.min.x, bottomWall.bounds.max.y),
-            new Vector2(paddle.bounds.max.x, topWall.bounds.min.y),
-            new Vector2(paddle.transform.localScale.x, 1)
+            new Vector3(paddleCollider.bounds.min.x - (extraWidth * 0.5f), bottomWall.bounds.max.y),
+            new Vector3(paddleCollider.bounds.max.x + (extraWidth * 0.5f), topWall.bounds.min.y)
         );
     }
-    private void ComputeMovementRange(Vector2 min, Vector2 max, Vector2 scale)
+    private void ComputeMovementRange(Vector3 min, Vector3 max)
     {
-        movementRegion.size = scale * (max - min);
-        movementRegion.transform.position = min + (movementRegion.size * 0.5f);
+        movementRegion.size = max - min;
+        movementRegion.transform.position = min + movementRegion.bounds.extents;
     }
-
 }

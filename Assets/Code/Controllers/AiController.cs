@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
 
-public class LastHit
+public class LastPaddleLineTriggered
 {
-    public string paddleName { get; private set; }
+    public Vector2 ballDirection { get; private set; }
+    public string paddleLineName { get; private set; }
     public PredictedTrajectory predictedTrajectory { get; private set; }
-    public LastHit()
+
+    public LastPaddleLineTriggered()
     {
-        paddleName = "";
+        paddleLineName = "";
         predictedTrajectory = new PredictedTrajectory();
     }
     public void Reset()
     {
-        paddleName = "";
+        paddleLineName = "";
         predictedTrajectory.Clear();
     }
-    public void RegisterHit(string paddleName)
+    public void RegisterPaddleLineTriggered(string paddleLineName, Vector2 ballPosition, Vector2 ballVelocity, float targetX)
     {
-        this.paddleName = paddleName;
-        predictedTrajectory.Clear();
-    }
-    public void RegisterHit(string paddleName, Vector2 ballPosition, Vector2 ballVelocity, float maxX)
-    {
-        this.paddleName = paddleName;
-        predictedTrajectory.Compute(ballPosition, ballVelocity.normalized, maxX);
+        this.paddleLineName = paddleLineName;
+        predictedTrajectory.Compute(ballPosition, ballVelocity.normalized, targetX);
+        ballDirection = ballVelocity.normalized;
     }
 }
 
@@ -39,18 +37,18 @@ public class AiController : MonoBehaviour
 
     public float responseTime;
     private Rigidbody2D ball;
-    LastHit lastHit;
+    LastPaddleLineTriggered lastPaddleLineTriggered;
 
     public void Reset()
     {
         paddleBody.position = initialPosition;
         paddleBody.velocity = Vector2.zero;
-        lastHit.Reset();
+        lastPaddleLineTriggered.Reset();
     }
 
     public AiController()
     {
-        lastHit = new LastHit();
+        lastPaddleLineTriggered = new LastPaddleLineTriggered();
     }
 
     void Start()
@@ -60,20 +58,20 @@ public class AiController : MonoBehaviour
         initialPosition = paddleBody.position;
 
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        lastHit = new LastHit();
+        lastPaddleLineTriggered = new LastPaddleLineTriggered();
     }
 
     // if ball's last paddle hit = AI: keep horizontally aligned with ball
     // if ball's last paddle hit = Opponent: start moving after time delay towards predicted ball trajectory
     void FixedUpdate()
     {
-        if (lastHit.paddleName == paddleName)
+        if (lastPaddleLineTriggered.paddleLineName.StartsWith(paddleName))
         {
             paddleBody.position = MoveVerticallyTowards(ball.position.y);
         }
-        else if (!lastHit.predictedTrajectory.Empty)
+        else if (!lastPaddleLineTriggered.predictedTrajectory.Empty)
         {
-            paddleBody.position = MoveVerticallyTowards(lastHit.predictedTrajectory.EndPoint.y);
+            paddleBody.position = MoveVerticallyTowards(lastPaddleLineTriggered.predictedTrajectory.EndPoint.y);
         }
         else
         {
@@ -92,25 +90,37 @@ public class AiController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.onPaddleHit.AddListener(RegisterOpponentPaddlePassed);
+        GameEvents.onPaddleHit.AddListener(RegisterPaddleLineCrossed);
     }
     void OnDisable()
     {
-        GameEvents.onPaddleHit.RemoveListener(RegisterOpponentPaddlePassed);
+        GameEvents.onPaddleHit.RemoveListener(RegisterPaddleLineCrossed);
     }
-    public void RegisterOpponentPaddlePassed(string paddleName)
+    public void RegisterPaddleLineCrossed(string paddleLineName)
     {
-        if (paddleName == this.paddleName)
+        bool wasAiPaddleLineCrossed = paddleLineName.StartsWith(paddleName);
+
+        if (paddleLineName.StartsWith(paddleName))
         {
-            lastHit.RegisterHit(paddleName);
+            StartCoroutine(
+                CoroutineUtils.RunAfter(responseTime, () =>
+                {
+                    lastPaddleLineTriggered.RegisterPaddleLineTriggered(
+                        paddleLineName, ball.position, ball.velocity, paddleBody.position.x
+                    );
+                    lastPaddleLineTriggered.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
+                    Debug.Log("drawing trajectory in editor: " + lastPaddleLineTriggered.predictedTrajectory);
+                })
+            );
         }
         else
         {
             StartCoroutine(
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
-                    lastHit.RegisterHit(paddleName, ball.position, ball.velocity, paddleBody.position.x);
-                    lastHit.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
+                    lastPaddleLineTriggered.RegisterPaddleLineTriggered(paddleLineName, ball.position, ball.velocity, paddleBody.position.x);
+                    lastPaddleLineTriggered.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
+                    lastPaddleLineTriggered.predictedTrajectory.Clear();
                     //Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
                 })
             );

@@ -420,6 +420,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
+--- !u!1 &864541299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
+    type: 3}
+  m_PrefabInstance: {fileID: 864541298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &864541301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
@@ -473,13 +479,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7547607104702774027, guid: 5648bf27656d575429137f0f92ddd3b4,
         type: 3}
-      propertyPath: m_Size.y
-      value: 47.58
+      propertyPath: m_Size.x
+      value: 7.299999
       objectReference: {fileID: 0}
     - target: {fileID: 7547607104702774036, guid: 5648bf27656d575429137f0f92ddd3b4,
         type: 3}
-      propertyPath: paddleName
-      value: RightPaddle
+      propertyPath: paddle
+      value: 
+      objectReference: {fileID: 2101030519}
+    - target: {fileID: 7547607104702774036, guid: 5648bf27656d575429137f0f92ddd3b4,
+        type: 3}
+      propertyPath: extraWidth
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7547607104702774037, guid: 5648bf27656d575429137f0f92ddd3b4,
         type: 3}
@@ -859,6 +870,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
+--- !u!1 &2101030519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8734476180867663125, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
+    type: 3}
+  m_PrefabInstance: {fileID: 2101030518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2101030524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
@@ -1171,10 +1188,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1069465224}
     m_Modifications:
+    - target: {fileID: 7547607104702774027, guid: 5648bf27656d575429137f0f92ddd3b4,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7.299999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547607104702774027, guid: 5648bf27656d575429137f0f92ddd3b4,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 47.58
+      objectReference: {fileID: 0}
     - target: {fileID: 7547607104702774036, guid: 5648bf27656d575429137f0f92ddd3b4,
         type: 3}
-      propertyPath: paddleName
-      value: LefttPaddle
+      propertyPath: paddle
+      value: 
+      objectReference: {fileID: 864541299}
+    - target: {fileID: 7547607104702774036, guid: 5648bf27656d575429137f0f92ddd3b4,
+        type: 3}
+      propertyPath: extraWidth
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7547607104702774037, guid: 5648bf27656d575429137f0f92ddd3b4,
         type: 3}

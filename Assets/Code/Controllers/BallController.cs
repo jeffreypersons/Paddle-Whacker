@@ -42,6 +42,13 @@ public class BallController : MonoBehaviour
             GameEvents.onVerticalWallHit.Invoke(collision.gameObject.name);
         }
     }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PaddleRange"))
+        {
+            GameEvents.onPaddlePassedByBall.Invoke(collision.gameObject.name);
+        }
+    }
 
     private static Vector2 ComputeBounceDirectionOffPaddle(Bounds ballBounds, Bounds paddleBounds)
     {
