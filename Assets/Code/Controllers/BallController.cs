@@ -46,7 +46,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("PaddleZone"))
         {
-            GameEvents.onPaddlePassedByBall.Invoke(collision.gameObject.name);
+            GameEvents.onPaddleZoneHit.Invoke(collision.gameObject.name);
         }
     }
 

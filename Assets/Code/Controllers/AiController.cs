@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 
-public class LastPaddleLineTriggered
+public class LastHitPaddleZone
 {
     public Vector2 ballDirection { get; private set; }
-    public string paddleLineName { get; private set; }
+    public string paddleZoneName { get; private set; }
     public PredictedTrajectory predictedTrajectory { get; private set; }
 
-    public LastPaddleLineTriggered()
+    public LastHitPaddleZone()
     {
-        paddleLineName = "";
+        paddleZoneName = "";
         predictedTrajectory = new PredictedTrajectory();
     }
     public void Reset()
     {
-        paddleLineName = "";
+        paddleZoneName = "";
         predictedTrajectory.Clear();
     }
     public void RegisterPaddleLineTriggered(string paddleLineName, Vector2 ballPosition, Vector2 ballVelocity, float targetX)
     {
-        this.paddleLineName = paddleLineName;
+        this.paddleZoneName = paddleLineName;
         predictedTrajectory.Compute(ballPosition, ballVelocity.normalized, targetX);
         ballDirection = ballVelocity.normalized;
     }
@@ -37,7 +37,7 @@ public class AiController : MonoBehaviour
 
     public float responseTime;
     private Rigidbody2D ball;
-    LastPaddleLineTriggered lastPaddleLineTriggered;
+    LastHitPaddleZone lastPaddleLineTriggered;
 
     public void Reset()
     {
@@ -48,7 +48,7 @@ public class AiController : MonoBehaviour
 
     public AiController()
     {
-        lastPaddleLineTriggered = new LastPaddleLineTriggered();
+        lastPaddleLineTriggered = new LastHitPaddleZone();
     }
 
     void Start()
@@ -58,14 +58,14 @@ public class AiController : MonoBehaviour
         initialPosition = paddleBody.position;
 
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        lastPaddleLineTriggered = new LastPaddleLineTriggered();
+        lastPaddleLineTriggered = new LastHitPaddleZone();
     }
 
     // if ball's last paddle hit = AI: keep horizontally aligned with ball
     // if ball's last paddle hit = Opponent: start moving after time delay towards predicted ball trajectory
     void FixedUpdate()
     {
-        if (lastPaddleLineTriggered.paddleLineName.StartsWith(paddleName))
+        if (lastPaddleLineTriggered.paddleZoneName.StartsWith(paddleName))
         {
             paddleBody.position = MoveVerticallyTowards(ball.position.y);
         }
@@ -90,20 +90,20 @@ public class AiController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.onPaddleHit.AddListener(RegisterPaddleLineCrossed);
+        GameEvents.onPaddleHit.AddListener(RgisterPaddleZoneHit);
     }
     void OnDisable()
     {
-        GameEvents.onPaddleHit.RemoveListener(RegisterPaddleLineCrossed);
+        GameEvents.onPaddleHit.RemoveListener(RgisterPaddleZoneHit);
     }
-    public void RegisterPaddleLineCrossed(string paddleLineName)
+    public void RgisterPaddleZoneHit(string paddleZoneName)
     {
-        if (paddleLineName.StartsWith(paddleName))
+        if (paddleZoneName.StartsWith(paddleName))
         {
             StartCoroutine(
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
-                    lastPaddleLineTriggered.RegisterPaddleLineTriggered(paddleLineName, ball.position, ball.velocity, paddleBody.position.x);
+                    lastPaddleLineTriggered.RegisterPaddleLineTriggered(paddleZoneName, ball.position, ball.velocity, paddleBody.position.x);
                     lastPaddleLineTriggered.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
                     Debug.Log("drawing trajectory in editor: " + lastPaddleLineTriggered.predictedTrajectory);
                     lastPaddleLineTriggered.predictedTrajectory.Clear();
@@ -116,7 +116,7 @@ public class AiController : MonoBehaviour
                 CoroutineUtils.RunAfter(responseTime, () =>
                 {
                     lastPaddleLineTriggered.RegisterPaddleLineTriggered(
-                        paddleLineName, ball.position, ball.velocity, -21
+                        paddleZoneName, ball.position, ball.velocity, paddleBody.position.x
                     );
                     lastPaddleLineTriggered.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
                     Debug.Log("drawing trajectory in editor: " + lastPaddleLineTriggered.predictedTrajectory);
