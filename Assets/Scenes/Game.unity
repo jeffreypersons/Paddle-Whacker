@@ -803,6 +803,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1903808266}
     m_Modifications:
+    - target: {fileID: 2101030520, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
+      propertyPath: minDistanceBeforeAvoiding
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101030520, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
+      propertyPath: minDistanceBeforeApproaching
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1183,6 +1191,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1069465224}
     m_Modifications:
+    - target: {fileID: 7547607104702774027, guid: 5648bf27656d575429137f0f92ddd3b4,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7.299999
+      objectReference: {fileID: 0}
     - target: {fileID: 7547607104702774036, guid: 5648bf27656d575429137f0f92ddd3b4,
         type: 3}
       propertyPath: paddle

@@ -36,6 +36,7 @@ public class AiController : MonoBehaviour
 
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         predictedTrajectory = new PredictedTrajectory();
+        targetY = paddleBody.position.y;
     }
 
     void FixedUpdate()
@@ -81,7 +82,6 @@ public class AiController : MonoBehaviour
                     predictedTrajectory.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
                     predictedTrajectory.DrawInEditor(Color.green, 1.5f);
                     targetY = predictedTrajectory.EndPoint.y;
-                    //Debug.Log("drawing trajectory in editor: " + LastHitPaddleZone.predictedTrajectory);
                 })
             );
         }
