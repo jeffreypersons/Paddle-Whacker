@@ -28,6 +28,16 @@ public static class CoroutineUtils
         action();
     }
 
+    public static IEnumerator RunRepeatedly(float timeInterval, Action action)
+    {
+        action();
+        while (true)
+        {
+            yield return new WaitForSeconds(timeInterval);
+            action();
+        }
+    }
+
     // Wait at least time delay (in seconds), and then if predicate is false keep repeating action every interval
     // until condition is met
     //
@@ -35,9 +45,8 @@ public static class CoroutineUtils
     //    StartCoroutine(
     //       RunRepeatedlyUntil(myInitialDelay, myInterval, () => { /* do stuff */ })
     //    );
-    public static IEnumerator RunRepeatedlyUntil(float timeDelay, float timeInterval, Action action, Func<bool> predicate)
+    public static IEnumerator RunRepeatedlyUntil(float timeInterval, Action action, Func<bool> predicate)
     {
-        yield return new WaitForSeconds(timeDelay);
         if (predicate()) {
             yield return null;
         }
