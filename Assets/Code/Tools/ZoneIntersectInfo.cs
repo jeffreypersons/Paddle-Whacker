@@ -23,15 +23,15 @@ public class ZoneIntersectInfo
     public bool WithName(string zoneName)         { return ZoneName == zoneName; }
     public bool ContainsPaddle(string paddleName) { return ZoneName.StartsWith(paddleName); }
 
-    public bool IsNearingLeftGoal()         { return OutPosition.x < 0 && OutVelocity.x < 0; }
+    public bool IsNearingLeftGoalWall()     { return OutPosition.x < 0 && OutVelocity.x < 0; }
     public bool IsNearingMidlineFromLeft()  { return OutPosition.x < 0 && OutVelocity.x > 0; }
 
-    public bool IsNearingRightGoal()        { return OutPosition.x > 0 && OutVelocity.x > 0; }
+    public bool IsNearingRightGoalWall()    { return OutPosition.x > 0 && OutVelocity.x > 0; }
     public bool IsNearingMidlineFromRight() { return OutPosition.x > 0 && OutVelocity.x < 0; }
 
-    public bool IsNearingGoal()
+    public bool IsNearingGoalWall()
     {
-        return IsNearingLeftGoal() || IsNearingRightGoal();
+        return IsNearingLeftGoalWall() || IsNearingRightGoalWall();
     }
     public bool IsNearingMidline()
     {

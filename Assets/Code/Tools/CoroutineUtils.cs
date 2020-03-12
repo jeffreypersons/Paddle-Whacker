@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
+
 public static class CoroutineUtils
 {
     // Wait at least the time delay (in seconds), where the delay takes effect AFTER executing the task
@@ -12,7 +13,7 @@ public static class CoroutineUtils
     //    );
     public static IEnumerator RunNow(Action action)
     {
-        yield return null;
+        yield return new WaitForSeconds(0);
         action();
     }
 
@@ -30,31 +31,11 @@ public static class CoroutineUtils
 
     public static IEnumerator RunRepeatedly(float timeInterval, Action action)
     {
+        WaitForSeconds cachedWaitTime = new WaitForSeconds(timeInterval);
         action();
         while (true)
         {
-            yield return new WaitForSeconds(timeInterval);
-            action();
-        }
-    }
-
-    // Wait at least time delay (in seconds), and then if predicate is false keep repeating action every interval
-    // until condition is met
-    //
-    // example usage:
-    //    StartCoroutine(
-    //       RunRepeatedlyUntil(myInitialDelay, myInterval, () => { /* do stuff */ })
-    //    );
-    public static IEnumerator RunRepeatedlyUntil(float timeInterval, Action action, Func<bool> predicate)
-    {
-        if (predicate()) {
-            yield return null;
-        }
-
-        action();
-        while (!predicate())
-        {
-            yield return new WaitForSeconds(timeInterval);
+            yield return cachedWaitTime;
             action();
         }
     }

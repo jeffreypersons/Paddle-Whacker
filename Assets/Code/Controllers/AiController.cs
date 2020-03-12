@@ -1,10 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
 public class AiController : MonoBehaviour
 {
-    public enum State { Idle, FollowBall, AvoidBall, ApproachBall };
-
     public string paddleName;
     public float paddleSpeed;
     public float responseTime;
@@ -19,6 +18,7 @@ public class AiController : MonoBehaviour
     private Rigidbody2D ball;
     private PredictedTrajectory predictedTrajectory;
     private float targetY;
+    private Coroutine updateTargetCoroutine;
 
     public void Reset()
     {
@@ -26,6 +26,7 @@ public class AiController : MonoBehaviour
         paddleBody.velocity = Vector2.zero;
         predictedTrajectory.Clear();
         targetY = paddleBody.position.y;
+        StopCoroutine(updateTargetCoroutine);
     }
 
     void Start()
@@ -37,6 +38,7 @@ public class AiController : MonoBehaviour
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         predictedTrajectory = new PredictedTrajectory();
         targetY = paddleBody.position.y;
+        updateTargetCoroutine = StartCoroutine(CoroutineUtils.RunAfter(responseTime, PredictBallPosition));
     }
 
     void FixedUpdate()
@@ -50,53 +52,54 @@ public class AiController : MonoBehaviour
             );
         }
     }
+
     void OnEnable()
     {
-        GameEvents.onZoneIntersection.AddListener(RegisterLastZoneHit);
+        GameEvents.onZoneIntersection.AddListener(UpdateTargetTask);
     }
     void OnDisable()
     {
-        GameEvents.onZoneIntersection.RemoveListener(RegisterLastZoneHit);
+        GameEvents.onZoneIntersection.RemoveListener(UpdateTargetTask);
     }
-    public void RegisterLastZoneHit(ZoneIntersectInfo hitZoneInfo)
+    public void UpdateTargetTask(ZoneIntersectInfo hitZoneInfo)
     {
-        bool isAiZone = hitZoneInfo.ContainsPaddle(paddleName);
-        bool isAiOnLeftside = paddleBody.position.x < 0;
-        bool isAiOnRightside = paddleBody.position.x > 0;
+        bool isOnAiSide         =  hitZoneInfo.ContainsPaddle(paddleName);
+        bool isBallIncoming     = !isOnAiSide && hitZoneInfo.IsNearingMidline();
+        bool isBallBehindPaddle =  isOnAiSide && hitZoneInfo.IsNearingGoalWall();
 
-        bool isBallApproachingAiFromOpponent = !isAiZone &&
-            (isAiOnLeftside  && hitZoneInfo.IsNearingMidlineFromRight()) ||
-            (isAiOnRightside && hitZoneInfo.IsNearingMidlineFromLeft());
-
-        bool isBallBehindAi = isAiZone &&
-            (isAiOnLeftside  && hitZoneInfo.IsNearingLeftGoal()) ||
-            (isAiOnRightside && hitZoneInfo.IsNearingRightGoal());
-
-        StopAllCoroutines();
-        if (isBallApproachingAiFromOpponent)
+        IEnumerator task;
+        if (isBallIncoming)
         {
-            targetY = paddleBody.position.y;
-            StartCoroutine(
-                CoroutineUtils.RunAfter(responseTime, () =>
-                {
-                    predictedTrajectory.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
-                    predictedTrajectory.DrawInEditor(Color.green, 1.5f);
-                    targetY = predictedTrajectory.EndPoint.y;
-                })
-            );
+            task = CoroutineUtils.RunAfter(responseTime, PredictBallPosition);
         }
-        else if (isBallBehindAi)
+        else if (isBallBehindPaddle)
         {
-            // todo: handle moving paddle out of balls way
+            task = CoroutineUtils.RunAfter(responseTime, HitBallFromHorizontalEdge);
         }
         else
         {
-            StartCoroutine(
-                CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, () =>
-                {
-                    targetY = ball.position.y;
-                })
-            );
+            task = CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall);
         }
+
+        targetY = paddleBody.position.y;
+        StopCoroutine(updateTargetCoroutine);
+        updateTargetCoroutine = StartCoroutine(task);
+    }
+    private void PredictBallPosition()
+    {
+        predictedTrajectory.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
+        predictedTrajectory.DrawInEditor(Color.green, 1.5f);
+        targetY = predictedTrajectory.EndPoint.y;
+    }
+    private void HitBallFromHorizontalEdge()
+    {
+        // todo: fix trajectory to reflect back properly in opposite direction
+        predictedTrajectory.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
+        predictedTrajectory.DrawInEditor(Color.red, 1.5f);
+        targetY = predictedTrajectory.EndPoint.y;
+    }
+    private void TrackBall()
+    {
+        targetY = ball.position.y;
     }
 }
