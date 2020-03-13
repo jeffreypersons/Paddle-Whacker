@@ -6,6 +6,7 @@ public class PredictedTrajectory
 {
     public int minNumIterations = 2;
     public int maxNumIterations = 20;
+    public float maxRaycastDistance = 50;
 
     public int NumBounces { get; private set; }
     public static HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
@@ -56,7 +57,7 @@ public class PredictedTrajectory
         Vector2 direction = startDirection;
         while (!HasMetOrSurpassedTarget(position.x, targetX))
         {
-            hit = Physics2D.Raycast(position, direction, Mathf.Abs(targetX - position.x));
+            hit = Physics2D.Raycast(position, direction, maxRaycastDistance);
             if (hit.transform != null && wallTags.Contains(hit.transform.tag))
             {
                 position = hit.point;
