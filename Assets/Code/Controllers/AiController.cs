@@ -16,7 +16,7 @@ public class AiController : MonoBehaviour
     private BoxCollider2D paddleCollider;
 
     private Rigidbody2D ball;
-    private PredictedTrajectory predictedTrajectory;
+    private TrajectoryPredictor predictedTrajectory;
     private float targetY;
     private Coroutine updateTargetCoroutine;
 
@@ -24,7 +24,7 @@ public class AiController : MonoBehaviour
     {
         paddleBody.position = initialPosition;
         paddleBody.velocity = Vector2.zero;
-        predictedTrajectory.Clear();
+        predictedTrajectory.Reset();
         targetY = paddleBody.position.y;
         StopCoroutine(updateTargetCoroutine);
     }
@@ -36,7 +36,7 @@ public class AiController : MonoBehaviour
         initialPosition = paddleBody.position;
 
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        predictedTrajectory = new PredictedTrajectory();
+        predictedTrajectory = new TrajectoryPredictor();
         targetY = paddleBody.position.y;
         updateTargetCoroutine = StartCoroutine(CoroutineUtils.RunAfter(responseTime, PredictBallPosition));
     }

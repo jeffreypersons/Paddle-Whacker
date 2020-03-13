@@ -2,35 +2,32 @@
 using UnityEngine;
 
 
-public class PredictedTrajectory
+public class TrajectoryPredictor
 {
-    public int minNumIterations = 2;
-    public int maxNumIterations = 20;
-    public float maxRaycastDistance = 50;
+    private const int maxNumBounces = 10;
+    private const int minNumPoints = 2;
+    private const float maxRaycastDistance = 50;
+    private const int maxNumPoints = minNumPoints + maxNumBounces;
 
-    public int NumBounces { get; private set; }
     public static HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
 
     private List<Vector2> path;
 
-    public float TargetX { get; private set; }
+    public float NumBounces { get { return path.Count - minNumPoints; } }
     public bool Empty { get { return path.Count == 0; } }
     public Vector2 this[int index] { get { return path[index]; } }
     public Vector2 StartPoint { get { return path[0]; } }
     public Vector2 EndPoint   { get { return path[path.Count - 1]; } }
 
-    public Vector2 StartDirection { get; private set; }
-    public Vector2 EndDirection   { get; private set; }
-
-    public PredictedTrajectory()
+    public TrajectoryPredictor()
     {
-        path = new List<Vector2>(minNumIterations);
+        path = new List<Vector2>(minNumPoints);
     }
     public override string ToString()
     {
         return "[" + string.Join(",", path) + "]";
     }
-    public void Clear()
+    public void Reset()
     {
         path.Clear();
     }
@@ -46,23 +43,19 @@ public class PredictedTrajectory
     // note: overrides all previous internal data
     public void Compute(Vector2 startPosition, Vector2 startDirection, float targetX)
     {
-        StartDirection = startDirection;
-        TargetX = targetX;
-        NumBounces = 0;
-
         path.Clear();
         path.Add(startPosition);
+
         RaycastHit2D hit;
         Vector2 position  = startPosition;
         Vector2 direction = startDirection;
-        while (!HasMetOrSurpassedTarget(position.x, targetX))
+        while (!HasMetOrSurpassedTarget(position.x, targetX, startDirection))
         {
             hit = Physics2D.Raycast(position, direction, maxRaycastDistance);
             if (hit.transform != null && wallTags.Contains(hit.transform.tag))
             {
                 position = hit.point;
                 direction = Vector2.Reflect(direction, hit.normal);
-                NumBounces++;
             }
             else
             {
@@ -70,23 +63,22 @@ public class PredictedTrajectory
             }
             path.Add(position);
         }
-        EndDirection = direction;
     }
 
-    private bool HasMetOrSurpassedTarget(float x, float targetX)
+    private bool HasMetOrSurpassedTarget(float x, float targetX, Vector2 startDirection)
     {
-        if (path.Count <= minNumIterations)
+        if (path.Count <= minNumPoints)
         {
             return false;
         }
-        if (targetX == x || path.Count >= maxNumIterations)
+        if (targetX == x || path.Count >= maxNumPoints)
         {
             return true;
         }
 
         if (targetX == StartPoint.x)
         {
-            return StartDirection.x < 0? x > targetX : x < targetX;
+            return startDirection.x < 0? x > targetX : x < targetX;
         }
         else if (targetX < StartPoint.x)
         {
