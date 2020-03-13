@@ -16,7 +16,7 @@ public class AiController : MonoBehaviour
     private BoxCollider2D paddleCollider;
 
     private Rigidbody2D ball;
-    private TrajectoryPredictor predictedTrajectory;
+    private TrajectoryPredictor ballTrajectoryPredictor;
     private float targetY;
     private Coroutine updateTargetCoroutine;
 
@@ -24,7 +24,8 @@ public class AiController : MonoBehaviour
     {
         paddleBody.position = initialPosition;
         paddleBody.velocity = Vector2.zero;
-        predictedTrajectory.Reset();
+
+        ballTrajectoryPredictor.Reset();
         targetY = paddleBody.position.y;
         StopCoroutine(updateTargetCoroutine);
     }
@@ -36,7 +37,7 @@ public class AiController : MonoBehaviour
         initialPosition = paddleBody.position;
 
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        predictedTrajectory = new TrajectoryPredictor();
+        ballTrajectoryPredictor = new TrajectoryPredictor();
         targetY = paddleBody.position.y;
         updateTargetCoroutine = StartCoroutine(CoroutineUtils.RunAfter(responseTime, PredictBallPosition));
     }
@@ -87,17 +88,16 @@ public class AiController : MonoBehaviour
     }
     private void PredictBallPosition()
     {
-        predictedTrajectory.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
-        predictedTrajectory.DrawInEditor(Color.green, 1.5f);
-        targetY = predictedTrajectory.EndPoint.y;
+        ballTrajectoryPredictor.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
+        ballTrajectoryPredictor.DrawInEditor(Color.green, 1.5f);
+        targetY = ballTrajectoryPredictor.EndPoint.y;
     }
     private void HitBallFromHorizontalEdge()
     {
-        // todo: fix trajectory to reflect back properly in opposite direction
-        predictedTrajectory.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
-        predictedTrajectory.DrawInEditor(Color.red, 1.5f);
-        Debug.Log("drawing trajectory in editor: " + predictedTrajectory);
-        targetY = predictedTrajectory.EndPoint.y;
+        ballTrajectoryPredictor.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
+        ballTrajectoryPredictor.DrawInEditor(Color.red, 1.5f);
+        Debug.Log("drawing trajectory in editor: " + ballTrajectoryPredictor);
+        targetY = ballTrajectoryPredictor.EndPoint.y;
     }
     private void TrackBall()
     {

@@ -6,7 +6,7 @@ public class TrajectoryPredictor
 {
     private const int maxNumBounces = 10;
     private const int minNumPoints = 2;
-    private const float maxRaycastDistance = 50;
+    private const float maxRaycastDistance = 2;
     private const int maxNumPoints = minNumPoints + maxNumBounces;
 
     private readonly HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
