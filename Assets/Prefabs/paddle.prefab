@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paddleName: RightPaddle
   paddleSpeed: 25
-  randomSlowDownVariance: 0.3
-  maxToleratedDistanceFromBall: 0.15
   responseTime: 0.4
+  randomSlowDownVariance: 0.3
+  minDistanceBeforeAvoiding: 0
+  minDistanceBeforeApproaching: 0

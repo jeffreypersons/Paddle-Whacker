@@ -418,7 +418,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftPaddle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2101030520, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
 --- !u!1 &864541299 stripped
 GameObject:
@@ -873,14 +874,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1903808266}
     m_Modifications:
-    - target: {fileID: 2101030520, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
-      propertyPath: minDistanceBeforeAvoiding
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101030520, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff, type: 3}
-      propertyPath: minDistanceBeforeApproaching
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -899,17 +892,17 @@ PrefabInstance:
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
