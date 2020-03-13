@@ -9,15 +9,15 @@ public class TrajectoryPredictor
     private const float maxRaycastDistance = 50;
     private const int maxNumPoints = minNumPoints + maxNumBounces;
 
-    public static HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
+    private readonly HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
 
     private List<Vector2> path;
 
-    public float NumBounces { get { return path.Count - minNumPoints; } }
-    public bool Empty { get { return path.Count == 0; } }
-    public Vector2 this[int index] { get { return path[index]; } }
-    public Vector2 StartPoint { get { return path[0]; } }
-    public Vector2 EndPoint   { get { return path[path.Count - 1]; } }
+    public float NumBounces        { get { return path.Count - minNumPoints; } }
+    public bool Empty              { get { return path.Count == 0;           } }
+    public Vector2 this[int index] { get { return path[index];               } }
+    public Vector2 StartPoint      { get { return path[0];                   } }
+    public Vector2 EndPoint        { get { return path[path.Count - 1];      } }
 
     public TrajectoryPredictor()
     {
@@ -40,7 +40,7 @@ public class TrajectoryPredictor
     }
     // compute trajectory by extending line from last position, reflecting each bounce,
     // and extending the line until either the target x value is reached, or the maximum number of points is met
-    // note: overrides all previous internal data
+    // note: overrides previous list of points
     public void Compute(Vector2 startPosition, Vector2 startDirection, float targetX)
     {
         path.Clear();
@@ -82,7 +82,7 @@ public class TrajectoryPredictor
         }
         else if (targetX < StartPoint.x)
         {
-            return x > targetX;
+            return x < targetX;
         }
         else
         {
