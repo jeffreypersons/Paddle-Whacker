@@ -39,7 +39,7 @@ public class AiController : MonoBehaviour
         ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         ballTrajectoryPredictor = new TrajectoryPredictor();
         targetY = paddleBody.position.y;
-        updateTargetCoroutine = StartCoroutine(CoroutineUtils.RunAfter(responseTime, PredictBallPosition));
+        updateTargetCoroutine = StartCoroutine(CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall));
     }
 
     void FixedUpdate()
@@ -89,6 +89,7 @@ public class AiController : MonoBehaviour
     private void PredictBallPosition()
     {
         ballTrajectoryPredictor.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
+
         ballTrajectoryPredictor.DrawInEditor(Color.green, 1.5f);
         targetY = ballTrajectoryPredictor.EndPoint.y;
     }

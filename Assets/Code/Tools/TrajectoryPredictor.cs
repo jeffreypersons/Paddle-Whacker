@@ -6,7 +6,7 @@ public class TrajectoryPredictor
 {
     private const int maxNumBounces = 10;
     private const int minNumPoints = 2;
-    private const float maxRaycastDistance = 2;
+    private const float maxRaycastDistance = 50;
     private const int maxNumPoints = minNumPoints + maxNumBounces;
 
     private readonly HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
@@ -40,7 +40,7 @@ public class TrajectoryPredictor
     }
     // compute trajectory by extending line from last position, reflecting each bounce,
     // and extending the line until either the target x value is reached, or the maximum number of points is met
-    // note: overrides previous list of points
+    // note: overrides previous list of points, and for consistency considers goal as a wall to bounce off of
     public void Compute(Vector2 startPosition, Vector2 startDirection, float targetX)
     {
         path.Clear();
@@ -52,7 +52,7 @@ public class TrajectoryPredictor
         while (!HasMetOrSurpassedTarget(position.x, targetX, startDirection))
         {
             hit = Physics2D.Raycast(position, direction, maxRaycastDistance);
-            if (hit.transform != null && wallTags.Contains(hit.transform.tag))
+            if (hit.transform != null && (wallTags.Contains(hit.transform.tag) || hit.transform.CompareTag("Goal")))
             {
                 position = hit.point;
                 direction = Vector2.Reflect(direction, hit.normal);
