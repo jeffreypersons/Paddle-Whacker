@@ -5,11 +5,14 @@ using UnityEngine;
 public class PredictedTrajectory
 {
     public int minNumIterations = 2;
-    public int maxNumIterations = 10;
-    public HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
+    public int maxNumIterations = 20;
+
+    public int NumBounces { get; private set; }
+    public static HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
 
     private List<Vector2> path;
 
+    public float TargetX { get; private set; }
     public bool Empty { get { return path.Count == 0; } }
     public Vector2 this[int index] { get { return path[index]; } }
     public Vector2 StartPoint { get { return path[0]; } }
@@ -20,7 +23,7 @@ public class PredictedTrajectory
 
     public PredictedTrajectory()
     {
-        path = new List<Vector2>(maxNumIterations);
+        path = new List<Vector2>(minNumIterations);
     }
     public override string ToString()
     {
@@ -43,9 +46,11 @@ public class PredictedTrajectory
     public void Compute(Vector2 startPosition, Vector2 startDirection, float targetX)
     {
         StartDirection = startDirection;
+        TargetX = targetX;
+        NumBounces = 0;
+
         path.Clear();
         path.Add(startPosition);
-
         RaycastHit2D hit;
         Vector2 position  = startPosition;
         Vector2 direction = startDirection;
@@ -56,6 +61,7 @@ public class PredictedTrajectory
             {
                 position = hit.point;
                 direction = Vector2.Reflect(direction, hit.normal);
+                NumBounces++;
             }
             else
             {
@@ -68,11 +74,11 @@ public class PredictedTrajectory
 
     private bool HasMetOrSurpassedTarget(float x, float targetX)
     {
-        if (path.Count == 1)
+        if (path.Count <= minNumIterations)
         {
             return false;
         }
-        if (targetX == x || path.Count == maxNumIterations)
+        if (targetX == x || path.Count >= maxNumIterations)
         {
             return true;
         }
@@ -87,11 +93,11 @@ public class PredictedTrajectory
         }
         else
         {
-            return x < targetX;
+            return x > targetX;
         }
     }
     private Vector2 ExtrapolatePoint(Vector2 position, Vector2 direction, float x)
     {
-        return position + (direction * (x - position.x));
+        return position + (direction * Mathf.Abs(x - position.x));
     }
 }
