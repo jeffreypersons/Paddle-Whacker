@@ -71,7 +71,7 @@ public class TrajectoryPredictor
         {
             return false;
         }
-        if (targetX == x || path.Count >= maxNumPoints)
+        if (targetX == x || path.Count >= maxNumPoints || startDirection.x == 0)
         {
             return true;
         }
