@@ -71,23 +71,20 @@ public class TrajectoryPredictor
         {
             return false;
         }
-        if (targetX == x || path.Count >= maxNumPoints || startDirection.x == 0)
+        if (targetX == x || path.Count >= maxNumPoints)
         {
             return true;
         }
 
-        if (targetX == StartPoint.x)
-        {
-            return startDirection.x < 0? x > targetX : x < targetX;
-        }
-        else if (targetX < StartPoint.x)
+        if (targetX < StartPoint.x)
         {
             return x < targetX;
         }
-        else
+        if (targetX > StartPoint.x)
         {
             return x > targetX;
         }
+        return startDirection.x < 0 ? x > targetX : x < targetX;
     }
     private Vector2 ExtrapolatePoint(Vector2 position, Vector2 direction, float x)
     {
