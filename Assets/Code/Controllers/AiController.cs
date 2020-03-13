@@ -74,7 +74,7 @@ public class AiController : MonoBehaviour
         }
         else if (isBallBehindPaddle)
         {
-            task = CoroutineUtils.RunAfter(responseTime, HitBallFromHorizontalEdge);
+            task = CoroutineUtils.RunNow(HitBallFromHorizontalEdge);
         }
         else
         {
@@ -96,6 +96,7 @@ public class AiController : MonoBehaviour
         // todo: fix trajectory to reflect back properly in opposite direction
         predictedTrajectory.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
         predictedTrajectory.DrawInEditor(Color.red, 1.5f);
+        Debug.Log("drawing trajectory in editor: " + predictedTrajectory);
         targetY = predictedTrajectory.EndPoint.y;
     }
     private void TrackBall()

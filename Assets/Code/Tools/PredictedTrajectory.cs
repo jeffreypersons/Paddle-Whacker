@@ -15,6 +15,9 @@ public class PredictedTrajectory
     public Vector2 StartPoint { get { return path[0]; } }
     public Vector2 EndPoint   { get { return path[path.Count - 1]; } }
 
+    public Vector2 StartDirection { get; private set; }
+    public Vector2 EndDirection   { get; private set; }
+
     public PredictedTrajectory()
     {
         path = new List<Vector2>(maxNumIterations);
@@ -39,13 +42,14 @@ public class PredictedTrajectory
     // note: overrides all previous internal data
     public void Compute(Vector2 startPosition, Vector2 startDirection, float targetX)
     {
+        StartDirection = startDirection;
         path.Clear();
         path.Add(startPosition);
 
         RaycastHit2D hit;
         Vector2 position  = startPosition;
         Vector2 direction = startDirection;
-        while (!HasMetOrSurpassedTarget(position.x, direction.x, targetX))
+        while (!HasMetOrSurpassedTarget(position.x, targetX))
         {
             hit = Physics2D.Raycast(position, direction, Mathf.Abs(targetX - position.x));
             if (hit.transform != null && wallTags.Contains(hit.transform.tag))
@@ -59,18 +63,32 @@ public class PredictedTrajectory
             }
             path.Add(position);
         }
+        EndDirection = direction;
     }
 
-    private bool HasMetOrSurpassedTarget(float x, float directionX, float targetX)
+    private bool HasMetOrSurpassedTarget(float x, float targetX)
     {
         if (path.Count == 1)
         {
             return false;
         }
-        return (targetX == x) ||
-               (path.Count == maxNumIterations) ||
-               (directionX > 0 && x > targetX)  ||
-               (directionX < 0 && x < targetX);
+        if (targetX == x || path.Count == maxNumIterations)
+        {
+            return true;
+        }
+
+        if (targetX == StartPoint.x)
+        {
+            return StartDirection.x < 0? x > targetX : x < targetX;
+        }
+        else if (targetX < StartPoint.x)
+        {
+            return x > targetX;
+        }
+        else
+        {
+            return x < targetX;
+        }
     }
     private Vector2 ExtrapolatePoint(Vector2 position, Vector2 direction, float x)
     {
