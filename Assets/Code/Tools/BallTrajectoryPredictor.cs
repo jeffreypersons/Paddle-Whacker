@@ -2,11 +2,11 @@
 using UnityEngine;
 
 
-public class TrajectoryPredictor
+public class BallTrajectoryPredictor
 {
-    private const int maxNumBounces = 10;
     private const int minNumPoints = 2;
-    private const float maxRaycastDistance = 50;
+    private const int maxNumBounces = 10;
+    private const float maxRaycastDistance = 30;
     private const int maxNumPoints = minNumPoints + maxNumBounces;
 
     private readonly HashSet<string> wallTags = new HashSet<string> { "HorizontalWall", "VerticalWall" };
@@ -19,7 +19,7 @@ public class TrajectoryPredictor
     public Vector2 StartPoint      { get { return path[0];                   } }
     public Vector2 EndPoint        { get { return path[path.Count - 1];      } }
 
-    public TrajectoryPredictor()
+    public BallTrajectoryPredictor()
     {
         path = new List<Vector2>(minNumPoints);
     }

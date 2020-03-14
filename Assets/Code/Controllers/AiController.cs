@@ -8,48 +8,69 @@ public class AiController : MonoBehaviour
     public float paddleSpeed;
     public float responseTime;
     public float randomSlowDownVariance;
-    public float minDistanceBeforeAvoiding;
-    public float minDistanceBeforeApproaching;
+    public float minVerticalDistanceBeforeMoving;
 
-    private Vector2 initialPosition;
+    private Rigidbody2D ballBody;
+    private BoxCollider2D ballCollider;
+
     private Rigidbody2D paddleBody;
     private BoxCollider2D paddleCollider;
+    private Vector2 initialPaddlePosition;
 
-    private Rigidbody2D ball;
-    private TrajectoryPredictor ballTrajectoryPredictor;
-    private float targetY;
+    private float targetPaddleY;
+    private BallTrajectoryPredictor ballPredictor;
     private Coroutine updateTargetCoroutine;
+
+    private float BallHalfHeight   { get { return ballCollider.bounds.extents.y;   } }
+    private float PaddleHalfHeight { get { return paddleCollider.bounds.extents.y; } }
+    private bool IsBallWithinPaddleRange(float paddleY, float ballY)
+    {
+        return MathUtils.IsOverlappingRange(
+            paddleY - PaddleHalfHeight - minVerticalDistanceBeforeMoving,
+            paddleY + PaddleHalfHeight + minVerticalDistanceBeforeMoving,
+            ballY - BallHalfHeight,
+            ballY + BallHalfHeight
+        );
+    }
+    private void StartTargetUpdateRoutine(IEnumerator task)
+    {
+        // override target to no movement to avoid strange synchronizing behavior
+        if (updateTargetCoroutine != null)
+        {
+            StopCoroutine(updateTargetCoroutine);
+        }
+        targetPaddleY = paddleBody.position.y;
+        updateTargetCoroutine = StartCoroutine(task);
+    }
 
     public void Reset()
     {
-        paddleBody.position = initialPosition;
-        paddleBody.velocity = Vector2.zero;
-
-        ballTrajectoryPredictor.Reset();
-        targetY = paddleBody.position.y;
-        StopCoroutine(updateTargetCoroutine);
+        paddleBody.position = initialPaddlePosition;
+        targetPaddleY = initialPaddlePosition.y;
+        StartTargetUpdateRoutine(CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall));
     }
 
     void Start()
     {
-        paddleBody      = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
-        paddleCollider  = GameObject.Find(paddleName).GetComponent<BoxCollider2D>();
-        initialPosition = paddleBody.position;
+        ballBody     = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
+        ballCollider = GameObject.Find("Ball").GetComponent<BoxCollider2D>();
 
-        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        ballTrajectoryPredictor = new TrajectoryPredictor();
-        targetY = paddleBody.position.y;
-        updateTargetCoroutine = StartCoroutine(CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall));
+        paddleBody = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
+        paddleCollider = GameObject.Find(paddleName).GetComponent<BoxCollider2D>();
+        initialPaddlePosition = paddleBody.position;
+        ballPredictor = new BallTrajectoryPredictor();
+
+        Reset();
     }
 
     void FixedUpdate()
     {
-        if (Mathf.Abs(targetY - paddleBody.position.y) >= minDistanceBeforeApproaching)
+        if (Mathf.Abs(targetPaddleY - paddleBody.position.y) >= minVerticalDistanceBeforeMoving)
         {
             paddleBody.position = Vector2.MoveTowards(
                 paddleBody.position,
-                new Vector2(paddleBody.position.x, targetY),
-                paddleSpeed * Time.fixedDeltaTime * Random.Range(1.00f - randomSlowDownVariance, 1.00f)
+                new Vector2(paddleBody.position.x, targetPaddleY),
+                paddleSpeed * Time.fixedDeltaTime
             );
         }
     }
@@ -81,41 +102,34 @@ public class AiController : MonoBehaviour
         {
             task = CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall);
         }
-
-        targetY = paddleBody.position.y;
-        StopCoroutine(updateTargetCoroutine);
-        updateTargetCoroutine = StartCoroutine(task);
+        StartTargetUpdateRoutine(task);
     }
     private void PredictBallPosition()
     {
-        ballTrajectoryPredictor.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
-        ballTrajectoryPredictor.DrawInEditor(Color.green, 1.5f);
-        targetY = ballTrajectoryPredictor.EndPoint.y;
+        Debug.Log("incoming");
+        ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
+        ballPredictor.DrawInEditor(Color.green, 1.5f);
+        targetPaddleY = ballPredictor.EndPoint.y;
     }
     private void TryToHitBallFromHorizontalEdge()
     {
-        ballTrajectoryPredictor.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
-        ballTrajectoryPredictor.DrawInEditor(Color.red, 1.5f);
+        Debug.Log("behind");
+        ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
+        ballPredictor.DrawInEditor(Color.red, 1.5f);
 
-        float predictedY    = ballTrajectoryPredictor.EndPoint.y;
-        float paddleMinY    = paddleCollider.bounds.min.y;
-        float paddleCenterY = paddleCollider.bounds.center.y;
-        float paddleMaxY    = paddleCollider.bounds.max.y;
-        if (predictedY < paddleMinY - minDistanceBeforeAvoiding)
+        float paddleY    = paddleCollider.bounds.center.y;
+        float predictedY = ballPredictor.EndPoint.y;
+        if (IsBallWithinPaddleRange(predictedY, ballBody.position.y))
         {
-            // todo: try and hit the ball
-        }
-        else if (predictedY > paddleMaxY + minDistanceBeforeAvoiding)
-        {
-            // todo: try and hit the ball
+            targetPaddleY = paddleY + (paddleY - predictedY);
         }
         else
         {
-            targetY = paddleCenterY + (predictedY - paddleCenterY) + minDistanceBeforeAvoiding;
+            targetPaddleY = paddleBody.position.y;
         }
     }
     private void TrackBall()
     {
-        targetY = ball.position.y;
+        targetPaddleY = ballBody.position.y;
     }
 }
