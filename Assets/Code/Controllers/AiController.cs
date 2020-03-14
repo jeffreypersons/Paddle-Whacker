@@ -75,7 +75,7 @@ public class AiController : MonoBehaviour
         }
         else if (isBallBehindPaddle)
         {
-            task = CoroutineUtils.RunNow(HitBallFromHorizontalEdge);
+            task = CoroutineUtils.RunNow(TryToHitBallFromHorizontalEdge);
         }
         else
         {
@@ -89,16 +89,30 @@ public class AiController : MonoBehaviour
     private void PredictBallPosition()
     {
         ballTrajectoryPredictor.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
-
         ballTrajectoryPredictor.DrawInEditor(Color.green, 1.5f);
         targetY = ballTrajectoryPredictor.EndPoint.y;
     }
-    private void HitBallFromHorizontalEdge()
+    private void TryToHitBallFromHorizontalEdge()
     {
         ballTrajectoryPredictor.Compute(ball.position, ball.velocity.normalized, paddleBody.position.x);
         ballTrajectoryPredictor.DrawInEditor(Color.red, 1.5f);
-        Debug.Log("drawing trajectory in editor: " + ballTrajectoryPredictor);
-        targetY = ballTrajectoryPredictor.EndPoint.y;
+
+        float predictedY    = ballTrajectoryPredictor.EndPoint.y;
+        float paddleMinY    = paddleCollider.bounds.min.y;
+        float paddleCenterY = paddleCollider.bounds.center.y;
+        float paddleMaxY    = paddleCollider.bounds.max.y;
+        if (predictedY < paddleMinY - minDistanceBeforeAvoiding)
+        {
+            // todo: try and hit the ball
+        }
+        else if (predictedY > paddleMaxY + minDistanceBeforeAvoiding)
+        {
+            // todo: try and hit the ball
+        }
+        else
+        {
+            targetY = paddleCenterY + (predictedY - paddleCenterY) + minDistanceBeforeAvoiding;
+        }
     }
     private void TrackBall()
     {
