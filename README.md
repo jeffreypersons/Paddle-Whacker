@@ -20,6 +20,7 @@ Can download and play on itch.io!: https://jeffreypersons.itch.io/paddle-whacker
 ## How the AI works
 
 ![ai trajectory prediction demo](https://user-images.githubusercontent.com/8084757/74257777-265cf900-4caa-11ea-99fc-17729a5928f3.gif)
+
 Basically, the ai runs in a seperate coroutine launched (after a response time delay) when its opponent (ie the player) hits the ball, and then approachs the point that the trajectory intersects with the x position of the ai's paddle.
 
 
