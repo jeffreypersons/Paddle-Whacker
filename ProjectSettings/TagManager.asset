@@ -21,6 +21,7 @@ TagManager:
   - Detector
   - Goal
   - WallComposite
+  - PaddleZone
   layers:
   - Default
   - TransparentFX

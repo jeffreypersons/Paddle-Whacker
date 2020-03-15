@@ -1,119 +1,135 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public class LastHit
-{
-    public string paddleName { get; private set; }
-    public PredictedTrajectory predictedTrajectory { get; private set; }
-    public LastHit()
-    {
-        paddleName = "";
-        predictedTrajectory = new PredictedTrajectory();
-    }
-    public void Reset()
-    {
-        paddleName = "";
-        predictedTrajectory.Clear();
-    }
-    public void RegisterHit(string paddleName)
-    {
-        this.paddleName = paddleName;
-        predictedTrajectory.Clear();
-    }
-    public void RegisterHit(string paddleName, Vector2 ballPosition, Vector2 ballVelocity, float maxX)
-    {
-        this.paddleName = paddleName;
-        predictedTrajectory.Compute(ballPosition, ballVelocity.normalized, maxX);
-    }
-}
 
 public class AiController : MonoBehaviour
 {
     public string paddleName;
     public float paddleSpeed;
-    public float randomSlowDownVariance;
-    private Vector2 initialPosition;
-    private Rigidbody2D paddleBody;
-
-    public float maxToleratedDistanceFromBall;
-    private Collider2D paddleCollider;
-
     public float responseTime;
-    private Rigidbody2D ball;
-    LastHit lastHit;
+    public float randomSlowDownVariance;
+    public float minVerticalDistanceBeforeMoving;
+
+    private Rigidbody2D ballBody;
+    private BoxCollider2D ballCollider;
+
+    private Rigidbody2D paddleBody;
+    private BoxCollider2D paddleCollider;
+    private Vector2 initialPaddlePosition;
+
+    private float targetPaddleY;
+    private BallTrajectoryPredictor ballPredictor;
+    private Coroutine updateTargetCoroutine;
+
+    private float BallHalfHeight   { get { return ballCollider.bounds.extents.y;   } }
+    private float PaddleHalfHeight { get { return paddleCollider.bounds.extents.y; } }
+    private bool IsBallWithinPaddleRange(float paddleY, float ballY)
+    {
+        return MathUtils.IsOverlappingRange(
+            paddleY - PaddleHalfHeight - minVerticalDistanceBeforeMoving,
+            paddleY + PaddleHalfHeight + minVerticalDistanceBeforeMoving,
+            ballY - BallHalfHeight,
+            ballY + BallHalfHeight
+        );
+    }
+    private void StartTargetUpdateRoutine(IEnumerator task)
+    {
+        // override target to no movement to avoid strange synchronizing behavior
+        if (updateTargetCoroutine != null)
+        {
+            StopCoroutine(updateTargetCoroutine);
+        }
+        targetPaddleY = paddleBody.position.y;
+        updateTargetCoroutine = StartCoroutine(task);
+    }
 
     public void Reset()
     {
-        paddleBody.position = initialPosition;
-        paddleBody.velocity = Vector2.zero;
-        lastHit.Reset();
-    }
-
-    public AiController()
-    {
-        lastHit = new LastHit();
+        paddleBody.position = initialPaddlePosition;
+        targetPaddleY = initialPaddlePosition.y;
+        StartTargetUpdateRoutine(CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall));
     }
 
     void Start()
     {
+        ballBody     = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
+        ballCollider = GameObject.Find("Ball").GetComponent<BoxCollider2D>();
+
         paddleBody = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
         paddleCollider = GameObject.Find(paddleName).GetComponent<BoxCollider2D>();
-        initialPosition = paddleBody.position;
+        initialPaddlePosition = paddleBody.position;
+        ballPredictor = new BallTrajectoryPredictor();
 
-        ball = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        lastHit = new LastHit();
+        Reset();
     }
 
-    // if ball's last paddle hit = AI: keep horizontally aligned with ball
-    // if ball's last paddle hit = Opponent: start moving after time delay towards predicted ball trajectory
     void FixedUpdate()
     {
-        if (lastHit.paddleName == paddleName)
+        if (Mathf.Abs(targetPaddleY - paddleBody.position.y) >= minVerticalDistanceBeforeMoving)
         {
-            paddleBody.position = MoveVerticallyTowards(ball.position.y);
+            paddleBody.position = Vector2.MoveTowards(
+                paddleBody.position,
+                new Vector2(paddleBody.position.x, targetPaddleY),
+                paddleSpeed * Time.fixedDeltaTime
+            );
         }
-        else if (!lastHit.predictedTrajectory.Empty)
-        {
-            paddleBody.position = MoveVerticallyTowards(lastHit.predictedTrajectory.EndPoint.y);
-        }
-        else
-        {
-            paddleBody.velocity = Vector2.zero;
-        }
-    }
-    private Vector2 MoveVerticallyTowards(float targetY)
-    {
-        if (Mathf.Abs(targetY - paddleBody.position.y) < maxToleratedDistanceFromBall) {
-            return paddleBody.position;
-        }
-
-        float maxDistance = Random.Range(1.00f - randomSlowDownVariance, 1.00f) * paddleSpeed * Time.fixedDeltaTime;
-        return Vector2.MoveTowards(paddleBody.position, new Vector2(paddleBody.position.x, targetY), maxDistance);
     }
 
     void OnEnable()
     {
-        GameEvents.onPaddleHit.AddListener(RegisterPaddleHit);
+        GameEvents.onZoneIntersection.AddListener(UpdateTargetTask);
     }
     void OnDisable()
     {
-        GameEvents.onPaddleHit.RemoveListener(RegisterPaddleHit);
+        GameEvents.onZoneIntersection.RemoveListener(UpdateTargetTask);
     }
-    public void RegisterPaddleHit(string paddleName)
+    public void UpdateTargetTask(ZoneIntersectInfo hitZoneInfo)
     {
-        if (paddleName == this.paddleName)
+        bool isOnAiSide         =  hitZoneInfo.ContainsPaddle(paddleName);
+        bool isBallIncoming     = !isOnAiSide && hitZoneInfo.IsNearingMidline();
+        bool isBallBehindPaddle =  isOnAiSide && hitZoneInfo.IsNearingGoalWall();
+
+        IEnumerator task;
+        if (isBallIncoming)
         {
-            lastHit.RegisterHit(paddleName);
+            task = CoroutineUtils.RunAfter(responseTime, PredictBallPosition);
+        }
+        else if (isBallBehindPaddle)
+        {
+            task = CoroutineUtils.RunNow(TryToHitBallFromHorizontalEdge);
         }
         else
         {
-            StartCoroutine(
-                CoroutineUtils.RunAfter(responseTime, () =>
-                {
-                    lastHit.RegisterHit(paddleName, ball.position, ball.velocity, paddleBody.position.x);
-                    lastHit.predictedTrajectory.DrawInEditor(Color.green, 1.5f);
-                    Debug.Log("drawing trajectory in editor: " + lastHit.predictedTrajectory);
-                })
-            );
+            task = CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall);
         }
+        StartTargetUpdateRoutine(task);
+    }
+    private void PredictBallPosition()
+    {
+        Debug.Log("incoming");
+        ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
+        ballPredictor.DrawInEditor(Color.green, 1.5f);
+        targetPaddleY = ballPredictor.EndPoint.y;
+    }
+    private void TryToHitBallFromHorizontalEdge()
+    {
+        Debug.Log("behind");
+        ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
+        ballPredictor.DrawInEditor(Color.red, 1.5f);
+
+        float paddleY    = paddleCollider.bounds.center.y;
+        float predictedY = ballPredictor.EndPoint.y;
+        if (IsBallWithinPaddleRange(predictedY, ballBody.position.y))
+        {
+            targetPaddleY = paddleY + (paddleY - predictedY);
+        }
+        else
+        {
+            targetPaddleY = paddleBody.position.y;
+        }
+    }
+    private void TrackBall()
+    {
+        targetPaddleY = ballBody.position.y;
     }
 }
