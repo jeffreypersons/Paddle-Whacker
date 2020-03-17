@@ -2,16 +2,13 @@
 
 public class HudController : MonoBehaviour
 {
-    public string leftScoreLabelName;
-    public string rightScoreLabelName;
-
-    private TMPro.TextMeshProUGUI leftScoreLabel;
-    private TMPro.TextMeshProUGUI rightScoreLabel;
+    public TMPro.TextMeshProUGUI leftScoreLabel;
+    public TMPro.TextMeshProUGUI rightScoreLabel;
 
     void Start()
     {
-        leftScoreLabel = GameObject.Find(leftScoreLabelName).GetComponent<TMPro.TextMeshProUGUI>();
-        rightScoreLabel = GameObject.Find(rightScoreLabelName).GetComponent<TMPro.TextMeshProUGUI>();
+        leftScoreLabel  = leftScoreLabel.GetComponent<TMPro.TextMeshProUGUI>();
+        rightScoreLabel = rightScoreLabel.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void OnEnable()
@@ -24,7 +21,7 @@ public class HudController : MonoBehaviour
     }
     public void UpdateScore()
     {
-        leftScoreLabel.text = GameData.leftPlayerScore.ToString();
+        leftScoreLabel.text  = GameData.leftPlayerScore.ToString();
         rightScoreLabel.text = GameData.rightPlayerScore.ToString();
     }
 }
