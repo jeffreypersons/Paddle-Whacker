@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class HudController : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI leftScoreLabel;
