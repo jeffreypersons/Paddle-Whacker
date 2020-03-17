@@ -8,7 +8,7 @@ public class DetermineGameResult : MonoBehaviour
         var endMenuMainTitle = GameObject.Find("Title").GetComponent<TMPro.TextMeshProUGUI>();
         var endMenuSubtitle = GameObject.Find("Subtitle").GetComponent<TMPro.TextMeshProUGUI>();
 
-        endMenuMainTitle.text = GameData.player1Score == GameData.winningScore ? "Game Won" : "Game Lost";
-        endMenuSubtitle.text = GameData.player1Score.ToString() + " - " + GameData.player2Score.ToString();
+        endMenuMainTitle.text = GameData.leftPlayerScore == GameData.winningScore ? "Game Won" : "Game Lost";
+        endMenuSubtitle.text = GameData.leftPlayerScore.ToString() + " - " + GameData.rightPlayerScore.ToString();
     }
 }
