@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 920248580199517302}
   - component: {fileID: 920248580199517297}
   m_Layer: 9
-  m_Name: InGameMenu
+  m_Name: IngameMenu
   m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &920248580199517303
 MonoBehaviour:
@@ -670,7 +670,17 @@ PrefabInstance:
     - target: {fileID: 5009634467155922933, guid: 4ff255eba90cfca488bb5b30cbf2ae94,
         type: 3}
       propertyPath: m_fontSize
-      value: 154.6
+      value: 137.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009634467155922933, guid: 4ff255eba90cfca488bb5b30cbf2ae94,
+        type: 3}
+      propertyPath: m_text
+      value: My Ingame Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009634467155922933, guid: 4ff255eba90cfca488bb5b30cbf2ae94,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ff255eba90cfca488bb5b30cbf2ae94, type: 3}
@@ -806,6 +816,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSize
       value: 80.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978129097464633303, guid: 5b01e3baf0cca934fbbcb02a5a6c13bc,
+        type: 3}
+      propertyPath: m_text
+      value: X - X
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978129097464633303, guid: 5b01e3baf0cca934fbbcb02a5a6c13bc,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b01e3baf0cca934fbbcb02a5a6c13bc, type: 3}
