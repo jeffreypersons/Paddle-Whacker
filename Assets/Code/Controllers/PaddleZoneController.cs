@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-// assumes paddle zone it NOT touching any vertical walls
+
 public class PaddleZoneController : MonoBehaviour
 {
-    private BoxCollider2D paddleZone;
+    private BoxCollider2D paddleZoneCollider;
     private Vector2 lastRecordedInPosition;
     private Vector2 lastRecordedInVelocity;
     private Vector2 lastRecordedOutPosition;
@@ -11,7 +11,7 @@ public class PaddleZoneController : MonoBehaviour
 
     void Start()
     {
-        paddleZone = GetComponent<BoxCollider2D>();
+        paddleZoneCollider = gameObject.transform.GetComponent<BoxCollider2D>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -31,8 +31,8 @@ public class PaddleZoneController : MonoBehaviour
             lastRecordedOutVelocity = ball.velocity;
             lastRecordedOutPosition = ball.position;
             GameEvents.onZoneIntersection.Invoke(
-                new ZoneIntersectInfo(
-                    gameObject.name,
+                new PaddleZoneIntersectInfo(
+                    paddleZoneCollider.transform.parent.name,
                     lastRecordedInPosition,
                     lastRecordedInVelocity,
                     lastRecordedOutPosition,

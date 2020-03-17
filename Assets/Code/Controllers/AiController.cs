@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class AiController : MonoBehaviour
 {
-    public string paddleName;
     public float paddleSpeed;
     public float responseTime;
     public float randomSlowDownVariance;
     public float minVerticalDistanceBeforeMoving;
 
-    private Rigidbody2D ballBody;
-    private BoxCollider2D ballCollider;
-
     private Rigidbody2D paddleBody;
     private BoxCollider2D paddleCollider;
     private Vector2 initialPaddlePosition;
+
+    private Rigidbody2D ballBody;
+    private BoxCollider2D ballCollider;
 
     private float targetPaddleY;
     private BallTrajectoryPredictor ballPredictor;
     private Coroutine updateTargetCoroutine;
 
-    private float BallHalfHeight   { get { return ballCollider.bounds.extents.y;   } }
-    private float PaddleHalfHeight { get { return paddleCollider.bounds.extents.y; } }
+    private string PaddleName       { get { return paddleCollider.name; } }
+    private float  BallHalfHeight   { get { return ballCollider.bounds.extents.y;   } }
+    private float  PaddleHalfHeight { get { return paddleCollider.bounds.extents.y; } }
     private bool IsBallWithinPaddleRange(float paddleY, float ballY)
     {
         return MathUtils.IsOverlappingRange(
@@ -52,12 +52,12 @@ public class AiController : MonoBehaviour
 
     void Start()
     {
-        ballBody     = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        ballCollider = GameObject.Find("Ball").GetComponent<BoxCollider2D>();
-
-        paddleBody = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
-        paddleCollider = GameObject.Find(paddleName).GetComponent<BoxCollider2D>();
+        paddleBody     = gameObject.transform.GetComponent<Rigidbody2D>();
+        paddleCollider = gameObject.transform.GetComponent<BoxCollider2D>();
         initialPaddlePosition = paddleBody.position;
+
+        ballBody      = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
+        ballCollider  = GameObject.Find("Ball").GetComponent<BoxCollider2D>();
         ballPredictor = new BallTrajectoryPredictor();
 
         Reset();
@@ -83,9 +83,10 @@ public class AiController : MonoBehaviour
     {
         GameEvents.onZoneIntersection.RemoveListener(UpdateTargetTask);
     }
-    public void UpdateTargetTask(ZoneIntersectInfo hitZoneInfo)
+    public void UpdateTargetTask(PaddleZoneIntersectInfo hitZoneInfo)
     {
-        bool isOnAiSide         =  hitZoneInfo.ContainsPaddle(paddleName);
+        Debug.Log(hitZoneInfo);
+        bool isOnAiSide         =  hitZoneInfo.ContainsPaddle(PaddleName);
         bool isBallIncoming     = !isOnAiSide && hitZoneInfo.IsNearingMidline();
         bool isBallBehindPaddle =  isOnAiSide && hitZoneInfo.IsNearingGoalWall();
 

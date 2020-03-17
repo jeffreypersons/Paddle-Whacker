@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
-    public string paddleName;
     public float paddleSpeed;
     public string inputAxisName;
 
     private Vector2 initialPosition;
     private Vector2 inputVelocity;
-    private Rigidbody2D paddle;
+    private Rigidbody2D paddleBody;
 
     public void Reset()
     {
         inputVelocity = Vector2.zero;
-        paddle.velocity = inputVelocity;
-        paddle.position = initialPosition;
+        paddleBody.velocity = inputVelocity;
+        paddleBody.position = initialPosition;
     }
     void Start()
     {
-        paddle = GameObject.Find(paddleName).GetComponent<Rigidbody2D>();
-        initialPosition = paddle.position;
+        paddleBody = gameObject.transform.GetComponent<Rigidbody2D>();
+        initialPosition = paddleBody.position;
         Reset();
     }
     void Update()
@@ -28,6 +28,6 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        paddle.velocity = inputVelocity;
+        paddleBody.velocity = inputVelocity;
     }
 }

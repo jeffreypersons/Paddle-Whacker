@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1688305290820758245}
   m_Layer: 0
   m_Name: GoalWall
-  m_TagString: Untagged
+  m_TagString: VerticalWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1688305290820758245
 Transform:
@@ -103,7 +103,17 @@ PrefabInstance:
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Name
-      value: Top
+      value: UpperLeftWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b912f211fa2f84da91ca642de1df7f, type: 3}
@@ -178,7 +188,7 @@ PrefabInstance:
     - target: {fileID: 5033810390720941941, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3187501
+      value: 0.31875005
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941941, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -203,12 +213,22 @@ PrefabInstance:
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Name
-      value: Goal
+      value: LeftGoal
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_TagString
       value: Goal
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b912f211fa2f84da91ca642de1df7f, type: 3}
@@ -288,7 +308,17 @@ PrefabInstance:
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Name
-      value: Bottom
+      value: LowerLeftWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b912f211fa2f84da91ca642de1df7f, type: 3}

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class UiController : MonoBehaviour
+public class HudController : MonoBehaviour
 {
     public string leftScoreLabelName;
     public string rightScoreLabelName;
@@ -24,7 +24,7 @@ public class UiController : MonoBehaviour
     }
     public void UpdateScore()
     {
-        leftScoreLabel.text = GameData.player1Score.ToString();
-        rightScoreLabel.text = GameData.player2Score.ToString();
+        leftScoreLabel.text = GameData.leftPlayerScore.ToString();
+        rightScoreLabel.text = GameData.rightPlayerScore.ToString();
     }
 }

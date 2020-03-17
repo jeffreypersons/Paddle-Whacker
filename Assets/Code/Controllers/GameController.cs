@@ -1,24 +1,24 @@
 ﻿using UnityEngine;
 
+
 public class GameController : MonoBehaviour
 {
-    public string player1PaddleName;
-    public string player1OpposingGoalName;
+    // todo: replace with Paddle/MoveController interfaces, and use like `MoveController.Reset()`
+    public GameObject ball;
+    public GameObject playerPaddle;
+    public GameObject aiPaddle;
 
-    public string player2PaddleName;
-    public string player2OpposingGoalName;
-
-    private BallController ballController;
-    private PlayerController player1Controller;
-    private AiController player2Controller;
+    public GameObject leftGoal;
+    public GameObject rightGoal;
 
     void Start()
     {
         GameData.Init();
-
-        ballController = GameObject.Find("Ball").GetComponent<BallController>();
-        player1Controller = GameObject.Find(player1PaddleName).GetComponent<PlayerController>();
-        player2Controller = GameObject.Find(player2PaddleName).GetComponent<AiController>();
+        if ((playerPaddle.transform.position.x < 0 && aiPaddle.transform.position.x < 0) ||
+            (playerPaddle.transform.position.x > 0 && aiPaddle.transform.position.x > 0))
+        {
+            Debug.LogError("Both player and paddle cannot be on the same side of the arena.");
+        }
     }
 
     void OnEnable()
@@ -39,19 +39,19 @@ public class GameController : MonoBehaviour
 
     private void ResetMovingObjects()
     {
-        ballController.Reset();
-        player1Controller.Reset();
-        player2Controller.Reset();
+        ball.GetComponent<BallController>().Reset();
+        playerPaddle.GetComponent<PlayerController>().Reset();
+        aiPaddle.GetComponent<AiController>().Reset();
     }
     private void IncrementScoreBasedOnGoal(string goalName)
     {
-        if (goalName == player1OpposingGoalName)
+        if (goalName == rightGoal.name)
         {
-            GameData.player1Score += 1;
+            GameData.leftPlayerScore += 1;
         }
-        else if (goalName == player2OpposingGoalName)
+        else if (goalName == leftGoal.name)
         {
-            GameData.player2Score += 1;
+            GameData.rightPlayerScore += 1;
         }
         else
         {
@@ -60,8 +60,8 @@ public class GameController : MonoBehaviour
     }
     private void LoadSceneIfWinningScore(string sceneName)
     {
-        if (GameData.player1Score == GameData.winningScore ||
-            GameData.player2Score == GameData.winningScore)
+        if (GameData.leftPlayerScore == GameData.winningScore ||
+            GameData.rightPlayerScore == GameData.winningScore)
         {
             GameScenes.Load(sceneName);
         }

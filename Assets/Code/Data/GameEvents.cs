@@ -5,7 +5,7 @@ public class StringEvent : UnityEvent<string> { }
 
 // name of hit zone and the incoming and outgoing ball velocities
 [System.Serializable]
-public class ZoneIntersectEvent : UnityEvent<ZoneIntersectInfo> { }
+public class ZoneIntersectEvent : UnityEvent<PaddleZoneIntersectInfo> { }
 
 // note events are triggered and handled programmatically (via listeners and invocations)
 public static class GameEvents

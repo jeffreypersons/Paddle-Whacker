@@ -25,7 +25,7 @@ public class BallTrajectoryPredictor
     }
     public override string ToString()
     {
-        return "[" + string.Join(",", path) + "]";
+        return "PredictedTrajectory=[" + string.Join(",", path) + "]";
     }
     public void Reset()
     {
