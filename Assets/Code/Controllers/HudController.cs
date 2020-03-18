@@ -14,15 +14,15 @@ public class HudController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.onScoreChanged.AddListener(UpdateScore);
+        GameEventCenter.scoreChange.StartListening(UpdateScore);
     }
     void OnDisable()
     {
-        GameEvents.onScoreChanged.RemoveListener(UpdateScore);
+        GameEventCenter.scoreChange.StopListening(UpdateScore);
     }
-    public void UpdateScore()
+    public void UpdateScore(ScoreInfo scoreInfo)
     {
-        leftScoreLabel.text  = GameData.leftPlayerScore.ToString();
-        rightScoreLabel.text = GameData.rightPlayerScore.ToString();
+        leftScoreLabel.text  = scoreInfo.LeftPlayerScore.ToString();
+        rightScoreLabel.text = scoreInfo.RightPlayerScore.ToString();
     }
 }
