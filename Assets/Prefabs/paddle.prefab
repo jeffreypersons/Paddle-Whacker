@@ -198,7 +198,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: TriggerZone
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5155822012175767219, guid: d6f7c46cd823a224fa2d17fa7d6e69ed, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6f7c46cd823a224fa2d17fa7d6e69ed, type: 3}
 --- !u!4 &5930668063078522789 stripped
 Transform:

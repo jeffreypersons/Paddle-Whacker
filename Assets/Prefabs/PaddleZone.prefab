@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1482564607410630762}
   - component: {fileID: 1129781707374916769}
-  - component: {fileID: 5155822012175767219}
   - component: {fileID: 2214071884939820905}
+  - component: {fileID: 675207638073288633}
   m_Layer: 0
   m_Name: PaddleZone
   m_TagString: PaddleZone
@@ -59,19 +59,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.3, y: 49.14}
   m_EdgeRadius: 0
---- !u!114 &5155822012175767219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6136174401022557295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee60e5452daee9041abb444eca9403eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  extraWidth: 5
 --- !u!114 &2214071884939820905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,3 +71,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1912e697ae1d80642b279e400d2a03da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &675207638073288633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136174401022557295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04d4752c6ae92f44bfcfd9ccee633dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraWidth: 5
