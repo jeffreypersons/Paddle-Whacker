@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class GameScenes
+public static class SceneUtils
 {
     public static void Load(string sceneName)
     {

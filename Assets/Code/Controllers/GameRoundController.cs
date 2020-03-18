@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 
 
-public class GameController : MonoBehaviour
+public class GameRoundController : MonoBehaviour
 {
+    private ScoreInfo scoreInfo;
+
     // todo: replace with Paddle/MoveController interfaces, and use like `MoveController.Reset()`
     public GameObject ball;
     public GameObject playerPaddle;
@@ -13,7 +15,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        GameData.Init();
+        // todo: replace winning score with a value supplied from startmenu
+        scoreInfo = new ScoreInfo(5);
         if ((playerPaddle.transform.position.x < 0 && aiPaddle.transform.position.x < 0) ||
             (playerPaddle.transform.position.x > 0 && aiPaddle.transform.position.x > 0))
         {
@@ -23,18 +26,18 @@ public class GameController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEvents.onGoalHit.AddListener(MoveToNextRound);
+        GameEventCenter.goalHit.StartListening(MoveToNextRound);
     }
     void OnDisable()
     {
-        GameEvents.onGoalHit.RemoveListener(MoveToNextRound);
+        GameEventCenter.goalHit.StopListening(MoveToNextRound);
     }
     public void MoveToNextRound(string goalName)
     {
         ResetMovingObjects();
         IncrementScoreBasedOnGoal(goalName);
         LoadSceneIfWinningScore("EndMenu");
-        GameEvents.onScoreChanged.Invoke();
+        GameEventCenter.scoreChange.Trigger(scoreInfo);
     }
 
     private void ResetMovingObjects()
@@ -47,11 +50,11 @@ public class GameController : MonoBehaviour
     {
         if (goalName == rightGoal.name)
         {
-            GameData.leftPlayerScore += 1;
+            scoreInfo.LeftPlayerScore += 1;
         }
         else if (goalName == leftGoal.name)
         {
-            GameData.rightPlayerScore += 1;
+            scoreInfo.RightPlayerScore += 1;
         }
         else
         {
@@ -60,10 +63,10 @@ public class GameController : MonoBehaviour
     }
     private void LoadSceneIfWinningScore(string sceneName)
     {
-        if (GameData.leftPlayerScore == GameData.winningScore ||
-            GameData.rightPlayerScore == GameData.winningScore)
+        if (scoreInfo.IsWinningScoreReached())
         {
-            GameScenes.Load(sceneName);
+            GameEventCenter.gameFinished.Trigger(scoreInfo);
+            SceneUtils.Load(sceneName);
         }
     }
 }

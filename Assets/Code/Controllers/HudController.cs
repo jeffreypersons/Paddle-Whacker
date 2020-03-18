@@ -1,30 +1,28 @@
 ﻿using UnityEngine;
 
+
 public class HudController : MonoBehaviour
 {
-    public string leftScoreLabelName;
-    public string rightScoreLabelName;
-
-    private TMPro.TextMeshProUGUI leftScoreLabel;
-    private TMPro.TextMeshProUGUI rightScoreLabel;
+    public TMPro.TextMeshProUGUI leftScoreLabel;
+    public TMPro.TextMeshProUGUI rightScoreLabel;
 
     void Start()
     {
-        leftScoreLabel = GameObject.Find(leftScoreLabelName).GetComponent<TMPro.TextMeshProUGUI>();
-        rightScoreLabel = GameObject.Find(rightScoreLabelName).GetComponent<TMPro.TextMeshProUGUI>();
+        leftScoreLabel  = leftScoreLabel.GetComponent<TMPro.TextMeshProUGUI>();
+        rightScoreLabel = rightScoreLabel.GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     void OnEnable()
     {
-        GameEvents.onScoreChanged.AddListener(UpdateScore);
+        GameEventCenter.scoreChange.StartListening(UpdateScore);
     }
     void OnDisable()
     {
-        GameEvents.onScoreChanged.RemoveListener(UpdateScore);
+        GameEventCenter.scoreChange.StopListening(UpdateScore);
     }
-    public void UpdateScore()
+    public void UpdateScore(ScoreInfo scoreInfo)
     {
-        leftScoreLabel.text = GameData.leftPlayerScore.ToString();
-        rightScoreLabel.text = GameData.rightPlayerScore.ToString();
+        leftScoreLabel.text  = scoreInfo.LeftPlayerScore.ToString();
+        rightScoreLabel.text = scoreInfo.RightPlayerScore.ToString();
     }
 }

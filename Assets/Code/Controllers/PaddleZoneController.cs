@@ -30,7 +30,7 @@ public class PaddleZoneController : MonoBehaviour
             Rigidbody2D ball = collision.GetComponent<Rigidbody2D>();
             lastRecordedOutVelocity = ball.velocity;
             lastRecordedOutPosition = ball.position;
-            GameEvents.onZoneIntersection.Invoke(
+            GameEventCenter.zoneIntersection.Trigger(
                 new PaddleZoneIntersectInfo(
                     paddleZoneCollider.transform.parent.name,
                     lastRecordedInPosition,

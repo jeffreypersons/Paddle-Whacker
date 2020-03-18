@@ -27,19 +27,19 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("Paddle"))
         {
             ballBody.velocity = ballSpeed * ComputeBounceDirectionOffPaddle(ballCollider.bounds, collision.collider.bounds);
-            GameEvents.onPaddleHit.Invoke(collision.gameObject.name);
+            GameEventCenter.paddleHit.Trigger(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("Goal"))
         {
-            GameEvents.onGoalHit.Invoke(collision.gameObject.name);
+            GameEventCenter.goalHit.Trigger(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("HorizontalWall"))
         {
-            GameEvents.onVerticalWallHit.Invoke(collision.gameObject.name);
+            GameEventCenter.horizontalWallHit.Trigger(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("VerticalWall"))
         {
-            GameEvents.onVerticalWallHit.Invoke(collision.gameObject.name);
+            GameEventCenter.verticalWallHit.Trigger(collision.gameObject.name);
         }
     }
 
