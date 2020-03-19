@@ -85,7 +85,6 @@ public class AiController : MonoBehaviour
     }
     public void UpdateTargetTask(PaddleZoneIntersectInfo hitZoneInfo)
     {
-        Debug.Log(hitZoneInfo);
         bool isOnAiSide         =  hitZoneInfo.ContainsPaddle(PaddleName);
         bool isBallIncoming     = !isOnAiSide && hitZoneInfo.IsNearingMidline();
         bool isBallBehindPaddle =  isOnAiSide && hitZoneInfo.IsNearingGoalWall();
@@ -107,14 +106,12 @@ public class AiController : MonoBehaviour
     }
     private void PredictBallPosition()
     {
-        Debug.Log("incoming");
         ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         ballPredictor.DrawInEditor(Color.green, 1.5f);
         targetPaddleY = ballPredictor.EndPoint.y;
     }
     private void TryToHitBallFromHorizontalEdge()
     {
-        Debug.Log("behind");
         ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         ballPredictor.DrawInEditor(Color.red, 1.5f);
 
