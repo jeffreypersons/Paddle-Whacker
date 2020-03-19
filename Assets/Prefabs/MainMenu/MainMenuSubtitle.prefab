@@ -115,12 +115,12 @@ PrefabInstance:
     - target: {fileID: 997706520249357819, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_Name
-      value: Subtitle (1)
+      value: MainMenuSubtitle
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -141,6 +141,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
+        type: 3}
+      propertyPath: m_text
+      value: By Jeff Persons
+      objectReference: {fileID: 0}
+    - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 3873892070
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d7bdc5b5b197784db069cee00078fea, type: 3}
