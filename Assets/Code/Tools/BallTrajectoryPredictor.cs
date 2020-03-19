@@ -31,6 +31,7 @@ public class BallTrajectoryPredictor
     {
         path.Clear();
     }
+    // example usage: `DrawInEditor(Color.red, 1.50f)`
     public void DrawInEditor(Color lineColor, float lineDuration)
     {
         for (int i = 0; i + 1 < path.Count; i++)
