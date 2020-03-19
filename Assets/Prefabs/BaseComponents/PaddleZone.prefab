@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1129781707374916769}
   - component: {fileID: 2214071884939820905}
   - component: {fileID: 675207638073288633}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PaddleZone
   m_TagString: PaddleZone
   m_Icon: {fileID: 0}

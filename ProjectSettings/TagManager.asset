@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ai
   - Ball
   - Paddle
   - HorizontalWall
@@ -16,7 +15,6 @@ TagManager:
   - EventSystem
   - Button
   - Scripter
-  - Screen
   - Detector
   - Goal
   - PaddleZone
@@ -32,9 +30,9 @@ TagManager:
   - UI
   - 
   - 
-  - Hud
-  - Menu
-  - 
+  - Arena
+  - MoveableObject
+  - TriggerZone
   - 
   - 
   - 
