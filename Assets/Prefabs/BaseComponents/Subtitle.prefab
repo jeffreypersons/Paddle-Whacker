@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 997706520249357820}
   - component: {fileID: 997706520249357821}
   m_Layer: 5
-  m_Name: Subtitle 1
+  m_Name: Subtitle
   m_TagString: TextLabel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.9019608, g: 0.9019608, b: 0.9019608, a: 0.9019608}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
