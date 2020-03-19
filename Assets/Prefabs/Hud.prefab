@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8007352901126585786}
   m_Layer: 5
   m_Name: ScoreBanner
-  m_TagString: LayoutElement
+  m_TagString: Banner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 1529132961795138764}
   m_Layer: 5
   m_Name: LeftPlayerScore
-  m_TagString: TextLabel
+  m_TagString: Label
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 1529132962432637602}
   m_Layer: 5
   m_Name: RightPlayerScore
-  m_TagString: TextLabel
+  m_TagString: Label
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 6378640146725139019}
   m_Layer: 5
   m_Name: RightPlayerLabel
-  m_TagString: LayoutElement
+  m_TagString: Label
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 6782805226354343960}
   m_Layer: 5
   m_Name: LeftPlayerLabel
-  m_TagString: LayoutElement
+  m_TagString: Label
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1003,7 +1003,7 @@ GameObject:
   - component: {fileID: 6782805227519252164}
   m_Layer: 5
   m_Name: TopBanner
-  m_TagString: LayoutElement
+  m_TagString: Banner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1240,27 +1240,27 @@ PrefabInstance:
     - target: {fileID: 7151744970975218671, guid: 6149a2d1bbcd310458ddc97cb62dbf64,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 43.211853
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7151744970975218671, guid: 6149a2d1bbcd310458ddc97cb62dbf64,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7151744970975218671, guid: 6149a2d1bbcd310458ddc97cb62dbf64,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7151744970975218671, guid: 6149a2d1bbcd310458ddc97cb62dbf64,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7151744970975218671, guid: 6149a2d1bbcd310458ddc97cb62dbf64,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 7151744970975218671, guid: 6149a2d1bbcd310458ddc97cb62dbf64,
         type: 3}
