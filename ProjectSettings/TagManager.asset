@@ -16,13 +16,13 @@ TagManager:
   - EventSystem
   - Button
   - Scripter
-  - LayoutElement
   - Screen
   - Detector
   - Goal
-  - WallComposite
   - PaddleZone
   - Menu
+  - Banner
+  - Label
   layers:
   - Default
   - TransparentFX
