@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1688305290820758245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GoalWall
   m_TagString: VerticalWall
   m_Icon: {fileID: 0}
@@ -105,10 +105,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpperLeftWall
       objectReference: {fileID: 0}
+    - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Offset.x
-      value: -3.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -198,17 +203,22 @@ PrefabInstance:
     - target: {fileID: 5033810390720941942, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.29411766
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941942, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.29411766
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941942, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033810390720941942, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.29411766
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -219,6 +229,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Goal
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -310,10 +325,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: LowerLeftWall
       objectReference: {fileID: 0}
+    - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Offset.x
-      value: -3.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
