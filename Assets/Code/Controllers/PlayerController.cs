@@ -16,11 +16,12 @@ public class PlayerController : MonoBehaviour
         paddleBody.velocity = inputVelocity;
         paddleBody.position = initialPosition;
     }
-    void Start()
+    void Awake()
     {
-        paddleBody = gameObject.transform.GetComponent<Rigidbody2D>();
-        initialPosition = paddleBody.position;
-        Reset();
+        paddleBody          = gameObject.transform.GetComponent<Rigidbody2D>();
+        initialPosition     = paddleBody.position;
+        inputVelocity       = Vector2.zero;
+        paddleBody.velocity = inputVelocity;
     }
     void Update()
     {

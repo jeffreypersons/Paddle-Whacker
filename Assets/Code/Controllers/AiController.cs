@@ -50,7 +50,7 @@ public class AiController : MonoBehaviour
         StartTargetUpdateRoutine(CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall));
     }
 
-    void Start()
+    void Awake()
     {
         paddleBody     = gameObject.transform.GetComponent<Rigidbody2D>();
         paddleCollider = gameObject.transform.GetComponent<BoxCollider2D>();
@@ -59,10 +59,12 @@ public class AiController : MonoBehaviour
         ballBody      = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         ballCollider  = GameObject.Find("Ball").GetComponent<BoxCollider2D>();
         ballPredictor = new BallTrajectoryPredictor();
-
+        targetPaddleY = initialPaddlePosition.y;
+    }
+    void Start()
+    {
         Reset();
     }
-
     void FixedUpdate()
     {
         if (Mathf.Abs(targetPaddleY - paddleBody.position.y) >= minVerticalDistanceBeforeMoving)

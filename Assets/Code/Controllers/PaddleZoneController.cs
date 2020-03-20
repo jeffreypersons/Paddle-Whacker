@@ -9,7 +9,7 @@ public class PaddleZoneController : MonoBehaviour
     private Vector2 lastRecordedOutPosition;
     private Vector2 lastRecordedOutVelocity;
 
-    void Start()
+    void Awake()
     {
         paddleZoneCollider = gameObject.transform.GetComponent<BoxCollider2D>();
     }
