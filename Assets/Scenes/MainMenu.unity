@@ -121,18 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &98072028 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4122453803167648192, guid: f16b682e55616c744a8a04bb4534a0df,
-    type: 3}
-  m_PrefabInstance: {fileID: 344541144913149142}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &501648642
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,8 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 2143080103}
-  startButton: {fileID: 98072028}
-  quitButton: {fileID: 1428796923}
+  startButton: {fileID: 0}
+  quitButton: {fileID: 0}
 --- !u!1001 &930906539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,18 +311,6 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 953004928}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1428796923 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4122453802278793689, guid: f16b682e55616c744a8a04bb4534a0df,
-    type: 3}
-  m_PrefabInstance: {fileID: 344541144913149142}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2143080103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 920248580199517296, guid: f16b682e55616c744a8a04bb4534a0df,
@@ -462,171 +438,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_text
-      value: Paddle Whacker
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_fontSizeMin
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_fontSizeMax
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_fontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textAlignment
-      value: 514
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_margin.x
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_margin.y
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_margin.z
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_margin.w
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166332312416447647, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_text
-      value: By Jeffrey Persons
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_fontSizeMax
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_margin.x
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_margin.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_margin.z
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_margin.w
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692975, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692975, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692975, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692975, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1475877186897692975, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293141475696317646, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_text
-      value: Play
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293141475696317646, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293141476418071767, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_text
-      value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293141476418071767, guid: f16b682e55616c744a8a04bb4534a0df,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f16b682e55616c744a8a04bb4534a0df, type: 3}
