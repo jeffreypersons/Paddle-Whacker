@@ -22,7 +22,7 @@ public class RecordedScore
 
     public override string ToString()
     {
-        return $"LeftPlayerScore is {LeftPlayerScore}, and RightPlayerScore is {RightPlayerScore}";
+        return $"LeftPlayerScore is {LeftPlayerScore}, and RightPlayerScore is {RightPlayerScore}, with WinningScore set to {WinningScore} ";
     }
 
     public bool IsTied()               { return RightPlayerScore == LeftPlayerScore; }

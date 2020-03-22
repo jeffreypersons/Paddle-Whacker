@@ -79,11 +79,11 @@ public class AiController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEventCenter.zoneIntersection.StartListening(UpdateTargetTask);
+        GameEventCenter.zoneIntersection.AddListener(UpdateTargetTask);
     }
     void OnDisable()
     {
-        GameEventCenter.zoneIntersection.StopListening(UpdateTargetTask);
+        GameEventCenter.zoneIntersection.RemoveListener(UpdateTargetTask);
     }
     public void UpdateTargetTask(PaddleZoneIntersectInfo hitZoneInfo)
     {

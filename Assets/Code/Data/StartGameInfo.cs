@@ -52,8 +52,8 @@ public class StartNewGameInfo
 
     public StartNewGameInfo(int numberOfGoals, Difficulty difficultyLevel)
     {
-        NumberOfGoals   = numberOfGoals;
-        DifficultyLevel = difficultyLevel;
+        _numGoals = numberOfGoals;
+        _difficulty = difficultyLevel;
     }
     public override string ToString()
     {

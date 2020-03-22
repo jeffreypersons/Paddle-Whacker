@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 
 public class MainMenuController : MonoBehaviour
@@ -9,19 +8,13 @@ public class MainMenuController : MonoBehaviour
     public Button startButton;
     public Button quitButton;
 
+    public StartNewGameInfo newGameInfo;
+
     void Awake()
     {
-        // we always want the main menu loaded
-        DontDestroyOnLoad(mainMenu);
-        DontDestroyOnLoad(this);
-        startButton = startButton.GetComponent<Button>();
-        quitButton  = quitButton.GetComponent<Button>();
+        newGameInfo = new StartNewGameInfo(10, StartNewGameInfo.Difficulty.Easy);
     }
 
-    void OnDestroy()
-    {
-
-    }
     void OnEnable()
     {
         startButton.onClick.AddListener(TriggerLoadMainMenuSceneEvent);
@@ -35,14 +28,9 @@ public class MainMenuController : MonoBehaviour
 
     public void TriggerLoadMainMenuSceneEvent()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.LoadScene("Game", LoadSceneMode.Single);
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("MAIN");
-        GameEventCenter.startNewGame.Trigger(new StartNewGameInfo(10, StartNewGameInfo.Difficulty.Easy));
-        mainMenu.SetActive(false);
+        SceneUtils.LoadScene("Game", () =>
+        {
+            GameEventCenter.startNewGame.Trigger(newGameInfo);
+        });
     }
 }

@@ -10,11 +10,12 @@ public static class GameEventCenter
     public static GameEvent<string> goalHit           = new GameEvent<string>();
 
     public static GameEvent<RecordedScore> scoreChange                = new GameEvent<RecordedScore>();
-    public static GameEvent<RecordedScore> winningScoreReached        = new GameEvent<RecordedScore>();
     public static GameEvent<PaddleZoneIntersectInfo> zoneIntersection = new GameEvent<PaddleZoneIntersectInfo>();
 
-    public static GameEvent<StartNewGameInfo> startNewGame     = new GameEvent<StartNewGameInfo>();
-    public static GameEvent<string>           restartGame      = new GameEvent<string>();
-    public static GameEvent<string>           pauseGame        = new GameEvent<string>();
-    public static GameEvent<string>           returnToMainMenu = new GameEvent<string>();
+    public static GameEvent<StartNewGameInfo> startNewGame        = new GameEvent<StartNewGameInfo>();
+    public static GameEvent<RecordedScore>    pauseGame           = new GameEvent<RecordedScore>();
+    public static GameEvent<string>           resumeGame          = new GameEvent<string>();
+    public static GameEvent<string>           gotoMainMenu        = new GameEvent<string>();
+    public static GameEvent<RecordedScore>    winningScoreReached = new GameEvent<RecordedScore>();
+    public static GameEvent<string>           restartGame         = new GameEvent<string>();
 }

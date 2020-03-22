@@ -22,59 +22,70 @@ public class IngameMenuController : MonoBehaviour
         mainMenuButton = mainMenuButton.GetComponent<Button>();
         restartButton  = restartButton.GetComponent<Button>();
         quitButton     = quitButton.GetComponent<Button>();
+
+        GameEventCenter.pauseGame.AddListener(OpenAsPauseMenu);
+        GameEventCenter.winningScoreReached.AddListener(OpenAsEndGameMenu);
+    }
+    void OnDestroy()
+    {
+        GameEventCenter.pauseGame.RemoveListener(OpenAsPauseMenu);
+        GameEventCenter.winningScoreReached.RemoveListener(OpenAsEndGameMenu);
     }
 
     void OnEnable()
     {
-        GameEventCenter.pauseGame.StartListening(OpenMenuOnPause);
-        GameEventCenter.winningScoreReached.StartListening(OpenMenuOnGameFinish);
-
         resumeButton.onClick.AddListener(ResumeGame);
-        mainMenuButton.onClick.AddListener(ReturnToMainMenu);
+        mainMenuButton.onClick.AddListener(MoveToMainMenu);
         restartButton.onClick.AddListener(TriggerRestartGameEvent);
         quitButton.onClick.AddListener(SceneUtils.QuitGame);
+        // todo: show menu and arena walls, but make pauseButton, labels, paddles, and midline non-visible
     }
     void OnDisable()
     {
-        GameEventCenter.pauseGame.StopListening(OpenMenuOnPause);
-        GameEventCenter.winningScoreReached.StopListening(OpenMenuOnGameFinish);
-
         resumeButton.onClick.RemoveListener(ResumeGame);
-        mainMenuButton.onClick.RemoveListener(ReturnToMainMenu);
+        mainMenuButton.onClick.RemoveListener(MoveToMainMenu);
         restartButton.onClick.RemoveListener(TriggerRestartGameEvent);
         quitButton.onClick.RemoveListener(SceneUtils.QuitGame);
     }
 
+    private void SetPauseMode(bool isPause)
+    {
+        ingameMenu.SetActive(isPause);
+        Time.timeScale = isPause ? 0 : 1;
+
+        GameObjectUtils.SetAlpha(GameObject.Find("MidLine").GetComponent<SpriteRenderer>(), 0.0f);
+        // todo: show menu and arena walls, but make pauseButton, labels, paddles, and midline non-visible
+    }
+
+    private void OpenAsPauseMenu(RecordedScore recordedScore)
+    {
+        SetPauseMode(true);
+        title.text    = recordedScore.IsLeftPlayerWinning() ? "Game Won" : "Game Lost";
+        subtitle.text = recordedScore.LeftPlayerScore.ToString() + " - " + recordedScore.RightPlayerScore.ToString();
+        resumeButton.enabled = true;
+    }
+    private void OpenAsEndGameMenu(RecordedScore recordedScore)
+    {
+        SetPauseMode(true);
+        title.text    = "Game Paused";
+        subtitle.text = recordedScore.LeftPlayerScore.ToString() + " - " + recordedScore.RightPlayerScore.ToString();
+        resumeButton.enabled = false;
+    }
+
     private void ResumeGame()
     {
-
+        SetPauseMode(false);
+        GameEventCenter.resumeGame.Trigger("Resuming game");
     }
-    private void ReturnToMainMenu()
+    private void MoveToMainMenu()
     {
+        SetPauseMode(false);
+        GameEventCenter.gotoMainMenu.Trigger("Opening main menu");
         SceneUtils.LoadScene("MainMenu");
     }
     private void TriggerRestartGameEvent()
     {
+        SetPauseMode(false);
         GameEventCenter.restartGame.Trigger("Restarting game");
-        GameEventCenter.pauseGame.Trigger("Pausing");
-    }
-
-    private void OpenMenuOnPause(string status)
-    {
-        Time.timeScale = 0;
-        // todo: show menu and arena walls, but make pauseButton, labels, paddles, and midline non-visible
-        // todo: show result in case of endgame
-        ingameMenu.SetActive(true);
-    }
-    private void OpenMenuOnGameFinish(RecordedScore scoreInfo)
-    {
-        ingameMenu.SetActive(true);
-        Time.timeScale = 0;
-        // todo: show menu and arena walls, but make pauseButton, labels, paddles, and midline non-visible
-        if (scoreInfo.IsWinningScoreReached())
-        {
-            title.text = scoreInfo.IsLeftPlayerWinning() ? "Game Won" : "Game Lost";
-            subtitle.text  = scoreInfo.LeftPlayerScore.ToString() + " - " + scoreInfo.RightPlayerScore.ToString();
-        }
     }
 }

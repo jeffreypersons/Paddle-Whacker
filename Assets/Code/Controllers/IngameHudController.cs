@@ -1,38 +1,38 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+
 public class IngameHudController : MonoBehaviour
 {
     public Button pauseButton;
-
     public TMPro.TextMeshProUGUI leftScoreLabel;
     public TMPro.TextMeshProUGUI rightScoreLabel;
 
-    void Awake()
-    {
-        pauseButton     = pauseButton.GetComponent<Button>();
-        leftScoreLabel  = leftScoreLabel.GetComponent<TMPro.TextMeshProUGUI>();
-        rightScoreLabel = rightScoreLabel.GetComponent<TMPro.TextMeshProUGUI>();
-    }
+    private RecordedScore lastRecordedScore;
 
     void OnEnable()
     {
-        GameEventCenter.scoreChange.StartListening(UpdateScore);
+        GameEventCenter.scoreChange.AddListener(UpdateScore);
         pauseButton.onClick.AddListener(TriggerPauseGameEvent);
     }
     void OnDisable()
     {
-        GameEventCenter.scoreChange.StopListening(UpdateScore);
+        GameEventCenter.scoreChange.RemoveListener(UpdateScore);
         pauseButton.onClick.RemoveListener(TriggerPauseGameEvent);
     }
 
-    private void UpdateScore(RecordedScore scoreInfo)
+    private void UpdateScore(RecordedScore recordedScore)
     {
-        leftScoreLabel.text  = scoreInfo.LeftPlayerScore.ToString();
-        rightScoreLabel.text = scoreInfo.RightPlayerScore.ToString();
+        lastRecordedScore    = recordedScore;
+        leftScoreLabel.text  = recordedScore.LeftPlayerScore.ToString();
+        rightScoreLabel.text = recordedScore.RightPlayerScore.ToString();
     }
     private void TriggerPauseGameEvent()
     {
-        GameEventCenter.pauseGame.Trigger("Pausing");
+        if (lastRecordedScore == null)
+        {
+            Debug.LogError("LastRecordedScore received by HudController is null");
+        }
+        GameEventCenter.pauseGame.Trigger(lastRecordedScore);
     }
 }

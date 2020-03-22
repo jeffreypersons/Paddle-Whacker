@@ -21,24 +21,22 @@ public class GameRoundController : MonoBehaviour
         {
             Debug.LogError("Both player and paddle cannot be on the same side of the arena.");
         }
+        GameEventCenter.startNewGame.AddAutoUnsubscribeListener(StartNewGame);
     }
 
     void OnEnable()
     {
-        GameEventCenter.goalHit.StartListening(MoveToNextRound);
-        GameEventCenter.startNewGame.StartListening(StartNewGame);
-        GameEventCenter.restartGame.StartListening(RestartGame);
+        GameEventCenter.goalHit.AddListener(MoveToNextRound);
+        GameEventCenter.restartGame.AddListener(RestartGame);
     }
     void OnDisable()
     {
-        GameEventCenter.goalHit.StopListening(MoveToNextRound);
-        GameEventCenter.startNewGame.StopListening(StartNewGame);
-        GameEventCenter.restartGame.StopListening(RestartGame);
+        GameEventCenter.goalHit.RemoveListener(MoveToNextRound);
+        GameEventCenter.restartGame.RemoveListener(RestartGame);
     }
 
     private void StartNewGame(StartNewGameInfo startGameInfo)
     {
-        ResetMovingObjects();  // actually need?
         recordedScore = new RecordedScore(startGameInfo.NumberOfGoals);
         GameEventCenter.scoreChange.Trigger(recordedScore);
     }
@@ -50,6 +48,10 @@ public class GameRoundController : MonoBehaviour
     }
     private void MoveToNextRound(string goalName)
     {
+        if (recordedScore == null)
+        {
+            Debug.LogError("RecordedScore object received in StartNewGame event is missing, event must not been triggered");
+        }
         ResetMovingObjects();
         IncrementScoreBasedOnGoal(goalName);
         GameEventCenter.scoreChange.Trigger(recordedScore);

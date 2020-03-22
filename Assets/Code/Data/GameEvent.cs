@@ -7,17 +7,42 @@
 public class GameEvent<EventData>
 {
     Action<EventData> action;
+
+    public int GetNumListeners { get { return action.GetInvocationList().Length; } }
+
     public GameEvent()
     {
         action = delegate { };
     }
-    public void StartListening(Action<EventData> listener)
+    public void AddListener(Action<EventData> listener)
     {
         action += listener;
     }
-    public void StopListening(Action<EventData> listener)
+    // adds a listener that automatically removes itself just after executing
+    public void AddAutoUnsubscribeListener(Action<EventData> oneTimeUseListener)
     {
-        action += listener;
+        // note null initialization is required to force nonlocal scope of the handler, see https://stackoverflow.com/a/1362244
+        Action<EventData> handler = null;
+        handler = (data) =>
+        {
+            action -= handler;
+            oneTimeUseListener.Invoke(data);
+        };
+        action += handler;
+    }
+    public void RemoveListener(Action<EventData> listener)
+    {
+        action -= listener;
+    }
+    public void StopAllListeners()
+    {
+        if (action != null)
+        {
+            foreach (Delegate d in action.GetInvocationList())
+            {
+                action -= (Action<EventData>)d;
+            }
+        }
     }
     public void Trigger(EventData eventData)
     {
