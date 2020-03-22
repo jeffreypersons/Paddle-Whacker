@@ -8,7 +8,6 @@ public class IngameMenuController : MonoBehaviour
     public GameObject ingameMenu;
     public TMPro.TextMeshProUGUI title;
     public TMPro.TextMeshProUGUI subtitle;
-
     public Button resumeButton;
     public Button mainMenuButton;
     public Button restartButton;
@@ -28,15 +27,6 @@ public class IngameMenuController : MonoBehaviour
                 labelsToHideWhenMenuIsActive.Add(labels[i]);
             }
         }
-
-        title    = title.GetComponent<TMPro.TextMeshProUGUI>();
-        subtitle = subtitle.GetComponent<TMPro.TextMeshProUGUI>();
-
-        resumeButton   = resumeButton.GetComponent<Button>();
-        mainMenuButton = mainMenuButton.GetComponent<Button>();
-        restartButton  = restartButton.GetComponent<Button>();
-        quitButton     = quitButton.GetComponent<Button>();
-
         GameEventCenter.pauseGame.AddListener(OpenAsPauseMenu);
         GameEventCenter.winningScoreReached.AddListener(OpenAsEndGameMenu);
     }
@@ -96,16 +86,17 @@ public class IngameMenuController : MonoBehaviour
     {
         Time.timeScale = 0;
         SetBackgroundVisibility(false);
-        ingameMenu.SetActive(true);
+        gameObject.SetActive(true);
     }
     private void DeactivateMenu()
     {
         Time.timeScale = 1;
         SetBackgroundVisibility(true);
-        ingameMenu.SetActive(false);
+        gameObject.SetActive(false);
     }
     private void OpenAsPauseMenu(RecordedScore recordedScore)
     {
+
         title.text    = "Game Paused";
         subtitle.text = recordedScore.LeftPlayerScore.ToString() + " - " + recordedScore.RightPlayerScore.ToString();
         ActivateMenu();

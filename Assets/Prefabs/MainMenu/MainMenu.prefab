@@ -54,7 +54,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 10405006053755504, guid: 2d2aa87f09491f04e98c4e1eda24c12d, type: 3}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -984,7 +984,7 @@ PrefabInstance:
     - target: {fileID: 4466985601498635100, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}
       propertyPath: m_Name
-      value: Play
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 4466985601498635100, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}
@@ -1044,7 +1044,7 @@ PrefabInstance:
     - target: {fileID: 5601645022469178964, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}
       propertyPath: m_text
-      value: Play
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 5601645022469178964, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}
@@ -1054,7 +1054,7 @@ PrefabInstance:
     - target: {fileID: 5601645022469178964, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5601645022469178964, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}

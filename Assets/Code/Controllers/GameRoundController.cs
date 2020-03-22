@@ -37,6 +37,7 @@ public class GameRoundController : MonoBehaviour
 
     private void StartNewGame(StartNewGameInfo startGameInfo)
     {
+        Debug.Log(startGameInfo);
         recordedScore = new RecordedScore(startGameInfo.NumberOfGoals);
         GameEventCenter.scoreChange.Trigger(recordedScore);
     }

@@ -1,13 +1,15 @@
-﻿
+﻿using UnityEngine;
+
 
 public class RecordedScore
 {
-    public int WinningScore     { get; private set; }
+    public int WinningScore { get; private set; }
+
     public int LeftPlayerScore  { get; private set; }
     public int RightPlayerScore { get; private set; }
 
-    public void IncrementLeftPlayerScore()  { LeftPlayerScore++; }
-    public void IncrementRightPlayerScore() { RightPlayerScore++; }
+    public void IncrementLeftPlayerScore()  { LeftPlayerScore += 1; }
+    public void IncrementRightPlayerScore() { RightPlayerScore += 1; }
 
     public RecordedScore(int winningScore)
     {
@@ -15,14 +17,14 @@ public class RecordedScore
     }
     public void ResetScore(int winningScore)
     {
-        LeftPlayerScore = 0;
+        LeftPlayerScore  = 0;
         RightPlayerScore = 0;
         WinningScore = winningScore;
     }
 
     public override string ToString()
     {
-        return $"LeftPlayerScore is {LeftPlayerScore}, and RightPlayerScore is {RightPlayerScore}, with WinningScore set to {WinningScore} ";
+        return $"LeftPlayerScore is {LeftPlayerScore}, and RightPlayerScore is {RightPlayerScore}, with WinningScore set to {WinningScore}";
     }
 
     public bool IsTied()               { return RightPlayerScore == LeftPlayerScore; }

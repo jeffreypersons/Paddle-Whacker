@@ -44,7 +44,7 @@ public class GameEvent<EventData>
             }
         }
     }
-    public void Trigger(EventData eventData)
+    public void Trigger(in EventData eventData)
     {
         action.Invoke(eventData);
     }

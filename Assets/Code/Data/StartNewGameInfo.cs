@@ -27,7 +27,7 @@ public class StartNewGameInfo
             }
             else
             {
-                _numGoals = NumberOfGoals;
+                _numGoals = value;
             }
         }
     }
@@ -39,21 +39,21 @@ public class StartNewGameInfo
         }
         private set
         {
-            if (!Enum.IsDefined(typeof(Difficulty), DifficultyLevel))
+            if (!Enum.IsDefined(typeof(Difficulty), value))
             {
-                Debug.LogError("Given difficulty level enum " + DifficultyLevel + "is not defined");
+                Debug.LogError("Given difficulty level enum " + value + "is not defined");
             }
             else
             {
-                _difficulty = DifficultyLevel;
+                _difficulty = value;
             }
         }
     }
 
     public StartNewGameInfo(int numberOfGoals, Difficulty difficultyLevel)
     {
-        _numGoals = numberOfGoals;
-        _difficulty = difficultyLevel;
+        NumberOfGoals = numberOfGoals;
+        DifficultyLevel = difficultyLevel;
     }
     public override string ToString()
     {
