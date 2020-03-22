@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -13,8 +14,21 @@ public class IngameMenuController : MonoBehaviour
     public Button restartButton;
     public Button quitButton;
 
+    private List<TMPro.TextMeshProUGUI> labelsToHideWhenMenuIsActive;
+
     void Awake()
     {
+        TMPro.TextMeshProUGUI[] labels = GameObject.Find("Hud").GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+
+        var labelsToHideWhenMenuIsActive = new List<TMPro.TextMeshProUGUI>(labels.Length);
+        for (int i = 0; i < labels.Length; i++)
+        {
+            if (labels[i].transform.parent.name != gameObject.name)
+            {
+                labelsToHideWhenMenuIsActive.Add(labels[i]);
+            }
+        }
+
         title    = title.GetComponent<TMPro.TextMeshProUGUI>();
         subtitle = subtitle.GetComponent<TMPro.TextMeshProUGUI>();
 
@@ -47,13 +61,26 @@ public class IngameMenuController : MonoBehaviour
         restartButton.onClick.RemoveListener(TriggerRestartGameEvent);
         quitButton.onClick.RemoveListener(SceneUtils.QuitGame);
     }
+
     private void SetBackgroundVisibility(bool isMakeVisible)
     {
         float alpha = isMakeVisible ? 255 : 0;
+        TMPro.TextMeshProUGUI[] labels = GameObject.Find("Hud").GetComponentsInChildren<TMPro.TextMeshProUGUI>();
+        for (int i = 0; i < labels.Length; i++)
+        {
+            if (labels[i].transform.parent.name != gameObject.name)
+            {
+                labels[i].enabled = isMakeVisible;
+            }
+        }
+
+        GameObject.Find("LeftPlayerName").GetComponent<TMPro.TextMeshProUGUI>();
+        GameObject.Find("LeftPlayerName").GetComponent<TMPro.TextMeshProUGUI>().enabled = isMakeVisible;
         GameObjectUtils.SetLabelVisibility(GameObject.Find("LeftPlayerName").GetComponent<TMPro.TextMeshProUGUI>(), isMakeVisible);
         GameObjectUtils.SetLabelVisibility(GameObject.Find("RightPlayerName").GetComponent<TMPro.TextMeshProUGUI>(), isMakeVisible);
         //GameObjectUtils.SetButtonVisibility(GameObject.Find("PauseButton").GetComponent<Button>(), isMakeVisible);
-        GameObject.Find("PauseButton").GetComponent<Button>().gameObject.SetActive(isMakeVisible);
+        GameObject.Find("PauseButton").GetComponent<Button>().enabled = isMakeVisible;
+        GameObject.Find("PauseButton").GetComponent<Button>().transform.localScale = isMakeVisible? Vector2.one : Vector2.zero;
         GameObjectUtils.SetAlpha(GameObject.Find("MidLine").GetComponent<SpriteRenderer>(), alpha);
 
         GameObjectUtils.SetLabelVisibility(GameObject.Find("LeftPlayerScore").GetComponent<TMPro.TextMeshProUGUI>(), isMakeVisible);
