@@ -12,7 +12,7 @@ public class MainMenuController : MonoBehaviour
 
     void Awake()
     {
-        newGameInfo = new StartNewGameInfo(10, StartNewGameInfo.Difficulty.Easy);
+        newGameInfo = new StartNewGameInfo(3, StartNewGameInfo.Difficulty.Easy);
     }
 
     void OnEnable()
