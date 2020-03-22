@@ -221,16 +221,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 550328171679026710, guid: 5666425f23ee88a48a258202b7e84164,
-        type: 3}
-      propertyPath: m_margin.y
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 550328171679026710, guid: 5666425f23ee88a48a258202b7e84164,
-        type: 3}
-      propertyPath: m_margin.w
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5666425f23ee88a48a258202b7e84164, type: 3}
 --- !u!224 &1166332312416447640 stripped
@@ -731,21 +721,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 920248580199517301}
     m_Modifications:
-    - target: {fileID: 5082345569953656210, guid: d39af4927c82c9a4e8acc193e6e881dc,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 69.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082345569953656210, guid: d39af4927c82c9a4e8acc193e6e881dc,
-        type: 3}
-      propertyPath: m_margin.y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082345569953656210, guid: d39af4927c82c9a4e8acc193e6e881dc,
-        type: 3}
-      propertyPath: m_margin.w
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 5082345569953656212, guid: d39af4927c82c9a4e8acc193e6e881dc,
         type: 3}
       propertyPath: m_Name

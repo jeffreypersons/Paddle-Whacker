@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 1888972044518516154, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.6
+      value: 0.675
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516154, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
@@ -195,7 +195,7 @@ PrefabInstance:
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_margin.y
-      value: 75
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
@@ -205,7 +205,7 @@ PrefabInstance:
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_margin.w
-      value: 25
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6872f3c3c692a442ba7364c34681763, type: 3}
