@@ -3,8 +3,7 @@
 
 public class RecordedScore
 {
-    public int WinningScore { get; private set; }
-
+    public int WinningScore     { get; private set; }
     public int LeftPlayerScore  { get; private set; }
     public int RightPlayerScore { get; private set; }
 
@@ -19,7 +18,7 @@ public class RecordedScore
     {
         LeftPlayerScore  = 0;
         RightPlayerScore = 0;
-        WinningScore = winningScore;
+        WinningScore     = winningScore;
     }
 
     public override string ToString()

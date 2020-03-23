@@ -31,7 +31,7 @@ public class IngameHudController : MonoBehaviour
     {
         if (lastRecordedScore == null)
         {
-            Debug.LogError("LastRecordedScore received by HudController is null");
+            Debug.LogError($"LastRecordedScore received by {GetType().Name} is null");
         }
         GameEventCenter.pauseGame.Trigger(lastRecordedScore);
     }

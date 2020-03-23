@@ -37,7 +37,6 @@ public class GameRoundController : MonoBehaviour
 
     private void StartNewGame(StartNewGameInfo startGameInfo)
     {
-        Debug.Log(startGameInfo);
         recordedScore = new RecordedScore(startGameInfo.NumberOfGoals);
         GameEventCenter.scoreChange.Trigger(recordedScore);
     }
@@ -51,7 +50,8 @@ public class GameRoundController : MonoBehaviour
     {
         if (recordedScore == null)
         {
-            Debug.LogError("RecordedScore object received in StartNewGame event is missing, event must not been triggered");
+            Debug.LogError($"RecordedScore that is set upon starting a new game {GetType().Name} is missing, " +
+                           $"perhaps the event wasn't fired or listened to?");
         }
         ResetMovingObjects();
         IncrementScoreBasedOnGoal(goalName);

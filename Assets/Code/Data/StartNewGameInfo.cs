@@ -10,14 +10,13 @@ public class StartNewGameInfo
         Medium,
         Hard
     }
-    private int _numGoals;
-    private Difficulty _difficulty;
 
+    private int _numberOfGoals;
     public int NumberOfGoals
     {
         get
         {
-            return _numGoals;
+            return _numberOfGoals;
         }
         private set
         {
@@ -27,15 +26,17 @@ public class StartNewGameInfo
             }
             else
             {
-                _numGoals = value;
+                _numberOfGoals = value;
             }
         }
     }
+
+    private Difficulty _difficultyLevel;
     public Difficulty DifficultyLevel
     {
         get
         {
-            return _difficulty;
+            return _difficultyLevel;
         }
         private set
         {
@@ -45,7 +46,7 @@ public class StartNewGameInfo
             }
             else
             {
-                _difficulty = value;
+                _difficultyLevel = value;
             }
         }
     }
