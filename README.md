@@ -8,14 +8,16 @@ Can download and play on itch.io!: https://jeffreypersons.itch.io/paddle-whacker
 
 ## Sample Screenshots
 ### Start menu screen
-![image](https://user-images.githubusercontent.com/8084757/74575511-22e0a080-4f3c-11ea-8ebf-6ec16f993b59.png)
+![image](![image](https://user-images.githubusercontent.com/8084757/77353298-f28bdf00-6cfd-11ea-9506-a630c413fa19.png)
 
 ### Game play screen
-![image](https://user-images.githubusercontent.com/8084757/74575534-3855ca80-4f3c-11ea-95ac-511bb1741164.png)
+![image](https://user-images.githubusercontent.com/8084757/77353342-08999f80-6cfe-11ea-9f65-1435332b644a.png)
+
+### Game pause screen
+![image](https://user-images.githubusercontent.com/8084757/77353348-0cc5bd00-6cfe-11ea-8098-5c8691cc452f.png)
 
 ### Game end screen
-![image](https://user-images.githubusercontent.com/8084757/74575541-3e4bab80-4f3c-11ea-856f-14316fa9c670.png)
-
+![image](https://user-images.githubusercontent.com/8084757/77353357-12bb9e00-6cfe-11ea-8a56-21d0c51af76f.png)
 
 ## How the AI works
 
