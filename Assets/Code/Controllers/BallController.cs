@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class BallController : MonoBehaviour
 {
     public float ballSpeed;
@@ -14,14 +15,16 @@ public class BallController : MonoBehaviour
         ballBody.position = initialPosition;
         ballBody.velocity = ballSpeed * initialDirection;
     }
+    void Awake()
+    {
+        ballBody          = gameObject.transform.GetComponent<Rigidbody2D>();
+        ballCollider      = gameObject.transform.GetComponent<BoxCollider2D>();
+        initialPosition   = ballBody.position;
+    }
     void Start()
     {
-        ballBody        = gameObject.transform.GetComponent<Rigidbody2D>();
-        ballCollider    = gameObject.transform.GetComponent<BoxCollider2D>();
-        initialPosition = ballBody.position;
-        Reset();
+        ballBody.velocity = ballSpeed * initialDirection;
     }
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Paddle"))

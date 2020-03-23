@@ -13,10 +13,10 @@ public class ExpandZoneToEncapsulatePaddle : MonoBehaviour
 
     void Start()
     {
-        zoneCollider = gameObject.transform.GetComponent<BoxCollider2D>();
-        paddleCollider = gameObject.transform.parent.GetComponent<BoxCollider2D>();
+        zoneCollider       = gameObject.transform.GetComponent<BoxCollider2D>();
+        paddleCollider     = gameObject.transform.parent.GetComponent<BoxCollider2D>();
         bottomWallCollider = GameObject.Find("BottomWall").GetComponent<BoxCollider2D>();
-        topWallCollider = GameObject.Find("TopWall").GetComponent<BoxCollider2D>();
+        topWallCollider    = GameObject.Find("TopWall").GetComponent<BoxCollider2D>();
     }
     void Update()
     {

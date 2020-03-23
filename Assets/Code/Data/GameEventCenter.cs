@@ -4,16 +4,18 @@
 // note events are triggered and handled ENTIRELY programmatically (via listeners and invocations)
 public static class GameEventCenter
 {
-    public class HitEvent                 : GameEvent<string> { }
-    public class PaddleZoneIntersectEvent : GameEvent<PaddleZoneIntersectInfo> { }
-    public class ScoreChangeEvent         : GameEvent<ScoreInfo> { }
-    public class GameFinishedEvent        : GameEvent<ScoreInfo> { }
+    public static GameEvent<string> paddleHit         = new GameEvent<string>();
+    public static GameEvent<string> horizontalWallHit = new GameEvent<string>();
+    public static GameEvent<string> verticalWallHit   = new GameEvent<string>();
+    public static GameEvent<string> goalHit           = new GameEvent<string>();
 
-    public static HitEvent paddleHit           = new HitEvent();
-    public static HitEvent horizontalWallHit   = new HitEvent();
-    public static HitEvent verticalWallHit     = new HitEvent();
-    public static HitEvent goalHit             = new HitEvent();
-    public static PaddleZoneIntersectEvent zoneIntersection = new PaddleZoneIntersectEvent();
-    public static ScoreChangeEvent scoreChange   = new ScoreChangeEvent();
-    public static GameFinishedEvent gameFinished = new GameFinishedEvent();
+    public static GameEvent<RecordedScore> scoreChange                = new GameEvent<RecordedScore>();
+    public static GameEvent<PaddleZoneIntersectInfo> zoneIntersection = new GameEvent<PaddleZoneIntersectInfo>();
+
+    public static GameEvent<StartNewGameInfo> startNewGame        = new GameEvent<StartNewGameInfo>();
+    public static GameEvent<RecordedScore>    pauseGame           = new GameEvent<RecordedScore>();
+    public static GameEvent<string>           resumeGame          = new GameEvent<string>();
+    public static GameEvent<string>           gotoMainMenu        = new GameEvent<string>();
+    public static GameEvent<RecordedScore>    winningScoreReached = new GameEvent<RecordedScore>();
+    public static GameEvent<string>           restartGame         = new GameEvent<string>();
 }

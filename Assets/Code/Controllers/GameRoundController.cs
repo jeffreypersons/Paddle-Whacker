@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
 
+// todo: handle difficulty level, maybe when ai controller is reset, pass it in?
 public class GameRoundController : MonoBehaviour
 {
-    private ScoreInfo scoreInfo;
+    private RecordedScore recordedScore;
 
     // todo: replace with Paddle/MoveController interfaces, and use like `MoveController.Reset()`
     public GameObject ball;
@@ -13,31 +14,52 @@ public class GameRoundController : MonoBehaviour
     public GameObject leftGoal;
     public GameObject rightGoal;
 
-    void Start()
+    void Awake()
     {
-        // todo: replace winning score with a value supplied from startmenu
-        scoreInfo = new ScoreInfo(5);
         if ((playerPaddle.transform.position.x < 0 && aiPaddle.transform.position.x < 0) ||
             (playerPaddle.transform.position.x > 0 && aiPaddle.transform.position.x > 0))
         {
             Debug.LogError("Both player and paddle cannot be on the same side of the arena.");
         }
+        GameEventCenter.startNewGame.AddAutoUnsubscribeListener(StartNewGame);
     }
 
     void OnEnable()
     {
-        GameEventCenter.goalHit.StartListening(MoveToNextRound);
+        GameEventCenter.goalHit.AddListener(MoveToNextRound);
+        GameEventCenter.restartGame.AddListener(RestartGame);
     }
     void OnDisable()
     {
-        GameEventCenter.goalHit.StopListening(MoveToNextRound);
+        GameEventCenter.goalHit.RemoveListener(MoveToNextRound);
+        GameEventCenter.restartGame.RemoveListener(RestartGame);
     }
-    public void MoveToNextRound(string goalName)
+
+    private void StartNewGame(StartNewGameInfo startGameInfo)
+    {
+        recordedScore = new RecordedScore(startGameInfo.NumberOfGoals);
+        GameEventCenter.scoreChange.Trigger(recordedScore);
+    }
+    private void RestartGame(string status)
     {
         ResetMovingObjects();
+        recordedScore = new RecordedScore(recordedScore.WinningScore);
+        GameEventCenter.scoreChange.Trigger(recordedScore);
+    }
+    private void MoveToNextRound(string goalName)
+    {
+        if (recordedScore == null)
+        {
+            Debug.LogError($"RecordedScore that is set upon starting a new game {GetType().Name} is missing, " +
+                           $"perhaps the event wasn't fired or listened to?");
+        }
+        ResetMovingObjects();
         IncrementScoreBasedOnGoal(goalName);
-        LoadSceneIfWinningScore("EndMenu");
-        GameEventCenter.scoreChange.Trigger(scoreInfo);
+        GameEventCenter.scoreChange.Trigger(recordedScore);
+        if (recordedScore.IsWinningScoreReached())
+        {
+            GameEventCenter.winningScoreReached.Trigger(recordedScore);
+        }
     }
 
     private void ResetMovingObjects()
@@ -50,23 +72,15 @@ public class GameRoundController : MonoBehaviour
     {
         if (goalName == rightGoal.name)
         {
-            scoreInfo.LeftPlayerScore += 1;
+            recordedScore.IncrementLeftPlayerScore();
         }
         else if (goalName == leftGoal.name)
         {
-            scoreInfo.RightPlayerScore += 1;
+            recordedScore.IncrementRightPlayerScore();
         }
         else
         {
             Debug.LogError("Goal name '" + goalName + "' does not match registered goal names");
-        }
-    }
-    private void LoadSceneIfWinningScore(string sceneName)
-    {
-        if (scoreInfo.IsWinningScoreReached())
-        {
-            GameEventCenter.gameFinished.Trigger(scoreInfo);
-            SceneUtils.Load(sceneName);
         }
     }
 }

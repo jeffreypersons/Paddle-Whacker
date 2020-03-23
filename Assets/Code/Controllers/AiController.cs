@@ -50,7 +50,7 @@ public class AiController : MonoBehaviour
         StartTargetUpdateRoutine(CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall));
     }
 
-    void Start()
+    void Awake()
     {
         paddleBody     = gameObject.transform.GetComponent<Rigidbody2D>();
         paddleCollider = gameObject.transform.GetComponent<BoxCollider2D>();
@@ -59,10 +59,12 @@ public class AiController : MonoBehaviour
         ballBody      = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         ballCollider  = GameObject.Find("Ball").GetComponent<BoxCollider2D>();
         ballPredictor = new BallTrajectoryPredictor();
-
+        targetPaddleY = initialPaddlePosition.y;
+    }
+    void Start()
+    {
         Reset();
     }
-
     void FixedUpdate()
     {
         if (Mathf.Abs(targetPaddleY - paddleBody.position.y) >= minVerticalDistanceBeforeMoving)
@@ -77,15 +79,14 @@ public class AiController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEventCenter.zoneIntersection.StartListening(UpdateTargetTask);
+        GameEventCenter.zoneIntersection.AddListener(UpdateTargetTask);
     }
     void OnDisable()
     {
-        GameEventCenter.zoneIntersection.StopListening(UpdateTargetTask);
+        GameEventCenter.zoneIntersection.RemoveListener(UpdateTargetTask);
     }
     public void UpdateTargetTask(PaddleZoneIntersectInfo hitZoneInfo)
     {
-        Debug.Log(hitZoneInfo);
         bool isOnAiSide         =  hitZoneInfo.ContainsPaddle(PaddleName);
         bool isBallIncoming     = !isOnAiSide && hitZoneInfo.IsNearingMidline();
         bool isBallBehindPaddle =  isOnAiSide && hitZoneInfo.IsNearingGoalWall();
@@ -107,13 +108,11 @@ public class AiController : MonoBehaviour
     }
     private void PredictBallPosition()
     {
-        Debug.Log("incoming");
         ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         targetPaddleY = ballPredictor.EndPoint.y;
     }
     private void TryToHitBallFromHorizontalEdge()
     {
-        Debug.Log("behind");
         ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         float paddleY    = paddleCollider.bounds.center.y;
         float predictedY = ballPredictor.EndPoint.y;
