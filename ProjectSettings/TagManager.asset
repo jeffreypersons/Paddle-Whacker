@@ -21,6 +21,7 @@ TagManager:
   - Menu
   - Banner
   - Label
+  - Panel
   layers:
   - Default
   - TransparentFX

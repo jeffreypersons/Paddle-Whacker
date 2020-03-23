@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 344541144913149143}
-  startButton: {fileID: 344541144913149145}
+  startButton: {fileID: 0}
   quitButton: {fileID: 344541144913149144}
 --- !u!1001 &930906539
 PrefabInstance:
@@ -433,6 +433,66 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 48.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_margin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_margin.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475877186897692968, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475877186897692975, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475877186897692975, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3176004267315965311, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3176004267315965311, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043444370613132477, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 9043444370613132477, guid: f16b682e55616c744a8a04bb4534a0df,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f16b682e55616c744a8a04bb4534a0df, type: 3}
 --- !u!1 &344541144913149143 stripped
@@ -444,18 +504,6 @@ GameObject:
 --- !u!114 &344541144913149144 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1226548280665287799, guid: f16b682e55616c744a8a04bb4534a0df,
-    type: 3}
-  m_PrefabInstance: {fileID: 344541144913149142}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &344541144913149145 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6812954479361733618, guid: f16b682e55616c744a8a04bb4534a0df,
     type: 3}
   m_PrefabInstance: {fileID: 344541144913149142}
   m_PrefabAsset: {fileID: 0}
