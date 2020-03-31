@@ -22,6 +22,9 @@ TagManager:
   - Banner
   - Label
   - Panel
+  - AdjustableSetting
+  - Title
+  - Subtitle
   layers:
   - Default
   - TransparentFX
