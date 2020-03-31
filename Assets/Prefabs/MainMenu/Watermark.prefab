@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 997706520249357818, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.525
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357818, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -100,7 +100,7 @@ PrefabInstance:
     - target: {fileID: 997706520249357818, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.675
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357818, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -120,22 +120,22 @@ PrefabInstance:
     - target: {fileID: 997706520249357819, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_Name
-      value: Subtitle
+      value: Watermark
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 18
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_text
-      value: By Jeffrey Persons
+      value: Developed by Jeffrey Persons
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -160,31 +160,36 @@ PrefabInstance:
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_fontSize
-      value: 69.8
+      value: 19.3
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_fontSizeMax
-      value: 75
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_margin.x
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_margin.y
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_margin.z
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_margin.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
+        type: 3}
+      propertyPath: m_fontSizeMin
       value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
