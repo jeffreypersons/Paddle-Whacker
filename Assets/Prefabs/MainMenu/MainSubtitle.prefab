@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 997706520249357818, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.02
+      value: 0.525
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357818, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -100,7 +100,7 @@ PrefabInstance:
     - target: {fileID: 997706520249357818, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.05
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357818, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -120,7 +120,12 @@ PrefabInstance:
     - target: {fileID: 997706520249357819, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_Name
-      value: Watermark
+      value: Subtitle
+      objectReference: {fileID: 0}
+    - target: {fileID: 997706520249357819, guid: 5d7bdc5b5b197784db069cee00078fea,
+        type: 3}
+      propertyPath: m_TagString
+      value: Label
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -160,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_fontSize
-      value: 19.3
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -170,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_margin.x
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
@@ -180,7 +185,7 @@ PrefabInstance:
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
       propertyPath: m_margin.z
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 997706520249357821, guid: 5d7bdc5b5b197784db069cee00078fea,
         type: 3}
