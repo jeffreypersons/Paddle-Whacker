@@ -16,8 +16,17 @@ public class AdjustSliderSettingController : MonoBehaviour
 
     void Awake()
     {
-
+        if (SetSliderValues(defaultValue, minValue, maxValue))
+        {
+            slider.value = float.Parse(defaultValue);
+            UpdateLabel(slider.value);
+        }
     }
+    void Update()
+    {
+        SetSliderValues(defaultValue, minValue, maxValue);
+    }
+
     void OnEnable()
     {
         slider.onValueChanged.AddListener(UpdateLabel);
@@ -31,28 +40,23 @@ public class AdjustSliderSettingController : MonoBehaviour
         label.text = $"{description}: {value}{numberSuffix}";
     }
 
-    private bool TryReadValues(out float val, out float min, out float max)
+    private bool SetSliderValues(string initial, string min, string max)
     {
-        val = 0.0f; min = 0.0f; max = 0.0f;
-        return float.TryParse(defaultValue, out val) &&
-               float.TryParse(minValue,     out min) &&
-               float.TryParse(maxValue,     out max);
-    }
+        bool isAllInt   = MathUtils.IsAllInteger(initial, min, max);
+        bool isAllFloat = MathUtils.IsAllFloat(initial, min, max);
 
-    void Update()
-    {
-        float val, min, max;
-        if (TryReadValues(out val, out min, out max) && MathUtils.IsWithinRange(val, min, max))
+        if (isAllInt || isAllFloat)
         {
-            slider.value        = val;
-            slider.minValue     = min;
-            slider.maxValue     = max;
-            slider.wholeNumbers = MathUtils.IsAllInteger(defaultValue, minValue, maxValue);
+            slider.minValue = float.Parse(minValue);
+            slider.maxValue = float.Parse(maxValue);
+            slider.wholeNumbers = isAllInt;
+            return true;
         }
         else
         {
-            Debug.LogError($"Expected min <= default <= max as all floats or all ints," +
-                           $"recieved {defaultValue}, {minValue}, {maxValue}` instead");
+            Debug.LogError($"Expected min <= default <= max as all floats or all ints, " +
+                           $"recieved {initial}, {min}, {max}` instead");
+            return false;
         }
     }
 }

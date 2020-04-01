@@ -29,7 +29,7 @@ public class MainMenuController : MonoBehaviour
         aboutPanel.SetActive(false);
 
         buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
-        labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Label");
+        labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Subtitle");
     }
 
     void OnEnable()
