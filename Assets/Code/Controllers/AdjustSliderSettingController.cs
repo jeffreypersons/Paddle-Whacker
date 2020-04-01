@@ -25,6 +25,9 @@ public class AdjustSliderSettingController : MonoBehaviour
     void Update()
     {
         SetSliderValues(defaultValue, minValue, maxValue);
+        #if UNITY_EDITOR
+            UpdateLabel(slider.value);
+        #endif
     }
 
     void OnEnable()
