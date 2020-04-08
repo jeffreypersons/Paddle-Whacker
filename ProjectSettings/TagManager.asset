@@ -25,6 +25,8 @@ TagManager:
   - AdjustableSetting
   - Title
   - Subtitle
+  - CancelButton
+  - ContinueButton
   layers:
   - Default
   - TransparentFX
