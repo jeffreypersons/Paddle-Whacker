@@ -1,10 +1,23 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 
+// note that these methods use old style for loops so that the found value an be modified after return
 public static class GameObjectUtils
 {
+    public static void AddAutoUnsubscribeListenerToButton(Button button, System.Action onButtonClicked)
+    {
+        // note null initialization is required to force nonlocal scope of the handler, see https://stackoverflow.com/a/1362244
+        UnityAction handler = null;
+        handler = () =>
+        {
+            button.onClick.RemoveListener(handler);
+            onButtonClicked.Invoke();
+        };
+        button.onClick.AddListener(handler);
+    }
     public static void SetAlpha(SpriteRenderer renderer, float alphaLevel)
     {
         Color color = renderer.color;
@@ -46,5 +59,32 @@ public static class GameObjectUtils
             }
         }
         return objects;
+    }
+    // note: only fetches active game objects, null if not found
+    public static GameObject FindFirstChildWithTag(GameObject gameObject, string tag)
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Transform child = gameObject.transform.GetChild(i);
+            if (child.CompareTag(tag))
+            {
+                return child.gameObject;
+            }
+        }
+        return default;
+    }
+    // note: only fetches active game objects, null if not found
+    public static T FindFirstChildWithTag<T>(GameObject gameObject, string tag)
+    {
+        T component;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Transform child = gameObject.transform.GetChild(i);
+            if (child.CompareTag(tag) && child.TryGetComponent(out component))
+            {
+                return component;
+            }
+        }
+        return default;
     }
 }
