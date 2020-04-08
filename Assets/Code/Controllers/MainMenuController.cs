@@ -5,77 +5,49 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public Button startButton;
-    public Button settingsButton;
-    public Button aboutButton;
-    public Button quitButton;
-
-    public GameObject startPanel;
-    public GameObject settingsPanel;
-    public GameObject aboutPanel;
-
-    private StartNewGameInfo newGameInfo;
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button aboutButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private SubmainMenuController submenuController;
 
     private List<Button> buttonsToHideWhenActive;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;
 
     void Awake()
     {
-        newGameInfo = new StartNewGameInfo(3, StartNewGameInfo.Difficulty.Medium);
-
-        startPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-        aboutPanel.SetActive(false);
-
         buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
         labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Subtitle");
+
+        submenuController.SetActionOnStartPressed(() => LoadGame());
+        submenuController.SetActionOnPanelOpen(()    => HideMainMenu(true));
+        submenuController.SetActionOnPanelClose(()   => HideMainMenu(false));
     }
 
     void OnEnable()
     {
-        startButton.onClick.AddListener(OpenStartPanel);
-        settingsButton.onClick.AddListener(OpenSettingsPanel);
-        aboutButton.onClick.AddListener(OpenAboutPanel);
+        startButton.onClick.AddListener(submenuController.OpenStartPanel);
+        settingsButton.onClick.AddListener(submenuController.OpenSettingsPanel);
+        aboutButton.onClick.AddListener(submenuController.OpenAboutPanel);
         quitButton.onClick.AddListener(SceneUtils.QuitGame);
-
-        startPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-        aboutPanel.SetActive(false);
     }
     void OnDisable()
     {
-        startButton.onClick.RemoveListener(OpenStartPanel);
-        settingsButton.onClick.RemoveListener(OpenSettingsPanel);
-        aboutButton.onClick.RemoveListener(OpenAboutPanel);
+        startButton.onClick.RemoveListener(submenuController.OpenStartPanel);
+        settingsButton.onClick.RemoveListener(submenuController.OpenSettingsPanel);
+        aboutButton.onClick.RemoveListener(submenuController.OpenAboutPanel);
         quitButton.onClick.RemoveListener(SceneUtils.QuitGame);
     }
 
-    public void OpenStartPanel()
-    {
-        startPanel.SetActive(true);
-        ToggleMainMenuVisibility(true);
-    }
-    public void OpenSettingsPanel()
-    {
-        settingsPanel.SetActive(true);
-        ToggleMainMenuVisibility(true);
-    }
-    public void OpenAboutPanel()
-    {
-        aboutPanel.SetActive(true);
-        ToggleMainMenuVisibility(true);
-    }
-
-    public void TriggerLoadGameEvent()
+    private void LoadGame()
     {
         SceneUtils.LoadScene("Game", () =>
         {
-            GameEventCenter.startNewGame.Trigger(newGameInfo);
+            GameEventCenter.startNewGame.Trigger(submenuController.GetGameSettings());
         });
     }
 
-    private void ToggleMainMenuVisibility(bool enableMainMenu)
+    private void HideMainMenu(bool enableMainMenu)
     {
         bool hideBackground = !enableMainMenu;
         for (int i = 0; i < buttonsToHideWhenActive.Count; i++)
