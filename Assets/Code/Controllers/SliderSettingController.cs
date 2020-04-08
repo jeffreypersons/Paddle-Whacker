@@ -3,16 +3,24 @@ using UnityEngine.UI;
 
 
 [ExecuteAlways]
-public class AdjustSliderSettingController : MonoBehaviour
+public class SliderSettingController : MonoBehaviour
 {
-    [SerializeField] public string description;
-    [SerializeField] public string numberSuffix;
-    [SerializeField] public string defaultValue;
-    [SerializeField] public string minValue;
-    [SerializeField] public string maxValue;
+    [SerializeField] private string description;
+    [SerializeField] private string numberSuffix;
+    [SerializeField] private string defaultValue;
+    [SerializeField] private string minValue;
+    [SerializeField] private string maxValue;
 
-    public TMPro.TextMeshProUGUI label;
-    public Slider slider;
+    [SerializeField] private TMPro.TextMeshProUGUI label;
+    [SerializeField] private Slider slider;
+
+    public float SliderValue    { get { return slider.value;    } }
+    public float MinSliderValue { get { return slider.minValue; } }
+    public float MaxSliderValue { get { return slider.maxValue; } }
+
+    public string Description   { get { return label.text; } }
+
+    public bool IsSliderValueAWholeNumber { get { return slider.wholeNumbers; } }
 
     void Awake()
     {
@@ -38,7 +46,7 @@ public class AdjustSliderSettingController : MonoBehaviour
     {
         slider.onValueChanged.RemoveListener(UpdateLabel);
     }
-    public void UpdateLabel(float value)
+    void UpdateLabel(float value)
     {
         label.text = $"{description}: {value}{numberSuffix}";
     }
@@ -50,8 +58,8 @@ public class AdjustSliderSettingController : MonoBehaviour
 
         if (isAllInt || isAllFloat)
         {
-            slider.minValue = float.Parse(minValue);
-            slider.maxValue = float.Parse(maxValue);
+            slider.minValue = float.Parse(min);
+            slider.maxValue = float.Parse(max);
             slider.wholeNumbers = isAllInt;
             return true;
         }
