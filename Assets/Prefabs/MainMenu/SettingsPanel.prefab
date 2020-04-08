@@ -116,7 +116,7 @@ PrefabInstance:
     - target: {fileID: 4094719987939711721, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
       propertyPath: m_text
-      value: 'Game Length: 5 Goals'
+      value: 'Music Volume: 50%'
       objectReference: {fileID: 0}
     - target: {fileID: 4094719987939711721, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
@@ -258,10 +258,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicVolumeSetting
       objectReference: {fileID: 0}
+    - target: {fileID: 7348100173487736297, guid: 6747c968d3a7faf488dce370b255173b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7498029579273328995, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.23076923
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7498029579273328995, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
@@ -271,7 +276,7 @@ PrefabInstance:
     - target: {fileID: 8790674234200764951, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
       propertyPath: m_Value
-      value: 5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8790674234200764951, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
@@ -291,12 +296,12 @@ PrefabInstance:
     - target: {fileID: 8909315019241052774, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.23076923
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8909315019241052774, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.23076923
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8909315019241052774, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
@@ -463,6 +468,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4466985601498635100, guid: 23a8a532fc8421b418119ada30c176d4,
+        type: 3}
+      propertyPath: m_TagString
+      value: CancelButton
+      objectReference: {fileID: 0}
     - target: {fileID: 5601645022469178964, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -563,15 +573,15 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5626414626546820855, guid: 6747c968d3a7faf488dce370b255173b,
+    - target: {fileID: 4094719987939711721, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.1
+      propertyPath: m_text
+      value: 'Sound Effect Volume: 50%'
       objectReference: {fileID: 0}
-    - target: {fileID: 5626414626546820855, guid: 6747c968d3a7faf488dce370b255173b,
+    - target: {fileID: 4094719987939711721, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.9
+      propertyPath: m_fontSize
+      value: 27.1
       objectReference: {fileID: 0}
     - target: {fileID: 6227942650522312966, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
@@ -683,15 +693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundEffectSetting
       objectReference: {fileID: 0}
-    - target: {fileID: 7498029579273328995, guid: 6747c968d3a7faf488dce370b255173b,
+    - target: {fileID: 7348100173487736297, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7498029579273328995, guid: 6747c968d3a7faf488dce370b255173b,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8790674234200764951, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
