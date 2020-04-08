@@ -62,11 +62,11 @@ public class SubmainMenuController : MonoBehaviour
         Button closeButton = GameObjectUtils.FindFirstChildWithTag<Button>(submenuPanel, "CancelButton");
         if (startButton)
         {
-            GameObjectUtils.AddAutoUnsubscribeListenerToButton(startButton, actionOnStartPress);
+            GameObjectUtils.AddAutoUnsubscribeOnClickListenerToButton(startButton, actionOnStartPress);
         }
         if (closeButton)
         {
-            GameObjectUtils.AddAutoUnsubscribeListenerToButton(closeButton, () =>
+            GameObjectUtils.AddAutoUnsubscribeOnClickListenerToButton(closeButton, () =>
             {
                 DeactivePanels();
                 actionOnPanelClose();

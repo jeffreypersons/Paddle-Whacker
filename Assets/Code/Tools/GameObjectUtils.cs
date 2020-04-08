@@ -7,7 +7,7 @@ using UnityEngine.UI;
 // note that these methods use old style for loops so that the found value an be modified after return
 public static class GameObjectUtils
 {
-    public static void AddAutoUnsubscribeListenerToButton(Button button, System.Action onButtonClicked)
+    public static void AddAutoUnsubscribeOnClickListenerToButton(Button button, System.Action onButtonClicked)
     {
         // note null initialization is required to force nonlocal scope of the handler, see https://stackoverflow.com/a/1362244
         UnityAction handler = null;
