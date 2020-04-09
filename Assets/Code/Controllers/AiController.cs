@@ -8,7 +8,7 @@ public class AiController : MonoBehaviour
     [SerializeField] private float responseTimeAtMaxDifficulty     = default;
     [SerializeField] private float minVerticalDistanceBeforeMoving = default;
 
-    private int percentOfMaxDifficulty = 1;
+    private int percentOfMaxDifficulty = 100;
     private float paddleSpeed;
     private float responseTime;
 
@@ -76,7 +76,7 @@ public class AiController : MonoBehaviour
         ballPredictor = new BallTrajectoryPredictor();
         targetPaddleY = initialPaddlePosition.y;
 
-        float aiHandicap = percentOfMaxDifficulty != 0 ? (1 / percentOfMaxDifficulty) : 0;
+        float aiHandicap = percentOfMaxDifficulty / 100;
         paddleSpeed  = paddleSpeedAtMaxDifficulty  * aiHandicap;
         responseTime = responseTimeAtMaxDifficulty * aiHandicap;
     }

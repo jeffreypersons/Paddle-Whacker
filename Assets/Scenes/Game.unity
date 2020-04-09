@@ -870,6 +870,14 @@ PrefabInstance:
       propertyPath: paddleSpeed
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: paddleSpeedAtMaxDifficulty
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: responseTimeAtMaxDifficulty
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4898979997282198361, guid: 0173095caa3a77b4ebfecb9bd4d161d9,
         type: 3}
       propertyPath: m_Name

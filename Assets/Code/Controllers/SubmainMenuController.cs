@@ -25,7 +25,6 @@ public class SubmainMenuController : MonoBehaviour
     {
         DeactivePanels();
     }
-
     public void OpenStartPanel()    { OpenPanel(startPanel);    }
     public void OpenSettingsPanel() { OpenPanel(settingsPanel); }
     public void OpenAboutPanel()    { OpenPanel(aboutPanel);    }
