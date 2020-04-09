@@ -43,7 +43,6 @@ public class SubmainMenuController : MonoBehaviour
             musicVolume:     (int)musicVolumeSetting.SliderValue
         );
     }
-
     private void DeactivePanels()
     {
         startPanel.SetActive(false);
@@ -53,7 +52,7 @@ public class SubmainMenuController : MonoBehaviour
 
     private void OpenPanel(GameObject submenuPanel)
     {
-        if (MathUtils.CountTrueValues(startPanel.active, settingsPanel.active, aboutPanel.active) != 0)
+        if (startPanel.activeInHierarchy || settingsPanel.activeInHierarchy || aboutPanel.activeInHierarchy)
         {
             Debug.LogError($"Cannot open {submenuPanel.name}, since only one sub-mainmenu panel can be active at a time.");
         }

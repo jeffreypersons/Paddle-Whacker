@@ -43,17 +43,4 @@ public static class MathUtils
         }
         return true;
     }
-
-    public static int CountTrueValues(params bool[] values)
-    {
-        int count = 0;
-        foreach (bool value in values)
-        {
-            if (value)
-            {
-                count++;
-            }
-        }
-        return count;
-    }
 }
