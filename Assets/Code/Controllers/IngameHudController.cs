@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class IngameHudController : MonoBehaviour
 {
-    public Button pauseButton;
-    public TMPro.TextMeshProUGUI leftScoreLabel;
-    public TMPro.TextMeshProUGUI rightScoreLabel;
+    [SerializeField] private Button pauseButton = default;
+    [SerializeField] private TMPro.TextMeshProUGUI leftScoreLabel  = default;
+    [SerializeField] private TMPro.TextMeshProUGUI rightScoreLabel = default;
 
     private RecordedScore lastRecordedScore;
 

@@ -5,14 +5,14 @@ using UnityEngine.UI;
 [ExecuteAlways]
 public class SliderSettingController : MonoBehaviour
 {
-    [SerializeField] private string description;
-    [SerializeField] private string numberSuffix;
-    [SerializeField] private string defaultValue;
-    [SerializeField] private string minValue;
-    [SerializeField] private string maxValue;
+    [SerializeField] private string description  = default;
+    [SerializeField] private string numberSuffix = default;
+    [SerializeField] private string defaultValue = default;
+    [SerializeField] private string minValue     = default;
+    [SerializeField] private string maxValue     = default;
 
-    [SerializeField] private TMPro.TextMeshProUGUI label;
-    [SerializeField] private Slider slider;
+    [SerializeField] private TMPro.TextMeshProUGUI label = default;
+    [SerializeField] private Slider slider = default;
 
     public float SliderValue    { get { return slider.value;    } }
     public float MinSliderValue { get { return slider.minValue; } }

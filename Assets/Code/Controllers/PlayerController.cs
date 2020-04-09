@@ -3,8 +3,8 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float paddleSpeed;
-    public string inputAxisName;
+    [SerializeField] private float  paddleSpeed   = default;
+    [SerializeField] private string inputAxisName = default;
 
     private Vector2 initialPosition;
     private Vector2 inputVelocity;
@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public void Reset()
     {
-        inputVelocity = Vector2.zero;
+        inputVelocity       = Vector2.zero;
         paddleBody.velocity = inputVelocity;
         paddleBody.position = initialPosition;
     }

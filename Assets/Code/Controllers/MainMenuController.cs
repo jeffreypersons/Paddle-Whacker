@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] private Button startButton;
-    [SerializeField] private Button settingsButton;
-    [SerializeField] private Button aboutButton;
-    [SerializeField] private Button quitButton;
-    [SerializeField] private SubmainMenuController submenuController;
+    [SerializeField] private Button startButton    = default;
+    [SerializeField] private Button settingsButton = default;
+    [SerializeField] private Button aboutButton    = default;
+    [SerializeField] private Button quitButton     = default;
+    [SerializeField] private SubmainMenuController submenuController = default;
 
     private List<Button> buttonsToHideWhenActive;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;

@@ -7,12 +7,12 @@ public class GameRoundController : MonoBehaviour
     private RecordedScore recordedScore;
 
     // todo: replace with Paddle/MoveController interfaces, and use like `MoveController.Reset()`
-    public GameObject ball;
-    public GameObject playerPaddle;
-    public GameObject aiPaddle;
+    [SerializeField] private GameObject ball         = default;
+    [SerializeField] private GameObject playerPaddle = default;
+    [SerializeField] private GameObject aiPaddle     = default;
 
-    public GameObject leftGoal;
-    public GameObject rightGoal;
+    [SerializeField] private GameObject leftGoal     = default;
+    [SerializeField] private GameObject rightGoal    = default;
 
     void Awake()
     {

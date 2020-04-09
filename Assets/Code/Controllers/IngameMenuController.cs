@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class IngameMenuController : MonoBehaviour
 {
-    public GameObject ingameMenu;
-    public TMPro.TextMeshProUGUI title;
-    public TMPro.TextMeshProUGUI subtitle;
-    public Button resumeButton;
-    public Button mainMenuButton;
-    public Button restartButton;
-    public Button quitButton;
+    [SerializeField] private GameObject ingameMenu = default;
+    [SerializeField] private TMPro.TextMeshProUGUI title    = default;
+    [SerializeField] private TMPro.TextMeshProUGUI subtitle = default;
+    [SerializeField] private Button resumeButton   = default;
+    [SerializeField] private Button mainMenuButton = default;
+    [SerializeField] private Button restartButton  = default;
+    [SerializeField] private Button quitButton     = default;
 
     private List<Button> buttonsToHideWhenActive;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;

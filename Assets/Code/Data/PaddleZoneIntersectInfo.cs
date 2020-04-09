@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 // assumes directly vertical bounces are not velocity possible, and thus zones are never continually occupied!
 // (unless of course the initial ball velocity is set that way!)
 public class PaddleZoneIntersectInfo
