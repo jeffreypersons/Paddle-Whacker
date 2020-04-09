@@ -3,8 +3,8 @@
 
 public class PlayerController : MonoBehaviour
 {
-    public float paddleSpeed;
-    public string inputAxisName;
+    [SerializeField] private float paddleSpeed;
+    [SerializeField] private string inputAxisName;
 
     private Vector2 initialPosition;
     private Vector2 inputVelocity;

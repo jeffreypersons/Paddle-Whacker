@@ -3,8 +3,8 @@
 
 public class BallController : MonoBehaviour
 {
-    public float ballSpeed;
-    public Vector2 initialDirection;
+    [SerializeField] private float ballSpeed;
+    [SerializeField] private Vector2 initialDirection;
 
     private Vector2 initialPosition;
     private Rigidbody2D ballBody;

@@ -4,7 +4,7 @@
 [ExecuteAlways]
 public class ExpandZoneToEncapsulatePaddle : MonoBehaviour
 {
-    public float extraWidth;
+    [SerializeField] private float extraWidth;
     private BoxCollider2D zoneCollider;
     private BoxCollider2D paddleCollider;
 
