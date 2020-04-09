@@ -12,14 +12,14 @@ public class SubmainMenuController : MonoBehaviour
     private Action actionOnPanelOpen;
     private Action actionOnPanelClose;
 
-    [SerializeField] private GameObject startPanel;
-    [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private GameObject aboutPanel;
+    [SerializeField] private GameObject startPanel    = default;
+    [SerializeField] private GameObject settingsPanel = default;
+    [SerializeField] private GameObject aboutPanel    = default;
 
-    [SerializeField] private SliderSettingController difficultySetting;
-    [SerializeField] private SliderSettingController numberOfGoalsSetting;
-    [SerializeField] private SliderSettingController soundVolumeSetting;
-    [SerializeField] private SliderSettingController musicVolumeSetting;
+    [SerializeField] private SliderSettingController difficultySetting    = default;
+    [SerializeField] private SliderSettingController numberOfGoalsSetting = default;
+    [SerializeField] private SliderSettingController soundVolumeSetting   = default;
+    [SerializeField] private SliderSettingController musicVolumeSetting   = default;
 
     void OnEnable()
     {

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class AiController : MonoBehaviour
 {
-    [SerializeField] private float paddleSpeed;
-    [SerializeField] private float responseTime;
-    [SerializeField] private float randomSlowDownVariance;
-    [SerializeField] private float minVerticalDistanceBeforeMoving;
+    [SerializeField] private float paddleSpeed  = default;
+    [SerializeField] private float responseTime = default;
+    [SerializeField] private float minVerticalDistanceBeforeMoving = default;
 
     private Rigidbody2D paddleBody;
     private BoxCollider2D paddleCollider;
