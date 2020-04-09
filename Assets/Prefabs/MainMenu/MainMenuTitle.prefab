@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2131841577209490347
+--- !u!1001 &4480506761395792013
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -90,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 1888972044518516154, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.675
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516154, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
@@ -100,7 +100,7 @@ PrefabInstance:
     - target: {fileID: 1888972044518516154, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516154, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
@@ -120,22 +120,22 @@ PrefabInstance:
     - target: {fileID: 1888972044518516155, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_Name
-      value: Title
+      value: Maintitle
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
@@ -149,23 +149,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
-      propertyPath: m_fontSize
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
-        type: 3}
-      propertyPath: m_text
-      value: Paddle Whacker
-      objectReference: {fileID: 0}
-    - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
-        type: 3}
       propertyPath: m_fontColor32.rgba
       value: 3873892070
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
-      propertyPath: m_fontSizeBase
-      value: 75
+      propertyPath: m_fontSize
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
@@ -175,37 +170,27 @@ PrefabInstance:
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_fontSizeMax
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
-        type: 3}
-      propertyPath: m_fontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
-        type: 3}
-      propertyPath: m_textAlignment
-      value: 514
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_margin.x
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
-        type: 3}
-      propertyPath: m_margin.y
-      value: 60
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
       propertyPath: m_margin.z
-      value: 75
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
         type: 3}
-      propertyPath: m_margin.w
-      value: 0
+      propertyPath: m_text
+      value: PaddleWhacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888972044518516157, guid: a6872f3c3c692a442ba7364c34681763,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 1026
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6872f3c3c692a442ba7364c34681763, type: 3}

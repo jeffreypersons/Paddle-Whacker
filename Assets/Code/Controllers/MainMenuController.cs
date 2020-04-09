@@ -1,36 +1,63 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 
 public class MainMenuController : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public Button startButton;
-    public Button quitButton;
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button aboutButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private SubmainMenuController submenuController;
 
-    public StartNewGameInfo newGameInfo;
+    private List<Button> buttonsToHideWhenActive;
+    private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;
 
     void Awake()
     {
-        newGameInfo = new StartNewGameInfo(3, StartNewGameInfo.Difficulty.Easy);
+        buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
+        labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Subtitle");
+
+        submenuController.SetActionOnStartPressed(() => LoadGame());
+        submenuController.SetActionOnPanelOpen(()    => HideMainMenu(true));
+        submenuController.SetActionOnPanelClose(()   => HideMainMenu(false));
     }
 
     void OnEnable()
     {
-        startButton.onClick.AddListener(TriggerLoadMainMenuSceneEvent);
+        startButton.onClick.AddListener(submenuController.OpenStartPanel);
+        settingsButton.onClick.AddListener(submenuController.OpenSettingsPanel);
+        aboutButton.onClick.AddListener(submenuController.OpenAboutPanel);
         quitButton.onClick.AddListener(SceneUtils.QuitGame);
     }
     void OnDisable()
     {
-        startButton.onClick.RemoveListener(TriggerLoadMainMenuSceneEvent);
+        startButton.onClick.RemoveListener(submenuController.OpenStartPanel);
+        settingsButton.onClick.RemoveListener(submenuController.OpenSettingsPanel);
+        aboutButton.onClick.RemoveListener(submenuController.OpenAboutPanel);
         quitButton.onClick.RemoveListener(SceneUtils.QuitGame);
     }
 
-    public void TriggerLoadMainMenuSceneEvent()
+    private void LoadGame()
     {
         SceneUtils.LoadScene("Game", () =>
         {
-            GameEventCenter.startNewGame.Trigger(newGameInfo);
+            GameEventCenter.startNewGame.Trigger(submenuController.GetGameSettings());
         });
+    }
+
+    private void HideMainMenu(bool enableMainMenu)
+    {
+        bool hideBackground = !enableMainMenu;
+        for (int i = 0; i < buttonsToHideWhenActive.Count; i++)
+        {
+            buttonsToHideWhenActive[i].gameObject.SetActive(hideBackground);
+            buttonsToHideWhenActive[i].enabled = hideBackground;
+        }
+        for (int i = 0; i < labelsToHideWhenActive.Count; i++)
+        {
+            labelsToHideWhenActive[i].enabled = hideBackground;
+        }
     }
 }

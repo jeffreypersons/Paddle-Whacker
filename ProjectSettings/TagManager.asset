@@ -21,6 +21,12 @@ TagManager:
   - Menu
   - Banner
   - Label
+  - Panel
+  - AdjustableSetting
+  - Title
+  - Subtitle
+  - CancelButton
+  - ContinueButton
   layers:
   - Default
   - TransparentFX
