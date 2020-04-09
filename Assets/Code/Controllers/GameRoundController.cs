@@ -35,9 +35,10 @@ public class GameRoundController : MonoBehaviour
         GameEventCenter.restartGame.RemoveListener(RestartGame);
     }
 
-    private void StartNewGame(GameSettings startGameInfo)
+    private void StartNewGame(GameSettings gameSettings)
     {
-        recordedScore = new RecordedScore(startGameInfo.NumberOfGoals);
+        recordedScore = new RecordedScore(gameSettings.NumberOfGoals);
+        aiPaddle.GetComponent<AiController>().SetDifficultyLevel(gameSettings.DifficultyLevel);
         GameEventCenter.scoreChange.Trigger(recordedScore);
     }
     private void RestartGame(string status)
