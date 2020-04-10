@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class AiController : MonoBehaviour
 {
-    [SerializeField] private float paddleSpeed  = default;
-    [SerializeField] private float responseTime = default;
+    [SerializeField] private float paddleSpeedAtMaxDifficulty      = default;
+    [SerializeField] private float responseTimeAtMaxDifficulty     = default;
     [SerializeField] private float minVerticalDistanceBeforeMoving = default;
+
+    bool wasDifficultySet = false;
+    private int percentOfMaxDifficulty;
+    private float paddleSpeed;
+    private float responseTime;
 
     private Rigidbody2D paddleBody;
     private BoxCollider2D paddleCollider;
@@ -19,7 +24,7 @@ public class AiController : MonoBehaviour
     private BallTrajectoryPredictor ballPredictor;
     private Coroutine updateTargetCoroutine;
 
-    private string PaddleName       { get { return paddleCollider.name; } }
+    private string PaddleName       { get { return paddleCollider.name;             } }
     private float  BallHalfHeight   { get { return ballCollider.bounds.extents.y;   } }
     private float  PaddleHalfHeight { get { return paddleCollider.bounds.extents.y; } }
     private bool IsBallWithinPaddleRange(float paddleY, float ballY)
@@ -45,8 +50,20 @@ public class AiController : MonoBehaviour
     public void Reset()
     {
         paddleBody.position = initialPaddlePosition;
-        targetPaddleY = initialPaddlePosition.y;
+        targetPaddleY       = initialPaddlePosition.y;
         StartTargetUpdateRoutine(CoroutineUtils.RunRepeatedly(Time.fixedDeltaTime, TrackBall));
+    }
+    public void SetDifficultyLevel(int percent)
+    {
+        if (MathUtils.IsWithinRange(percent, 0, 100))
+        {
+            wasDifficultySet = true;
+            percentOfMaxDifficulty = percent;
+        }
+        else
+        {
+            Debug.LogError("Ai's difficulty level cannot be set to a percentage outside the range [0, 100]");
+        }
     }
 
     void Awake()
@@ -55,13 +72,26 @@ public class AiController : MonoBehaviour
         paddleCollider = gameObject.transform.GetComponent<BoxCollider2D>();
         initialPaddlePosition = paddleBody.position;
 
-        ballBody      = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
-        ballCollider  = GameObject.Find("Ball").GetComponent<BoxCollider2D>();
+        GameObject ball = GameObject.Find("Ball");
+        ballBody      = ball.GetComponent<Rigidbody2D>();
+        ballCollider  = ball.GetComponent<BoxCollider2D>();
         ballPredictor = new BallTrajectoryPredictor();
         targetPaddleY = initialPaddlePosition.y;
     }
     void Start()
     {
+        if (wasDifficultySet)
+        {
+            float aiHandicap = percentOfMaxDifficulty / 100.0f;
+            paddleSpeed  = paddleSpeedAtMaxDifficulty * aiHandicap;
+            responseTime = responseTimeAtMaxDifficulty - (responseTimeAtMaxDifficulty * aiHandicap);
+        }
+        else
+        {
+            Debug.LogError("Difficulty level was not set, defaulting to a 100%");
+            paddleSpeed  = paddleSpeedAtMaxDifficulty;
+            responseTime = responseTimeAtMaxDifficulty;
+        }
         Reset();
     }
     void FixedUpdate()

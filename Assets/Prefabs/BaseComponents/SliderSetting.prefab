@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 6227942650522312966}
   - component: {fileID: 2183476791903722618}
   m_Layer: 5
-  m_Name: AdjustableSetting
+  m_Name: SliderSetting
   m_TagString: AdjustableSetting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -431,12 +431,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   description: My
-  numberSuffix: 
-  defaultValue: 50
+  numberSuffix: ' %'
+  initialValue: 50
   minValue: 0
   maxValue: 100
   label: {fileID: 4094719987939711721}
   slider: {fileID: 8790674234200764951}
+  lastSavedValue: 0
 --- !u!1 &8709757552060569423
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +529,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 29.8
+  m_fontSize: 29.4
   m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 1

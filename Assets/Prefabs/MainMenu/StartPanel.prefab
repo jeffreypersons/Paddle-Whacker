@@ -749,6 +749,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2183476791903722618, guid: 6747c968d3a7faf488dce370b255173b,
+        type: 3}
+      propertyPath: initialValue
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2183476791903722618, guid: 6747c968d3a7faf488dce370b255173b,
+        type: 3}
+      propertyPath: maxValue
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4094719987939711721, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
       propertyPath: m_textInfo.characterCount
