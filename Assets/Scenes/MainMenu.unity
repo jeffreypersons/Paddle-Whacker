@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 580242444010156192}
   m_Layer: 5
   m_Name: Menu
-  m_TagString: Canvas
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -804,35 +804,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 580242444010156195}
     m_Modifications:
-    - target: {fileID: 2601689950958128432, guid: bd5fe3fce5f28454f807f37b0daed415,
-        type: 3}
-      propertyPath: m_text
-      value: Paddle Whacker
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601689950958128432, guid: bd5fe3fce5f28454f807f37b0daed415,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601689950958128432, guid: bd5fe3fce5f28454f807f37b0daed415,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601689950958128432, guid: bd5fe3fce5f28454f807f37b0daed415,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2601689950958128438, guid: bd5fe3fce5f28454f807f37b0daed415,
         type: 3}
       propertyPath: m_Name
       value: Maintitle
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601689950958128438, guid: bd5fe3fce5f28454f807f37b0daed415,
-        type: 3}
-      propertyPath: m_TagString
-      value: Title
       objectReference: {fileID: 0}
     - target: {fileID: 2601689950958128439, guid: bd5fe3fce5f28454f807f37b0daed415,
         type: 3}
@@ -1457,11 +1432,6 @@ PrefabInstance:
     - target: {fileID: 5082345569953656212, guid: d39af4927c82c9a4e8acc193e6e881dc,
         type: 3}
       propertyPath: m_Name
-      value: Subtitle
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082345569953656212, guid: d39af4927c82c9a4e8acc193e6e881dc,
-        type: 3}
-      propertyPath: m_TagString
       value: Subtitle
       objectReference: {fileID: 0}
     - target: {fileID: 5082345569953656213, guid: d39af4927c82c9a4e8acc193e6e881dc,

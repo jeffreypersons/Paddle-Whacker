@@ -3,19 +3,35 @@
 --- !u!159 &1
 EditorSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 9
   m_ExternalVersionControlSupport: Visible Meta Files
   m_SerializationMode: 2
   m_LineEndingsForNewScripts: 0
   m_DefaultBehaviorMode: 1
+  m_PrefabRegularEnvironment: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729,
+    type: 3}
+  m_PrefabUIEnvironment: {fileID: 102900000, guid: 04aabb04d69c60c4a9f95c6aad3fba34,
+    type: 3}
   m_SpritePackerMode: 4
   m_SpritePackerPaddingPower: 1
   m_EtcTextureCompressorBehavior: 1
   m_EtcTextureFastCompressor: 1
   m_EtcTextureNormalCompressor: 2
   m_EtcTextureBestCompressor: 4
-  m_ProjectGenerationIncludedExtensions: txt;xml;fnt;cd
+  m_ProjectGenerationIncludedExtensions: txt;xml;fnt;cd;asmref
   m_ProjectGenerationRootNamespace: 
-  m_UserGeneratedProjectSuffix: 
   m_CollabEditorSettings:
     inProgressEnabled: 1
+  m_EnableTextureStreamingInEditMode: 1
+  m_EnableTextureStreamingInPlayMode: 1
+  m_AsyncShaderCompilation: 1
+  m_EnterPlayModeOptionsEnabled: 0
+  m_EnterPlayModeOptions: 3
+  m_ShowLightmapResolutionOverlay: 1
+  m_UseLegacyProbeSampleCount: 1
+  m_AssetPipelineMode: 1
+  m_CacheServerMode: 0
+  m_CacheServerEndpoint: 
+  m_CacheServerNamespacePrefix: default
+  m_CacheServerEnableDownload: 1
+  m_CacheServerEnableUpload: 1
