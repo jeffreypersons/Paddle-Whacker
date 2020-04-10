@@ -8,7 +8,8 @@ public class AiController : MonoBehaviour
     [SerializeField] private float responseTimeAtMaxDifficulty     = default;
     [SerializeField] private float minVerticalDistanceBeforeMoving = default;
 
-    private int percentOfMaxDifficulty = 100;
+    bool wasDifficultySet = false;
+    private int percentOfMaxDifficulty;
     private float paddleSpeed;
     private float responseTime;
 
@@ -56,6 +57,7 @@ public class AiController : MonoBehaviour
     {
         if (MathUtils.IsWithinRange(percent, 0, 100))
         {
+            wasDifficultySet = true;
             percentOfMaxDifficulty = percent;
         }
         else
@@ -75,13 +77,21 @@ public class AiController : MonoBehaviour
         ballCollider  = ball.GetComponent<BoxCollider2D>();
         ballPredictor = new BallTrajectoryPredictor();
         targetPaddleY = initialPaddlePosition.y;
-
-        float aiHandicap = percentOfMaxDifficulty / 100;
-        paddleSpeed  = paddleSpeedAtMaxDifficulty  * aiHandicap;
-        responseTime = responseTimeAtMaxDifficulty * aiHandicap;
     }
     void Start()
     {
+        if (wasDifficultySet)
+        {
+            float aiHandicap = percentOfMaxDifficulty / 100.0f;
+            paddleSpeed  = paddleSpeedAtMaxDifficulty * aiHandicap;
+            responseTime = responseTimeAtMaxDifficulty - (responseTimeAtMaxDifficulty * aiHandicap);
+        }
+        else
+        {
+            Debug.LogError("Difficulty level was not set, defaulting to a 100%");
+            paddleSpeed  = paddleSpeedAtMaxDifficulty;
+            responseTime = responseTimeAtMaxDifficulty;
+        }
         Reset();
     }
     void FixedUpdate()

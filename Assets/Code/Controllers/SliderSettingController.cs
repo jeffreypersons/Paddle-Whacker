@@ -7,7 +7,7 @@ public class SliderSettingController : MonoBehaviour
 {
     [SerializeField] private string description  = default;
     [SerializeField] private string numberSuffix = default;
-    [SerializeField] private string defaultValue = default;
+    [SerializeField] private string initialValue = default;
     [SerializeField] private string minValue     = default;
     [SerializeField] private string maxValue     = default;
 
@@ -24,15 +24,15 @@ public class SliderSettingController : MonoBehaviour
 
     void Awake()
     {
-        if (SetSliderValues(defaultValue, minValue, maxValue))
+        if (SetSliderValues(initialValue, minValue, maxValue))
         {
-            slider.value = float.Parse(defaultValue);
+            slider.value = float.Parse(initialValue);
             UpdateLabel(slider.value);
         }
     }
     void Update()
     {
-        SetSliderValues(defaultValue, minValue, maxValue);
+        SetSliderValues(initialValue, minValue, maxValue);
         #if UNITY_EDITOR
             UpdateLabel(slider.value);
         #endif

@@ -13,7 +13,6 @@ public class MainMenuController : MonoBehaviour
 
     private List<Button> buttonsToHideWhenActive;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;
-
     void Awake()
     {
         buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");

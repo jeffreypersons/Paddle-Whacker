@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08e6e93e462d54c831f2f23873b9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddleSpeed: 35
-  responseTime: 0.3
-  randomSlowDownVariance: 0.15
+  paddleSpeedAtMaxDifficulty: 60
+  responseTimeAtMaxDifficulty: 0.2
   minVerticalDistanceBeforeMoving: 0.1
 --- !u!1001 &4236686123768063564
 PrefabInstance:
