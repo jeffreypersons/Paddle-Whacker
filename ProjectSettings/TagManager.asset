@@ -9,24 +9,21 @@ TagManager:
   - HorizontalWall
   - VerticalWall
   - GuidingLine
-  - TextLabel
   - Canvas
   - Arena
   - EventSystem
   - Button
   - Scripter
-  - Detector
   - Goal
   - PaddleZone
   - Menu
   - Banner
-  - Label
-  - Panel
   - AdjustableSetting
   - Title
   - Subtitle
   - CancelButton
   - ContinueButton
+  - Label
   layers:
   - Default
   - TransparentFX
