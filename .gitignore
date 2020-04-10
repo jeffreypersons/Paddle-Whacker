@@ -1,6 +1,5 @@
 # project specific
-/Build Versions
-/Build Versions.app
+/Build Versions*
 /Standalone Builds
 
 #
