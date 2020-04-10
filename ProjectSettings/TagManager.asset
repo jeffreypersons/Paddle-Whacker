@@ -9,7 +9,6 @@ TagManager:
   - HorizontalWall
   - VerticalWall
   - GuidingLine
-  - Canvas
   - Arena
   - EventSystem
   - Button
@@ -23,7 +22,6 @@ TagManager:
   - Subtitle
   - CancelButton
   - ContinueButton
-  - Label
   layers:
   - Default
   - TransparentFX
