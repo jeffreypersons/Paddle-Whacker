@@ -13,14 +13,15 @@ public class MainMenuController : MonoBehaviour
 
     private List<Button> buttonsToHideWhenActive;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;
+
     void Awake()
     {
         buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
         labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Subtitle");
 
         submenuController.SetActionOnStartPressed(() => LoadGame());
-        submenuController.SetActionOnPanelOpen(()    => HideMainMenu(true));
-        submenuController.SetActionOnPanelClose(()   => HideMainMenu(false));
+        submenuController.SetActionOnPanelOpen(()    => ToggleMenuVisibility(true));
+        submenuController.SetActionOnPanelClose(()   => ToggleMenuVisibility(false));
 
         #if UNITY_WEBGL
             GameObjectUtils.SetButtonVisibility(quitButton, false);
@@ -50,9 +51,9 @@ public class MainMenuController : MonoBehaviour
         });
     }
 
-    private void HideMainMenu(bool enableMainMenu)
+    private void ToggleMenuVisibility(bool isVisible)
     {
-        bool hideBackground = !enableMainMenu;
+        bool hideBackground = !isVisible;
         for (int i = 0; i < buttonsToHideWhenActive.Count; i++)
         {
             buttonsToHideWhenActive[i].gameObject.SetActive(hideBackground);
@@ -62,5 +63,8 @@ public class MainMenuController : MonoBehaviour
         {
             labelsToHideWhenActive[i].enabled = hideBackground;
         }
+        #if UNITY_WEBGL
+            GameObjectUtils.SetButtonVisibility(quitButton, false);
+        #endif
     }
 }

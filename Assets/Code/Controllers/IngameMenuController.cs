@@ -51,12 +51,12 @@ public class IngameMenuController : MonoBehaviour
         restartButton.onClick.RemoveListener(TriggerRestartGameEvent);
         quitButton.onClick.RemoveListener(SceneUtils.QuitGame);
     }
-    private void ToggleMenuEnable(bool enableMenu)
+    private void ToggleMenuVisibility(bool isVisible)
     {
-        Time.timeScale = enableMenu? 0 : 1;
-        ingameMenu.SetActive(enableMenu);
+        Time.timeScale = isVisible? 0 : 1;
+        ingameMenu.SetActive(isVisible);
 
-        bool hideBackground = !enableMenu;
+        bool hideBackground = !isVisible;
         for (int i = 0; i < buttonsToHideWhenActive.Count; i++)
         {
             buttonsToHideWhenActive[i].gameObject.SetActive(hideBackground);
@@ -70,6 +70,9 @@ public class IngameMenuController : MonoBehaviour
         {
             spritesToHideWhenActive[i].enabled = hideBackground;
         }
+        #if UNITY_WEBGL
+            GameObjectUtils.SetButtonVisibility(quitButton, false);
+        #endif
     }
 
     private void OpenAsPauseMenu(RecordedScore recordedScore)
@@ -78,7 +81,7 @@ public class IngameMenuController : MonoBehaviour
         subtitle.text = recordedScore.LeftPlayerScore.ToString() + " - " + recordedScore.RightPlayerScore.ToString();
 
         GameObjectUtils.SetButtonVisibility(resumeButton, true);
-        ToggleMenuEnable(true);
+        ToggleMenuVisibility(true);
     }
     private void OpenAsEndGameMenu(RecordedScore recordedScore)
     {
@@ -86,13 +89,13 @@ public class IngameMenuController : MonoBehaviour
         subtitle.text = recordedScore.LeftPlayerScore.ToString() + " - " + recordedScore.RightPlayerScore.ToString();
 
         GameObjectUtils.SetButtonVisibility(resumeButton, false);
-        ToggleMenuEnable(true);
+        ToggleMenuVisibility(true);
     }
 
     private void ResumeGame()
     {
         GameEventCenter.resumeGame.Trigger("Resuming game");
-        ToggleMenuEnable(false);
+        ToggleMenuVisibility(false);
     }
     private void MoveToMainMenu()
     {
@@ -103,6 +106,6 @@ public class IngameMenuController : MonoBehaviour
     private void TriggerRestartGameEvent()
     {
         GameEventCenter.restartGame.Trigger("Restarting game");
-        ToggleMenuEnable(false);
+        ToggleMenuVisibility(false);
     }
 }
