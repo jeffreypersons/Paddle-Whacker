@@ -21,6 +21,10 @@ public class MainMenuController : MonoBehaviour
         submenuController.SetActionOnStartPressed(() => LoadGame());
         submenuController.SetActionOnPanelOpen(()    => HideMainMenu(true));
         submenuController.SetActionOnPanelClose(()   => HideMainMenu(false));
+
+        #if UNITY_WEBGL
+            GameObjectUtils.SetButtonVisibility(quitButton, false);
+        #endif
     }
 
     void OnEnable()

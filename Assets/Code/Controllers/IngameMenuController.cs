@@ -26,6 +26,10 @@ public class IngameMenuController : MonoBehaviour
 
         GameEventCenter.pauseGame.AddListener(OpenAsPauseMenu);
         GameEventCenter.winningScoreReached.AddListener(OpenAsEndGameMenu);
+
+        #if UNITY_WEBGL
+            GameObjectUtils.SetButtonVisibility(quitButton, false);
+        #endif
     }
     void OnDestroy()
     {
