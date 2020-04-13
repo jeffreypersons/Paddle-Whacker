@@ -11,20 +11,20 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button quitButton     = default;
     [SerializeField] private MainMenuPanelController mainMenuPanelController = default;
 
-    private List<Button> buttonsToHideWhenActive;
-    private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;
+    private List<Button> buttonsToHideWhenPanelIsOpen;
+    private List<TMPro.TextMeshProUGUI> labelToHideWhenPanelIsOpen;
 
     void Awake()
     {
-        buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
-        labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Subtitle");
+        buttonsToHideWhenPanelIsOpen = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
+        labelToHideWhenPanelIsOpen  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Subtitle");
 
         mainMenuPanelController.SetActionOnStartPressed(() => LoadGame());
         mainMenuPanelController.SetActionOnPanelOpen(()    => ToggleMenuVisibility(true));
         mainMenuPanelController.SetActionOnPanelClose(()   => ToggleMenuVisibility(false));
 
         #if UNITY_WEBGL
-            quitButton.SetActive(false);
+            GameObjectUtils.DisableButtonCompletely(quitButton);
         #endif
     }
 
@@ -54,16 +54,16 @@ public class MainMenuController : MonoBehaviour
     private void ToggleMenuVisibility(bool isVisible)
     {
         bool hideBackground = !isVisible;
-        for (int i = 0; i < buttonsToHideWhenActive.Count; i++)
+        for (int i = 0; i < buttonsToHideWhenPanelIsOpen.Count; i++)
         {
-            buttonsToHideWhenActive[i].gameObject.SetActive(hideBackground);
+            GameObjectUtils.SetButtonVisibility(buttonsToHideWhenPanelIsOpen[i], hideBackground);
         }
-        for (int i = 0; i < labelsToHideWhenActive.Count; i++)
+        for (int i = 0; i < labelToHideWhenPanelIsOpen.Count; i++)
         {
-            labelsToHideWhenActive[i].enabled = hideBackground;
+            GameObjectUtils.SetLabelVisibility(labelToHideWhenPanelIsOpen[i], hideBackground);
         }
         #if UNITY_WEBGL
-            quitButton.SetActive(false);
+            GameObjectUtils.DisableButtonCompletely(quitButton);
         #endif
     }
 }

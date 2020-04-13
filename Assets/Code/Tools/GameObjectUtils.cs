@@ -18,18 +18,30 @@ public static class GameObjectUtils
         };
         button.onClick.AddListener(handler);
     }
-    public static void SetAlpha(SpriteRenderer renderer, float alphaLevel)
+    public static void DisableButtonCompletely(Button button)
     {
-        Color color = renderer.color;
-        renderer.color = new Color(color.r, color.g, color.b, alphaLevel);
+        button.enabled = false;
+        button.gameObject.SetActive(false);
     }
+
+    // hides button WITHOUT disabling/setting-inactive
     public static void SetButtonVisibility(Button button, bool isVisible)
     {
+        button.image.enabled = isVisible;
         button.enabled = isVisible;
     }
     public static void SetLabelVisibility(TMPro.TextMeshProUGUI label, bool isVisible)
     {
         label.enabled = isVisible;
+    }
+    public static void SetSpriteVisibility(SpriteRenderer spriteRenderer, bool isVisible)
+    {
+        spriteRenderer.enabled = isVisible;
+    }
+    public static void SetAlpha(SpriteRenderer renderer, float alphaLevel)
+    {
+        Color color = renderer.color;
+        renderer.color = new Color(color.r, color.g, color.b, alphaLevel);
     }
     // note: only fetches active gameObjects
     public static List<GameObject> FindAllObjectsWithTags(params string[] tags)
