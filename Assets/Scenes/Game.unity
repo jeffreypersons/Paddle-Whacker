@@ -130,9 +130,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 52369772}
+  - component: {fileID: 52369773}
+  - component: {fileID: 52369774}
   - component: {fileID: 52369771}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: AudioManager
   m_TagString: Scripter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,8 +150,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: b74c1728a4c7cec4e8570a88fda81c31, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -248,6 +250,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &52369773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52369770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef6ad0560054644fb2bc3d0204aaffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &52369774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52369770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7641e668edaf5428be4b7ff3b87d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paddleHitSound: {fileID: 8300000, guid: 5b70a41fa95e9ea4289a6dbe18cc141e, type: 3}
+  wallHitSound: {fileID: 8300000, guid: d81c0ad38e509b84dbf9293df34132df, type: 3}
+  opponentGoalHitSound: {fileID: 0}
+  playerGoalHitSound: {fileID: 0}
+  playerWinSound: {fileID: 0}
+  playerLoseSound: {fileID: 0}
 --- !u!114 &202874577 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6887675718815047252, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
@@ -924,6 +956,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6180927729647490043, guid: 5e377b21f32d83f41ba832387a634dc0,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7.299999
+      objectReference: {fileID: 0}
     - target: {fileID: 7314720152407297408, guid: 5e377b21f32d83f41ba832387a634dc0,
         type: 3}
       propertyPath: m_Name
@@ -1052,6 +1089,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8338597669578423586, guid: 0173095caa3a77b4ebfecb9bd4d161d9,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 7.299999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
