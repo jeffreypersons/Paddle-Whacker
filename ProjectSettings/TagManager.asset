@@ -25,6 +25,7 @@ TagManager:
   - Canvas
   - Label
   - Audio
+  - Camera
   layers:
   - Default
   - TransparentFX
