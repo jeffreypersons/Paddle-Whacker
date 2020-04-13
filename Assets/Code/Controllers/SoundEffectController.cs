@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public class SoundEffectsController : MonoBehaviour
+public class SoundEffectController : MonoBehaviour
 {
     private float volumeScale;
     private AudioSource audioSource;

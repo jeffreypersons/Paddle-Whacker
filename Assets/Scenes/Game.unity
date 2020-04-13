@@ -130,6 +130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 52369772}
+  - component: {fileID: 52369773}
   - component: {fileID: 52369771}
   m_Layer: 0
   m_Name: SoundTrackManager
@@ -248,6 +249,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &52369773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52369770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef6ad0560054644fb2bc3d0204aaffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &205267530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6159814546350092377, guid: b5b0c2548e710314e882c4b1428eb985,
@@ -358,7 +371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &753974409
 MonoBehaviour:
@@ -467,6 +480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 968911530}
+  - component: {fileID: 968911528}
   - component: {fileID: 968911527}
   m_Layer: 0
   m_Name: SoundEffectManager
@@ -571,6 +585,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &968911528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968911526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7641e668edaf5428be4b7ff3b87d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paddleHitSound: {fileID: 8300000, guid: 5b70a41fa95e9ea4289a6dbe18cc141e, type: 3}
+  wallHitSound: {fileID: 8300000, guid: d81c0ad38e509b84dbf9293df34132df, type: 3}
+  opponentGoalHitSound: {fileID: 0}
+  playerGoalHitSound: {fileID: 0}
+  playerWinSound: {fileID: 0}
+  playerLoseSound: {fileID: 0}
 --- !u!4 &968911530
 Transform:
   m_ObjectHideFlags: 0
@@ -615,7 +647,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1812029253
 MonoBehaviour:

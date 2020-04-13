@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public class BackgroundMusicController : MonoBehaviour
+public class SoundTrackController : MonoBehaviour
 {
     private AudioSource track;
     private static float DEFAULT_VOLUME = 0.50f;
@@ -9,7 +9,7 @@ public class BackgroundMusicController : MonoBehaviour
     void Awake()
     {
         track = transform.gameObject.GetComponent<AudioSource>();
-        track.loop        = false;
+        track.loop        = true;
         track.playOnAwake = false;
         track.volume      = DEFAULT_VOLUME;
     }
@@ -30,25 +30,26 @@ public class BackgroundMusicController : MonoBehaviour
         GameEventCenter.resumeGame.RemoveListener(ResumeTrack);
         GameEventCenter.winningScoreReached.RemoveListener(EndTrack);
     }
-    void StartTrack(GameSettings gameSettings)
+
+    private void StartTrack(GameSettings gameSettings)
     {
         track.volume = gameSettings.MusicVolume / 100.0f;
         track.Play();
     }
-    void RestartTrack(string _)
+    private void RestartTrack(string _)
     {
         track.Stop();
         track.Play();
     }
-    void PauseTrack(RecordedScore _)
+    private void PauseTrack(RecordedScore _)
     {
         track.Pause();
     }
-    void ResumeTrack(string _)
+    private void ResumeTrack(string _)
     {
         track.UnPause();
     }
-    void EndTrack(RecordedScore _)
+    private void EndTrack(RecordedScore _)
     {
         track.Stop();
     }
