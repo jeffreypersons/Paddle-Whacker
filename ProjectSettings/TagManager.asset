@@ -22,6 +22,9 @@ TagManager:
   - Subtitle
   - CancelButton
   - ContinueButton
+  - Canvas
+  - Label
+  - Audio
   layers:
   - Default
   - TransparentFX
