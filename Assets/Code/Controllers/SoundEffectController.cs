@@ -49,18 +49,19 @@ public class SoundEffectController : MonoBehaviour
         GameEventCenter.winningScoreReached.RemoveListener(PlaySoundOnWinningScoreReached);
     }
 
-    void PauseAnyActiveSoundEffects(RecordedScore _)
+    private void PauseAnyActiveSoundEffects(RecordedScore _)
     {
         audioSource.Pause();
     }
-    void ResumeAnyActiveSoundEffects(string _)
+    private void ResumeAnyActiveSoundEffects(string _)
     {
         audioSource.UnPause();
     }
-    void SetVolume(GameSettings gameSettings)
+    private void SetVolume(GameSettings gameSettings)
     {
         volumeScale = gameSettings.SoundVolume / 100.0f;
     }
+
     private void PlaySoundOnPaddleHit(string _)
     {
         audioSource.PlayOneShot(paddleHitSound, volumeScale);
@@ -69,13 +70,27 @@ public class SoundEffectController : MonoBehaviour
     {
         audioSource.PlayOneShot(wallHitSound, volumeScale);
     }
-    private void PlaySoundOnGoalHit(string _)
-    {
-        // ??
-    }
 
+    private void PlaySoundOnGoalHit(string goalName)
+    {
+        if (goalName.StartsWith("Left"))
+        {
+            audioSource.PlayOneShot(playerGoalHitSound, volumeScale);
+        }
+        else
+        {
+            audioSource.PlayOneShot(opponentGoalHitSound, volumeScale);
+        }
+    }
     private void PlaySoundOnWinningScoreReached(RecordedScore recordedScore)
     {
-        // ??
+        if (recordedScore.IsLeftPlayerWinning())
+        {
+            audioSource.PlayOneShot(playerWinSound, volumeScale);
+        }
+        else
+        {
+            audioSource.PlayOneShot(playerLoseSound, volumeScale);
+        }
     }
 }

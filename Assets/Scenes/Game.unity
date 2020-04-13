@@ -151,7 +151,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b74c1728a4c7cec4e8570a88fda81c31, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -602,7 +602,7 @@ MonoBehaviour:
   opponentGoalHitSound: {fileID: 0}
   playerGoalHitSound: {fileID: 0}
   playerWinSound: {fileID: 0}
-  playerLoseSound: {fileID: 0}
+  playerLoseSound: {fileID: 8300000, guid: a1bae669e456f1440bbebc46fb3d313e, type: 3}
 --- !u!4 &968911530
 Transform:
   m_ObjectHideFlags: 0
