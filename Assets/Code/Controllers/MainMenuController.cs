@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button settingsButton = default;
     [SerializeField] private Button aboutButton    = default;
     [SerializeField] private Button quitButton     = default;
-    [SerializeField] private SubmainMenuController submenuController = default;
+    [SerializeField] private MainMenuPanelController submenuController = default;
 
     private List<Button> buttonsToHideWhenActive;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;
@@ -24,7 +24,7 @@ public class MainMenuController : MonoBehaviour
         submenuController.SetActionOnPanelClose(()   => ToggleMenuVisibility(false));
 
         #if UNITY_WEBGL
-            GameObjectUtils.SetButtonVisibility(quitButton, false);
+            quitButton.SetActive(false);
         #endif
     }
 
@@ -57,14 +57,13 @@ public class MainMenuController : MonoBehaviour
         for (int i = 0; i < buttonsToHideWhenActive.Count; i++)
         {
             buttonsToHideWhenActive[i].gameObject.SetActive(hideBackground);
-            buttonsToHideWhenActive[i].enabled = hideBackground;
         }
         for (int i = 0; i < labelsToHideWhenActive.Count; i++)
         {
             labelsToHideWhenActive[i].enabled = hideBackground;
         }
         #if UNITY_WEBGL
-            GameObjectUtils.SetButtonVisibility(quitButton, false);
+            quitButton.SetActive(false);
         #endif
     }
 }
