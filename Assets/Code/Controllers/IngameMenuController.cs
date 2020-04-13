@@ -28,7 +28,7 @@ public class IngameMenuController : MonoBehaviour
         GameEventCenter.winningScoreReached.AddListener(OpenAsEndGameMenu);
 
         #if UNITY_WEBGL
-            GameObjectUtils.SetButtonVisibility(quitButton, false);
+            GameObjectUtils.DisableButtonCompletely(quitButton, false);
         #endif
     }
     void OnDestroy()
@@ -60,7 +60,6 @@ public class IngameMenuController : MonoBehaviour
         for (int i = 0; i < buttonsToHideWhenActive.Count; i++)
         {
             buttonsToHideWhenActive[i].gameObject.SetActive(hideBackground);
-            buttonsToHideWhenActive[i].enabled = hideBackground;
         }
         for (int i = 0; i < labelsToHideWhenActive.Count; i++)
         {

@@ -25,7 +25,6 @@ public static class GameObjectUtils
     }
     public static void SetButtonVisibility(Button button, bool isVisible)
     {
-        button.gameObject.SetActive(isVisible);
         button.enabled = isVisible;
     }
     public static void SetLabelVisibility(TMPro.TextMeshProUGUI label, bool isVisible)
