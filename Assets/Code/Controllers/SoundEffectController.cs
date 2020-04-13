@@ -5,6 +5,7 @@ public class SoundEffectsController : MonoBehaviour
 {
     private float volumeScale;
     private AudioSource audioSource;
+    private static float DEFAULT_VOLUME = 0.50f;
 
     [SerializeField] private AudioClip paddleHitSound;
     [SerializeField] private AudioClip wallHitSound;
@@ -18,31 +19,44 @@ public class SoundEffectsController : MonoBehaviour
     void Awake()
     {
         audioSource = transform.gameObject.GetComponent<AudioSource>();
+        audioSource.loop        = false;
+        audioSource.playOnAwake = false;
+        audioSource.volume      = DEFAULT_VOLUME;
     }
 
     void OnEnable()
     {
-        GameEventCenter.startNewGame.AddListener(SetVolume);
-
         GameEventCenter.paddleHit.AddListener(PlaySoundOnPaddleHit);
         GameEventCenter.horizontalWallHit.AddListener(PlaySoundOnWallHit);
         GameEventCenter.verticalWallHit.AddListener(PlaySoundOnWallHit);
-
         GameEventCenter.goalHit.AddListener(PlaySoundOnGoalHit);
+
+        GameEventCenter.startNewGame.AddListener(SetVolume);
+        GameEventCenter.pauseGame.AddListener(PauseAnyActiveSoundEffects);
+        GameEventCenter.resumeGame.AddListener(ResumeAnyActiveSoundEffects);
         GameEventCenter.winningScoreReached.AddListener(PlaySoundOnWinningScoreReached);
     }
     void OnDisable()
     {
-        GameEventCenter.startNewGame.RemoveListener(SetVolume);
-
         GameEventCenter.paddleHit.RemoveListener(PlaySoundOnPaddleHit);
         GameEventCenter.horizontalWallHit.RemoveListener(PlaySoundOnWallHit);
         GameEventCenter.verticalWallHit.RemoveListener(PlaySoundOnWallHit);
-
         GameEventCenter.goalHit.RemoveListener(PlaySoundOnGoalHit);
+
+        GameEventCenter.startNewGame.RemoveListener(SetVolume);
+        GameEventCenter.pauseGame.RemoveListener(PauseAnyActiveSoundEffects);
+        GameEventCenter.resumeGame.RemoveListener(ResumeAnyActiveSoundEffects);
         GameEventCenter.winningScoreReached.RemoveListener(PlaySoundOnWinningScoreReached);
     }
 
+    void PauseAnyActiveSoundEffects(RecordedScore _)
+    {
+        audioSource.Pause();
+    }
+    void ResumeAnyActiveSoundEffects(string _)
+    {
+        audioSource.UnPause();
+    }
     void SetVolume(GameSettings gameSettings)
     {
         volumeScale = gameSettings.SoundVolume / 100.0f;

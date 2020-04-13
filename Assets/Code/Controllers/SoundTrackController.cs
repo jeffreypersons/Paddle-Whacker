@@ -4,14 +4,14 @@
 public class BackgroundMusicController : MonoBehaviour
 {
     private AudioSource track;
+    private static float DEFAULT_VOLUME = 0.50f;
 
     void Awake()
     {
         track = transform.gameObject.GetComponent<AudioSource>();
-        track.playOnAwake = true;
-        track.loop        = true;
-        track.volume      = 0.50f;
+        track.loop        = false;
         track.playOnAwake = false;
+        track.volume      = DEFAULT_VOLUME;
     }
 
     void OnEnable()
