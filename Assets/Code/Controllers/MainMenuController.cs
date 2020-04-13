@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button settingsButton = default;
     [SerializeField] private Button aboutButton    = default;
     [SerializeField] private Button quitButton     = default;
-    [SerializeField] private MainMenuPanelController submenuController = default;
+    [SerializeField] private MainMenuPanelController mainMenuPanelController = default;
 
     private List<Button> buttonsToHideWhenActive;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;
@@ -19,9 +19,9 @@ public class MainMenuController : MonoBehaviour
         buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
         labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Subtitle");
 
-        submenuController.SetActionOnStartPressed(() => LoadGame());
-        submenuController.SetActionOnPanelOpen(()    => ToggleMenuVisibility(true));
-        submenuController.SetActionOnPanelClose(()   => ToggleMenuVisibility(false));
+        mainMenuPanelController.SetActionOnStartPressed(() => LoadGame());
+        mainMenuPanelController.SetActionOnPanelOpen(()    => ToggleMenuVisibility(true));
+        mainMenuPanelController.SetActionOnPanelClose(()   => ToggleMenuVisibility(false));
 
         #if UNITY_WEBGL
             quitButton.SetActive(false);
@@ -30,16 +30,16 @@ public class MainMenuController : MonoBehaviour
 
     void OnEnable()
     {
-        startButton.onClick.AddListener(submenuController.OpenStartPanel);
-        settingsButton.onClick.AddListener(submenuController.OpenSettingsPanel);
-        aboutButton.onClick.AddListener(submenuController.OpenAboutPanel);
+        startButton.onClick.AddListener(mainMenuPanelController.OpenStartPanel);
+        settingsButton.onClick.AddListener(mainMenuPanelController.OpenSettingsPanel);
+        aboutButton.onClick.AddListener(mainMenuPanelController.OpenAboutPanel);
         quitButton.onClick.AddListener(SceneUtils.QuitGame);
     }
     void OnDisable()
     {
-        startButton.onClick.RemoveListener(submenuController.OpenStartPanel);
-        settingsButton.onClick.RemoveListener(submenuController.OpenSettingsPanel);
-        aboutButton.onClick.RemoveListener(submenuController.OpenAboutPanel);
+        startButton.onClick.RemoveListener(mainMenuPanelController.OpenStartPanel);
+        settingsButton.onClick.RemoveListener(mainMenuPanelController.OpenSettingsPanel);
+        aboutButton.onClick.RemoveListener(mainMenuPanelController.OpenAboutPanel);
         quitButton.onClick.RemoveListener(SceneUtils.QuitGame);
     }
 
@@ -47,7 +47,7 @@ public class MainMenuController : MonoBehaviour
     {
         SceneUtils.LoadScene("Game", () =>
         {
-            GameEventCenter.startNewGame.Trigger(submenuController.GetGameSettings());
+            GameEventCenter.startNewGame.Trigger(mainMenuPanelController.GetGameSettings());
         });
     }
 
