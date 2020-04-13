@@ -388,7 +388,7 @@ MonoBehaviour:
   settingsButton: {fileID: 1250114576}
   aboutButton: {fileID: 149932780}
   quitButton: {fileID: 2485890}
-  submenuController: {fileID: 1678574996}
+  mainMenuPanelController: {fileID: 1678574996}
 --- !u!1001 &930906539
 PrefabInstance:
   m_ObjectHideFlags: 0
