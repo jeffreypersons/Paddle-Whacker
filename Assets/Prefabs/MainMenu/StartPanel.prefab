@@ -514,6 +514,11 @@ PrefabInstance:
       propertyPath: minValue
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2183476791903722618, guid: 6747c968d3a7faf488dce370b255173b,
+        type: 3}
+      propertyPath: initialValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4094719987939711721, guid: 6747c968d3a7faf488dce370b255173b,
         type: 3}
       propertyPath: m_text
