@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
 
-// todo: handle difficulty level, maybe when ai controller is reset, pass it in?
+// note: relies on startNewGameEvent being triggered (from main menu), so if running in editor
+// expect null parameters, and just run from main menu instead
 public class GameRoundController : MonoBehaviour
 {
     private RecordedScore recordedScore;

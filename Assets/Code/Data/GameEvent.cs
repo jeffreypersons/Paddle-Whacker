@@ -8,7 +8,7 @@ public class GameEvent<EventData>
 {
     Action<EventData> action;
 
-    public int GetNumListeners { get { return action.GetInvocationList().Length; } }
+    public int NumListeners { get { return action.GetInvocationList().Length; } }
 
     public GameEvent()
     {

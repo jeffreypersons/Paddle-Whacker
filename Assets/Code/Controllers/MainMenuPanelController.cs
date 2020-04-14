@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // controller for opening sub panels of the main menu
 // - only one panel can be open at a time
 // - all panels have a back button, and some may have a continue button
-public class SubmainMenuController : MonoBehaviour
+public class MainMenuPanelController : MonoBehaviour
 {
     private Action actionOnStartPress;
     private Action actionOnPanelOpen;
@@ -60,7 +60,10 @@ public class SubmainMenuController : MonoBehaviour
         Button closeButton = GameObjectUtils.FindFirstChildWithTag<Button>(submenuPanel, "CancelButton");
         if (startButton)
         {
-            GameObjectUtils.AddAutoUnsubscribeOnClickListenerToButton(startButton, actionOnStartPress);
+            GameObjectUtils.AddAutoUnsubscribeOnClickListenerToButton(startButton, () =>
+            {
+                actionOnStartPress();
+            });
         }
         if (closeButton)
         {
