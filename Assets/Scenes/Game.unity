@@ -597,11 +597,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7641e668edaf5428be4b7ff3b87d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddleHitSound: {fileID: 8300000, guid: 5b70a41fa95e9ea4289a6dbe18cc141e, type: 3}
+  volumeScaleWallHit: 0.25
+  volumeScalePaddleHit: 0.35
+  volumeScaleGoalHit: 0.65
+  volumeScaleGameFinish: 1
   wallHitSound: {fileID: 8300000, guid: d81c0ad38e509b84dbf9293df34132df, type: 3}
-  opponentGoalHitSound: {fileID: 0}
-  playerGoalHitSound: {fileID: 0}
-  playerWinSound: {fileID: 0}
+  paddleHitSound: {fileID: 8300000, guid: 5b70a41fa95e9ea4289a6dbe18cc141e, type: 3}
+  playerScored: {fileID: 8300000, guid: c592feb565ca44548888ceb35c762d73, type: 3}
+  opponentScored: {fileID: 8300000, guid: 0f8a602646a56734b8d62b481b6d9b2e, type: 3}
+  playerWinSound: {fileID: 8300000, guid: dca2f8f1a32eb0c4c8ff48155041d99c, type: 3}
   playerLoseSound: {fileID: 8300000, guid: a1bae669e456f1440bbebc46fb3d313e, type: 3}
 --- !u!4 &968911530
 Transform:

@@ -4,14 +4,14 @@
 public class SoundTrackController : MonoBehaviour
 {
     private AudioSource track;
-    private static float DEFAULT_VOLUME = 0.50f;
+    private static float DEFAULT_MASTER_VOLUME = 1.0f;
 
     void Awake()
     {
         track = transform.gameObject.GetComponent<AudioSource>();
         track.loop        = true;
         track.playOnAwake = false;
-        track.volume      = DEFAULT_VOLUME;
+        track.volume      = DEFAULT_MASTER_VOLUME;
     }
 
     void OnEnable()

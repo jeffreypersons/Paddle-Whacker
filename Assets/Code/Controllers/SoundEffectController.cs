@@ -3,25 +3,27 @@
 
 public class SoundEffectController : MonoBehaviour
 {
-    private float volumeScale;
     private AudioSource audioSource;
-    private static float DEFAULT_VOLUME = 0.50f;
+    private static float DEFAULT_MASTER_VOLUME = 0.5f;
 
-    [SerializeField] private AudioClip paddleHitSound;
-    [SerializeField] private AudioClip wallHitSound;
+    [SerializeField] private float volumeScaleWallHit    = default;
+    [SerializeField] private float volumeScalePaddleHit  = default;
+    [SerializeField] private float volumeScaleGoalHit    = default;
+    [SerializeField] private float volumeScaleGameFinish = default;
 
-    [SerializeField] private AudioClip opponentGoalHitSound = default;
-    [SerializeField] private AudioClip playerGoalHitSound   = default;
-
-    [SerializeField] private AudioClip playerWinSound       = default;
-    [SerializeField] private AudioClip playerLoseSound      = default;
+    [SerializeField] private AudioClip wallHitSound    = default;
+    [SerializeField] private AudioClip paddleHitSound  = default;
+    [SerializeField] private AudioClip playerScored    = default;
+    [SerializeField] private AudioClip opponentScored  = default;
+    [SerializeField] private AudioClip playerWinSound  = default;
+    [SerializeField] private AudioClip playerLoseSound = default;
 
     void Awake()
     {
         audioSource = transform.gameObject.GetComponent<AudioSource>();
         audioSource.loop        = false;
         audioSource.playOnAwake = false;
-        audioSource.volume      = DEFAULT_VOLUME;
+        audioSource.volume      = DEFAULT_MASTER_VOLUME;
     }
 
     void OnEnable()
@@ -31,7 +33,7 @@ public class SoundEffectController : MonoBehaviour
         GameEventCenter.verticalWallHit.AddListener(PlaySoundOnWallHit);
         GameEventCenter.goalHit.AddListener(PlaySoundOnGoalHit);
 
-        GameEventCenter.startNewGame.AddListener(SetVolume);
+        GameEventCenter.startNewGame.AddListener(SetMasterVolume);
         GameEventCenter.pauseGame.AddListener(PauseAnyActiveSoundEffects);
         GameEventCenter.resumeGame.AddListener(ResumeAnyActiveSoundEffects);
         GameEventCenter.winningScoreReached.AddListener(PlaySoundOnWinningScoreReached);
@@ -43,7 +45,7 @@ public class SoundEffectController : MonoBehaviour
         GameEventCenter.verticalWallHit.RemoveListener(PlaySoundOnWallHit);
         GameEventCenter.goalHit.RemoveListener(PlaySoundOnGoalHit);
 
-        GameEventCenter.startNewGame.RemoveListener(SetVolume);
+        GameEventCenter.startNewGame.RemoveListener(SetMasterVolume);
         GameEventCenter.pauseGame.RemoveListener(PauseAnyActiveSoundEffects);
         GameEventCenter.resumeGame.RemoveListener(ResumeAnyActiveSoundEffects);
         GameEventCenter.winningScoreReached.RemoveListener(PlaySoundOnWinningScoreReached);
@@ -57,40 +59,40 @@ public class SoundEffectController : MonoBehaviour
     {
         audioSource.UnPause();
     }
-    private void SetVolume(GameSettings gameSettings)
+    private void SetMasterVolume(GameSettings gameSettings)
     {
-        volumeScale = gameSettings.SoundVolume / 100.0f;
+        audioSource.volume = gameSettings.SoundVolume / 100.0f;
     }
 
     private void PlaySoundOnPaddleHit(string _)
     {
-        audioSource.PlayOneShot(paddleHitSound, volumeScale);
+        audioSource.PlayOneShot(paddleHitSound, volumeScalePaddleHit);
     }
     private void PlaySoundOnWallHit(string _)
     {
-        audioSource.PlayOneShot(wallHitSound, volumeScale);
+        audioSource.PlayOneShot(wallHitSound, volumeScaleWallHit);
     }
 
     private void PlaySoundOnGoalHit(string goalName)
     {
         if (goalName.StartsWith("Left"))
         {
-            audioSource.PlayOneShot(playerGoalHitSound, volumeScale);
+            audioSource.PlayOneShot(opponentScored, volumeScaleGoalHit);
         }
         else
         {
-            audioSource.PlayOneShot(opponentGoalHitSound, volumeScale);
+            audioSource.PlayOneShot(playerScored, volumeScaleGoalHit);
         }
     }
     private void PlaySoundOnWinningScoreReached(RecordedScore recordedScore)
     {
         if (recordedScore.IsLeftPlayerWinning())
         {
-            audioSource.PlayOneShot(playerWinSound, volumeScale);
+            audioSource.PlayOneShot(playerWinSound, volumeScaleGameFinish);
         }
         else
         {
-            audioSource.PlayOneShot(playerLoseSound, volumeScale);
+            audioSource.PlayOneShot(playerLoseSound, volumeScaleGameFinish);
         }
     }
 }
