@@ -85,16 +85,15 @@ PrefabInstance:
     - target: {fileID: 1317211493842231035, guid: ff444f24ad531f04db7eaa2515c4a730,
         type: 3}
       propertyPath: m_text
-      value: 'Tired by the lack of originality found in most ''hit the ball with
-        a paddle'' genre of 2d games, Jeff wondered how it could be improved on.
+      value: 'It was early 2020, and in sampling games from the android store, Jeff
+        found himself tired by the lack of originality found in most ''hit the ball
+        with a paddle with a paddle'' genre of 2d games.
 
-        
 
-        Thus,
-        paddle whacker was born ovePaddleWhacker is a game that blends the vertical-only
-        movement of Pong with an Air-Hockey inspired arena.
-
-'
+        Then and there
+        it dawned on him that a game blending the vertical-only movement from pong
+        and the goals from air hockey could surpass both with regards to being fun
+        to play.'
       objectReference: {fileID: 0}
     - target: {fileID: 1317211493842231035, guid: ff444f24ad531f04db7eaa2515c4a730,
         type: 3}
