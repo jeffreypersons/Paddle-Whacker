@@ -1299,6 +1299,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1678574995}
     m_Modifications:
+    - target: {fileID: 740860354179590475, guid: e0957000c32928f48a969036e7d1e599,
+        type: 3}
+      propertyPath: m_text
+      value: "Tired by the lack of originality found in most 'hit the ball with a
+        paddle' genre of 2d games, Jeff wondered how it could be improved on.\r\n\r\nTaking
+        those ideas, he came up with Paddle Whacker - a game that blends the vertical-only\r
+        movement of Pong with an Air-Hockey inspired arena.\r"
+      objectReference: {fileID: 0}
     - target: {fileID: 2176643592344231257, guid: e0957000c32928f48a969036e7d1e599,
         type: 3}
       propertyPath: m_LocalPosition.x
