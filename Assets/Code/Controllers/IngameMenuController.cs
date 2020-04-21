@@ -28,7 +28,7 @@ public class IngameMenuController : MonoBehaviour
         GameEventCenter.winningScoreReached.AddListener(OpenAsEndGameMenu);
 
         #if UNITY_WEBGL
-            GameObjectUtils.DisableButtonCompletely(quitButton);
+            GameObjectUtils.SetButtonActiveAndEnabled(quitButton, false);
         #endif
     }
     void OnDestroy()
@@ -70,7 +70,7 @@ public class IngameMenuController : MonoBehaviour
             GameObjectUtils.SetSpriteVisibility(spritesToHideWhenActive[i], hideBackground);
         }
         #if UNITY_WEBGL
-            GameObjectUtils.DisableButtonCompletely(quitButton);
+            GameObjectUtils.SetButtonActiveAndEnabled(quitButton, false);
         #endif
     }
 
@@ -79,7 +79,7 @@ public class IngameMenuController : MonoBehaviour
         title.text    = "Game Paused";
         subtitle.text = recordedScore.LeftPlayerScore.ToString() + " - " + recordedScore.RightPlayerScore.ToString();
 
-        resumeButton.enabled = true;
+        GameObjectUtils.SetButtonActiveAndEnabled(resumeButton, true);
         ToggleMenuVisibility(true);
     }
     private void OpenAsEndGameMenu(RecordedScore recordedScore)
@@ -87,7 +87,7 @@ public class IngameMenuController : MonoBehaviour
         title.text    = recordedScore.IsLeftPlayerWinning() ? "Game Won" : "Game Lost";
         subtitle.text = recordedScore.LeftPlayerScore.ToString() + " - " + recordedScore.RightPlayerScore.ToString();
 
-        resumeButton.enabled = false;
+        GameObjectUtils.SetButtonActiveAndEnabled(resumeButton, false);
         ToggleMenuVisibility(true);
     }
 

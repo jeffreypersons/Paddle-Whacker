@@ -24,7 +24,7 @@ public class MainMenuController : MonoBehaviour
         mainMenuPanelController.SetActionOnPanelClose(()   => ToggleMenuVisibility(false));
 
         #if UNITY_WEBGL
-            GameObjectUtils.DisableButtonCompletely(quitButton);
+            GameObjectUtils.SetButtonActiveAndEnabled(quitButton, false);
         #endif
     }
 
@@ -63,7 +63,7 @@ public class MainMenuController : MonoBehaviour
             GameObjectUtils.SetLabelVisibility(labelToHideWhenPanelIsOpen[i], hideBackground);
         }
         #if UNITY_WEBGL
-            GameObjectUtils.DisableButtonCompletely(quitButton);
+            GameObjectUtils.SetButtonActiveAndEnabled(quitButton, false);
         #endif
     }
 }
