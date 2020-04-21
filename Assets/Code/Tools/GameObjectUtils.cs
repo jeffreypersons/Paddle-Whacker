@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 
-// note that these methods use old style for loops so that the found value an be modified after return
+// note that these methods use old style for loops so that the found value CAN be modified after return
 public static class GameObjectUtils
 {
     public static void AddAutoUnsubscribeOnClickListenerToButton(Button button, System.Action onButtonClicked)
@@ -18,31 +18,27 @@ public static class GameObjectUtils
         };
         button.onClick.AddListener(handler);
     }
-    public static void DisableButtonCompletely(Button button)
-    {
-        button.enabled = false;
-        button.gameObject.SetActive(false);
-    }
 
-    // hides button WITHOUT disabling/setting-inactive
-    public static void SetButtonVisibility(Button button, bool isVisible)
+    public static void SetSpriteVisibility(SpriteRenderer spriteRenderer, bool isVisible)
     {
-        button.image.enabled = isVisible;
-        button.enabled = isVisible;
+        spriteRenderer.enabled = isVisible;
     }
     public static void SetLabelVisibility(TMPro.TextMeshProUGUI label, bool isVisible)
     {
         label.enabled = isVisible;
     }
-    public static void SetSpriteVisibility(SpriteRenderer spriteRenderer, bool isVisible)
+    public static void SetButtonVisibility(Button button, bool isVisible)
     {
-        spriteRenderer.enabled = isVisible;
+        button.enabled       = isVisible;
+        button.image.enabled = isVisible;
     }
-    public static void SetAlpha(SpriteRenderer renderer, float alphaLevel)
+    public static void SetButtonActiveAndEnabled(Button button, bool isActiveAndEnabled)
     {
-        Color color = renderer.color;
-        renderer.color = new Color(color.r, color.g, color.b, alphaLevel);
+        button.gameObject.SetActive(isActiveAndEnabled);
+        button.enabled       = isActiveAndEnabled;
+        button.image.enabled = isActiveAndEnabled;
     }
+
     // note: only fetches active gameObjects
     public static List<GameObject> FindAllObjectsWithTags(params string[] tags)
     {
