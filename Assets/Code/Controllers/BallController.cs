@@ -3,6 +3,8 @@
 
 public class BallController : MonoBehaviour
 {
+    private float MAX_SPEED = 100.0f;
+
     [SerializeField] private float   ballSpeed        = default;
     [SerializeField] private Vector2 initialDirection = default;
 
@@ -20,6 +22,12 @@ public class BallController : MonoBehaviour
         ballBody        = gameObject.transform.GetComponent<Rigidbody2D>();
         ballCollider    = gameObject.transform.GetComponent<BoxCollider2D>();
         initialPosition = ballBody.position;
+
+        if (ballSpeed >= MAX_SPEED)
+        {
+            Debug.LogError($"Ball cannot be set to a speed of {ballSpeed} units, exceeding the limit of {MAX_SPEED} units - " +
+                           $"excessive speeds risk skipping through other (especially thin) object's colliders");
+        }
     }
     void Start()
     {
