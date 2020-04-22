@@ -17,9 +17,9 @@ public class BallController : MonoBehaviour
     }
     void Awake()
     {
-        ballBody          = gameObject.transform.GetComponent<Rigidbody2D>();
-        ballCollider      = gameObject.transform.GetComponent<BoxCollider2D>();
-        initialPosition   = ballBody.position;
+        ballBody        = gameObject.transform.GetComponent<Rigidbody2D>();
+        ballCollider    = gameObject.transform.GetComponent<BoxCollider2D>();
+        initialPosition = ballBody.position;
     }
     void Start()
     {
