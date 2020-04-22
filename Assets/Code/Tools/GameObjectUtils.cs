@@ -67,6 +67,7 @@ public static class GameObjectUtils
         }
         return objects;
     }
+
     // note: only fetches active game objects, null if not found
     public static GameObject FindFirstChildWithTag(GameObject gameObject, string tag)
     {
@@ -91,6 +92,28 @@ public static class GameObjectUtils
             {
                 return component;
             }
+        }
+        return default;
+    }
+
+    // note: only fetches active game object, null if not found
+    public static GameObject FindChildWithName(GameObject gameObject, string name)
+    {
+        Transform child = gameObject.transform.Find(name);
+        if (child != null && child.gameObject.activeSelf)
+        {
+            return child.gameObject;
+        }
+        return default;
+    }
+    // note: only fetches active game object, null if not found
+    public static T FindChildWithName<T>(GameObject gameObject, string name)
+    {
+        T componentOfChild;
+        Transform child = gameObject.transform.Find(name);
+        if (child != null && child.gameObject.activeSelf && child.TryGetComponent(out componentOfChild))
+        {
+            return componentOfChild;
         }
         return default;
     }

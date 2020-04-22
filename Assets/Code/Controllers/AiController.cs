@@ -138,6 +138,7 @@ public class AiController : MonoBehaviour
     private void PredictBallPosition()
     {
         ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
+        ballPredictor.DrawInEditor(Color.red, 1.50f);
         targetPaddleY = ballPredictor.EndPoint.y;
     }
     private void TryToHitBallFromHorizontalEdge()
