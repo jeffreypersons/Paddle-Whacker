@@ -31,8 +31,8 @@ public class AiController : MonoBehaviour
     private bool IsBallWithinPaddleRange(float paddleY, float ballY)
     {
         return MathUtils.IsOverlappingRange(
-            paddleY - PaddleHalfHeight - minVerticalDistanceBeforeMoving,
-            paddleY + PaddleHalfHeight + minVerticalDistanceBeforeMoving,
+            paddleY - PaddleHalfHeight,
+            paddleY + PaddleHalfHeight,
             ballY - BallHalfHeight,
             ballY + BallHalfHeight
         );
@@ -150,6 +150,10 @@ public class AiController : MonoBehaviour
         ballPredictor.ComputeNewTrajectory(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         float paddleY    = paddleCollider.bounds.center.y;
         float predictedY = ballPredictor.EndPoint.y;
+        #if UNITY_EDITOR
+            ballPredictor.DrawInEditor(Color.green, 1.50f);
+        #endif
+
         if (IsBallWithinPaddleRange(predictedY, ballBody.position.y))
         {
             targetPaddleY = paddleY + (paddleY - predictedY);
