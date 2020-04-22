@@ -11,10 +11,10 @@ public class BallTrajectoryPredictor
     public readonly LayerMask LayersUsedDuringComputation;
     private List<Vector2> path;
 
-    public bool Empty              { get { return path.Count == 0;           } }
-    public Vector2 this[int index] { get { return path[index];               } }
-    public Vector2 StartPoint      { get { return path[0];                   } }
-    public Vector2 EndPoint        { get { return path[path.Count - 1];      } }
+    public bool Empty              { get { return path.Count == 0;      } }
+    public Vector2 this[int index] { get { return path[index];          } }
+    public Vector2 StartPoint      { get { return path[0];              } }
+    public Vector2 EndPoint        { get { return path[path.Count - 1]; } }
 
     public BallTrajectoryPredictor(LayerMask layersUsedDuringComputation, int maxNumVertsAllowed=10)
     {
