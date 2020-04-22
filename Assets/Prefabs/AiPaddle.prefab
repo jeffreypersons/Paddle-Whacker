@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08e6e93e462d54c831f2f23873b9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddleSpeedAtMaxDifficulty: 60
+  paddleSpeedAtMaxDifficulty: 55
   responseTimeAtMaxDifficulty: 0.2
-  minVerticalDistanceBeforeMoving: 0.1
+  minVerticalDistanceBeforeMoving: 0.05
 --- !u!1001 &4236686123768063564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25,7 +25,7 @@ PrefabInstance:
     - target: {fileID: 5292606919760583534, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_Size.y
-      value: 49.14
+      value: 49.140007
       objectReference: {fileID: 0}
     - target: {fileID: 5292606919760583534, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}

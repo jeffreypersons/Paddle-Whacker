@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7617027791629370974}
   - component: {fileID: 1728929205}
   m_Layer: 9
-  m_Name: ball
+  m_Name: Ball
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: fab9da62314be7f45bbf63c2a1c9827c, type: 2}
   m_Interpolate: 1
@@ -143,5 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afdec29fe794c7846b5b1255117d67ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 70
+  ballSpeed: 75
   initialDirection: {x: 1, y: 0}
