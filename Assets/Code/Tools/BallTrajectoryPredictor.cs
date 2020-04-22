@@ -52,7 +52,7 @@ public class BallTrajectoryPredictor
         Vector2 direction = startDirection;
         while (!HasMetOrSurpassedTarget(position.x, targetX, startDirection))
         {
-            hit = Physics2D.Raycast(position, direction, maxRaycastDistance);
+            hit = Physics2D.Raycast(position, direction, Vector2.Distance(position, new Vector2(targetX, ExtrapolatePoint(position, direction, targetX).y)));
             if (hit.transform != null && (wallTags.Contains(hit.transform.tag) || hit.transform.CompareTag("Goal")))
             {
                 position = hit.point;
