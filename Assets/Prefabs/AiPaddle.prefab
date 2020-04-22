@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08e6e93e462d54c831f2f23873b9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddleSpeedAtMaxDifficulty: 55
-  responseTimeAtMaxDifficulty: 0.2
-  minVerticalDistanceBeforeMoving: 0.05
+  paddleSpeedAtMaxDifficulty: 45
+  responseTimeAtMaxDifficulty: 0.25
+  minVerticalDistanceBeforeMoving: 0.025
+  layersUsedWhenPredictingTrajectory:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &4236686123768063564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,7 +68,7 @@ PrefabInstance:
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -1.55
       objectReference: {fileID: 0}
     - target: {fileID: 8734476180867663120, guid: 9d0ad7303ce70c14b9c0d2e2239e6dff,
         type: 3}

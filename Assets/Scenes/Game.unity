@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04d4752c6ae92f44bfcfd9ccee633dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraWidth: 5
+  extraWidth: 7
   leftZone: {fileID: 895626402}
   rightZone: {fileID: 1233687423}
   leftPaddle: {fileID: 2058648478}
@@ -692,6 +692,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 872933276}
     m_Modifications:
+    - target: {fileID: 1129781707374916769, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1482564607410630762, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -778,6 +783,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 872933276}
     m_Modifications:
+    - target: {fileID: 1129781707374916769, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1482564607410630762, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1334,10 +1344,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
-      propertyPath: layersUsedWhenPredictingTrajectory.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
     - target: {fileID: 4898979997282198361, guid: 0173095caa3a77b4ebfecb9bd4d161d9,
         type: 3}
       propertyPath: m_Name
@@ -1397,16 +1403,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7531791794016172521, guid: 0173095caa3a77b4ebfecb9bd4d161d9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.00000035762787
-      objectReference: {fileID: 0}
-    - target: {fileID: 8338597669578423586, guid: 0173095caa3a77b4ebfecb9bd4d161d9,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 49.140003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
