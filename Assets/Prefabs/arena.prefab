@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5853589860258734046}
   m_Layer: 8
-  m_Name: arena
+  m_Name: Arena
   m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,12 @@ PrefabInstance:
     - target: {fileID: 1924874970051057241, guid: c4cc2c28a50477d41bc52db5dff48010,
         type: 3}
       propertyPath: m_Offset.y
-      value: -3
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924874970051057241, guid: c4cc2c28a50477d41bc52db5dff48010,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6551787347089147850, guid: c4cc2c28a50477d41bc52db5dff48010,
         type: 3}
@@ -145,7 +150,12 @@ PrefabInstance:
     - target: {fileID: 1924874970051057241, guid: c4cc2c28a50477d41bc52db5dff48010,
         type: 3}
       propertyPath: m_Offset.y
-      value: 3
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924874970051057241, guid: c4cc2c28a50477d41bc52db5dff48010,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6551787347089147850, guid: c4cc2c28a50477d41bc52db5dff48010,
         type: 3}
@@ -397,6 +407,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4440478279684549789, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440478279684549789, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709989145214492952, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709989145214492952, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665758789593376726, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665758789593376726, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dc1f69ba836c1a4e8c64affc011c474, type: 3}
 --- !u!4 &2909608369417018185 stripped
@@ -505,7 +545,12 @@ PrefabInstance:
     - target: {fileID: 4440478279684549789, guid: 5dc1f69ba836c1a4e8c64affc011c474,
         type: 3}
       propertyPath: m_Offset.x
-      value: 3
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440478279684549789, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5705851014657820474, guid: 5dc1f69ba836c1a4e8c64affc011c474,
         type: 3}
@@ -535,7 +580,12 @@ PrefabInstance:
     - target: {fileID: 6709989145214492952, guid: 5dc1f69ba836c1a4e8c64affc011c474,
         type: 3}
       propertyPath: m_Offset.x
-      value: 4
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709989145214492952, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7670509102420279796, guid: 5dc1f69ba836c1a4e8c64affc011c474,
         type: 3}
@@ -570,7 +620,12 @@ PrefabInstance:
     - target: {fileID: 8665758789593376726, guid: 5dc1f69ba836c1a4e8c64affc011c474,
         type: 3}
       propertyPath: m_Offset.x
-      value: 3
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665758789593376726, guid: 5dc1f69ba836c1a4e8c64affc011c474,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dc1f69ba836c1a4e8c64affc011c474, type: 3}
