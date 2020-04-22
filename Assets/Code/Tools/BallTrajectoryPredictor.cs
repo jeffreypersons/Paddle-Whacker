@@ -42,7 +42,7 @@ public class BallTrajectoryPredictor
     // compute trajectory by extending line from last position, reflecting each bounce,
     // and extending the line until either the target x value is reached, or the maximum number of points is met
     // note: overrides previous list of points, and for consistency considers goal as a wall to bounce off of
-    public void Compute(Vector2 startPosition, Vector2 startDirection, float targetX)
+    public void ComputeNewTrajectory(Vector2 startPosition, Vector2 startDirection, float targetX)
     {
         path.Clear();
         path.Add(startPosition);

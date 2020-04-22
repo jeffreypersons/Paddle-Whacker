@@ -137,13 +137,13 @@ public class AiController : MonoBehaviour
     }
     private void PredictBallPosition()
     {
-        ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
+        ballPredictor.ComputeNewTrajectory(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         ballPredictor.DrawInEditor(Color.red, 1.50f);
         targetPaddleY = ballPredictor.EndPoint.y;
     }
     private void TryToHitBallFromHorizontalEdge()
     {
-        ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
+        ballPredictor.ComputeNewTrajectory(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         float paddleY    = paddleCollider.bounds.center.y;
         float predictedY = ballPredictor.EndPoint.y;
         if (IsBallWithinPaddleRange(predictedY, ballBody.position.y))
