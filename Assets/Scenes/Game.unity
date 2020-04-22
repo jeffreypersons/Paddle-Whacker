@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04d4752c6ae92f44bfcfd9ccee633dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraWidth: 7
+  extraHorizontalPadding: 7
   leftZone: {fileID: 895626402}
   rightZone: {fileID: 1233687423}
   leftPaddle: {fileID: 2058648478}
