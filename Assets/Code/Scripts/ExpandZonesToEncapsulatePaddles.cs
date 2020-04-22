@@ -4,9 +4,9 @@
 [ExecuteAlways]
 public class ExpandZonesToEncapsulatePaddles : MonoBehaviour
 {
-    [SerializeField] private float extraWidth = default;
-    [SerializeField] private BoxCollider2D leftZone    = default;
-    [SerializeField] private BoxCollider2D rightZone   = default;
+    [SerializeField] private float extraHorizontalPadding = default;
+    [SerializeField] private BoxCollider2D leftZone       = default;
+    [SerializeField] private BoxCollider2D rightZone      = default;
 
     [SerializeField] private BoxCollider2D leftPaddle  = default;
     [SerializeField] private BoxCollider2D rightPaddle = default;
@@ -33,7 +33,7 @@ public class ExpandZonesToEncapsulatePaddles : MonoBehaviour
     private void ResizeZoneColliderToEncapsulatePaddle(BoxCollider2D zone, BoxCollider2D paddle)
     {
         float height = InnerArenaMaxY - InnerArenaMinY;
-        zone.size = new Vector3(paddle.size.x + extraWidth, height);
+        zone.size = new Vector3(paddle.size.x + extraHorizontalPadding, height);
         zone.transform.position = new Vector3(paddle.bounds.center.x, InnerArenaMinY + (height * 0.50f));
     }
 }
