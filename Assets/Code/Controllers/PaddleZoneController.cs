@@ -3,7 +3,7 @@
 
 public class PaddleZoneController : MonoBehaviour
 {
-    [SerializeField] private GameObject paddle;
+    [SerializeField] private GameObject paddle = default;
 
     private string paddleName;
     private BoxCollider2D paddleZoneCollider;
