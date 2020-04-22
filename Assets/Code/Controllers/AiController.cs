@@ -7,6 +7,7 @@ public class AiController : MonoBehaviour
     [SerializeField] private float paddleSpeedAtMaxDifficulty      = default;
     [SerializeField] private float responseTimeAtMaxDifficulty     = default;
     [SerializeField] private float minVerticalDistanceBeforeMoving = default;
+    [SerializeField] private LayerMask layersUsedWhenPredictingTrajectory = default;
 
     bool wasDifficultySet = false;
     private int percentOfMaxDifficulty;
@@ -75,7 +76,7 @@ public class AiController : MonoBehaviour
         GameObject ball = GameObject.Find("Ball");
         ballBody      = ball.GetComponent<Rigidbody2D>();
         ballCollider  = ball.GetComponent<BoxCollider2D>();
-        ballPredictor = new BallTrajectoryPredictor();
+        ballPredictor = new BallTrajectoryPredictor(layersUsedWhenPredictingTrajectory);
         targetPaddleY = initialPaddlePosition.y;
     }
     void Start()
