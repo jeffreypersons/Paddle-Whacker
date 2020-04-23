@@ -3,6 +3,9 @@
 
 public class PaddleZoneController : MonoBehaviour
 {
+    [SerializeField] private GameObject paddle = default;
+
+    private string paddleName;
     private BoxCollider2D paddleZoneCollider;
     private Vector2 lastRecordedInPosition;
     private Vector2 lastRecordedInVelocity;
@@ -11,6 +14,7 @@ public class PaddleZoneController : MonoBehaviour
 
     void Awake()
     {
+        paddleName = paddle.name;
         paddleZoneCollider = gameObject.transform.GetComponent<BoxCollider2D>();
     }
 
@@ -32,7 +36,7 @@ public class PaddleZoneController : MonoBehaviour
             lastRecordedOutPosition = ball.position;
             GameEventCenter.zoneIntersection.Trigger(
                 new PaddleZoneIntersectInfo(
-                    paddleZoneCollider.transform.parent.name,
+                    paddleName,
                     lastRecordedInPosition,
                     lastRecordedInVelocity,
                     lastRecordedOutPosition,

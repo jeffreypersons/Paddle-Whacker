@@ -33,7 +33,7 @@ public class PaddleZoneIntersectInfo
     public bool IsNearingMidlineFromLeft()  { return OutPosition.x < 0 && OutVelocity.x > 0; }
 
     public bool IsNearingRightGoalWall()    { return OutPosition.x > 0 && OutVelocity.x > 0; }
-    public bool IsNearingMidlineFromRight() { return OutPosition.x > 0 && OutVelocity.x < 0; }
+    public bool IsNearingMidLineFromRight() { return OutPosition.x > 0 && OutVelocity.x < 0; }
 
     public bool IsNearingGoalWall()
     {
@@ -41,7 +41,7 @@ public class PaddleZoneIntersectInfo
     }
     public bool IsNearingMidline()
     {
-        return IsNearingMidlineFromLeft() || IsNearingMidlineFromRight();
+        return IsNearingMidlineFromLeft() || IsNearingMidLineFromRight();
     }
     public bool BallPassedThrough()
     {

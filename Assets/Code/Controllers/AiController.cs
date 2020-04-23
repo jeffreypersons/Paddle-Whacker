@@ -7,6 +7,7 @@ public class AiController : MonoBehaviour
     [SerializeField] private float paddleSpeedAtMaxDifficulty      = default;
     [SerializeField] private float responseTimeAtMaxDifficulty     = default;
     [SerializeField] private float minVerticalDistanceBeforeMoving = default;
+    [SerializeField] private LayerMask layersUsedWhenPredictingTrajectory = default;
 
     bool wasDifficultySet = false;
     private int percentOfMaxDifficulty;
@@ -30,8 +31,8 @@ public class AiController : MonoBehaviour
     private bool IsBallWithinPaddleRange(float paddleY, float ballY)
     {
         return MathUtils.IsOverlappingRange(
-            paddleY - PaddleHalfHeight - minVerticalDistanceBeforeMoving,
-            paddleY + PaddleHalfHeight + minVerticalDistanceBeforeMoving,
+            paddleY - PaddleHalfHeight,
+            paddleY + PaddleHalfHeight,
             ballY - BallHalfHeight,
             ballY + BallHalfHeight
         );
@@ -75,7 +76,7 @@ public class AiController : MonoBehaviour
         GameObject ball = GameObject.Find("Ball");
         ballBody      = ball.GetComponent<Rigidbody2D>();
         ballCollider  = ball.GetComponent<BoxCollider2D>();
-        ballPredictor = new BallTrajectoryPredictor();
+        ballPredictor = new BallTrajectoryPredictor(layersUsedWhenPredictingTrajectory);
         targetPaddleY = initialPaddlePosition.y;
     }
     void Start()
@@ -137,15 +138,22 @@ public class AiController : MonoBehaviour
     }
     private void PredictBallPosition()
     {
-        ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
-        ballPredictor.DrawInEditor(Color.red, 1.50f);
+        ballPredictor.ComputeNewTrajectory(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         targetPaddleY = ballPredictor.EndPoint.y;
+
+        #if UNITY_EDITOR
+            ballPredictor.DrawInEditor(Color.red, 1.50f);
+        #endif
     }
     private void TryToHitBallFromHorizontalEdge()
     {
-        ballPredictor.Compute(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
+        ballPredictor.ComputeNewTrajectory(ballBody.position, ballBody.velocity.normalized, paddleBody.position.x);
         float paddleY    = paddleCollider.bounds.center.y;
         float predictedY = ballPredictor.EndPoint.y;
+        #if UNITY_EDITOR
+            ballPredictor.DrawInEditor(Color.green, 1.50f);
+        #endif
+
         if (IsBallWithinPaddleRange(predictedY, ballBody.position.y))
         {
             targetPaddleY = paddleY + (paddleY - predictedY);

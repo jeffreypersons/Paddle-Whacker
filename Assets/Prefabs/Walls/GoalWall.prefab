@@ -27,9 +27,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 788705559501769842}
-  - {fileID: 7670509102420279799}
   - {fileID: 5705851014657820473}
+  - {fileID: 7670509102420279799}
+  - {fileID: 788705559501769842}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 5033810390720941941, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941941, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -103,22 +103,12 @@ PrefabInstance:
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Name
-      value: UpperLeftWall
+      value: UpperWall
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Layer
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b912f211fa2f84da91ca642de1df7f, type: 3}
@@ -223,7 +213,7 @@ PrefabInstance:
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Name
-      value: LeftGoal
+      value: Goal
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -238,12 +228,12 @@ PrefabInstance:
     - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Offset.x
-      value: -4
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Size.x
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b912f211fa2f84da91ca642de1df7f, type: 3}
@@ -298,7 +288,7 @@ PrefabInstance:
     - target: {fileID: 5033810390720941941, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941941, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
@@ -323,22 +313,12 @@ PrefabInstance:
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Name
-      value: LowerLeftWall
+      value: LowerWall
       objectReference: {fileID: 0}
     - target: {fileID: 5033810390720941943, guid: d6b912f211fa2f84da91ca642de1df7f,
         type: 3}
       propertyPath: m_Layer
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8265823928639975322, guid: d6b912f211fa2f84da91ca642de1df7f,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6b912f211fa2f84da91ca642de1df7f, type: 3}
