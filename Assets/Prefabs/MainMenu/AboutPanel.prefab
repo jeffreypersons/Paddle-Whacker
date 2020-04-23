@@ -87,7 +87,7 @@ PrefabInstance:
       propertyPath: m_text
       value: "Tired by the lack of originality found in most 'hit the ball with a
         paddle' genre of 2d games, Jeff wondered how it could be improved on.\r\n\r\nTaking
-        those ideas, he came up with Paddle Whacker - a game that blends the vertical-only\r
+        those ideas, he came up with Paddle Whacker - a game that blends the vertical-only
         movement of Pong with an Air-Hockey inspired arena.\r"
       objectReference: {fileID: 0}
     - target: {fileID: 1317211493842231035, guid: ff444f24ad531f04db7eaa2515c4a730,
@@ -123,12 +123,12 @@ PrefabInstance:
     - target: {fileID: 1317211493842231035, guid: ff444f24ad531f04db7eaa2515c4a730,
         type: 3}
       propertyPath: m_fontSizeMin
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1317211493842231035, guid: ff444f24ad531f04db7eaa2515c4a730,
         type: 3}
       propertyPath: m_fontSizeMax
-      value: 25
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1317211493842231035, guid: ff444f24ad531f04db7eaa2515c4a730,
         type: 3}
