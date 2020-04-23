@@ -84,6 +84,11 @@ public class IngameMenuController : MonoBehaviour
     }
     private void OpenAsEndGameMenu(RecordedScore recordedScore)
     {
+        if (!recordedScore.IsWinningScoreReached())
+        {
+            Debug.LogError($"Opening ingame menu as triggered by event `WinningScoreReached`, " +
+                           $"but no players have met or surpassed the score: {recordedScore}");
+        }
         title.text    = recordedScore.IsLeftPlayerWinning() ? "Game Won" : "Game Lost";
         subtitle.text = recordedScore.LeftPlayerScore.ToString() + " - " + recordedScore.RightPlayerScore.ToString();
 

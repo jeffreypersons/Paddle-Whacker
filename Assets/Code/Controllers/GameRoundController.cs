@@ -21,6 +21,11 @@ public class GameRoundController : MonoBehaviour
         {
             Debug.LogError("Both player and paddle cannot be on the same side of the arena.");
         }
+        if (leftGoal.name == rightGoal.name)
+        {
+            Debug.LogError($"Left and Right goals must have unique names to identify which player scored, " +
+                           $"both are nonuniquely named {leftGoal.name}");
+        }
         GameEventCenter.startNewGame.AddAutoUnsubscribeListener(StartNewGame);
     }
 
