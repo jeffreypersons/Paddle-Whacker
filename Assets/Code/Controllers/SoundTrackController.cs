@@ -4,7 +4,7 @@
 public class SoundTrackController : MonoBehaviour
 {
     private AudioSource track;
-    private static float DEFAULT_MASTER_VOLUME = 1.0f;
+    private static float DEFAULT_MASTER_VOLUME = 0.50f;
 
     void Awake()
     {
@@ -31,7 +31,7 @@ public class SoundTrackController : MonoBehaviour
         GameEventCenter.winningScoreReached.RemoveListener(EndTrack);
     }
 
-    private void StartTrack(GameSettings gameSettings)
+    private void StartTrack(GameSettingsInfo gameSettings)
     {
         track.volume = gameSettings.MusicVolume / 100.0f;
         track.Play();
