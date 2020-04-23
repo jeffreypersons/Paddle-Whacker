@@ -943,6 +943,14 @@ MonoBehaviour:
   mainMenuButton: {fileID: 2111221937}
   restartButton: {fileID: 2111221936}
   quitButton: {fileID: 2111221935}
+  tagsOfButtonsToHideOnMenuOpen:
+  - Button
+  tagsOfLabelsToHideOnMenuOpen:
+  - Label
+  tagsOfSpritesToHideOnMenuOpen:
+  - Ball
+  - Paddle
+  - GuidingLine
 --- !u!1001 &1891626405
 PrefabInstance:
   m_ObjectHideFlags: 0
