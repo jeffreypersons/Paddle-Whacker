@@ -1295,6 +1295,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7394248188617143330, guid: ce246366c2d147c40af4cfe64ad4e09d,
+        type: 3}
+      propertyPath: initialValue
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce246366c2d147c40af4cfe64ad4e09d, type: 3}
 --- !u!1001 &4423620729958631719

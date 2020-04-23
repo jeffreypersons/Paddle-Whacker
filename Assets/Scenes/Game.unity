@@ -701,6 +701,11 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 4.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1129781707374916769, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 49.14
+      objectReference: {fileID: 0}
     - target: {fileID: 1482564607410630762, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -791,6 +796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129781707374916769, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 49.14
       objectReference: {fileID: 0}
     - target: {fileID: 1482564607410630762, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
         type: 3}
@@ -1349,12 +1359,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
-      propertyPath: initialMovementDelayAfterReset
-      value: 0.075
+      propertyPath: paddleSpeedAtMaxDifficulty
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
-      propertyPath: initialTimeDelayAfterReset
-      value: 0.125
+      propertyPath: ResponseTimeAtMinDifficulty
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4898979997282198361, guid: 0173095caa3a77b4ebfecb9bd4d161d9,
         type: 3}
