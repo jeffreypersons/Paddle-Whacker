@@ -5,12 +5,12 @@ using UnityEngine;
 public class AiController : MonoBehaviour
 {
     [SerializeField] private float paddleSpeedAtMaxDifficulty      = default;
-    [SerializeField] private float responseTimeAtMaxDifficulty     = default;
+    [SerializeField] private float ResponseTimeAtMinDifficulty     = default;
     [SerializeField] private float minVerticalDistanceBeforeMoving = default;
     [SerializeField] private float initialTimeDelayAfterReset      = default;
     [SerializeField] private LayerMask layersUsedWhenPredictingTrajectory = default;
 
-    bool wasDifficultySet = false;
+    private bool wasDifficultySet = false;
     private int percentOfMaxDifficulty;
     private float paddleSpeed;
     private float responseTime;
@@ -84,19 +84,16 @@ public class AiController : MonoBehaviour
         {
             float aiHandicap = percentOfMaxDifficulty / 100.0f;
             paddleSpeed  = paddleSpeedAtMaxDifficulty * aiHandicap;
-            responseTime = responseTimeAtMaxDifficulty - (responseTimeAtMaxDifficulty * aiHandicap);
+            responseTime = ResponseTimeAtMinDifficulty - (ResponseTimeAtMinDifficulty * aiHandicap);
         }
         else
         {
             Debug.LogError("Difficulty level was not set, defaulting to a 100%");
             paddleSpeed  = paddleSpeedAtMaxDifficulty;
-            responseTime = responseTimeAtMaxDifficulty;
+            responseTime = 0.0f;
         }
         Reset();
-
-        StartTargetUpdateRoutine(
-            CoroutineUtils.RunAfter(initialTimeDelayAfterReset, TargetRandomPositionWithinPaddleBounds)
-        );
+        StartTargetUpdateRoutine(CoroutineUtils.RunAfter(initialTimeDelayAfterReset, TargetPredictedBallPosition));
     }
     void FixedUpdate()
     {
@@ -141,16 +138,14 @@ public class AiController : MonoBehaviour
     }
     private void TargetPredictedBallPosition()
     {
+        Vector2 initialBallDirection = ballBody.velocity.normalized;
         float targetX = paddleCollider.ClosestPoint(ballBody.position).x;
-        ballPredictor.ComputeNewTrajectory(ballBody.position, ballBody.velocity.normalized, targetX);
-        if (IsBallWithinPaddleRange(paddleBody.position.y, ballPredictor.StartPoint.y) &&
-            IsBallWithinPaddleRange(paddleBody.position.y, ballPredictor.EndPoint.y))
+        ballPredictor.ComputeNewTrajectory(ballBody.position, initialBallDirection, targetX);
+        targetPaddleY = ballPredictor.EndPoint.y;
+        if (IsBallWithinPaddleRange(paddleCollider.bounds.center.y, ballPredictor.StartPoint.y) &&
+            IsBallWithinPaddleRange(paddleCollider.bounds.center.y, ballPredictor.EndPoint.y))
         {
-            TargetRandomPositionWithinPaddleBounds();
-        }
-        else
-        {
-            targetPaddleY = ballPredictor.EndPoint.y;
+            TargetRandomPositionWithinBounds(ballPredictor.EndPoint.y, BallHalfHeight * 0.50f, BallHalfHeight);
         }
         #if UNITY_EDITOR
             ballPredictor.DrawInEditor(Color.red, 1.50f);
@@ -175,13 +170,13 @@ public class AiController : MonoBehaviour
             targetPaddleY = paddleBody.position.y;
         }
     }
-    private void TargetRandomPositionWithinPaddleBounds()
-    {
-        targetPaddleY = paddleCollider.bounds.center.y +
-            (MathUtils.RandomSign() * Random.Range(PaddleHalfHeight * 0.25f, PaddleHalfHeight));
-    }
     private void TrackBall()
     {
         targetPaddleY = ballBody.position.y;
+    }
+    // returns a randomized number within the range [ratioOffsetFromPaddleCenter
+    private void TargetRandomPositionWithinBounds(float paddleY, float minDistance, float maxDistance)
+    {
+        targetPaddleY = paddleY + (MathUtils.RandomSign() * Random.Range(minDistance, maxDistance));
     }
 }
