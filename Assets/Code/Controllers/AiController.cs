@@ -124,7 +124,6 @@ public class AiController : MonoBehaviour
         bool isBallIncoming     = !isOnAiSide && hitZoneInfo.IsNearingMidline();
         bool isBallBehindPaddle =  isOnAiSide && hitZoneInfo.IsNearingGoalWall();
 
-        Debug.Log(hitZoneInfo);
         IEnumerator task;
         if (isBallIncoming)
         {
