@@ -389,6 +389,10 @@ MonoBehaviour:
   aboutButton: {fileID: 149932780}
   quitButton: {fileID: 2485890}
   mainMenuPanelController: {fileID: 1678574996}
+  tagsOfButtonsToHideWhenPanelIsOpen:
+  - Button
+  tagsOfLabelsToHideWhenPanelIsOpen:
+  - Subtitle
 --- !u!1001 &930906539
 PrefabInstance:
   m_ObjectHideFlags: 0

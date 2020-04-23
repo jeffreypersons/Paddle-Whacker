@@ -16,13 +16,16 @@ public class IngameMenuController : MonoBehaviour
     private List<Button> buttonsToHideWhenActive;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenActive;
     private List<SpriteRenderer> spritesToHideWhenActive;
+    [TagSelector] [SerializeField] private string[] tagsOfButtonsToHideOnMenuOpen = new string[] { };
+    [TagSelector] [SerializeField] private string[] tagsOfLabelsToHideOnMenuOpen  = new string[] { };
+    [TagSelector] [SerializeField] private string[] tagsOfSpritesToHideOnMenuOpen = new string[] { };
 
     void Awake()
     {
         ingameMenu.SetActive(false);  // ensures that the fetched objects are OUTSIDE the ingame menu
-        buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
-        labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Label");
-        spritesToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<SpriteRenderer>("Ball", "Paddle", "GuidingLine");
+        buttonsToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<Button>(tagsOfButtonsToHideOnMenuOpen);
+        labelsToHideWhenActive  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>(tagsOfLabelsToHideOnMenuOpen);
+        spritesToHideWhenActive = GameObjectUtils.FindAllObjectsWithTags<SpriteRenderer>(tagsOfSpritesToHideOnMenuOpen);
 
         GameEventCenter.pauseGame.AddListener(OpenAsPauseMenu);
         GameEventCenter.winningScoreReached.AddListener(OpenAsEndGameMenu);
