@@ -274,6 +274,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1728929205, guid: c8dbfa0f129a8e84e951632cab7d6425, type: 3}
+      propertyPath: initialDirection.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7617027791629370971, guid: c8dbfa0f129a8e84e951632cab7d6425,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -522,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e04d4752c6ae92f44bfcfd9ccee633dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraHorizontalPadding: 7
+  extraHorizontalPadding: 2.5
   leftZone: {fileID: 895626402}
   rightZone: {fileID: 1233687423}
   leftPaddle: {fileID: 2058648478}
@@ -695,7 +699,7 @@ PrefabInstance:
     - target: {fileID: 1129781707374916769, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
         type: 3}
       propertyPath: m_Size.x
-      value: 9
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1482564607410630762, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
         type: 3}
@@ -786,7 +790,7 @@ PrefabInstance:
     - target: {fileID: 1129781707374916769, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
         type: 3}
       propertyPath: m_Size.x
-      value: 9
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1482564607410630762, guid: d6f7c46cd823a224fa2d17fa7d6e69ed,
         type: 3}
@@ -1344,6 +1348,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: initialMovementDelayAfterReset
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: initialTimeDelayAfterReset
+      value: 0.125
+      objectReference: {fileID: 0}
     - target: {fileID: 4898979997282198361, guid: 0173095caa3a77b4ebfecb9bd4d161d9,
         type: 3}
       propertyPath: m_Name
