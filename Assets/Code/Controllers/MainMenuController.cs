@@ -10,14 +10,16 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button aboutButton    = default;
     [SerializeField] private Button quitButton     = default;
     [SerializeField] private MainMenuPanelController mainMenuPanelController = default;
-
+    
     private List<Button> buttonsToHideWhenPanelIsOpen;
-    private List<TMPro.TextMeshProUGUI> labelToHideWhenPanelIsOpen;
-
+    private List<TMPro.TextMeshProUGUI> labelsToHideWhenPanelIsOpen;
+    [TagSelector] [SerializeField] private string[] tagsOfButtonsToHideWhenPanelIsOpen = new string[] { };
+    [TagSelector] [SerializeField] private string[] tagsOfLabelsToHideWhenPanelIsOpen  = new string[] { };
+    
     void Awake()
     {
-        buttonsToHideWhenPanelIsOpen = GameObjectUtils.FindAllObjectsWithTags<Button>("Button");
-        labelToHideWhenPanelIsOpen  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>("Subtitle");
+        buttonsToHideWhenPanelIsOpen = GameObjectUtils.FindAllObjectsWithTags<Button>(tagsOfButtonsToHideWhenPanelIsOpen);
+        labelsToHideWhenPanelIsOpen  = GameObjectUtils.FindAllObjectsWithTags<TMPro.TextMeshProUGUI>(tagsOfLabelsToHideWhenPanelIsOpen);
 
         mainMenuPanelController.SetActionOnStartPressed(() => LoadGame());
         mainMenuPanelController.SetActionOnPanelOpen(()    => ToggleMenuVisibility(true));
@@ -58,9 +60,9 @@ public class MainMenuController : MonoBehaviour
         {
             GameObjectUtils.SetButtonVisibility(buttonsToHideWhenPanelIsOpen[i], hideBackground);
         }
-        for (int i = 0; i < labelToHideWhenPanelIsOpen.Count; i++)
+        for (int i = 0; i < labelsToHideWhenPanelIsOpen.Count; i++)
         {
-            GameObjectUtils.SetLabelVisibility(labelToHideWhenPanelIsOpen[i], hideBackground);
+            GameObjectUtils.SetLabelVisibility(labelsToHideWhenPanelIsOpen[i], hideBackground);
         }
         #if UNITY_WEBGL
             GameObjectUtils.SetButtonActiveAndEnabled(quitButton, false);
