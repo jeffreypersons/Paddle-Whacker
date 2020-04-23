@@ -33,13 +33,13 @@ public class MainMenuPanelController : MonoBehaviour
     public void SetActionOnPanelOpen(Action actionOnPanelOpen)     { this.actionOnPanelOpen  = actionOnPanelOpen;  }
     public void SetActionOnPanelClose(Action actionOnPanelClose)   { this.actionOnPanelClose = actionOnPanelClose; }
 
-    public GameSettings GetGameSettings()
+    public GameSettingsInfo GetGameSettings()
     {
-        return new GameSettings(
-            numberOfGoals:   (int)numberOfGoalsSetting.SliderValue,
-            difficultyLevel: (int)difficultySetting.SliderValue,
-            soundVolume:     (int)soundVolumeSetting.SliderValue,
-            musicVolume:     (int)musicVolumeSetting.SliderValue
+        return new GameSettingsInfo(
+            numberOfGoals:      (int)numberOfGoalsSetting.SliderValue,
+            difficultyPercent:  (int)difficultySetting.SliderValue,
+            soundVolumePercent: (int)soundVolumeSetting.SliderValue,
+            musicVolumePercent: (int)musicVolumeSetting.SliderValue
         );
     }
     private void DeactivePanels()

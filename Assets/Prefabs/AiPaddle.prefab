@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d08e6e93e462d54c831f2f23873b9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddleSpeedAtMaxDifficulty: 37.5
-  responseTimeAtMaxDifficulty: 0.325
-  minVerticalDistanceBeforeMoving: 0.025
-  initialTimeDelayAfterReset: 0.125
+  paddleSpeedAtMinDifficulty: 35
+  paddleSpeedAtMaxDifficulty: 70
+  responseTimeAtMinDifficulty: 0.45
+  responseTimeAtMaxDifficulty: 0.2
+  minVerticalDistanceBeforeMoving: 0.015
+  initialTimeDelayAfterReset: 0.15
   layersUsedWhenPredictingTrajectory:
     serializedVersion: 2
     m_Bits: 256
+  difficultyRatio: 0
 --- !u!1001 &4236686123768063564
 PrefabInstance:
   m_ObjectHideFlags: 0

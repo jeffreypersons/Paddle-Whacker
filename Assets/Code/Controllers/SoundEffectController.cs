@@ -4,7 +4,7 @@
 public class SoundEffectController : MonoBehaviour
 {
     private AudioSource audioSource;
-    private static float DEFAULT_MASTER_VOLUME = 0.5f;
+    private static float DEFAULT_MASTER_VOLUME = 0.25f;
 
     [SerializeField] private float volumeScaleWallHit    = default;
     [SerializeField] private float volumeScalePaddleHit  = default;
@@ -59,7 +59,7 @@ public class SoundEffectController : MonoBehaviour
     {
         audioSource.UnPause();
     }
-    private void SetMasterVolume(GameSettings gameSettings)
+    private void SetMasterVolume(GameSettingsInfo gameSettings)
     {
         audioSource.volume = gameSettings.SoundVolume / 100.0f;
     }

@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class AiController : MonoBehaviour
 {
-    [SerializeField] private float paddleSpeedAtMaxDifficulty      = default;
-    [SerializeField] private float ResponseTimeAtMinDifficulty     = default;
+    [SerializeField] private float paddleSpeedAtMinDifficulty  = default;
+    [SerializeField] private float paddleSpeedAtMaxDifficulty  = default;
+    [SerializeField] private float responseTimeAtMinDifficulty = default;
+    [SerializeField] private float responseTimeAtMaxDifficulty = default;
+
+    [SerializeField] private float initialTimeDelayAfterReset = default;
     [SerializeField] private float minVerticalDistanceBeforeMoving = default;
-    [SerializeField] private float initialTimeDelayAfterReset      = default;
     [SerializeField] private LayerMask layersUsedWhenPredictingTrajectory = default;
 
-    private bool wasDifficultySet = false;
-    private int percentOfMaxDifficulty;
+    private bool  wasDifficultySet;
+    private float difficultyRatio;
     private float paddleSpeed;
     private float responseTime;
+    private static float DEFAULT_DIFFICULTY_RATIO = 0.5f;
 
     private Rigidbody2D paddleBody;
     private BoxCollider2D paddleCollider;
@@ -53,16 +57,18 @@ public class AiController : MonoBehaviour
         paddleBody.position = initialPaddlePosition;
         targetPaddleY       = initialPaddlePosition.y;
     }
-    public void SetDifficultyLevel(int percent)
+    public void SetDifficultyLevel(float ratio)
     {
-        if (MathUtils.IsWithinRange(percent, 0, 100))
+        if (MathUtils.IsWithinRange(ratio, 0.00f, 1.00f))
         {
             wasDifficultySet = true;
-            percentOfMaxDifficulty = percent;
+            difficultyRatio  = ratio;
+            responseTime = Mathf.Lerp(responseTimeAtMinDifficulty, responseTimeAtMaxDifficulty, ratio);
+            paddleSpeed  = Mathf.Lerp(paddleSpeedAtMinDifficulty,  paddleSpeedAtMaxDifficulty,  ratio);
         }
         else
         {
-            Debug.LogError("Ai's difficulty level cannot be set to a percentage outside the range [0, 100]");
+            Debug.LogError($"DifficultyScale must be a ratio between 0.00 and 1.00, recieved {ratio} instead");
         }
     }
 
@@ -80,18 +86,12 @@ public class AiController : MonoBehaviour
     }
     void Start()
     {
-        if (wasDifficultySet)
+        if (!wasDifficultySet)
         {
-            float aiHandicap = percentOfMaxDifficulty / 100.0f;
-            paddleSpeed  = paddleSpeedAtMaxDifficulty * aiHandicap;
-            responseTime = ResponseTimeAtMinDifficulty - (ResponseTimeAtMinDifficulty * aiHandicap);
+            Debug.LogError($"Difficulty level was not successfully set, defaulting to a {DEFAULT_DIFFICULTY_RATIO}");
+            SetDifficultyLevel(DEFAULT_DIFFICULTY_RATIO);
         }
-        else
-        {
-            Debug.LogError("Difficulty level was not set, defaulting to a 100%");
-            paddleSpeed  = paddleSpeedAtMaxDifficulty;
-            responseTime = 0.0f;
-        }
+
         Reset();
         StartTargetUpdateRoutine(CoroutineUtils.RunAfter(initialTimeDelayAfterReset, TargetPredictedBallPosition));
     }
