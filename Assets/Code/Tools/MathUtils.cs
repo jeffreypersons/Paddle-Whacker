@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class MathUtils
 {
+    public static float RandomSign()
+    {
+        return Random.Range(0, 2) == 0? 1.0f : -1.0f;
+    }
     public static bool IsWithinRange(float val, float min, float max)
     {
         return (min < max) && (min <= val && val <= max);
