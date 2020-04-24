@@ -7,17 +7,23 @@ A unique take on old style of game, taking elements from pong and air hockey.
 Can download and play on itch.io!: https://jeffreypersons.itch.io/paddle-whacker
 
 ## Sample Screenshots
-### Start menu screen
-![image](https://user-images.githubusercontent.com/8084757/77353298-f28bdf00-6cfd-11ea-9506-a630c413fa19.png)
+### Main menu screen
+![image](https://raw.githubusercontent.com/jeffreypersons/Jeff-Images/master/paddlewhacker-screenshots/paddle%20whacker2%20-%20main%20menu.png)
+
+### Settings panel in main menu
+![image](https://raw.githubusercontent.com/jeffreypersons/Jeff-Images/master/paddlewhacker-screenshots/paddle%20whacker2%20-%20sound%20panel.png)
+
+### Create game panel in main menu
+![image](https://raw.githubusercontent.com/jeffreypersons/Jeff-Images/master/paddlewhacker-screenshots/paddle%20whacker2%20-%20start%20panel.png)
 
 ### Game play screen
-![image](https://user-images.githubusercontent.com/8084757/77353342-08999f80-6cfe-11ea-9f65-1435332b644a.png)
+![image](https://raw.githubusercontent.com/jeffreypersons/Jeff-Images/master/paddlewhacker-screenshots/v2%20gameplay.png)
 
 ### Game pause screen
-![image](https://user-images.githubusercontent.com/8084757/77353348-0cc5bd00-6cfe-11ea-8098-5c8691cc452f.png)
+![image](https://raw.githubusercontent.com/jeffreypersons/Jeff-Images/master/paddlewhacker-screenshots/v2%20pausemenu.png)
 
 ### Game end screen
-![image](https://user-images.githubusercontent.com/8084757/77353357-12bb9e00-6cfe-11ea-8a56-21d0c51af76f.png)
+![image](https://raw.githubusercontent.com/jeffreypersons/Jeff-Images/master/paddlewhacker-screenshots/v2%20endmenu.png)
 
 
 ## How the AI works
