@@ -1,4 +1,6 @@
 # project specific
+/Assets/Plugins/crosstales
+/Assets/Editor Default Resources/crosstales
 /Build Versions*
 /Standalone Builds
 
