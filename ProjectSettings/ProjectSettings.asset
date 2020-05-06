@@ -563,17 +563,17 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
-    1: CT_TPS
-    4: CT_TPS
-    7: CT_TPS
-    13: CT_TPS
-    14: CT_TPS
-    19: CT_TPS
-    21: CT_TPS
-    25: CT_TPS
-    27: CT_TPS
-    28: CT_TPS
-    29: CT_TPS
+    1: CT_TPS;CT_TPB
+    4: CT_TPS;CT_TPB
+    7: CT_TPS;CT_TPB
+    13: CT_TPS;CT_TPB
+    14: CT_TPS;CT_TPB
+    19: CT_TPS;CT_TPB
+    21: CT_TPS;CT_TPB
+    25: CT_TPS;CT_TPB
+    27: CT_TPS;CT_TPB
+    28: CT_TPS;CT_TPB
+    29: CT_TPS;CT_TPB
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration:
