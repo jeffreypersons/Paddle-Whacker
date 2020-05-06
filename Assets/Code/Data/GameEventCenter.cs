@@ -12,7 +12,7 @@ public static class GameEventCenter
     public static GameEvent<RecordedScore> scoreChange                = new GameEvent<RecordedScore>();
     public static GameEvent<PaddleZoneIntersectInfo> zoneIntersection = new GameEvent<PaddleZoneIntersectInfo>();
 
-    public static GameEvent<GameSettingsInfo>     startNewGame        = new GameEvent<GameSettingsInfo>();
+    public static GameEvent<GameSettingsInfo> startNewGame        = new GameEvent<GameSettingsInfo>();
     public static GameEvent<RecordedScore>    pauseGame           = new GameEvent<RecordedScore>();
     public static GameEvent<string>           resumeGame          = new GameEvent<string>();
     public static GameEvent<string>           gotoMainMenu        = new GameEvent<string>();
