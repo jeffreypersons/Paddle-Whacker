@@ -10,12 +10,12 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button aboutButton    = default;
     [SerializeField] private Button quitButton     = default;
     [SerializeField] private MainMenuPanelController mainMenuPanelController = default;
-    
+
     private List<Button> buttonsToHideWhenPanelIsOpen;
     private List<TMPro.TextMeshProUGUI> labelsToHideWhenPanelIsOpen;
     [TagSelector] [SerializeField] private string[] tagsOfButtonsToHideWhenPanelIsOpen = new string[] { };
     [TagSelector] [SerializeField] private string[] tagsOfLabelsToHideWhenPanelIsOpen  = new string[] { };
-    
+
     void Awake()
     {
         buttonsToHideWhenPanelIsOpen = GameObjectUtils.FindAllObjectsWithTags<Button>(tagsOfButtonsToHideWhenPanelIsOpen);

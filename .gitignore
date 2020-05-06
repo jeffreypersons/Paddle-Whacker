@@ -1,4 +1,5 @@
 # project specific
+.leu
 /Assets/Plugins/crosstales
 /Assets/Editor Default Resources/crosstales
 /Build Versions*
