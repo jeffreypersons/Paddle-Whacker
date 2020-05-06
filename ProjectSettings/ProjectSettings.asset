@@ -682,11 +682,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template_2D
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: C:\Users\jperm\Dropbox\Games\Unity\Pong\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: Jeff Enterprises
+  metroCertificateIssuer: Jeff Enterprises
+  metroCertificateNotAfter: 808175aaf442d701
   metroApplicationDescription: Template_2D
   wsaImages: {}
   metroTileShortName: 
