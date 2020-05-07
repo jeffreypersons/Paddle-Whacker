@@ -1055,6 +1055,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1828419141640549056, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
+        type: 3}
+      propertyPath: m_TagString
+      value: ButtonText
+      objectReference: {fileID: 0}
     - target: {fileID: 6209392992845193032, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
         type: 3}
       propertyPath: m_Camera
@@ -1169,6 +1174,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hud
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574834951393275854, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
+        type: 3}
+      propertyPath: m_TagString
+      value: ButtonText
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204, type: 3}

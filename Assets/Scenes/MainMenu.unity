@@ -391,6 +391,7 @@ MonoBehaviour:
   mainMenuPanelController: {fileID: 1678574996}
   tagsOfButtonsToHideWhenPanelIsOpen:
   - Button
+  - Label
   tagsOfLabelsToHideWhenPanelIsOpen:
   - Subtitle
 --- !u!1001 &930906539
@@ -1432,16 +1433,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 580242444010156195}
     m_Modifications:
-    - target: {fileID: 2601689950958128432, guid: bd5fe3fce5f28454f807f37b0daed415,
-        type: 3}
-      propertyPath: m_fontSizeMax
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 2601689950958128432, guid: bd5fe3fce5f28454f807f37b0daed415,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 128.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2601689950958128438, guid: bd5fe3fce5f28454f807f37b0daed415,
         type: 3}
       propertyPath: m_Name
@@ -1755,16 +1746,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 580242444010156195}
     m_Modifications:
-    - target: {fileID: 5082345569953656210, guid: d39af4927c82c9a4e8acc193e6e881dc,
-        type: 3}
-      propertyPath: m_fontSizeMax
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 5082345569953656210, guid: d39af4927c82c9a4e8acc193e6e881dc,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 5082345569953656212, guid: d39af4927c82c9a4e8acc193e6e881dc,
         type: 3}
       propertyPath: m_Name
