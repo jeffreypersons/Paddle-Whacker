@@ -6,7 +6,7 @@ EditorSettings:
   serializedVersion: 9
   m_ExternalVersionControlSupport: Visible Meta Files
   m_SerializationMode: 2
-  m_LineEndingsForNewScripts: 0
+  m_LineEndingsForNewScripts: 2
   m_DefaultBehaviorMode: 1
   m_PrefabRegularEnvironment: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729,
     type: 3}
