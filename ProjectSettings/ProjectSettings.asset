@@ -682,14 +682,14 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Template_2D
   metroPackageVersion: 
-  metroCertificatePath: C:\Users\jperm\Dropbox\Games\Unity\Pong\Assets\WSATestCertificate.pfx
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: Jeff Enterprises
   metroCertificateIssuer: Jeff Enterprises
   metroCertificateNotAfter: 808175aaf442d701
   metroApplicationDescription: Template_2D
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Paddle Whacker
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
