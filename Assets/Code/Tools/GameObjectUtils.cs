@@ -27,15 +27,25 @@ public static class GameObjectUtils
     {
         label.enabled = isVisible;
     }
+    // hide button without the overhead or implication of `SetActive`
+    // assumes active button with or without a textmeshpro child-label
     public static void SetButtonVisibility(Button button, bool isVisible)
     {
-        button.enabled       = isVisible;
+        button.enabled = isVisible;
         button.image.enabled = isVisible;
+
+        TMPro.TextMeshProUGUI buttonText = button.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        if (buttonText)
+        {
+            buttonText.enabled = isVisible;
+        }
     }
+    // fully enable/disable the button
+    // warning: unlike _just_ changing button visibility, this will affect ALL attached scripts/listeners
     public static void SetButtonActiveAndEnabled(Button button, bool isActiveAndEnabled)
     {
         button.gameObject.SetActive(isActiveAndEnabled);
-        button.enabled       = isActiveAndEnabled;
+        button.enabled = isActiveAndEnabled;
         button.image.enabled = isActiveAndEnabled;
     }
 
