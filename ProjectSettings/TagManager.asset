@@ -26,6 +26,7 @@ TagManager:
   - Label
   - Audio
   - Camera
+  - ButtonText
   layers:
   - Default
   - TransparentFX
