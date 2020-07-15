@@ -1,10 +1,14 @@
 # project specific
 .leu
 UpgradeLog.htm
+/Assets/Plugins
 /Assets/Plugins.meta
 /Assets/Plugins/crosstales
 /Assets/Plugins/crosstales.meta
+/Assets/Editor Default Resources
+/Assets/Editor Default Resources.meta
 /Assets/Editor Default Resources/crosstales
+
 PaddleWhacker.zip
 TPS_cache/
 Builds/
@@ -72,3 +76,5 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+Assets/Editor Default Resources.meta
+Assets/Plugins.meta
