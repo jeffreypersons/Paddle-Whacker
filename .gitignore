@@ -1,9 +1,13 @@
 # project specific
 .leu
+UpgradeLog.htm
+/Assets/Plugins.meta
 /Assets/Plugins/crosstales
+/Assets/Plugins/crosstales.meta
 /Assets/Editor Default Resources/crosstales
-/Build Versions*
-/Standalone Builds
+PaddleWhacker.zip
+TPS_cache/
+Builds/
 
 #
 # This .gitignore file should be placed at the root of your Unity project directory
@@ -68,7 +72,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
-PaddleWhacker.zip
-TPS_cache/
-Builds/
