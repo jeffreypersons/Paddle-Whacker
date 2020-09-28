@@ -54,13 +54,16 @@ public class GameRoundController : MonoBehaviour
     }
     private void MoveToNextRound(string goalName)
     {
+        ResetMovingObjects();
+
         if (recordedScore == null)
         {
             Debug.LogError($"RecordedScore that is set upon starting a new game {GetType().Name} is missing, " +
                            $"perhaps the event wasn't fired or listened to? " +
                            $"If running from game scene in play mode, try starting from main menu instead");
+            return;
         }
-        ResetMovingObjects();
+
         IncrementScoreBasedOnGoal(goalName);
         GameEventCenter.scoreChange.Trigger(recordedScore);
         if (recordedScore.IsWinningScoreReached())
