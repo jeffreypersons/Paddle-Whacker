@@ -5,30 +5,50 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float  paddleSpeed   = default;
     [SerializeField] private string inputAxisName = default;
+    [SerializeField] private float  minVerticalDistanceBeforeMoving = default;
 
+    private bool moveWithKeys;
     private Vector2 initialPosition;
-    private Vector2 inputVelocity;
+    private float targetPaddleY;
     private Rigidbody2D paddleBody;
 
     public void Reset()
     {
-        inputVelocity       = Vector2.zero;
-        paddleBody.velocity = inputVelocity;
+        paddleBody.velocity = Vector2.zero;
         paddleBody.position = initialPosition;
+        targetPaddleY       = initialPosition.y;
+        moveWithKeys        = true;
     }
+
     void Awake()
     {
         paddleBody          = gameObject.transform.GetComponent<Rigidbody2D>();
         initialPosition     = paddleBody.position;
-        inputVelocity       = Vector2.zero;
-        paddleBody.velocity = inputVelocity;
+        targetPaddleY       = paddleBody.position.y;
+        paddleBody.velocity = Vector2.zero;
+        moveWithKeys        = true;
     }
     void Update()
     {
-        inputVelocity = new Vector2(0, paddleSpeed * Input.GetAxisRaw(inputAxisName));
+        float directionalKeysInputStrength = Input.GetAxisRaw(inputAxisName);
+        moveWithKeys = !Mathf.Approximately(directionalKeysInputStrength, 0.00f);
+        if (moveWithKeys)
+        {
+            targetPaddleY = paddleBody.position.y + (paddleSpeed * directionalKeysInputStrength);
+        }
+        else
+        {
+            targetPaddleY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+        }
     }
     void FixedUpdate()
     {
-        paddleBody.velocity = inputVelocity;
+        if (Mathf.Abs(targetPaddleY - paddleBody.position.y) >= minVerticalDistanceBeforeMoving)
+        {
+            paddleBody.position = Vector2.MoveTowards(
+                paddleBody.position,
+                new Vector2(paddleBody.position.x, targetPaddleY),
+                paddleSpeed * Time.fixedDeltaTime);
+        }
     }
 }

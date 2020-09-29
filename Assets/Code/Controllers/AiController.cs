@@ -88,7 +88,7 @@ public class AiController : MonoBehaviour
     {
         if (!wasDifficultySet)
         {
-            Debug.LogError($"Difficulty level was not successfully set, defaulting to a {DEFAULT_DIFFICULTY_RATIO}");
+            Debug.Log($"Difficulty level was not selected, defaulting to a {DEFAULT_DIFFICULTY_RATIO}");
             SetDifficultyLevel(DEFAULT_DIFFICULTY_RATIO);
         }
 

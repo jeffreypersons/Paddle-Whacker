@@ -22,9 +22,10 @@ public static class MathUtils
     {
         return Random.Range(0, 2) == 0? 1.0f : -1.0f;
     }
+    // assumes min < max
     public static bool IsWithinRange(float val, float min, float max)
     {
-        return (min < max) && (min <= val && val <= max);
+        return min <= val && val <= max;
     }
     // assuming startA <= endA and startB <= endB, two ranges overlap in the case that
     // there exists a value C such that: startA <= C <= endA and startB <= C <= endB
