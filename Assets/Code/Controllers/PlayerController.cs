@@ -3,7 +3,7 @@
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float  paddleSpeed   = default;
+    [SerializeField] private float  paddleSpeedForKeys   = default;
     [SerializeField] private string inputAxisName = default;
     [SerializeField] private float  minVerticalDistanceBeforeMoving = default;
 
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         moveWithKeys = !Mathf.Approximately(directionalKeysInputStrength, 0.00f);
         if (moveWithKeys)
         {
-            targetPaddleY = paddleBody.position.y + (paddleSpeed * directionalKeysInputStrength);
+            targetPaddleY = paddleBody.position.y + (paddleSpeedForKeys * directionalKeysInputStrength);
         }
         else
         {
@@ -43,12 +43,15 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (Mathf.Abs(targetPaddleY - paddleBody.position.y) >= minVerticalDistanceBeforeMoving)
+        if (Mathf.Abs(targetPaddleY - paddleBody.position.y) < minVerticalDistanceBeforeMoving)
         {
-            paddleBody.position = Vector2.MoveTowards(
-                paddleBody.position,
-                new Vector2(paddleBody.position.x, targetPaddleY),
-                paddleSpeed * Time.fixedDeltaTime);
+            return;
         }
+
+        float maxDistanceCanMove = moveWithKeys? paddleSpeedForKeys : float.MaxValue;
+        paddleBody.position = Vector2.MoveTowards(
+            paddleBody.position,
+            new Vector2(paddleBody.position.x, targetPaddleY),
+            maxDistanceCanMove);
     }
 }
