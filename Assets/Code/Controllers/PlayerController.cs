@@ -3,36 +3,37 @@
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float  paddleSpeedForKeys   = default;
-    [SerializeField] private string inputAxisName = default;
+    [SerializeField] private float  paddleSpeedForKeys              = default;
+    [SerializeField] private string inputAxisName                   = default;
     [SerializeField] private float  minVerticalDistanceBeforeMoving = default;
 
-    private bool moveWithKeys;
+    private bool moveWithCursor;
+    private Vector2 previousMousePosition;
     private Vector2 initialPosition;
     private float targetPaddleY;
     private Rigidbody2D paddleBody;
 
     public void Reset()
     {
-        paddleBody.velocity = Vector2.zero;
-        paddleBody.position = initialPosition;
-        targetPaddleY       = initialPosition.y;
-        moveWithKeys        = true;
+        paddleBody.velocity   = Vector2.zero;
+        paddleBody.position   = initialPosition;
+        targetPaddleY         = initialPosition.y;
+        moveWithCursor        = true;
+        previousMousePosition = Input.mousePosition;
     }
 
     void Awake()
     {
-        paddleBody          = gameObject.transform.GetComponent<Rigidbody2D>();
-        initialPosition     = paddleBody.position;
-        targetPaddleY       = paddleBody.position.y;
-        paddleBody.velocity = Vector2.zero;
-        moveWithKeys        = true;
+        paddleBody = gameObject.transform.GetComponent<Rigidbody2D>();
+        initialPosition = paddleBody.position;
+        Reset();
     }
     void Update()
     {
+        float distanceCursorMoved = Input.mousePosition.y - previousMousePosition.y;
         float directionalKeysInputStrength = Input.GetAxisRaw(inputAxisName);
-        moveWithKeys = !Mathf.Approximately(directionalKeysInputStrength, 0.00f);
-        if (moveWithKeys)
+        moveWithCursor = Mathf.Approximately(directionalKeysInputStrength, 0.00f);
+        if (Mathf.Approximately(Input.mousePosition.y, previousMousePosition.y))
         {
             targetPaddleY = paddleBody.position.y + (paddleSpeedForKeys * directionalKeysInputStrength);
         }
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        float maxDistanceCanMove = moveWithKeys? paddleSpeedForKeys : float.MaxValue;
+        float maxDistanceCanMove = moveWithCursor? paddleSpeedForKeys : float.MaxValue;
         paddleBody.position = Vector2.MoveTowards(
             paddleBody.position,
             new Vector2(paddleBody.position.x, targetPaddleY),
