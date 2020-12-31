@@ -9,13 +9,13 @@ InputManager:
     m_Name: Vertical
     descriptiveName: MovePaddleUp
     descriptiveNegativeName: MovePaddleDown
-    negativeButton: down
-    positiveButton: up
-    altNegativeButton: s
-    altPositiveButton: w
-    gravity: 3
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
     dead: 0.0025
-    sensitivity: 3
+    sensitivity: 2.5
     snap: 1
     invert: 0
     type: 0
@@ -25,13 +25,13 @@ InputManager:
     m_Name: Horizontal
     descriptiveName: MovePaddleRight
     descriptiveNegativeName: MovePaddleLeft
-    negativeButton: left
-    positiveButton: right
-    altNegativeButton: a
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
     altPositiveButton: d
     gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    dead: 0.0025
+    sensitivity: 2.5
     snap: 1
     invert: 0
     type: 0
