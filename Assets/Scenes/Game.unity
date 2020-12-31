@@ -1460,7 +1460,7 @@ PrefabInstance:
     - target: {fileID: 7314720152407297414, guid: 5e377b21f32d83f41ba832387a634dc0,
         type: 3}
       propertyPath: m_BodyType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7314720152407297414, guid: 5e377b21f32d83f41ba832387a634dc0,
         type: 3}
@@ -1476,6 +1476,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: initialTimeDelayAfterReset
+      value: 0.175
+      objectReference: {fileID: 0}
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: paddleSpeedAtMaxDifficulty
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: paddleSpeedAtMinDifficulty
+      value: 27.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: responseTimeAtMinDifficulty
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 256875173, guid: 0173095caa3a77b4ebfecb9bd4d161d9, type: 3}
+      propertyPath: minVerticalDistanceBeforeMoving
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4898979997282198361, guid: 0173095caa3a77b4ebfecb9bd4d161d9,
         type: 3}
       propertyPath: m_Name
