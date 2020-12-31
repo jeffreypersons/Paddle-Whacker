@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (Mathf.Approximately(Input.mousePosition.y, previousMousePosition.y))
+        if (!Mathf.Approximately(Input.mousePosition.y, previousMousePosition.y))
         {
             targetPaddleY = Mathf.Clamp(
                 value: Camera.main.ScreenToWorldPoint(Input.mousePosition).y,

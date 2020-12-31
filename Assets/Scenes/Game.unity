@@ -1455,12 +1455,12 @@ PrefabInstance:
     - target: {fileID: 7314720152407297414, guid: 5e377b21f32d83f41ba832387a634dc0,
         type: 3}
       propertyPath: m_Mass
-      value: 18.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7314720152407297414, guid: 5e377b21f32d83f41ba832387a634dc0,
         type: 3}
       propertyPath: m_BodyType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7314720152407297414, guid: 5e377b21f32d83f41ba832387a634dc0,
         type: 3}
