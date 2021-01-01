@@ -27,6 +27,7 @@ TagManager:
   - Audio
   - Camera
   - ButtonText
+  - PauseButton
   layers:
   - Default
   - TransparentFX
