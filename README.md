@@ -3,6 +3,7 @@ A paddle-whacking game built from the ground up..
 A unique take on old style of game, taking elements from pong and air hockey.
 
 Can play in-browser at itch.io!: https://jeffreypersons.itch.io/paddle-whacker
+Can download on Android at: https://play.google.com/store/apps/dev?id=8132485239530785081)
 
 ## Sample Screenshots
 ### Main menu screen
