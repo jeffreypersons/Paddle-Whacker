@@ -872,7 +872,12 @@ PrefabInstance:
     - target: {fileID: 75059821299753889, guid: 448ea6afa125a744c972c6475a13305f,
         type: 3}
       propertyPath: m_Name
-      value: LetterBoxedCamera
+      value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 75059821299753890, guid: 448ea6afa125a744c972c6475a13305f,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448ea6afa125a744c972c6475a13305f, type: 3}
@@ -982,7 +987,7 @@ PrefabInstance:
     - target: {fileID: 4466985601498635099, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -37.500008
+      value: -37.5
       objectReference: {fileID: 0}
     - target: {fileID: 4466985601498635099, guid: 23a8a532fc8421b418119ada30c176d4,
         type: 3}
