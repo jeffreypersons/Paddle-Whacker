@@ -1,6 +1,7 @@
 # project specific
 PaddleWhacker.aab
 user.keystore
+*.symbols.zip
 
 .leu
 UpgradeLog.htm
