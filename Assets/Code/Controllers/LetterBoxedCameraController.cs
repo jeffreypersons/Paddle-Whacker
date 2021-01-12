@@ -11,21 +11,22 @@ public class LetterBoxedCameraController : MonoBehaviour
 {
     private const int MIN_NUM_PIXELS = 480;
     private const int MAX_NUM_PIXELS = 7680;
-    private const int DEFAULT_TARGET_WIDTH = 1920;
+    private const int DEFAULT_TARGET_WIDTH  = 1920;
     private const int DEFAULT_TARGET_HEIGHT = 1080;
+    private readonly Rect FULL_VIEWPORT_RECT = new Rect(0, 0, 1, 1);
 
     [SerializeField] [Range(MIN_NUM_PIXELS, MAX_NUM_PIXELS)] private int targetWidth  = DEFAULT_TARGET_WIDTH;
     [SerializeField] [Range(MIN_NUM_PIXELS, MAX_NUM_PIXELS)] private int targetHeight = DEFAULT_TARGET_HEIGHT;
 
-    private int currentScreenWidth;
-    private int currentScreenHeight;
+    private int currentWindowWidth;
+    private int currentWindowHeight;
 
     void Update()
     {
-        if (Screen.width != currentScreenWidth || Screen.height != currentScreenHeight)
+        if (Screen.width != currentWindowWidth || Screen.height != currentWindowHeight)
         {
-            currentScreenWidth  = Screen.width;
-            currentScreenHeight = Screen.height;
+            currentWindowWidth  = Screen.width;
+            currentWindowHeight = Screen.height;
             UpdateLetterbox();
         }
     }
@@ -33,12 +34,17 @@ public class LetterBoxedCameraController : MonoBehaviour
     private void UpdateLetterbox()
     {
         float targetAspect = targetWidth / (float)targetHeight;
-        float windowAspect = currentScreenWidth / (float)currentScreenHeight;
+        float windowAspect = currentWindowWidth / (float)currentWindowHeight;
         float scaleHeight = windowAspect / targetAspect;
 
         Camera attachedCamera = GetComponent<Camera>();
         attachedCamera.rect = scaleHeight < 1.0f ? GetLetterboxRect(scaleHeight) : GetPillarboxRect(scaleHeight);
-        Debug.Log($"Viewport adjusted to bounds [{attachedCamera.rect.min}, ({attachedCamera.rect.max})])");
+        if (attachedCamera.rect != FULL_VIEWPORT_RECT)
+        {
+            Debug.Log($"Current window resolution {currentWindowWidth}x{currentWindowHeight} " +
+                      $"differs in aspect of target {targetWidth}x{targetHeight} - " +
+                      $"adjusted viewport bounds to [{attachedCamera.rect.min}, ({attachedCamera.rect.max})])");
+        }
     }
     private Rect GetLetterboxRect(float scaleHeight)
     {
