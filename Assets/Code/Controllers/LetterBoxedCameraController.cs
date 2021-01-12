@@ -38,7 +38,7 @@ public class LetterBoxedCameraController : MonoBehaviour
         float scaleHeight = windowAspect / targetAspect;
 
         Camera attachedCamera = GetComponent<Camera>();
-        attachedCamera.rect = scaleHeight < 1.0f ? GetLetterboxRect(scaleHeight) : GetPillarboxRect(scaleHeight);
+        attachedCamera.rect = scaleHeight < 1.00f ? GetLetterboxRect(scaleHeight) : GetPillarboxRect(scaleHeight);
         if (attachedCamera.rect != FULL_VIEWPORT_RECT)
         {
             Debug.Log($"Current window resolution {currentWindowWidth}x{currentWindowHeight} " +
@@ -48,11 +48,11 @@ public class LetterBoxedCameraController : MonoBehaviour
     }
     private Rect GetLetterboxRect(float scaleHeight)
     {
-        return new Rect(0, (1f - scaleHeight) / 2f, 1f, scaleHeight);
+        return new Rect(0.00f, (1.00f - scaleHeight) * 0.50f, 1.00f, scaleHeight);
     }
     private Rect GetPillarboxRect(float scaleHeight)
     {
-        float scalewidth = 1.0f / scaleHeight;
-        return new Rect((1f - scalewidth) / 2f, 0, scalewidth, 1f);
+        float scalewidth = 1.00f / scaleHeight;
+        return new Rect((1.00f - scalewidth) * 0.50f, 0.00f, scalewidth, 1.00f);
     }
 }
