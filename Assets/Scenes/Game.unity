@@ -479,8 +479,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 75059821299753890, guid: 448ea6afa125a744c972c6475a13305f,
         type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0.16895288
+      objectReference: {fileID: 0}
+    - target: {fileID: 75059821299753890, guid: 448ea6afa125a744c972c6475a13305f,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75059821299753890, guid: 448ea6afa125a744c972c6475a13305f,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.66209424
+      objectReference: {fileID: 0}
+    - target: {fileID: 75059821299753890, guid: 448ea6afa125a744c972c6475a13305f,
+        type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.99973404
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 75059821299753891, guid: 448ea6afa125a744c972c6475a13305f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 448ea6afa125a744c972c6475a13305f, type: 3}
@@ -1243,6 +1263,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5565728782485971097, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -88
+      objectReference: {fileID: 0}
     - target: {fileID: 6209392992845193032, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
         type: 3}
       propertyPath: m_Camera
@@ -1357,6 +1382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hud
+      objectReference: {fileID: 0}
+    - target: {fileID: 6782805226354343961, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 88
       objectReference: {fileID: 0}
     - target: {fileID: 7044906182246766840, guid: 4fa0445a7556ddc4ca0b26fd1ecbc204,
         type: 3}
