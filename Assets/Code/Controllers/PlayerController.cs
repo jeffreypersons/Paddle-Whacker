@@ -32,20 +32,21 @@ public class PlayerController : MonoBehaviour
         initialPosition = paddleBody.position;
         Reset();
     }
-    void Update()
+
+    void FixedUpdate()
     {
+        // typically, we would want to put input managing in Update, but since and by doing the
+        // lightweight input retrieval here instead, it actually pushed the fps from 50-60 fps
+        // to around 120 as well as much more fluid player movement!
         if (!Mathf.Approximately(Input.mousePosition.y, previousMousePosition.y))
         {
             targetPaddleY = Mathf.Clamp(
                 value: Camera.main.ScreenToWorldPoint(Input.mousePosition).y,
-                min:   minPaddleY,
-                max:   maxPaddleY);
+                min: minPaddleY,
+                max: maxPaddleY);
         }
         previousMousePosition = Input.mousePosition;
-    }
 
-    void FixedUpdate()
-    {
         if (Mathf.Abs(targetPaddleY - paddleBody.position.y) >= minVerticalDistanceBeforeMoving)
         {
             paddleBody.position = Vector2.MoveTowards(
