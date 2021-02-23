@@ -1,8 +1,6 @@
 # Paddle Whacker
 A paddle whacking retro arcade game.
 
-Features a [custom-made AI using prediction based forecasting](https://github.com/jeffreypersons/Paddle-Whacker#how-the-ai-work), touch support and a variety of different difficulty levels, as well as game length and sound settings.
-
 Can play in-browser at itch.io: https://jeffreypersons.itch.io/paddle-whacker
 
 Can download for Android at: https://play.google.com/store/apps/dev?id=8132485239530785081)
@@ -10,6 +8,8 @@ Can download for Android at: https://play.google.com/store/apps/dev?id=813248523
 
 ## Background
 Tired by the lack of originality found in most 'hit the ball with a paddle' genre of 2d games, Jeff wondered how it could be improved on... Taking those ideas, he came up with _Paddle Whacker_ - a game that blends the vertical-only movement of Pong with an Air-Hockey inspired arena.
+
+After lots of balancing and polishing the game has grown into a fully featured experience playable on both android and browser. Most noteably, features a [custom-made AI using prediction based forecasting](https://github.com/jeffreypersons/Paddle-Whacker#how-the-ai-work), touch support and a variety of different difficulty levels, as well as game length and sound settings.
 
 
 ## Sample Screenshots
