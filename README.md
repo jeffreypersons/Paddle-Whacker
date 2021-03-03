@@ -3,7 +3,7 @@ A paddle whacking retro arcade game.
 
 Can play in-browser at itch.io: https://jeffreypersons.itch.io/paddle-whacker
 
-Can download for Android at: https://play.google.com/store/apps/dev?id=8132485239530785081)
+Can download for Android at: https://play.google.com/store/apps/dev?id=8132485239530785081
 
 
 ## Background
