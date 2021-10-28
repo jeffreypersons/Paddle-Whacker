@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
 
-// Camera for matching the target resolution with bars added to maintain the aspect ratio
-// 
-// Features
-// * maintains aspect ratio by adding letterbox to the sides of the view
-// * scene agnostic solution, handling different resolution without having to modify scene hierarchy or gameobject scales
+/*
+Camera for matching the target resolution with bars added to maintain the aspect ratio
+
+Features
+* Maintains aspect ratio by adding letterbox to the sides of the view
+* Scene agnostic solution, handling different resolution without having to modify scene hierarchy or gameobject scales
+*/
 [ExecuteInEditMode, RequireComponent(typeof(Camera))]
 public class LetterBoxedCameraController : MonoBehaviour
 {
@@ -35,15 +37,15 @@ public class LetterBoxedCameraController : MonoBehaviour
     {
         float targetAspect = targetWidth / (float)targetHeight;
         float windowAspect = currentWindowWidth / (float)currentWindowHeight;
-        float scaleHeight = windowAspect / targetAspect;
-
+        float scaleHeight  = windowAspect / targetAspect;
+        
         Camera attachedCamera = GetComponent<Camera>();
         attachedCamera.rect = scaleHeight < 1.00f ? GetLetterboxRect(scaleHeight) : GetPillarboxRect(scaleHeight);
         if (attachedCamera.rect != FULL_VIEWPORT_RECT)
         {
             Debug.Log($"Current window resolution {currentWindowWidth}x{currentWindowHeight} " +
                       $"differs in aspect of target {targetWidth}x{targetHeight} - " +
-                      $"adjusted viewport bounds to [{attachedCamera.rect.min}, ({attachedCamera.rect.max})])");
+                      $"adjusted viewport bounds to [{attachedCamera.rect.min}, {attachedCamera.rect.max}]");
         }
     }
     private Rect GetLetterboxRect(float scaleHeight)
