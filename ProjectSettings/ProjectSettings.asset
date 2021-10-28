@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 22
+  serializedVersion: 23
   productGUID: 6fa9c0bea03442f42a624cfbcc87f6cb
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -68,6 +68,12 @@ PlayerSettings:
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 1
   androidBlitType: 0
+  androidResizableWindow: 0
+  androidDefaultWindowWidth: 1920
+  androidDefaultWindowHeight: 1080
+  androidMinimumWindowWidth: 400
+  androidMinimumWindowHeight: 300
+  androidFullscreenMode: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 1
@@ -121,6 +127,7 @@ PlayerSettings:
   vulkanEnableSetSRGBWrite: 0
   vulkanEnablePreTransform: 0
   vulkanEnableLateAcquireNextImage: 0
+  vulkanEnableCommandBufferRecycling: 1
   m_SupportedAspectRatios:
     4:3: 1
     5:4: 1
@@ -155,7 +162,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 3
-  AndroidMinSdkVersion: 20
+  AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -211,6 +218,7 @@ PlayerSettings:
   iOSLaunchScreeniPadCustomStoryboardPath: 
   iOSDeviceRequirements: []
   iOSURLSchemes: []
+  macOSURLSchemes: []
   iOSBackgroundModes: 0
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 1
@@ -238,6 +246,7 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
+  AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: '{inproject}: user.keystore'
@@ -254,6 +263,7 @@ PlayerSettings:
     height: 180
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
+  chromeosInputEmulation: 1
   AndroidMinifyWithR8: 0
   AndroidMinifyRelease: 1
   AndroidMinifyDebug: 0
@@ -493,7 +503,7 @@ PlayerSettings:
   m_BuildTargetGraphicsAPIs:
   - m_BuildTarget: AndroidPlayer
     m_APIs: 150000000b000000
-    m_Automatic: 0
+    m_Automatic: 1
   - m_BuildTarget: iOSSupport
     m_APIs: 10000000
     m_Automatic: 1
@@ -514,6 +524,7 @@ PlayerSettings:
     m_EncodingQuality: 1
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetNormalMapEncoding: []
+  m_BuildTargetDefaultTextureCompressionFormat: []
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -523,6 +534,7 @@ PlayerSettings:
   cameraUsageDescription: 
   locationUsageDescription: 
   microphoneUsageDescription: 
+  bluetoothUsageDescription: 
   switchNMETAOverride: 
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
@@ -662,7 +674,9 @@ PlayerSettings:
   switchPlayerConnectionEnabled: 1
   switchUseNewStyleFilepaths: 0
   switchUseMicroSleepForYield: 1
+  switchEnableRamDiskSupport: 0
   switchMicroSleepForYieldTime: 25
+  switchRamDiskSpaceSize: 12
   ps4NPAgeRating: 12
   ps4NPTitleSecret: 
   ps4NPTrophyPackPath: 
@@ -758,21 +772,22 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: CT_TPS;CT_TPB
-    4: CT_TPS;CT_TPB
-    7: CT_TPS;CT_TPB
-    13: CT_TPS;CT_TPB
-    14: CT_TPS;CT_TPB
-    19: CT_TPS;CT_TPB
-    21: CT_TPS;CT_TPB
-    25: CT_TPS;CT_TPB
-    27: CT_TPS;CT_TPB
-    28: CT_TPS;CT_TPB
-    29: CT_TPS;CT_TPB
-    30: CT_TPS;CT_TPB
-    31: CT_TPS;CT_TPB
-    32: CT_TPS;CT_TPB
-    33: CT_TPS;CT_TPB
+    Android: CT_TPS;CT_TPB
+    CloudRendering: CT_TPS;CT_TPB
+    EmbeddedLinux: CT_TPS;CT_TPB
+    GameCoreScarlett: CT_TPS;CT_TPB
+    GameCoreXboxOne: CT_TPS;CT_TPB
+    Lumin: CT_TPS;CT_TPB
+    Nintendo Switch: CT_TPS;CT_TPB
+    PS4: CT_TPS;CT_TPB
+    PS5: CT_TPS;CT_TPB
+    Stadia: CT_TPS;CT_TPB
+    Standalone: CT_TPS;CT_TPB
+    WebGL: CT_TPS;CT_TPB
+    Windows Store Apps: CT_TPS;CT_TPB
+    XboxOne: CT_TPS;CT_TPB
+    iPhone: CT_TPS;CT_TPB
+    tvOS: CT_TPS;CT_TPB
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -924,4 +939,7 @@ PlayerSettings:
   organizationId: jperman8
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
+  playerDataPath: 
+  forceSRGBBlit: 1
   virtualTexturingSupportEnabled: 0
+  uploadClearedTextureDataAfterCreationFromScript: 1
