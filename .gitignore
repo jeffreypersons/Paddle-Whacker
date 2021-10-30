@@ -3,6 +3,9 @@ PaddleWhacker.aab
 user.keystore
 *.symbols.zip
 
+# ignore user specific editor settings
+/UserSettings
+
 .leu
 UpgradeLog.htm
 /Assets/Plugins
