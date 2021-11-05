@@ -10,6 +10,9 @@ scopes = {
 	"last_search.785D90A9" = ""
 	"OpenInspectorPreview.785D90A9" = "0"
 	"currentGroup.785D90A9" = "all"
+	"last_search.7F95D817" = "paddle"
+	"OpenInspectorPreview.7F95D817" = "0"
+	"currentGroup.7F95D817" = "menu"
 }
 providers = {
 	adb = {
@@ -59,6 +62,8 @@ providers = {
 	}
 }
 recentSearches = [
+	"p"
+	"ref:Assets/Code/Controllers/SoundTrackController.cs"
 ]
 searchItemFavorites = [
 ]
