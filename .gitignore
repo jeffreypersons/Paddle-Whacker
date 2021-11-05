@@ -4,17 +4,17 @@ user.keystore
 *.symbols.zip
 
 # ignore user specific editor settings
-/UserSettings
+UserSettings/
 
 .leu
 UpgradeLog.htm
-/Assets/Plugins
-/Assets/Plugins.meta
-/Assets/Plugins/crosstales
-/Assets/Plugins/crosstales.meta
-/Assets/Editor Default Resources
-/Assets/Editor Default Resources.meta
-/Assets/Editor Default Resources/crosstales
+Assets/Plugins
+Assets/Plugins.meta
+Assets/Plugins/crosstales
+Assets/Plugins/crosstales.meta
+Assets/Editor Default Resources
+Assets/Editor Default Resources.meta
+Assets/Editor Default Resources/crosstales
 
 PaddleWhacker.zip
 TPS_cache/
@@ -81,7 +81,8 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-# Crashlytics generated file
+# Crashlytics generated files
 crashlytics-build.properties
+
 Assets/Editor Default Resources.meta
 Assets/Plugins.meta
