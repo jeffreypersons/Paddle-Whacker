@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Globalization;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -24,7 +26,7 @@ public class SliderSettingController : MonoBehaviour
 
     void Awake()
     {
-        if (SetSliderValues(initialValue, minValue, maxValue))
+        if (UpdateSliderValues(initialValue, minValue, maxValue))
         {
             slider.value = float.Parse(initialValue);
             UpdateLabel(slider.value);
@@ -32,7 +34,7 @@ public class SliderSettingController : MonoBehaviour
     }
     void Update()
     {
-        SetSliderValues(initialValue, minValue, maxValue);
+        UpdateSliderValues(initialValue, minValue, maxValue);
         #if UNITY_EDITOR
             UpdateLabel(slider.value);
         #endif
@@ -46,15 +48,16 @@ public class SliderSettingController : MonoBehaviour
     {
         slider.onValueChanged.RemoveListener(UpdateLabel);
     }
+
     void UpdateLabel(float value)
     {
         label.text = $"{description}: {value}{numberSuffix}";
     }
 
-    private bool SetSliderValues(string initial, string min, string max)
+    private bool UpdateSliderValues(string initial, string min, string max)
     {
-        bool isAllInt   = MathUtils.IsAllInteger(initial, min, max);
-        bool isAllFloat = MathUtils.IsAllFloat(initial, min, max);
+        bool isAllInt   = IsAllInteger(initial, min, max);
+        bool isAllFloat = IsAllFloat  (initial, min, max);
 
         if (isAllInt || isAllFloat)
         {
@@ -69,5 +72,29 @@ public class SliderSettingController : MonoBehaviour
                            $"recieved {initial}, {min}, {max}` instead");
             return false;
         }
+    }
+
+    public static bool IsAllInteger(params string[] values)
+    {
+        foreach (string value in values)
+        {
+            if (!int.TryParse(value, out _))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static bool IsAllFloat(params string[] values)
+    {
+        foreach (string value in values)
+        {
+            if (!float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out _))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
