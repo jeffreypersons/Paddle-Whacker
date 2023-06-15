@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5853589860258734046}
   m_Layer: 8
-  m_Name: arena
+  m_Name: Arena
   m_TagString: Arena
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
