@@ -41,6 +41,7 @@ public class AiController : MonoBehaviour
             ballY + BallHalfHeight
         );
     }
+
     private void StartTargetUpdateRoutine(IEnumerator task)
     {
         // override target to no movement to avoid strange synchronizing behavior
@@ -57,6 +58,7 @@ public class AiController : MonoBehaviour
         paddleBody.position = initialPaddlePosition;
         targetPaddleY       = initialPaddlePosition.y;
     }
+
     public void SetDifficultyLevel(float ratio)
     {
         if (MathUtils.IsWithinRange(ratio, 0.00f, 1.00f))
@@ -72,6 +74,16 @@ public class AiController : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        GameEventCenter.zoneIntersection.AddListener(UpdateTargetTask);
+    }
+
+    void OnDisable()
+    {
+        GameEventCenter.zoneIntersection.RemoveListener(UpdateTargetTask);
+    }
+
     void Awake()
     {
         paddleBody     = gameObject.transform.GetComponent<Rigidbody2D>();
@@ -84,6 +96,7 @@ public class AiController : MonoBehaviour
         ballPredictor = new BallTrajectoryPredictor(layersUsedWhenPredictingTrajectory);
         targetPaddleY = initialPaddlePosition.y;
     }
+
     void Start()
     {
         if (!wasDifficultySet)
@@ -107,14 +120,6 @@ public class AiController : MonoBehaviour
         }
     }
 
-    void OnEnable()
-    {
-        GameEventCenter.zoneIntersection.AddListener(UpdateTargetTask);
-    }
-    void OnDisable()
-    {
-        GameEventCenter.zoneIntersection.RemoveListener(UpdateTargetTask);
-    }
     public void UpdateTargetTask(PaddleZoneIntersectInfo hitZoneInfo)
     {
         bool isOnAiSide         =  hitZoneInfo.ContainsPaddle(PaddleName);
@@ -136,6 +141,8 @@ public class AiController : MonoBehaviour
         }
         StartTargetUpdateRoutine(task);
     }
+
+
     private void TargetPredictedBallPosition()
     {
         Vector2 initialBallDirection = ballBody.velocity.normalized;
@@ -151,6 +158,7 @@ public class AiController : MonoBehaviour
             ballPredictor.DrawInEditor(Color.red, 1.50f);
         #endif
     }
+
     private void TryToHitBallFromHorizontalEdge()
     {
         float targetX = paddleCollider.ClosestPoint(ballBody.position).x;
@@ -170,10 +178,12 @@ public class AiController : MonoBehaviour
             targetPaddleY = paddleBody.position.y;
         }
     }
+
     private void TrackBall()
     {
         targetPaddleY = ballBody.position.y;
     }
+
     // returns a randomized number within the range [ratioOffsetFromPaddleCenter
     private void TargetRandomPositionWithinBounds(float paddleY, float minDistance, float maxDistance)
     {
