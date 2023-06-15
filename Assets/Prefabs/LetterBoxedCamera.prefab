@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77d6694a055a42b40b83a71f4f2b0958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetWidth: 1920
-  targetHeight: 1080
+  desiredWidth: 1920
+  desiredHeight: 1080
 --- !u!20 &75059821299753890
 Camera:
   m_ObjectHideFlags: 0
@@ -62,14 +62,22 @@ Camera:
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.1045796
+    x: 0.10953459
     y: 0
-    width: 0.7908408
+    width: 0.7809308
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
