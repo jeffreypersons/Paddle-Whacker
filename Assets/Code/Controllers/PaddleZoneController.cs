@@ -27,6 +27,7 @@ public class PaddleZoneController : MonoBehaviour
             lastRecordedInPosition = ball.position;
         }
     }
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))

@@ -34,11 +34,13 @@ public class GameRoundController : MonoBehaviour
         GameEventCenter.goalHit.AddListener(MoveToNextRound);
         GameEventCenter.restartGame.AddListener(RestartGame);
     }
+
     void OnDisable()
     {
         GameEventCenter.goalHit.RemoveListener(MoveToNextRound);
         GameEventCenter.restartGame.RemoveListener(RestartGame);
     }
+
 
     private void StartNewGame(GameSettingsInfo gameSettings)
     {
@@ -46,12 +48,14 @@ public class GameRoundController : MonoBehaviour
         aiPaddle.GetComponent<AiController>().SetDifficultyLevel(gameSettings.DifficultyLevel);
         GameEventCenter.scoreChange.Trigger(recordedScore);
     }
+
     private void RestartGame(string status)
     {
         ResetMovingObjects();
         recordedScore = new RecordedScore(recordedScore.WinningScore);
         GameEventCenter.scoreChange.Trigger(recordedScore);
     }
+
     private void MoveToNextRound(string goalName)
     {
         ResetMovingObjects();
@@ -72,12 +76,14 @@ public class GameRoundController : MonoBehaviour
         }
     }
 
+
     private void ResetMovingObjects()
     {
         ball.GetComponent<BallController>().Reset();
         playerPaddle.GetComponent<PlayerController>().Reset();
         aiPaddle.GetComponent<AiController>().Reset();
     }
+
     private void IncrementScoreBasedOnGoal(string goalName)
     {
         if (goalName == rightGoal.name)

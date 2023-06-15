@@ -32,6 +32,7 @@ public class SliderSettingController : MonoBehaviour
             UpdateLabel(slider.value);
         }
     }
+
     void Update()
     {
         UpdateSliderValues(initialValue, minValue, maxValue);
@@ -49,7 +50,8 @@ public class SliderSettingController : MonoBehaviour
         slider.onValueChanged.RemoveListener(UpdateLabel);
     }
 
-    void UpdateLabel(float value)
+
+    private void UpdateLabel(float value)
     {
         label.text = $"{description}: {value}{numberSuffix}";
     }
@@ -74,7 +76,7 @@ public class SliderSettingController : MonoBehaviour
         }
     }
 
-    public static bool IsAllInteger(params string[] values)
+    private static bool IsAllInteger(params string[] values)
     {
         foreach (string value in values)
         {
@@ -86,7 +88,7 @@ public class SliderSettingController : MonoBehaviour
         return true;
     }
 
-    public static bool IsAllFloat(params string[] values)
+    private static bool IsAllFloat(params string[] values)
     {
         foreach (string value in values)
         {

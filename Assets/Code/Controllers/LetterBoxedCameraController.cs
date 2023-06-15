@@ -11,6 +11,22 @@ Features
 [ExecuteInEditMode, RequireComponent(typeof(Camera))]
 public class LetterBoxedCameraController : MonoBehaviour
 {
+    private struct RenderWindowResolution
+    {
+        public readonly int Width;
+        public readonly int Height;
+        public readonly float Aspect;
+
+        public bool IsSize(int width, int height) => width == Width && height == Height;
+        public RenderWindowResolution(int width, int height)
+        {
+            Width  = width;
+            Height = height;
+            Aspect = width / (float)height;
+        }
+    }
+
+
     private const int MIN_NUM_PIXELS = 480;
     private const int MAX_NUM_PIXELS = 7680;
     private const int DEFAULT_TARGET_WIDTH  = 1920;
@@ -60,25 +76,10 @@ public class LetterBoxedCameraController : MonoBehaviour
     {
         return new Rect(0.00f, (1.00f - scaleHeight) * 0.50f, 1.00f, scaleHeight);
     }
+
     private Rect GetPillarboxRect(float scaleHeight)
     {
         float scalewidth = 1.00f / scaleHeight;
         return new Rect((1.00f - scalewidth) * 0.50f, 0.00f, scalewidth, 1.00f);
-    }
-}
-
-public struct RenderWindowResolution
-{
-    public readonly int   Width;
-    public readonly int   Height;
-    public readonly float Aspect;
-    
-    public bool IsSize(int width, int height) => width == Width && height == Height;
-    public override string ToString() => $"RenderWindowResolution{{size={Width}x{Height},aspect={Aspect}}}";
-    public RenderWindowResolution(int width, int height)
-    {
-        Width  = width;
-        Height = height;
-        Aspect = width / (float)height;
     }
 }

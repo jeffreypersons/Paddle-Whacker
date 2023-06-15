@@ -42,18 +42,21 @@ public class IngameMenuController : MonoBehaviour
 
     void OnEnable()
     {
-        resumeButton.onClick.AddListener(ResumeGame);
+        resumeButton  .onClick.AddListener(ResumeGame);
         mainMenuButton.onClick.AddListener(MoveToMainMenu);
-        restartButton.onClick.AddListener(TriggerRestartGameEvent);
-        quitButton.onClick.AddListener(SceneUtils.QuitGame);
+        restartButton .onClick.AddListener(TriggerRestartGameEvent);
+        quitButton    .onClick.AddListener(SceneUtils.QuitGame);
     }
+
     void OnDisable()
     {
-        resumeButton.onClick.RemoveListener(ResumeGame);
+        resumeButton  .onClick.RemoveListener(ResumeGame);
         mainMenuButton.onClick.RemoveListener(MoveToMainMenu);
-        restartButton.onClick.RemoveListener(TriggerRestartGameEvent);
-        quitButton.onClick.RemoveListener(SceneUtils.QuitGame);
+        restartButton .onClick.RemoveListener(TriggerRestartGameEvent);
+        quitButton    .onClick.RemoveListener(SceneUtils.QuitGame);
     }
+
+
     private void ToggleMenuVisibility(bool isVisible)
     {
         Time.timeScale = isVisible? 0 : 1;
@@ -85,6 +88,7 @@ public class IngameMenuController : MonoBehaviour
         GameObjectUtils.SetButtonActiveAndEnabled(resumeButton, true);
         ToggleMenuVisibility(true);
     }
+
     private void OpenAsEndGameMenu(RecordedScore recordedScore)
     {
         if (!recordedScore.IsWinningScoreReached())
@@ -104,12 +108,14 @@ public class IngameMenuController : MonoBehaviour
         GameEventCenter.resumeGame.Trigger("Resuming game");
         ToggleMenuVisibility(false);
     }
+
     private void MoveToMainMenu()
     {
         GameEventCenter.gotoMainMenu.Trigger("Opening main menu");
         Time.timeScale = 1;
         SceneUtils.LoadScene("MainMenu");
     }
+
     private void TriggerRestartGameEvent()
     {
         GameEventCenter.restartGame.Trigger("Restarting game");

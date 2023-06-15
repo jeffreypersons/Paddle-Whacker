@@ -10,11 +10,10 @@ public class PaddleZoneIntersectInfo
     public Vector2 InVelocity  { get; private set; }
     public Vector2 OutPosition { get; private set; }
     public Vector2 OutVelocity { get; private set; }
-    public override string ToString()
-    {
-        return $"Ball entered {PaddleName}Zone at {InPosition} and left at {OutPosition} " +
-               $"with velocities of {InVelocity} and {OutVelocity}";
-    }
+
+    public override string ToString() =>
+        $"Ball entered {PaddleName}Zone at {InPosition} and left at {OutPosition} " +
+        $"with velocities of {InVelocity} and {OutVelocity}";
 
     public PaddleZoneIntersectInfo(string paddleName,
         Vector2 inPosition, Vector2 inVelocity,
@@ -27,28 +26,16 @@ public class PaddleZoneIntersectInfo
         OutVelocity = outVelocity;
     }
 
-    public bool ContainsPaddle(string paddleName) { return paddleName == PaddleName; }
+    public bool ContainsPaddle(string paddleName) => paddleName == PaddleName;
 
-    public bool IsNearingLeftGoalWall()     { return OutPosition.x < 0 && OutVelocity.x < 0; }
-    public bool IsNearingMidlineFromLeft()  { return OutPosition.x < 0 && OutVelocity.x > 0; }
+    public bool IsNearingLeftGoalWall()    => OutPosition.x < 0 && OutVelocity.x < 0;
+    public bool IsNearingMidlineFromLeft() => OutPosition.x < 0 && OutVelocity.x > 0;
+    public bool IsNearingRightGoalWall()    => OutPosition.x > 0 && OutVelocity.x > 0;
+    public bool IsNearingMidLineFromRight() => OutPosition.x > 0 && OutVelocity.x < 0;
 
-    public bool IsNearingRightGoalWall()    { return OutPosition.x > 0 && OutVelocity.x > 0; }
-    public bool IsNearingMidLineFromRight() { return OutPosition.x > 0 && OutVelocity.x < 0; }
+    public bool IsNearingGoalWall() => IsNearingLeftGoalWall()    || IsNearingRightGoalWall();
+    public bool IsNearingMidline()  => IsNearingMidlineFromLeft() || IsNearingMidLineFromRight();
 
-    public bool IsNearingGoalWall()
-    {
-        return IsNearingLeftGoalWall() || IsNearingRightGoalWall();
-    }
-    public bool IsNearingMidline()
-    {
-        return IsNearingMidlineFromLeft() || IsNearingMidLineFromRight();
-    }
-    public bool BallPassedThrough()
-    {
-        return (InVelocity.x > 0 && OutVelocity.x > 0) || (InVelocity.x < 0 && OutVelocity.x < 0);
-    }
-    public bool BallReflectedBack()
-    {
-        return (InVelocity.x > 0 && OutVelocity.x < 0) || (InVelocity.x < 0 && OutVelocity.x > 0);
-    }
+    public bool BallPassedThrough() => (InVelocity.x > 0 && OutVelocity.x > 0) || (InVelocity.x < 0 && OutVelocity.x < 0);
+    public bool BallReflectedBack() => (InVelocity.x > 0 && OutVelocity.x < 0) || (InVelocity.x < 0 && OutVelocity.x > 0);
 }

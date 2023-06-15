@@ -14,10 +14,17 @@ public class GameEvent<EventData>
     {
         action = delegate { };
     }
+
+    public void Trigger(in EventData eventData)
+    {
+        action.Invoke(eventData);
+    }
+
     public void AddListener(Action<EventData> listener)
     {
         action += listener;
     }
+
     // adds a listener that automatically removes itself just after executing
     public void AddAutoUnsubscribeListener(Action<EventData> oneTimeUseListener)
     {
@@ -30,6 +37,7 @@ public class GameEvent<EventData>
         };
         action += handler;
     }
+
     public void RemoveListener(Action<EventData> listener)
     {
         action -= listener;
@@ -43,9 +51,5 @@ public class GameEvent<EventData>
                 action -= (Action<EventData>)d;
             }
         }
-    }
-    public void Trigger(in EventData eventData)
-    {
-        action.Invoke(eventData);
     }
 }

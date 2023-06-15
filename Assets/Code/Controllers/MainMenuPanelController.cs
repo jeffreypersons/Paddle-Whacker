@@ -42,6 +42,7 @@ public class MainMenuPanelController : MonoBehaviour
             musicVolumePercent: (int)musicVolumeSetting.SliderValue
         );
     }
+
     private void DeactivePanels()
     {
         startPanel.SetActive(false);

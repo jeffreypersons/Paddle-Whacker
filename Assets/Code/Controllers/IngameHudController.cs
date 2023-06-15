@@ -15,11 +15,13 @@ public class IngameHudController : MonoBehaviour
         GameEventCenter.scoreChange.AddListener(UpdateScore);
         pauseButton.onClick.AddListener(TriggerPauseGameEvent);
     }
+
     void OnDisable()
     {
         GameEventCenter.scoreChange.RemoveListener(UpdateScore);
         pauseButton.onClick.RemoveListener(TriggerPauseGameEvent);
     }
+
 
     private void UpdateScore(RecordedScore recordedScore)
     {
@@ -27,6 +29,7 @@ public class IngameHudController : MonoBehaviour
         leftScoreLabel.text  = recordedScore.LeftPlayerScore.ToString();
         rightScoreLabel.text = recordedScore.RightPlayerScore.ToString();
     }
+
     private void TriggerPauseGameEvent()
     {
         if (lastRecordedScore == null)

@@ -28,37 +28,39 @@ public class SoundEffectController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEventCenter.paddleHit.AddListener(PlaySoundOnPaddleHit);
-        GameEventCenter.horizontalWallHit.AddListener(PlaySoundOnWallHit);
-        GameEventCenter.verticalWallHit.AddListener(PlaySoundOnWallHit);
-        GameEventCenter.goalHit.AddListener(PlaySoundOnGoalHit);
-
-        GameEventCenter.startNewGame.AddListener(SetMasterVolume);
-        GameEventCenter.pauseGame.AddListener(PauseAnyActiveSoundEffects);
-        GameEventCenter.resumeGame.AddListener(ResumeAnyActiveSoundEffects);
+        GameEventCenter.paddleHit          .AddListener(PlaySoundOnPaddleHit);
+        GameEventCenter.horizontalWallHit  .AddListener(PlaySoundOnWallHit);
+        GameEventCenter.verticalWallHit    .AddListener(PlaySoundOnWallHit);
+        GameEventCenter.goalHit            .AddListener(PlaySoundOnGoalHit);
+        GameEventCenter.startNewGame       .AddListener(SetMasterVolume);
+        GameEventCenter.pauseGame          .AddListener(PauseAnyActiveSoundEffects);
+        GameEventCenter.resumeGame         .AddListener(ResumeAnyActiveSoundEffects);
         GameEventCenter.winningScoreReached.AddListener(PlaySoundOnWinningScoreReached);
     }
+
     void OnDisable()
     {
-        GameEventCenter.paddleHit.RemoveListener(PlaySoundOnPaddleHit);
-        GameEventCenter.horizontalWallHit.RemoveListener(PlaySoundOnWallHit);
-        GameEventCenter.verticalWallHit.RemoveListener(PlaySoundOnWallHit);
-        GameEventCenter.goalHit.RemoveListener(PlaySoundOnGoalHit);
-
-        GameEventCenter.startNewGame.RemoveListener(SetMasterVolume);
-        GameEventCenter.pauseGame.RemoveListener(PauseAnyActiveSoundEffects);
-        GameEventCenter.resumeGame.RemoveListener(ResumeAnyActiveSoundEffects);
+        GameEventCenter.paddleHit          .RemoveListener(PlaySoundOnPaddleHit);
+        GameEventCenter.horizontalWallHit  .RemoveListener(PlaySoundOnWallHit);
+        GameEventCenter.verticalWallHit    .RemoveListener(PlaySoundOnWallHit);
+        GameEventCenter.goalHit            .RemoveListener(PlaySoundOnGoalHit);
+        GameEventCenter.startNewGame       .RemoveListener(SetMasterVolume);
+        GameEventCenter.pauseGame          .RemoveListener(PauseAnyActiveSoundEffects);
+        GameEventCenter.resumeGame         .RemoveListener(ResumeAnyActiveSoundEffects);
         GameEventCenter.winningScoreReached.RemoveListener(PlaySoundOnWinningScoreReached);
     }
+
 
     private void PauseAnyActiveSoundEffects(RecordedScore _)
     {
         audioSource.Pause();
     }
+
     private void ResumeAnyActiveSoundEffects(string _)
     {
         audioSource.UnPause();
     }
+
     private void SetMasterVolume(GameSettingsInfo gameSettings)
     {
         audioSource.volume = gameSettings.SoundVolume / 100.0f;
@@ -68,6 +70,7 @@ public class SoundEffectController : MonoBehaviour
     {
         audioSource.PlayOneShot(paddleHitSound, volumeScalePaddleHit);
     }
+
     private void PlaySoundOnWallHit(string _)
     {
         audioSource.PlayOneShot(wallHitSound, volumeScaleWallHit);
@@ -84,6 +87,7 @@ public class SoundEffectController : MonoBehaviour
             audioSource.PlayOneShot(playerScored, volumeScaleGoalHit);
         }
     }
+
     private void PlaySoundOnWinningScoreReached(RecordedScore recordedScore)
     {
         if (recordedScore.IsLeftPlayerWinning())

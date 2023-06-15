@@ -13,8 +13,8 @@ public class ExpandZonesToEncapsulatePaddles : MonoBehaviour
     [SerializeField] private BoxCollider2D bottomWall  = default;
     [SerializeField] private BoxCollider2D topWall     = default;
 
-    private float InnerArenaMaxY { get { return topWall   .bounds.min.y; } }
-    private float InnerArenaMinY { get { return bottomWall.bounds.max.y; } }
+    private float InnerArenaMaxY => topWall   .bounds.min.y;
+    private float InnerArenaMinY => bottomWall.bounds.max.y;
 
     void Update()
     {
@@ -30,6 +30,7 @@ public class ExpandZonesToEncapsulatePaddles : MonoBehaviour
             }
         }
     }
+
     private void ResizeZoneColliderToEncapsulatePaddle(BoxCollider2D zone, BoxCollider2D paddle)
     {
         float height = InnerArenaMaxY - InnerArenaMinY;

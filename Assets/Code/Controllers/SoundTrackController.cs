@@ -16,20 +16,22 @@ public class SoundTrackController : MonoBehaviour
 
     void OnEnable()
     {
-        GameEventCenter.startNewGame.AddListener(StartTrack);
-        GameEventCenter.restartGame.AddListener(RestartTrack);
-        GameEventCenter.pauseGame.AddListener(PauseTrack);
-        GameEventCenter.resumeGame.AddListener(ResumeTrack);
+        GameEventCenter.startNewGame       .AddListener(StartTrack);
+        GameEventCenter.restartGame        .AddListener(RestartTrack);
+        GameEventCenter.pauseGame          .AddListener(PauseTrack);
+        GameEventCenter.resumeGame         .AddListener(ResumeTrack);
         GameEventCenter.winningScoreReached.AddListener(EndTrack);
     }
+
     void OnDisable()
     {
-        GameEventCenter.startNewGame.RemoveListener(StartTrack);
-        GameEventCenter.restartGame.RemoveListener(RestartTrack);
-        GameEventCenter.pauseGame.RemoveListener(PauseTrack);
-        GameEventCenter.resumeGame.RemoveListener(ResumeTrack);
+        GameEventCenter.startNewGame       .RemoveListener(StartTrack);
+        GameEventCenter.restartGame        .RemoveListener(RestartTrack);
+        GameEventCenter.pauseGame          .RemoveListener(PauseTrack);
+        GameEventCenter.resumeGame         .RemoveListener(ResumeTrack);
         GameEventCenter.winningScoreReached.RemoveListener(EndTrack);
     }
+
 
     private void StartTrack(GameSettingsInfo gameSettings)
     {

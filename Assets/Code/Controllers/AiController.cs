@@ -29,16 +29,17 @@ public class AiController : MonoBehaviour
     private float targetPaddleY;
     private Coroutine updateTargetCoroutine;
 
-    private string PaddleName       { get { return paddleCollider.name;             } }
-    private float  BallHalfHeight   { get { return ballCollider.bounds.extents.y;   } }
-    private float  PaddleHalfHeight { get { return paddleCollider.bounds.extents.y; } }
+    private string PaddleName       => paddleCollider.name;
+    private float  BallHalfHeight   => ballCollider.bounds.extents.y;
+    private float  PaddleHalfHeight => paddleCollider.bounds.extents.y;
+
     private bool IsBallWithinPaddleRange(float paddleY, float ballY)
     {
         return MathUtils.IsOverlappingRange(
             paddleY - PaddleHalfHeight,
             paddleY + PaddleHalfHeight,
-            ballY - BallHalfHeight,
-            ballY + BallHalfHeight
+            ballY   - BallHalfHeight,
+            ballY   + BallHalfHeight
         );
     }
 
@@ -74,6 +75,7 @@ public class AiController : MonoBehaviour
         }
     }
 
+
     void OnEnable()
     {
         GameEventCenter.zoneIntersection.AddListener(UpdateTargetTask);
@@ -108,6 +110,7 @@ public class AiController : MonoBehaviour
         Reset();
         StartTargetUpdateRoutine(CoroutineUtils.RunAfter(initialTimeDelayAfterReset, TargetPredictedBallPosition));
     }
+
     void FixedUpdate()
     {
         if (Mathf.Abs(targetPaddleY - paddleBody.position.y) >= minVerticalDistanceBeforeMoving)
@@ -120,7 +123,8 @@ public class AiController : MonoBehaviour
         }
     }
 
-    public void UpdateTargetTask(PaddleZoneIntersectInfo hitZoneInfo)
+
+    private void UpdateTargetTask(PaddleZoneIntersectInfo hitZoneInfo)
     {
         bool isOnAiSide         =  hitZoneInfo.ContainsPaddle(PaddleName);
         bool isBallIncoming     = !isOnAiSide && hitZoneInfo.IsNearingMidline();

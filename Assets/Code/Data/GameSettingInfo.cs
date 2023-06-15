@@ -7,11 +7,10 @@ public class GameSettingsInfo
     public float DifficultyLevel { get; private set; }
     public float SoundVolume     { get; private set; }
     public float MusicVolume     { get; private set; }
-    public override string ToString()
-    {
-        return $"NumberOfGoals is {NumberOfGoals}, and difficulty is {DifficultyLevel}%, " +
-               $"SoundVolume is {SoundVolume}%, and MusicVolume is {MusicVolume}%";
-    }
+
+    public override string ToString() =>
+        $"NumberOfGoals is {NumberOfGoals}, and difficulty is {DifficultyLevel}%, " +
+        $"SoundVolume is {SoundVolume}%, and MusicVolume is {MusicVolume}%";
 
     public GameSettingsInfo(int numberOfGoals, int difficultyPercent, int soundVolumePercent, int musicVolumePercent)
     {
@@ -27,6 +26,7 @@ public class GameSettingsInfo
         }
     }
 
+
     private bool ValidPositiveInteger(int value)
     {
         if (value < 0)
@@ -36,6 +36,7 @@ public class GameSettingsInfo
         }
         return true;
     }
+
     private bool ValidatePercentage(int value)
     {
         if (!MathUtils.IsWithinRange(value, 0, 100))
