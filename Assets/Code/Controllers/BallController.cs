@@ -17,6 +17,7 @@ public class BallController : MonoBehaviour
         ballBody.position = initialPosition;
         ballBody.velocity = ballSpeed * initialDirection;
     }
+
     void Awake()
     {
         ballBody        = gameObject.transform.GetComponent<Rigidbody2D>();
@@ -29,10 +30,12 @@ public class BallController : MonoBehaviour
                            $"excessive speeds risk skipping through other (especially thin) object's colliders");
         }
     }
+
     void Start()
     {
         ballBody.velocity = ballSpeed * initialDirection;
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Paddle"))
