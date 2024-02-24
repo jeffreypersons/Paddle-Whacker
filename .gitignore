@@ -34,6 +34,7 @@ user.keystore
 .gradle/
 .consulo/
 ExportedObj/
+*.idea
 *.vsconfig
 *.csproj
 *.unityproj
