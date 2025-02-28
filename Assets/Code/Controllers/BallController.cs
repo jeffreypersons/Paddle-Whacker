@@ -15,7 +15,7 @@ public class BallController : MonoBehaviour
     public void Reset()
     {
         ballBody.position = initialPosition;
-        ballBody.velocity = ballSpeed * initialDirection;
+        ballBody.linearVelocity = ballSpeed * initialDirection;
     }
 
     void Awake()
@@ -33,14 +33,14 @@ public class BallController : MonoBehaviour
 
     void Start()
     {
-        ballBody.velocity = ballSpeed * initialDirection;
+        ballBody.linearVelocity = ballSpeed * initialDirection;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            ballBody.velocity = ballSpeed * ComputeBounceDirectionOffPaddle(ballCollider.bounds, collision.collider.bounds);
+            ballBody.linearVelocity = ballSpeed * ComputeBounceDirectionOffPaddle(ballCollider.bounds, collision.collider.bounds);
             GameEventCenter.paddleHit.Trigger(collision.gameObject.name);
         }
         if (collision.gameObject.CompareTag("Goal"))

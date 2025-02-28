@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     public void Reset()
     {
-        paddleBody.velocity   = Vector2.zero;
+        paddleBody.linearVelocity   = Vector2.zero;
         paddleBody.position   = initialPosition;
         targetPaddleY         = initialPosition.y;
         previousMousePosition = Input.mousePosition;

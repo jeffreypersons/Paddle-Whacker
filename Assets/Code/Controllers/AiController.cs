@@ -149,7 +149,7 @@ public class AiController : MonoBehaviour
 
     private void TargetPredictedBallPosition()
     {
-        Vector2 initialBallDirection = ballBody.velocity.normalized;
+        Vector2 initialBallDirection = ballBody.linearVelocity.normalized;
         float targetX = paddleCollider.ClosestPoint(ballBody.position).x;
         ballPredictor.ComputeNewTrajectory(ballBody.position, initialBallDirection, targetX);
         targetPaddleY = ballPredictor.EndPoint.y;
@@ -166,7 +166,7 @@ public class AiController : MonoBehaviour
     private void TryToHitBallFromHorizontalEdge()
     {
         float targetX = paddleCollider.ClosestPoint(ballBody.position).x;
-        ballPredictor.ComputeNewTrajectory(ballBody.position, ballBody.velocity.normalized, targetX);
+        ballPredictor.ComputeNewTrajectory(ballBody.position, ballBody.linearVelocity.normalized, targetX);
         float paddleY    = paddleCollider.bounds.center.y;
         float predictedY = ballPredictor.EndPoint.y;
         #if UNITY_EDITOR

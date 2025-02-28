@@ -23,7 +23,7 @@ public class PaddleZoneController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ball"))
         {
             Rigidbody2D ball = collision.GetComponent<Rigidbody2D>();
-            lastRecordedInVelocity = ball.velocity;
+            lastRecordedInVelocity = ball.linearVelocity;
             lastRecordedInPosition = ball.position;
         }
     }
@@ -33,7 +33,7 @@ public class PaddleZoneController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ball"))
         {
             Rigidbody2D ball = collision.GetComponent<Rigidbody2D>();
-            lastRecordedOutVelocity = ball.velocity;
+            lastRecordedOutVelocity = ball.linearVelocity;
             lastRecordedOutPosition = ball.position;
             GameEventCenter.zoneIntersection.Trigger(
                 new PaddleZoneIntersectInfo(
