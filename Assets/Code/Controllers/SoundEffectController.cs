@@ -63,7 +63,7 @@ public class SoundEffectController : MonoBehaviour
 
     private void SetMasterVolume(GameSettingsInfo gameSettings)
     {
-        audioSource.volume = gameSettings.SoundVolume / 100.0f;
+        audioSource.volume = gameSettings.SoundVolume;
     }
 
     private void PlaySoundOnPaddleHit(string _)

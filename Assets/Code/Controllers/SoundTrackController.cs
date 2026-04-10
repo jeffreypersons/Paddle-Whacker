@@ -35,7 +35,7 @@ public class SoundTrackController : MonoBehaviour
 
     private void StartTrack(GameSettingsInfo gameSettings)
     {
-        track.volume = gameSettings.MusicVolume / 100.0f;
+        track.volume = gameSettings.MusicVolume;
         track.Play();
     }
     private void RestartTrack(string _)
