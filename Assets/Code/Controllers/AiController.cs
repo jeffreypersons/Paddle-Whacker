@@ -71,7 +71,7 @@ public class AiController : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"DifficultyScale must be a ratio between 0.00 and 1.00, recieved {ratio} instead");
+            Debug.LogError($"DifficultyScale must be a ratio between 0.00 and 1.00, received {ratio} instead");
         }
     }
 
