@@ -4,7 +4,7 @@
 public class SoundEffectController : MonoBehaviour
 {
     private AudioSource audioSource;
-    private static float DEFAULT_MASTER_VOLUME = 0.25f;
+    private static float DEFAULT_MASTER_VOLUME = 0.75f;
 
     [SerializeField] private float volumeScaleWallHit    = default;
     [SerializeField] private float volumeScalePaddleHit  = default;

@@ -4,7 +4,7 @@
 public class SoundTrackController : MonoBehaviour
 {
     private AudioSource track;
-    private static float DEFAULT_MASTER_VOLUME = 0.50f;
+    private static float DEFAULT_MASTER_VOLUME = 1.00f;
 
     void Awake()
     {
